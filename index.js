@@ -18,30 +18,20 @@ var app = new Vue({
         del(index) {
             this.items.splice(index, 1);
         },
-        add_y(){
-            var row_x = document.getElementById("mt").rows;
-            for(var i=1; i<row_x.length; i++){
-                this.y.push(parseFloat(row_x[i].cells[2].innerText));
-            }
-        },
-        add_x(){
-            var row_x = document.getElementById("mt").rows;
-            for(var i=1; i<row_x.length; i++){
-                this.x.push(parseFloat(row_x[i].cells[1].innerText));
-            }
-        },
-        add(){
-            this.y = [];
+        get_cols(id){
+        //     var row_x = document.getElementById("mt").rows;
+        //     for(var i=1; i<row_x.length; i++){
+        //         this.y.push(parseFloat(row_x[i].cells[2].innerText));
+        //     }
             this.x = [];
-            this.add_y();
-            this.add_x();
+            this.y = [];
+            var cols = document.getElementById(id).rows;
+            for(var i=1; i<cols.length; i++){
+                this.x.push(Number(cols[i].cells[1].innerText));
+                this.y.push(Number(cols[i].cells[2].innerText));
+            }
             this.show = !this.show;
         },
-
-    },
-    
-    computed: {
-        
         sum(arr1, arr2){
             var result = 0;
             for(var i=0; i<arr1.length; i++){
@@ -49,16 +39,35 @@ var app = new Vue({
             }
             return result;
         },
-        sum_1(arr){
+        sum_1(arr3){
             var z = 0;
-            for(var i=0; i<arr.length; i++){
-                z += arr[i];
+            for(var i=0; i<arr3.length; i++){
+                z += arr3[i];
             }
             return z;
         },
         average(arr){
-            return this.sum_1(arr)/arr.length;
+            var over = this.sum_1(arr);
+            return over/arr.length;
         },
+        // add_x(){
+        //     var row_x = document.getElementById("mt").rows;
+        //     for(var i=1; i<row_x.length; i++){
+        //         this.x.push(parseFloat(row_x[i].cells[1].innerText));
+        //     }
+        // },
+        // add(){
+        //     this.y = [];
+        //     this.x = [];
+        //     this.x = (document.getElementById("mt").cols[1]);
+        //     this.y = (document.getElementById("mt").cols[2]);
+        //     this.show = !this.show;
+        // },
+
+    },
+    
+    computed: {
+        
         b(){
             var n = this.x.length;
             var x_ = [];

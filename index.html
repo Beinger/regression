@@ -18,7 +18,7 @@
             <table class="table table-bordered" id="mt">
                 <thead>
                     <th>序号</th>
-                    <th>加入量</th>
+                    <th>加样量</th>
                     <th>吸光度</th>
                     <th>
                         <button @click="add_item()"><span class="glyphicon glyphicon-plus"></span></button>
@@ -43,20 +43,17 @@
                         <td>30</td>
                         <td></td>
                     </tr> -->
-                    <tr v-for="(item, index) in items" :key="index">
-                        <td>{{ index + 1 }}</td>
+                    <tr v-for="(item, index) in items" :key="index"> <td>{{ index + 1 }}</td>
                         <td :contenteditable="true" :id="'v'+index" :tabindex="1">{{ item.v }}</td>
                         <td :contenteditable="true" :id="'a'+index" :tabindex="2">{{ item.a }}</td>
                         <td @click="del(index)"><span class="glyphicon glyphicon-trash"></span></td>
                     </tr>
-                    <tr v-html="math_show" v-if="show"></tr>
-                    <tr>
-                        <button @click="add()" type="submit" class="btn btn-success">显示回归公式</button>
-                    </tr>
                 </tbody>
             </table>
+            <button @click="get_cols('mt')" type="submit" class="btn btn-success">显示回归公式</button>
+            <button onclick="show_chart()" class="btn btn-success">显示回归曲线</button>
+            <div v-html="math_show" v-if="show"></div>
         </div>
-        <button @click="show_chart()">显示回归曲线</button>
         <div id="container"></div>
         <div id="container2"></div>
     </div>
