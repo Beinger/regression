@@ -9,7 +9,8 @@ var app = new Vue({
         new_item: '',
         x: [],
         y: [],
-        show: false
+        show: false,
+        xgd: this.xgd,
     },
     methods: {
         add_item() {
@@ -50,20 +51,6 @@ var app = new Vue({
             var over = this.sum_1(arr);
             return over/arr.length;
         },
-        // add_x(){
-        //     var row_x = document.getElementById("mt").rows;
-        //     for(var i=1; i<row_x.length; i++){
-        //         this.x.push(parseFloat(row_x[i].cells[1].innerText));
-        //     }
-        // },
-        // add(){
-        //     this.y = [];
-        //     this.x = [];
-        //     this.x = (document.getElementById("mt").cols[1]);
-        //     this.y = (document.getElementById("mt").cols[2]);
-        //     this.show = !this.show;
-        // },
-
     },
     
     computed: {
@@ -86,6 +73,9 @@ var app = new Vue({
             var over = this.sum(this.y,this.x) - n * this.average(this.x) * this.average(this.y);
             var under = Math.sqrt((this.sum(this.x,this.x) - n * this.average(this.x) * this.average(this.x)) * (this.sum(this.y,this.y) - n * this.average(this.y) * this.average(this.y)));
             return (over / under).toFixed(4);
+        },
+        result(){
+            return ((this.xgd - this.a) / this.b).toFixed(4);
         },
         math_show(){
             if (this.a >= 0){
