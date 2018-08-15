@@ -9,22 +9,23 @@ var app = new Vue({
         new_item: '',
         x: [],
         y: [],
+        show: false
     },
     methods: {
-        add() {
+        add_item() {
             this.items.push(this.new_item, this.new_item, this.new_item);
         },
         del(index) {
             this.items.splice(index, 1);
         },
         add_y(){
-            var row_x = document.getElementById("table_val").rows;
+            var row_x = document.getElementById("mt").rows;
             for(var i=1; i<row_x.length; i++){
                 this.y.push(parseFloat(row_x[i].cells[2].innerText));
             }
         },
         add_x(){
-            var row_x = document.getElementById("table_val").rows;
+            var row_x = document.getElementById("mt").rows;
             for(var i=1; i<row_x.length; i++){
                 this.x.push(parseFloat(row_x[i].cells[1].innerText));
             }
@@ -34,8 +35,13 @@ var app = new Vue({
             this.x = [];
             this.add_y();
             this.add_x();
+            this.show = !this.show;
         },
 
+    },
+    
+    computed: {
+        
         sum(arr1, arr2){
             var result = 0;
             for(var i=0; i<arr1.length; i++){
@@ -50,14 +56,9 @@ var app = new Vue({
             }
             return z;
         },
-        average: function(arr){
+        average(arr){
             return this.sum_1(arr)/arr.length;
         },
-
-    },
-    
-    computed: {
-        
         b(){
             var n = this.x.length;
             var x_ = [];

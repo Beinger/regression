@@ -20,8 +20,8 @@
                     <th>序号</th>
                     <th>加入量</th>
                     <th>吸光度</th>
-                    <th @click="add(index)">
-                        <span class="glyphicon glyphicon-plus"></span>
+                    <th>
+                        <button @click="add_item()"><span class="glyphicon glyphicon-plus"></span></button>
                     </th>
                 </thead>
                 <tbody>
@@ -49,10 +49,14 @@
                         <td :contenteditable="true" :id="'a'+index" :tabindex="2">{{ item.a }}</td>
                         <td @click="del(index)"><span class="glyphicon glyphicon-trash"></span></td>
                     </tr>
+                    <tr v-html="math_show" v-if="show"></tr>
+                    <tr>
+                        <button @click="add()" type="submit" class="btn btn-success">显示回归公式</button>
+                    </tr>
                 </tbody>
             </table>
         </div>
-        <button onclick="show_chart()">点击显示</button>
+        <button @click="show_chart()">显示回归曲线</button>
         <div id="container"></div>
         <div id="container2"></div>
     </div>
