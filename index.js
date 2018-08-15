@@ -11,6 +11,7 @@ var app = new Vue({
         y: [],
         show: false,
         xgd: this.xgd,
+        gs: ''
     },
     methods: {
         add_item() {
@@ -31,6 +32,7 @@ var app = new Vue({
                 this.x.push(Number(cols[i].cells[1].innerText));
                 this.y.push(Number(cols[i].cells[2].innerText));
             }
+            this.math_show();
             this.show = !this.show;
         },
         sum(arr1, arr2){
@@ -51,6 +53,16 @@ var app = new Vue({
             var over = this.sum_1(arr);
             return over/arr.length;
         },
+        math_show(){
+            this.gs = "";
+            if (this.a >= 0){
+                this.gs = "<p>回归方程为：y = " + this.b +"x + " + this.a + "</p><p>相关系数为：r = " + this.r + "</p>";
+
+            }else{
+                var a = -(this.a);
+                this.gs = "<p>回归方程为：y = " + this.b +"x - " + a + "</p><p>相关系数为：r = " + this.r + "</p>";
+            }
+        }
     },
     
     computed: {
@@ -77,15 +89,6 @@ var app = new Vue({
         result(){
             return ((this.xgd - this.a) / this.b).toFixed(4);
         },
-        math_show(){
-            if (this.a >= 0){
-                return "<p>回归方程为：y = " + this.b +"x + " + this.a + "</p><p>相关系数为：r = " + this.r + "</p>";
-
-            }else{
-                var a = -(this.a);
-                return "<p>回归方程为：y = " + this.b +"x - " + a + "</p><p>相关系数为：r = " + this.r + "</p>";
-            }
-        }
     }
 });
 
@@ -105,7 +108,7 @@ function getTableContent(id) {
 function show_chart() {
 
     var data = getTableContent("mt");
-    chart = Highcharts.chart('container2', {
+    chart = Highcharts.chart('container', {
         title: {
             text: "标准回归曲线"
         },

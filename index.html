@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="js/vue.js"></script>
-    <link href="js/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css">
     <script src="js/highcharts.js"></script>
     <script src="js/highcharts_zh.js"></script>
     <title>标准回归</title>
@@ -21,7 +21,7 @@
                     <th>加样量</th>
                     <th>吸光度</th>
                     <th>
-                        <button @click="add_item()"><span class="glyphicon glyphicon-plus"></span></button>
+                        <button class="btn btn-info" @click="add_item()"><span class="glyphicon glyphicon-plus"></span></button>
                     </th>
                 </thead>
                 <tbody>
@@ -52,12 +52,11 @@
             </table>
             <button @click="get_cols('mt')" type="submit" class="btn btn-success">显示回归公式</button>
             <button onclick="show_chart()" class="btn btn-success">显示回归曲线</button>
-            <div v-html="math_show" v-if="show"></div>
-            <input name="xgd" placeholder="请输入样品吸光度" v-model="xgd">
-            <div>样品吸光度为{{xgd}},那么样品中铁的质量为{{result}}微克</div>
+            <div v-html="gs"></div>
+            
+            <div style="margin: 12px 0 12px 0">样品吸光度为<input style="width: 150px" name="xgd" placeholder="请输入样品吸光度" v-model="xgd">,那么样品中铁的质量为{{result}}微克</div>
         </div>
         <div id="container"></div>
-        <div id="container2"></div>
     </div>
 
     <script src="index.js"></script>
