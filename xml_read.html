@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <title>test xml read</title>
+</head>
+
+<body>
+    <button onclick="display(1)">点击显示</button>
+    <input type="button" onclick="previous()" value="previous">
+    <input type="button" onclick="next()" value="next">
+    <div id="show"></div>
+    <div id="input_group">
+        <input type="text" placeholder="newname" id="newname">
+        <button type="submit" onclick="add_xm()">增加项目</button>
+        <input type="text" placeholder="newid" id="newid">
+        <input type="date" placeholder="newdate" id="newdate">
+        <input type="number" placeholder="newc" id="newc">
+        <button type="submit" onclick="add_log(0)">增加数据</button>
+    </div>
+    <form action="saveForm.asp" method="POST">
+        <h1>Enter your info: </h1>
+        <label>name:</label>
+        <p><input type="text" id="firstname" name="firstname"></p>
+        <label>xing:</label>
+        <p><input type="text" id="lastname" name="lastname"></p>
+        <label>country:</label>
+        <p><input type="text" id="country" name="country"></p>
+
+        <p>
+            <input type="submit" id="btn_sub" name="btn_sub" value="Submit">
+            <input type="reset" id="btn_res" name="btn_res" value="Reset">
+        </p>
+    </form>
+    <script src="loadXML.js"></script>
+    <script>
+        loadXMLDoc();
+        var x = xmlDoc.getElementsByTagName("xm");
+        // x[0].getElementsByTagName("log")[0].getElementsByTagName("c")[0].childNodes[0].nodeValue = "&lt;0.05";
+        var newname_input = document.getElementById("newname").innerText;
+        var newid_input = document.getElementById("newid").innerText;
+        var newdate_input = document.getElementById("newdate").innerText;
+        var newc_input = document.getElementById("newc").innerText;
+
+        function add_xm() {
+            var i = 0;
+            newxm = xmlDoc.createElement("xm");
+            newname = xmlDoc.createTextNode("name");
+            newlog = xmlDoc.createElement("log");
+            newid = xmlDoc.createTextNode("id");
+            newdate = xmlDoc.createTextNode("date");
+            newc = xmlDoc.createTextNode("c");
+            newlog.appendChild(newdate, newc);
+            newxm.appendChild(newname, newlog);
+            x[i].appendChild(newxm);
+            x[i].getElementsByTagName("name").nodeValue = newname_input;
+            i++;
+        }
+
+        function add_log(m) {
+            var y = x[m].getElementsByTagName("log");
+            var i = y.length;
+
+            y[0].getElementsByTagName("log")[i].getElementsByTagName("id").nodeValue = newid_input;
+            y[0].getElementsByTagName("log")[i].getElementsByTagName("date").nodeValue = newdate_input;
+            y[0].getElementsByTagName("log")[i].getElementsByTagName("c").nodeValue = newc_input;
+            i++;
+        }
+
+        function display(i) {
+            fe = (x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue);
+            fe_log_id = (x[i].getElementsByTagName("log")[0].getElementsByTagName("id")[0].childNodes[0].nodeValue);
+            fe_log_date = (x[i].getElementsByTagName("log")[0].getElementsByTagName("date")[0].childNodes[0].nodeValue);
+            fe_log_c = (x[i].getElementsByTagName("log")[0].getElementsByTagName("c")[0].childNodes[0].nodeValue);
+            txt = fe_log_date + "所测" + fe + "的浓度为" + fe_log_c;
+            document.getElementById("show").innerHTML = txt;
+        };
+        var i = 0;
+
+        function next() {
+            if (i < x.length - 1) {
+                i++;
+                display(i);
+            }
+        };
+
+        function previous() {
+            if (i > 0) {
+                i--;
+                display(i);
+            }
+        }
+        document.write("<table class='table table-bordered'>");
+        document.write("<th>项目名称</th><th>id</th><th>监测日期</th><th>样品浓度</th>")
+        for (var i = 0; i < x.length; i++) {
+            var log_x = x[i].getElementsByTagName("log");
+            for (var m = 0; m < log_x; m++) {
+            document.write("<tr onclick='display(" + i + ")'>");
+            document.write("<td>");
+            document.write(x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue);
+            document.write("</td>");
+                document.write("<td>");
+                document.write(log_x[m].getElementsByTagName("id")[0].childNodes[0].nodeValue);
+                document.write("</td><td>");
+                document.write(log_x[m].getElementsByTagName("date")[0].childNodes[0].nodeValue);
+                document.write("</td><td>");
+                document.write(log_x[m].getElementsByTagName("c")[0].childNodes[0].nodeValue);
+                document.write("</td>")
+            document.write("</tr>");
+            }
+        }
+        document.write("</table>");
+    </script>
+</body>
+
+</html>
