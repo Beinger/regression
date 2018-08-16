@@ -42,7 +42,7 @@ Set p = xmlDoc.createProcessingInstruction("xml","version='1.0'","encoding='UTF-
 xmlDoc.insertBefore p,xmlDoc.childNodes(0)
 
 '保存 XML 文件
-xmlDoc.save "D:\work\Customer.xml"
+xmlDoc.save "\Customer.xml"
 
 '释放所有的对象引用
 set xmlDoc=nothing
