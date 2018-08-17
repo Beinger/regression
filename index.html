@@ -54,7 +54,11 @@
             <button onclick="show_chart()" class="btn btn-success">显示回归曲线</button>
             <div v-html="gs"></div>
             
-            <div style="margin: 12px 0 12px 0">样品吸光度为<input style="width: 150px" name="xgd" placeholder="请输入样品吸光度" v-model="xgd">,那么样品中铁的质量为{{result}}微克</div>
+            <div style="margin: 12px 0 12px 0">
+                样品吸光度为
+                <input style="width: 150px" name="xgd" placeholder="请输入样品吸光度" v-model="xgd">
+                ,那么样品中铁的质量为{{result}}微克
+            </div>
         </div>
         <div id="container"></div>
     </div>
