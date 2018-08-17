@@ -11,7 +11,9 @@ var app = new Vue({
         y: [],
         show: false,
         xgd: this.xgd,
-        gs: ''
+        gs: '',
+        input_v: 0,
+        limit: 0 
     },
     methods: {
         add_item() {
@@ -89,6 +91,9 @@ var app = new Vue({
         result(){
             return ((this.xgd - this.a) / this.b).toFixed(4);
         },
+        result_c(){
+            return (this.result / this.input_v).toFixed(2);
+        }
     }
 });
 
