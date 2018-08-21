@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.5">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="js/vue.js"></script>
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css">
@@ -25,13 +25,13 @@
             </select>
             <span>所选项目为：{{ selected.name }}</span>
             <span>最小检出限为：{{ selected.limit }}</span>
-            <table class="table table-bordered" :id="selected.id" v-if="selected.id==selected.id">
+            <table class="table table-bordered text-center" :id="selected.id" v-if="selected.id==selected.id">
                 <caption>水中{{ selected.name }}的标准系列</caption>
                 <thead>
-                    <th>序号</th>
-                    <th>加样量</th>
-                    <th>吸光度</th>
-                    <th @click="add_item()">
+                    <th class="text-center">序号</th>
+                    <th class="text-center">加样量</th>
+                    <th class="text-center">吸光度</th>
+                    <th class="text-center" @click="add_item()">
                         <span class="glyphicon glyphicon-plus"></span>
                     </th>
                 </thead>
