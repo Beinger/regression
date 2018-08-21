@@ -48,10 +48,6 @@ var app = new Vue({
             this.items.splice(index, 1);
         },
         get_cols(id){
-        //     var row_x = document.getElementById("mt").rows;
-        //     for(var i=1; i<row_x.length; i++){
-        //         this.y.push(parseFloat(row_x[i].cells[2].innerText));
-        //     }
             this.x = [];
             this.y = [];
             var cols = document.getElementById(id).rows;
@@ -130,13 +126,7 @@ var app = new Vue({
 function getTableContent(id) {
     var myTable = document.getElementById(id).rows;
     var data = [
-        // [],
-        // []
     ];
-    // for (var i = 1, rows = myTable.length; i < rows; i++) {
-    //     data[0].push(Number(myTable[i].cells[1].innerText));
-    //     data[1].push(Number(myTable[i].cells[2].innerText));
-    // }
     for(var i=1; i<myTable.length; i++){
         var arr = [];
         arr.push(myTable[i].innerText.split('\t'));
@@ -196,11 +186,6 @@ function show_chart() {
         series: [{
             type: 'line',
             name: "吸光度",
-            // data: [
-            //     [1,0.01],
-            //     [2,0.02],
-            //     [3,0.03]
-            // ]
             data: data
         }],
         responsive: {

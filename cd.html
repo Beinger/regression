@@ -20,11 +20,10 @@
     <div class="container">
 
         <div id="root">
-            <select class="btn" v-model="selected">
+            <label for="xm">选择项目：</label>
+            <select id="xm" class="form-control" v-model="selected">
                 <option v-bind:value="item" v-for="(item,index) in names">{{ item.name }}</option>
             </select>
-            <span>所选项目为：{{ selected.name }}</span>
-            <span>最小检出限为：{{ selected.limit }}</span>
             <table class="table table-bordered text-center" :id="selected.id" v-if="selected.id==selected.id">
                 <caption>水中{{ selected.name }}的标准系列</caption>
                 <thead>
