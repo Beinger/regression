@@ -10,10 +10,32 @@ var app = new Vue({
         x: [],
         y: [],
         show: false,
-        xgd: this.xgd,
+        xgd: '',
         gs: '',
-        input_v: 0,
-        limit: 0 
+        names:[
+            {
+                id: 1,
+                name: '铁',
+                limit: 0.05,
+                result_end: '',
+                input_v: 50
+            },
+            {
+                id: 2,
+                name: '铜',
+                limit: 0.04,
+                result_end: '',
+                input_v: 50
+            },
+            {
+                id: 3,
+                name: '锰',
+                limit: 0.05,
+                result_end: '',
+                input_v: 50
+            },
+        ],
+        selected: ''
     },
     methods: {
         add_item() {
@@ -92,43 +114,60 @@ var app = new Vue({
             return ((this.xgd - this.a) / this.b).toFixed(4);
         },
         result_c(){
-            return (this.result / this.input_v).toFixed(2);
+            return (this.result / this.selected.input_v).toFixed(2);
         }
     }
 });
 
 function getTableContent(id) {
-    var myTable = document.getElementById(id);
+    var myTable = document.getElementById(id).rows;
     var data = [
-        [],
-        []
+        // [],
+        // []
     ];
-    for (var i = 1, rows = myTable.rows.length; i < rows; i++) {
-        data[0].push(Number(myTable.rows[i].cells[1].innerText));
-        data[1].push(Number(myTable.rows[i].cells[2].innerText));
+    // for (var i = 1, rows = myTable.length; i < rows; i++) {
+    //     data[0].push(Number(myTable[i].cells[1].innerText));
+    //     data[1].push(Number(myTable[i].cells[2].innerText));
+    // }
+    for(var i=0; i<myTable.length; i++){
+        data.push(myTable[i]);
     }
+    data.push(myTable[i])
     return data;
+};
+
+function getId(){
+    return app.selected.id;
+};
+
+function getName(){
+    return app.selected.name;
+};
+
+function getResult(){
+    return app.selected.result_end;
 };
 
 function show_chart() {
 
-    var data = getTableContent("mt");
+    var data = getTableContent(getId());
+    var name = getName();
     chart = Highcharts.chart('container', {
         title: {
             text: "标准回归曲线"
         },
         subtitle: {
-            text: "水中铁"
+            text: name
         },
         xAxis:{
             title:{
-                text: "加样量"
-            }
+                text: "加样量(ml)"
+            },
         },
         yAxis: {
             title: {
                 text: "吸光度"
-            }
+            },
         },
         legend: {
             layout: "vertical",
@@ -138,14 +177,15 @@ function show_chart() {
         plotOptions: {
             series: {
                 label: {
-                    connectorAllowed: false
+                    connectorAllowed: true 
                 },
-                pointStart: 0
+                pointStart: 0,
             }
         },
         series: [{
+            type: 'line',
             name: "吸光度",
-            data: data[1]
+            data: data
         }],
         responsive: {
             rules: [{
