@@ -36,53 +36,53 @@
                     </th>
                 </thead>
                 <tbody>
-                    <tr>
+                    <!-- <tr>
                         <td>1</td>
                         <td>0</td>
-                        <td>0.01</td>
+                        <td :contenteditable="true">0.01</td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>2</td>
                         <td>0.5</td>
-                        <td>0.02</td>
+                        <td :contenteditable="true">0.02</td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>3</td>
                         <td>1</td>
-                        <td>0.05</td>
+                        <td :contenteditable="true">0.05</td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>4</td>
                         <td>3</td>
-                        <td>0.10</td>
+                        <td :contenteditable="true">0.13</td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>5</td>
                         <td>5</td>
-                        <td>0.20</td>
+                        <td :contenteditable="true">0.26</td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>6</td>
                         <td>7</td>
-                        <td>0.42</td>
+                        <td :contenteditable="true">0.42</td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>7</td>
                         <td>10</td>
-                        <td>0.60</td>
+                        <td :contenteditable="true">0.60</td>
                         <td></td>
-                    </tr>
-                    <!-- <tr v-for="(item, index) in items" :key="index"> <td>{{ index + 1 }}</td>
+                    </tr> -->
+                    <tr v-for="(item, index) in items" :key="index"> <td>{{ index + 1 }}</td>
                         <td :contenteditable="true" :id="'v'+index" :tabindex="1">{{ item.v }}</td>
                         <td :contenteditable="true" :id="'a'+index" :tabindex="2">{{ item.a }}</td>
                         <td @click="del(index)"><span class="glyphicon glyphicon-trash"></span></td>
-                    </tr> -->
+                    </tr>
                 </tbody>
             </table>
             <form>
@@ -101,7 +101,7 @@
                     <b>样品吸光度为</b>{{ xgd }}
                     <abbr>，那么样品中{{ selected.name }}的质量为{{result}}微克</abbr>
                     ，加样量为{{selected.input_v}}ml，则样品中{{ selected.name }}的浓度为
-                    <span v-if="result_c>selected.limit">{{result_c}}</span><span v-else>&lt;{{ selected.limit }}</span>g/L。
+                    <span v-if="result_c>selected.limit">{{result_c}}</span><span v-else>&lt;{{ selected.limit }}</span>mg/L。
                     </div>
                 </fieldset>
             </form>

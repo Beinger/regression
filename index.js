@@ -7,9 +7,9 @@ var app = new Vue({
         }],
         index: 0,
         new_item: '',
+        show: false,
         x: [],
         y: [],
-        show: false,
         xgd: '',
         gs: '',
         names:[
@@ -18,21 +18,24 @@ var app = new Vue({
                 name: '铁',
                 limit: 0.05,
                 result_end: '',
-                input_v: 50
+                input_v: 50,
+                table_data: []
             },
             {
                 id: 2,
                 name: '铜',
                 limit: 0.04,
                 result_end: '',
-                input_v: 50
+                input_v: 50,
+                table_data: []
             },
             {
                 id: 3,
                 name: '锰',
                 limit: 0.05,
                 result_end: '',
-                input_v: 50
+                input_v: 50,
+                table_data: []
             },
         ],
         selected: ''
@@ -53,8 +56,13 @@ var app = new Vue({
             this.y = [];
             var cols = document.getElementById(id).rows;
             for(var i=1; i<cols.length; i++){
-                this.x.push(Number(cols[i].cells[1].innerText));
-                this.y.push(Number(cols[i].cells[2].innerText));
+                var value1 = Number(cols[i].cells[1].innerText);
+                var value2 = Number(cols[i].cells[2].innerText);
+                var value = [];
+                value.push(value1,value2);
+                this.x.push(value1);
+                this.y.push(value2);
+                this.names[this.selected.id-1].table_data.push(value);
             }
             this.math_show();
             this.show = !this.show;
@@ -129,10 +137,13 @@ function getTableContent(id) {
     //     data[0].push(Number(myTable[i].cells[1].innerText));
     //     data[1].push(Number(myTable[i].cells[2].innerText));
     // }
-    for(var i=0; i<myTable.length; i++){
-        data.push(myTable[i]);
+    for(var i=1; i<myTable.length; i++){
+        var arr = [];
+        arr.push(myTable[i].innerText.split('\t'));
+        arr[0][1] = Number(arr[0][1]);
+        arr[0][2] = Number(arr[0][2]);
+        data.push(arr[0].slice(1,3));
     }
-    data.push(myTable[i])
     return data;
 };
 
@@ -177,7 +188,7 @@ function show_chart() {
         plotOptions: {
             series: {
                 label: {
-                    connectorAllowed: true 
+                    connectorAllowed: true
                 },
                 pointStart: 0,
             }
@@ -185,6 +196,11 @@ function show_chart() {
         series: [{
             type: 'line',
             name: "吸光度",
+            // data: [
+            //     [1,0.01],
+            //     [2,0.02],
+            //     [3,0.03]
+            // ]
             data: data
         }],
         responsive: {
