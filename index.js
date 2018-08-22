@@ -1,10 +1,6 @@
 var app = new Vue({
     el: "#root",
     data: {
-        items: [{
-            v: "",
-            a: ""
-        }],
         index: 0,
         new_item: '',
         show: false,
@@ -12,22 +8,87 @@ var app = new Vue({
         y: [],
         xgd: '',
         gs: '',
-        names:[
+        names: [
             {
                 id: 1,
-                name: '铁',
+                name: '氨氮',
                 limit: 0.05,
                 result_end: '',
                 input_v: 50,
-                table_data: []
+                items: [{
+                    v: 0,
+                    a: 0.005
+                },
+                {
+                    v: 1,
+                    a: 0.010
+                },
+                {
+                    v: 3,
+                    a: 0.020
+                },
+                {
+                    v: 5,
+                    a: 0.029
+                },
+                {
+                    v: 7,
+                    a: 0.039
+                },
+                {
+                    v: 10,
+                    a: 0.055
+                }],
+                
+                standard_series: [{
+                    1: 0.001,
+                    2: 0.003,
+                    3: 0.004,
+                    4: 0.005,
+                    5: 0.006,
+                    6: 0.007,
+                    7: 0.008
+                }]
             },
             {
                 id: 2,
-                name: '铜',
-                limit: 0.04,
+                name: '氰化物',
+                limit: 0.01,
                 result_end: '',
                 input_v: 50,
-                table_data: []
+                items: [{
+                    v: 0,
+                    a: 0.371
+                },
+                {
+                    v: 2.5,
+                    a: 0.432
+                },
+                {
+                    v: 5,
+                    a: 0.473
+                },
+                {
+                    v: 10,
+                    a: 0.559
+                },
+                {
+                    v: 20,
+                    a: 0.724
+                },
+                {
+                    v: 40,
+                    a: 1.053
+                }],
+                standard_series: [{
+                    1: 0.001,
+                    2: 0.003,
+                    3: 0.004,
+                    4: 0.005,
+                    5: 0.006,
+                    6: 0.007,
+                    7: 0.008
+                }]
             },
             {
                 id: 3,
@@ -35,17 +96,69 @@ var app = new Vue({
                 limit: 0.05,
                 result_end: '',
                 input_v: 50,
-                table_data: []
+                items: [{
+                    v: 0,
+                    a: 0.008
+                },
+                {
+                    v: 0.5,
+                    a: 0.012
+                },
+                {
+                    v: 1,
+                    a: 0.024
+                },
+                {
+                    v: 3,
+                    a: 0.036
+                },
+                {
+                    v: 5,
+                    a: 0.045
+                },
+                {
+                    v: 7,
+                    a: 0.067
+                }],
+                standard_series: [{
+                    1: 0.001,
+                    2: 0.003,
+                    3: 0.004,
+                    4: 0.005,
+                    5: 0.006,
+                    6: 0.007,
+                    7: 0.008
+                }]
             },
         ],
-        selected: ''
+        selected: {
+                id: 1,
+                name: '铁',
+                limit: 0.05,
+                result_end: '',
+                input_v: 50,
+                items:[{
+                    v: '7',
+                    a: '0.42'
+                }], 
+                
+                standard_series: [{
+                    1: 0.001,
+                    2: 0.003,
+                    3: 0.004,
+                    4: 0.005,
+                    5: 0.006,
+                    6: 0.007,
+                    7: 0.008
+                }]
+            }
     },
     methods: {
         add_item() {
-            this.items.push(this.new_item, this.new_item, this.new_item);
+            this.selected.items.push(this.new_item);
         },
         del(index) {
-            this.items.splice(index, 1);
+            this.selected.items.splice(index, 1);
         },
         get_cols(id){
             this.x = [];
@@ -58,7 +171,7 @@ var app = new Vue({
                 value.push(value1,value2);
                 this.x.push(value1);
                 this.y.push(value2);
-                this.names[this.selected.id-1].table_data.push(value);
+                this.selected.standard_series.push(value);
             }
             this.math_show();
             this.show = !this.show;
@@ -90,7 +203,7 @@ var app = new Vue({
                 var a = -(this.a);
                 this.gs = "<p>回归方程为：y = " + this.b +"x - " + a + "</p><p>相关系数为：r = " + this.r + "</p>";
             }
-        }
+        },
     },
     
     computed: {
@@ -119,14 +232,21 @@ var app = new Vue({
         },
         result_c(){
             return (this.result / this.selected.input_v).toFixed(2);
+        },
+        calculation(){
+            if(this.result_c > this.selected.limit){
+                this.selected.result_end = this.result_c;
+            }else{
+                this.selected.result_end = '<' + this.selected.limit;
+            }
+            return this.selected.result_end;
         }
     }
 });
 
 function getTableContent(id) {
     var myTable = document.getElementById(id).rows;
-    var data = [
-    ];
+    var data = [];
     for(var i=1; i<myTable.length; i++){
         var arr = [];
         arr.push(myTable[i].innerText.split('\t'));
@@ -136,7 +256,6 @@ function getTableContent(id) {
     }
     return data;
 };
-
 function getId(){
     return app.selected.id;
 };
@@ -145,12 +264,20 @@ function getName(){
     return app.selected.name;
 };
 
-function getResult(){
-    return app.selected.result_end;
+function focus_move() {
+    var range, el = document.getElementById('hint');
+    if (el.setSelectionRange) {
+        el.focus();
+        el.setSelectionRange(el.value.length, el.value.length)
+    } else {
+        range = el.createTextRange();
+        range.collapse(false);
+        range.select();
+    }
 };
 
 function show_chart() {
-
+    focus_move();
     var data = getTableContent(getId());
     var name = getName();
     chart = Highcharts.chart('container', {
@@ -184,7 +311,6 @@ function show_chart() {
             }
         },
         series: [{
-            type: 'line',
             name: "吸光度",
             data: data
         }],
