@@ -38,7 +38,7 @@
     <div class="container">
 
         <div class="jumbotron">
-            <h1>欢迎使用回归计算器</h1>
+            <h1>回归计算器</h1>
         </div>
         <div id="root">
             <select class="form-control input-lg" name="xm" id="xm" v-model="selected">
@@ -67,11 +67,11 @@
             </table>
             <form>
                 <fieldset>
-                    <div class="help-block">修改数据后，需要再点击按钮，才能得到最新的公式。</div>
+                    <div class="help-block">修改数据后，要点击按钮才能刷新。</div>
                     <legend>标准回归公式</legend>
                     <a @click="get_cols(selected.id)" class="btn btn-success"><i class="fa fa-2x fa-subscript" aria-hidden="true"></i>显示回归公式</a>
                     <a id="hint" onclick="show_chart()" class="btn btn-success"><i class="fa fa-2x fa-line-chart"></i>显示回归曲线</a>
-                    <h2 v-html="gs"></h2>
+                    <h4 v-html="gs"></h4>
                 </fieldset>
                 <fieldset>
                     <legend>样品浓度计算</legend>
@@ -90,7 +90,7 @@
                                 <td>{{ selected.name }}</td>
                                 <!-- <td><input placeholder="请输入样品的加入量" v-model="selected.input_v"></td> -->
                                 <td>
-                                    <select name="" id="" v-model="selected.input_v" class="form-control">
+                                    <select name="" id="" v-model="selected.input_v">
                                         <option value="50">50ml</option>
                                         <option value="25">25ml</option>
                                         <option value="100">100ml</option>
@@ -98,7 +98,7 @@
                                         <option value="1">1ml</option>
                                     </select>
                                 </td>
-                                <td><input class="btn btn-xs" name="xgd" placeholder="输入吸光度" v-model="xgd"></td>
+                                <td><input name="xgd" placeholder="输入吸光度" v-model="xgd"></td>
                                 <td>{{ result }}</td>
                                 <td>{{ calculation }}</td>
                             </tr>
