@@ -75,11 +75,11 @@
                     <label>样品加入量：</label><input v-model="selected.input_v" placeholder="请输入样品的加样量"> -->
                     <table class="table table-bordered table-striped">
                         <thead>
-                            <th class="text-center">项目名称</th>
+                            <th class="text-center">名称</th>
                             <th class="text-center">加样量</th>
                             <th class="text-center">吸光度</th>
                             <th class="text-center">质量</th>
-                            <th class="text-center">报告结果</th>
+                            <th class="text-center">结果</th>
                         </thead>
                         <tbody class="text-center">
                             <tr>
@@ -93,7 +93,7 @@
                                         <option value="1">1ml</option>
                                     </select>
                                 </td>
-                                <td><input class="btn" name="xgd" placeholder="请输入样品的吸光度" v-model="xgd"></td>
+                                <td><input class="btn btn-xs" name="xgd" placeholder="输入吸光度" v-model="xgd"></td>
                                 <td>{{ result }}</td>
                                 <td>{{ calculation }}</td>
                             </tr>
