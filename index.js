@@ -8,6 +8,7 @@ var app = new Vue({
         y: [],
         xgd: '',
         gs: '',
+        table_show: true,
         names: [
             {
                 id: 1,
@@ -131,27 +132,7 @@ var app = new Vue({
                 }]
             },
         ],
-        selected: {
-                id: 1,
-                name: '铁',
-                limit: 0.05,
-                result_end: '',
-                input_v: 50,
-                items:[{
-                    v: '7',
-                    a: '0.42'
-                }], 
-                
-                standard_series: [{
-                    1: 0.001,
-                    2: 0.003,
-                    3: 0.004,
-                    4: 0.005,
-                    5: 0.006,
-                    6: 0.007,
-                    7: 0.008
-                }]
-            }
+        selected: ''
     },
     methods: {
         add_item() {
@@ -204,6 +185,9 @@ var app = new Vue({
                 this.gs = "<p>回归方程为：y = " + this.b +"x - " + a + "</p><p>相关系数为：r = " + this.r + "</p>";
             }
         },
+        show_table(){
+            this.table_show = !this.table_show;
+        }
     },
     
     computed: {
@@ -228,7 +212,7 @@ var app = new Vue({
             return (over / under).toFixed(4);
         },
         result(){
-            return ((this.xgd - this.a) / this.b).toFixed(4);
+            return ((this.xgd - this.a) / this.b).toFixed(2);
         },
         result_c(){
             return (this.result / this.selected.input_v).toFixed(2);
@@ -265,15 +249,16 @@ function getName(){
 };
 
 function focus_move() {
-    var range, el = document.getElementById('hint');
-    if (el.setSelectionRange) {
-        el.focus();
-        el.setSelectionRange(el.value.length, el.value.length)
-    } else {
-        range = el.createTextRange();
-        range.collapse(false);
-        range.select();
-    }
+    document.getElementById("container").focus();
+    // var range, el = document.getElementById('hint');
+    // if (el.setSelectionRange) {
+    //     el.focus();
+    //     el.setSelectionRange(el.value.length, el.value.length)
+    // } else {
+    //     range = el.createTextRange();
+    //     range.collapse(false);
+    //     range.select();
+    // }
 };
 
 function show_chart() {

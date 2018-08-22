@@ -3,84 +3,108 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.5">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <title>水质监测</title>
+    <script src="js/vue.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/Font-Awesome-3.2.1/css/font-awesome.css">
+    <script src="js/highcharts.js"></script>
+    <script src="js/highcharts_zh.js"></script>
+    <style>
+        fieldset {
+            padding: .35em .625em .75em;
+            margin: 0 2px;
+            border: 1px solid silver
+        }
+
+        legend {
+            padding: .5em;
+            border: 0;
+            width: auto
+        }
+
+        :focus{
+            background-color: rgb(161, 220, 228);
+        }
+    </style>
+    <title>标准回归</title>
 </head>
 
 <body>
     <div class="jumbotron">
-        <h1>水质监测系统</h1>
-        <p>
-            说明：选择项目点击进入，就可以进行回归分析，输入样品的加样量和吸光度，自动计算出样品浓度。
-        </p>
+        <h1>欢迎使用回归计算器</h1>
     </div>
-    <div style="background-color: #738f75">
+    <div class="container">
 
-                    <a href="sd_and_result/cn.html" type="button" class="btn">
-                        <img src="img/cn.png" />
-                    </a>
-                    <a href="sd_and_result/cr.html" type="button" class="btn">
-                        <img src="img/cr.png" />
-                    </a>
-                    <a href="sd_and_result/cu.html" type="button" class="btn">
-                        <img src="img/cu.png" />
-                    </a>
-                    <a href="sd_and_result/f.html" type="button" class="btn">
-                        <img src="img/f.png" />
-                    </a>
-                    <a href="sd_and_result/fe.html" type="button" class="btn">
-                        <img src="img/fe.png" />
-                    </a>
-                    <a href="sd_and_result/mn.html" type="button" class="btn">
-                        <img src="img/mn.png" />
-                    </a>
-                    <a href="sd_and_result/nh3.html" type="button" class="btn">
-                        <img src="img/nh3.png" />
-                    </a>
-                    <a href="sd_and_result/no3.html" type="button" class="btn">
-                        <img src="img/no3.png" />
-                    </a>
-                    <a href="sd_and_result/pb.html" type="button" class="btn">
-                        <img src="img/pb.png" />
-                    </a>
-                    <a href="sd_and_result/se.html" type="button" class="btn">
-                        <img src="img/se.png" />
-                    </a>
-                    <a href="sd_and_result/so4.html" type="button" class="btn">
-                        <img src="img/so4.png" />
-                    </a>
-                    <a href="sd_and_result/zn.html" type="button" class="btn">
-                        <img src="img/zn.png" />
-                    </a>
-                    <a href="sd_and_result/abs.html" type="button" class="btn">
-                        <img src="img/abs.png" />
-                    </a>
-                    <a href="sd_and_result/as.html" type="button" class="btn">
-                        <img src="img/as.png" />
-                    </a>
-                    <a href="sd_and_result/cd.html" type="button" class="btn">
-                        <img src="img/cd.png" />
-                    </a>
-                    <a href="sd_and_result/hr.html" type="button" class="btn">
-                        <img src="img/hr.png" />
-                    </a>
-                    <a href="sd_and_result/clo2.html" type="button" class="btn">
-                        <img src="img/clo2.png" />
-                    </a>
-                    <a href="sd_and_result/o2.html" type="button" class="btn">
-                        <img src="img/o2.png" />
-                        </a>
-                    <a href="sd_and_result/tds.html" type="button" class="btn">
-                        <img src="img/tds.png" />
-                    </a>
-                    <a href="sd_and_result/cl.html" type="button" class="btn">
-                        <img src="img/cl.png" />
-                    </a>
+        <div id="root">
+                    <select class="form-control input-lg" name="xm" id="xm" v-model="selected">
+                        <option :value="item" v-for="(item,index) in names">{{ item.name }}</option>
+                    </select>
+            <table class="table table-bordered text-center table-striped" :id="selected.id" v-if="selected.id==selected.id">
+                <caption>
+                    <h3>水中{{ selected.name }}的标准系列 <i @click="show_table()" class="icon-minus"></i></h3>
+                </caption>
+                <thead>
+                    <th class="text-center">序号</th>
+                    <th class="text-center">加样量</th>
+                    <th class="text-center">吸光度</th>
+                    <th class="text-center" @click="add_item(selected.id)">
+                        <i class="icon-plus"></i>
+                    </th>
+                </thead>
+                <tbody v-show="table_show">
+                    <tr v-for="(item, index) in selected.items" :key="index">
+                        <td>{{ index + 1 }}</td>
+                        <td :contenteditable="true" :id="'v'+index">{{ item.v }}</td>
+                        <td :contenteditable="true" :id="'a'+index">{{ item.a }}</td>
+                        <td @click="del(index)"><i class="icon-remove"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+            <form>
+                <fieldset>
+                    <div class="help-block">修改数据后，需要再点击按钮，才能得到最新的公式。</div>
+                    <legend>标准回归公式</legend>
+                    <a @click="get_cols(selected.id)" class="btn btn-success">显示回归公式</a>
+                    <a id="hint" onclick="show_chart()" class="btn btn-success">显示回归曲线</a>
+                    <h2 v-html="gs"></h2>
+                </fieldset>
+                <fieldset>
+                    <legend>样品浓度计算</legend>
+                    <!-- <label>样品吸光度：</label><input name="xgd" placeholder="请输入样品的吸光度" v-model="xgd">
+                    <label>样品加入量：</label><input v-model="selected.input_v" placeholder="请输入样品的加样量"> -->
+                    <table class="table table-bordered table-striped">
+                        <thead class="text-center">
+                            <th>项目名称</th>
+                            <th>加样量</th>
+                            <th>吸光度</th>
+                            <th>质量</th>
+                            <th>报告结果</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{ selected.name }}</td>
+                                <!-- <td><input placeholder="请输入样品的加入量" v-model="selected.input_v"></td> -->
+                                <td>
+                                    <select name="" id="" v-model="selected.input_v" class="form-control">
+                                        <option value="50">50ml</option>
+                                        <option value="100">100ml</option>
+                                        <option value="10">10ml</option>
+                                        <option value="1">1ml</option>
+                                    </select>
+                                </td>
+                                <td><input class="btn" name="xgd" placeholder="请输入样品的吸光度" v-model="xgd"></td>
+                                <td>{{ result }}</td>
+                                <td>{{ calculation }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </fieldset>
+            </form>
         </div>
+        <div id="container"></div>
     </div>
-</body>
 
+    <script src="index.js"></script>
+</body>
 </html>
