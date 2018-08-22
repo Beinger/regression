@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="js/vue.js"></script>
     <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/Font-Awesome-3.2.1/css/font-awesome.css">
+    <link rel="stylesheet" href="css/css/font-awesome.css">
     <script src="js/highcharts.js"></script>
     <script src="js/highcharts_zh.js"></script>
     <style>
@@ -23,7 +23,7 @@
             width: auto
         }
 
-        :focus{
+        :focus {
             background-color: rgb(161, 220, 228);
         }
     </style>
@@ -31,25 +31,25 @@
 </head>
 
 <body>
-    <div class="jumbotron">
-        <h1>欢迎使用回归计算器</h1>
-    </div>
     <div class="container">
 
+        <div class="jumbotron">
+            <h1>欢迎使用回归计算器</h1>
+        </div>
         <div id="root">
-                    <select class="form-control input-lg" name="xm" id="xm" v-model="selected">
-                        <option :value="item" v-for="(item,index) in names">{{ item.name }}</option>
-                    </select>
+            <select class="form-control input-lg" name="xm" id="xm" v-model="selected">
+                <option :value="item" v-for="(item,index) in names">{{ item.name }}</option>
+            </select>
             <table class="table table-bordered text-center table-striped" :id="selected.id" v-if="selected.id==selected.id">
                 <caption>
-                    <h3>水中{{ selected.name }}的标准系列 <i @click="show_table()" class="icon-minus"></i></h3>
+                    <h3>水中{{ selected.name }}的标准系列 <i @click="show_table()" class="fa fa-table"></i></h3>
                 </caption>
                 <thead>
                     <th class="text-center">序号</th>
                     <th class="text-center">加样量</th>
                     <th class="text-center">吸光度</th>
                     <th class="text-center" @click="add_item(selected.id)">
-                        <i class="icon-plus"></i>
+                        <i class="fa fa-plus fa-2x"></i>
                     </th>
                 </thead>
                 <tbody v-show="table_show">
@@ -57,7 +57,7 @@
                         <td>{{ index + 1 }}</td>
                         <td :contenteditable="true" :id="'v'+index">{{ item.v }}</td>
                         <td :contenteditable="true" :id="'a'+index">{{ item.a }}</td>
-                        <td @click="del(index)"><i class="icon-remove"></i></td>
+                        <td @click="del(index)"><i class="fa fa-trash fa-2x"></i></td>
                     </tr>
                 </tbody>
             </table>
@@ -65,8 +65,8 @@
                 <fieldset>
                     <div class="help-block">修改数据后，需要再点击按钮，才能得到最新的公式。</div>
                     <legend>标准回归公式</legend>
-                    <a @click="get_cols(selected.id)" class="btn btn-success">显示回归公式</a>
-                    <a id="hint" onclick="show_chart()" class="btn btn-success">显示回归曲线</a>
+                    <a @click="get_cols(selected.id)" class="btn btn-success"><i class="fa fa-2x fa-subscript" aria-hidden="true"></i>显示回归公式</a>
+                    <a id="hint" onclick="show_chart()" class="btn btn-success"><i class="fa fa-2x fa-line-chart"></i>显示回归曲线</a>
                     <h2 v-html="gs"></h2>
                 </fieldset>
                 <fieldset>
