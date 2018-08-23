@@ -69,8 +69,11 @@
                 <fieldset>
                     <div class="help-block">修改数据后，要点击按钮才能刷新。</div>
                     <legend>标准回归公式</legend>
-                    <a @click="get_cols(selected.id)" class="btn btn-success"><i class="fa fa-2x fa-subscript" aria-hidden="true"></i>显示回归公式</a>
-                    <a id="hint" onclick="show_chart()" class="btn btn-success"><i class="fa fa-2x fa-line-chart"></i>显示回归曲线</a>
+                    <a @click="get_cols(selected.id)" class="btn btn-defalut"><i class="fa fa-2x fa-subscript" aria-hidden="true"></i>显示回归公式</a>
+                    <a id="hint" onclick="show_chart()" class="btn btn-default"><i class="fa fa-2x fa-line-chart"></i>显示回归曲线</a>
+                    <div class="container">
+                        {{write_chart}}
+                    </div>
                     <h4 v-html="gs"></h4>
                 </fieldset>
                 <fieldset>
@@ -91,23 +94,23 @@
                                 <!-- <td><input placeholder="请输入样品的加入量" v-model="selected.input_v"></td> -->
                                 <td>
                                     <select name="" id="" v-model="selected.input_v">
-                                        <option value="50">50ml</option>
-                                        <option value="25">25ml</option>
-                                        <option value="100">100ml</option>
-                                        <option value="10">10ml</option>
-                                        <option value="1">1ml</option>
+                                        <option value="50">50 ml</option>
+                                        <option value="25">25 ml</option>
+                                        <option value="100">100 ml</option>
+                                        <option value="10">10 ml</option>
+                                        <option value="1">1 ml</option>
                                     </select>
                                 </td>
                                 <td><input name="xgd" placeholder="输入吸光度" v-model="xgd"></td>
-                                <td>{{ result }}</td>
-                                <td>{{ calculation }}</td>
+                                <td>{{ result }} μg</td>
+                                <td>{{ calculation }} mg/L</td>
                             </tr>
                         </tbody>
                     </table>
                 </fieldset>
             </form>
         </div>
-        <div id="container"></div>
+        <div id="line"></div>
     </div>
 
     <script src="index.js"></script>

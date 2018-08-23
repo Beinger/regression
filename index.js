@@ -1,14 +1,15 @@
 var app = new Vue({
     el: "#root",
     data: {
-        index: 0,
-        new_item: '',
-        show: false,
+        index: 0,  //这个是表格索引==序号
+        new_item: '',   //表格新行
+        show: false, 
         x: [],
         y: [],
         xgd: '',
         gs: '',
         table_show: true,
+        charts: document.getElementById("line").html,
         names: [
             {
                 id: 1,
@@ -187,10 +188,13 @@ var app = new Vue({
         },
         show_table(){
             this.table_show = !this.table_show;
-        }
+        },
     },
     
     computed: {
+        write_chart(){
+            return this.charts;
+        },
         
         b(){
             var n = this.x.length;
@@ -249,23 +253,13 @@ function getName(){
 };
 
 function focus_move() {
-    document.getElementById("container").focus();
-    // var range, el = document.getElementById('hint');
-    // if (el.setSelectionRange) {
-    //     el.focus();
-    //     el.setSelectionRange(el.value.length, el.value.length)
-    // } else {
-    //     range = el.createTextRange();
-    //     range.collapse(false);
-    //     range.select();
-    // }
+    window.scrollTo(0, document.documentElement.clientHeight);
 };
 
 function show_chart() {
-    focus_move();
     var data = getTableContent(getId());
     var name = getName();
-    chart = Highcharts.chart('container', {
+    chart = Highcharts.chart('line', {
         title: {
             text: "标准回归曲线"
         },
@@ -313,5 +307,6 @@ function show_chart() {
                 }
             }]
         }
-    })
+    });
+    focus_move();
 }
