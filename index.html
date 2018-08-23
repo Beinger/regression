@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/css/font-awesome.css">
     <script src="js/highcharts.js"></script>
     <script src="js/highcharts_zh.js"></script>
+    <script src="webstorage.js"></script>
     <style>
         fieldset {
             padding: .35em .625em .75em;
@@ -59,8 +60,8 @@
                 <tbody v-show="table_show">
                     <tr v-for="(item, index) in selected.items" :key="index">
                         <td>{{ index + 1 }}</td>
-                        <td :contenteditable="true" :id="'v'+index">{{ item.v }}</td>
-                        <td :contenteditable="true" :id="'a'+index">{{ item.a }}</td>
+                        <td :contenteditable="true" :id="'v'+index">{{ item[0] }}</td>
+                        <td :contenteditable="true" :id="'a'+index">{{ item[1] }}</td>
                         <td @click="del(index)"><i class="fa fa-trash fa-2x"></i></td>
                     </tr>
                 </tbody>
@@ -71,6 +72,7 @@
                     <legend>标准回归公式</legend>
                     <a @click="get_cols(selected.id)" class="btn btn-defalut"><i class="fa fa-2x fa-subscript" aria-hidden="true"></i>显示回归公式</a>
                     <a id="hint" onclick="show_chart()" class="btn btn-default"><i class="fa fa-2x fa-line-chart"></i>显示回归曲线</a>
+                    <a class="btn btn-defalut" onclick="bz()"><i class="fa fa-save"></i>保存标准系列</a>
                     <div class="container">
                         {{write_chart}}
                     </div>
@@ -111,6 +113,7 @@
             </form>
         </div>
         <div id="line"></div>
+        <button class="btn" onclick="show_data()">显示数据</button>
     </div>
 
     <script src="index.js"></script>
