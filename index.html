@@ -38,7 +38,7 @@
 <body>
     <div class="container">
 
-        <div class="jumbotron">
+        <div class="jumbotron" @click="toStorage()">
             <h1>回归计算器</h1>
         </div>
         <div id="root">
@@ -72,10 +72,7 @@
                     <legend>标准回归公式</legend>
                     <a @click="get_cols(selected.id)" class="btn btn-defalut"><i class="fa fa-2x fa-subscript" aria-hidden="true"></i>显示回归公式</a>
                     <a id="hint" onclick="show_chart()" class="btn btn-default"><i class="fa fa-2x fa-line-chart"></i>显示回归曲线</a>
-                    <a class="btn btn-defalut" onclick="bz()"><i class="fa fa-save"></i>保存标准系列</a>
-                    <div class="container">
-                        {{write_chart}}
-                    </div>
+                    <a class="btn btn-defalut" onclick="save_series()"><i class="fa fa-save"></i>保存标准系列</a>
                     <h4 v-html="gs"></h4>
                 </fieldset>
                 <fieldset>

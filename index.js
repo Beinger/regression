@@ -9,9 +9,11 @@ var app = new Vue({
         xgd: '',
         gs: '',
         table_show: true,
+        
         names: [
             {
                 id: 1,
+                symbol: 'HN3',
                 name: '氨氮',
                 limit: 0.05,
                 result_end: '',
@@ -617,6 +619,7 @@ var app = new Vue({
             this.x = [];
             this.y = [];
             var cols = document.getElementById(id).rows;
+            this.selected.standard_series=[];
             for(var i=1; i<cols.length; i++){
                 var value1 = Number(cols[i].cells[1].innerText);
                 var value2 = Number(cols[i].cells[2].innerText);
@@ -656,17 +659,27 @@ var app = new Vue({
                 var a = -(this.a);
                 this.gs = "<p>回归方程为：y = " + this.b +"x - " + a + "</p><p>相关系数为：r = " + this.r + "</p>";
             }
+            this.toStorage();
         },
         show_table(){
             this.table_show = !this.table_show;
         },
+        toStorage() {
+            var d = localStorage.getItem(this.selected.name);
+            var a = d.split(',');
+            var b = new Array();
+            for (let i = 0; i < a.length; i++) {
+                b[i] = new Array();
+                for (let j = 0; j < 2; j++) {
+                    b[i][j] = Number(a[i * 2 + j]);
+                }
+            }
+            var c = b.slice(0, b.length / 2);
+            this.selected.standard_series = c;
+        }
     },
     
     computed: {
-        write_chart(){
-            return this.charts;
-        },
-        
         b(){
             var n = this.x.length;
             var x_ = [];
@@ -699,7 +712,7 @@ var app = new Vue({
                 this.selected.result_end = '<' + this.selected.limit;
             }
             return this.selected.result_end;
-        }
+        },
     }
 });
 
@@ -727,33 +740,24 @@ function focus_move() {
     window.scrollTo(0, document.documentElement.clientHeight);
 };
 
-var data_storage = new Array();
-function bz() {
-    localStorage.data = app.selected.standard_series;
-    data_storage.push(localStorage.data);
-};
-function show_data(){
-    alert(data_storage);
-}
-function test() {
-    var b = localStorage.data[app.selected.id].split(',');
-    var c = new Array();
-    for (let i=0; i<b.length; i++) {
-        c[i] = new Array();
-        for (let j = 0; j < 2; j++) {
-            c[i][j] = b[i * 2 + j];
-        }
-    }
-    return c.slice(0,c.length/2);
+function save_series() {
+    localStorage.removeItem(app.selected.name);
+    localStorage.setItem(app.selected.name, app.selected.standard_series);
 };
 
-function set_data(){
-    var new_data = test();
-    app.selected.standard_series = new_data;
+
+function show_data(){
+    var x = localStorage.getItem(app.selected.name);
+    alert(x);
 };
 
 function show_chart() {
-    var data = getTableContent(getId());
+    var data;
+    if(app.selected.standard_series == []){
+        data = getTableContent(getId());
+    }else{
+        data = app.selected.standard_series;
+    }
     var name = getName();
     chart = Highcharts.chart('line', {
         title: {
