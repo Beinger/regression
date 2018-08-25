@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="css/css/font-awesome.css">
     <script src="js/highcharts.js"></script>
     <script src="js/highcharts_zh.js"></script>
-    <script src="webstorage.js"></script>
+    <script src="js/myStorage.js"></script>
+    <script src="js/webSQL.js"></script>
     <style>
         fieldset {
             padding: .35em .625em .75em;
@@ -53,12 +54,14 @@
                     <th class="text-center">序号</th>
                     <th class="text-center">加样量</th>
                     <th class="text-center">吸光度</th>
-                    <th class="text-center" @click="add_item(selected.id)">
-                        <i class="fa fa-plus fa-2x"></i>
+                    <th class="text-center">
+                        <i @click="add_item(selected.id)" class="fa fa-plus fa-2x"></i>
+                        <i @click="save_series(selected.id)" class="fa fa-save fa-2x"></i>
+                        <i class="fa fa-line-chart fa-2x" onclick="show_chart()"></i>
                     </th>
                 </thead>
                 <tbody v-show="table_show">
-                    <tr v-for="(item, index) in selected.items" :key="index">
+                    <tr v-for="(item, index) in selected.standard_series" :key="index">
                         <td>{{ index + 1 }}</td>
                         <td :contenteditable="true" :id="'v'+index">{{ item[0] }}</td>
                         <td :contenteditable="true" :id="'a'+index">{{ item[1] }}</td>
@@ -68,11 +71,7 @@
             </table>
             <form>
                 <fieldset>
-                    <div class="help-block">修改数据后，要点击按钮才能刷新。</div>
                     <legend>标准回归公式</legend>
-                    <a @click="get_cols(selected.id)" class="btn btn-defalut"><i class="fa fa-2x fa-subscript" aria-hidden="true"></i>显示回归公式</a>
-                    <a id="hint" onclick="show_chart()" class="btn btn-default"><i class="fa fa-2x fa-line-chart"></i>显示回归曲线</a>
-                    <a class="btn btn-defalut" onclick="save_series()"><i class="fa fa-save"></i>保存标准系列</a>
                     <h4 v-html="gs"></h4>
                 </fieldset>
                 <fieldset>
@@ -113,6 +112,6 @@
         <button class="btn" onclick="show_data()">显示数据</button>
     </div>
 
-    <script src="index.js"></script>
+    <script src="js/index.js"></script>
 </body>
 </html>

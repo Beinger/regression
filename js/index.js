@@ -18,6 +18,7 @@ var app = new Vue({
                 limit: 0.05,
                 result_end: '',
                 input_v: 50,
+                standard_series: [],
                 items: [[
                     0,
                     0.005
@@ -43,7 +44,6 @@ var app = new Vue({
                      0.055
                 ]],
                 
-                standard_series: []
             },
             {
                 id: 2,
@@ -51,6 +51,7 @@ var app = new Vue({
                 limit: 0.002,
                 result_end: '',
                 input_v: 250,
+                standard_series: [],
                 items: [[
                      0,
                      0.004
@@ -75,7 +76,6 @@ var app = new Vue({
                      0.9,
                      0.092
                 ]],
-                standard_series: []
             },
             {
                 id: 3,
@@ -83,6 +83,7 @@ var app = new Vue({
                 limit: 0.05,
                 result_end: '',
                 input_v: 50,
+                standard_series: [],
                 items: [[
                      0,
                      0.002
@@ -107,7 +108,6 @@ var app = new Vue({
                      90,
                      0.068
                 ]],
-                standard_series: []
             },
             {
                 id: 4,
@@ -115,6 +115,7 @@ var app = new Vue({
                 limit: 0.2,
                 result_end: '',
                 input_v: 10,
+                standard_series: [],
                 items: [[
                      0,
                      0.371
@@ -139,7 +140,6 @@ var app = new Vue({
                      40,
                      1.053
                 ]],
-                standard_series: []
             },
             {
                 id: 5,
@@ -147,6 +147,7 @@ var app = new Vue({
                 limit: 0.5,
                 result_end: '',
                 input_v: 1,
+                standard_series: [],
                 items: [[
                      0,
                      0.007
@@ -175,7 +176,6 @@ var app = new Vue({
                      10,
                      0.405
                 ]],
-                standard_series: []
             },
             {
                 id: 6,
@@ -183,6 +183,7 @@ var app = new Vue({
                 limit: 0.008,
                 result_end: '',
                 input_v: 25,
+                standard_series: [],
                 items: [[
                      0,
                      0.004
@@ -211,7 +212,6 @@ var app = new Vue({
                      5,
                      0.725
                 ]],
-                standard_series: []
             },
             {
                 id: 7,
@@ -219,6 +219,7 @@ var app = new Vue({
                 limit: 0.002,
                 result_end: '',
                 input_v: 250,
+                standard_series: [],
                 items: [[
                      0,
                      0.006
@@ -247,7 +248,6 @@ var app = new Vue({
                      10,
                      0.234
                 ]],
-                standard_series: []
             },
             {
                 id: 8,
@@ -255,6 +255,7 @@ var app = new Vue({
                 limit: 0.001,
                 result_end: '',
                 input_v: 25,
+                standard_series: [],
                 items: [[
                      0,
                      0.006
@@ -283,7 +284,6 @@ var app = new Vue({
                      8,
                      0.660
                 ]],
-                standard_series: []
             },
             {
                 id: 9,
@@ -291,6 +291,7 @@ var app = new Vue({
                 limit: 0.025,
                 result_end: '',
                 input_v: 100,
+                standard_series: [],
                 items: [[
                      0,
                      0.019
@@ -319,7 +320,6 @@ var app = new Vue({
                      50,
                      0.290
                 ]],
-                standard_series: []
             },
             {
                 id: 10,
@@ -327,6 +327,7 @@ var app = new Vue({
                 limit: 0.001,
                 result_end: '',
                 input_v: 250,
+                standard_series: [],
                 items: [[
                      0,
                      0.024
@@ -351,7 +352,6 @@ var app = new Vue({
                      8,
                      0.110 
                 ]],
-                standard_series: []
             },
             {
                 id: 11,
@@ -359,6 +359,7 @@ var app = new Vue({
                 limit: 0.01,
                 result_end: '',
                 input_v: 25,
+                standard_series: [],
                 items: [[
                      0,
                      0.207
@@ -383,7 +384,6 @@ var app = new Vue({
                      4,
                      0.336
                 ]],
-                standard_series: []
             },
             {
                 id: 12,
@@ -391,6 +391,7 @@ var app = new Vue({
                 limit: 0.01,
                 result_end: '',
                 input_v: 50,
+                standard_series: [],
                 items: [[
                      0,
                      0.434
@@ -415,7 +416,6 @@ var app = new Vue({
                      6,
                      0.630
                 ]],
-                standard_series: []
             },
             {
                 id: 13,
@@ -423,6 +423,7 @@ var app = new Vue({
                 limit: 0.004,
                 result_end: '',
                 input_v: 50,
+                standard_series: [],
                 items: [[
                      0,
                      0.002
@@ -447,7 +448,6 @@ var app = new Vue({
                      6,
                      0.103
                 ]],
-                standard_series: []
             },
             {
                 id: 14,
@@ -455,6 +455,7 @@ var app = new Vue({
                 limit: 0.02,
                 result_end: '',
                 input_v: 100,
+                standard_series: [],
                 items: [[
                      0,
                      0.038
@@ -479,7 +480,6 @@ var app = new Vue({
                      10,
                      0.238
                 ]],
-                standard_series: []
             },
             {
                 id: 15,
@@ -487,6 +487,7 @@ var app = new Vue({
                 limit: 0.05,
                 result_end: '',
                 input_v: 50,
+                standard_series: [],
                 items: [[
                      0,
                      0.002
@@ -511,7 +512,6 @@ var app = new Vue({
                      90,
                      0.068
                 ]],
-                standard_series: []
             },
             {
                 id: 16,
@@ -519,6 +519,7 @@ var app = new Vue({
                 limit: 0.05,
                 result_end: '',
                 input_v: 50,
+                standard_series: [],
                 items: [[
                      0,
                      0.095
@@ -543,7 +544,6 @@ var app = new Vue({
                      40,
                      0.290
                 ]],
-                standard_series: []
             },
             {
                 id: 17,
@@ -551,6 +551,7 @@ var app = new Vue({
                 limit: 0.05,
                 result_end: '',
                 input_v: 10,
+                standard_series: [],
                 items: [[
                      0,
                      0.748
@@ -575,7 +576,6 @@ var app = new Vue({
                      6,
                      1.602
                 ]],
-                standard_series: []
             },
             {
                 id: 18,
@@ -583,6 +583,7 @@ var app = new Vue({
                 limit: 5,
                 result_end: '',
                 input_v: 50,
+                standard_series: [],
                 items: [[
                      0,
                      0.029
@@ -603,32 +604,43 @@ var app = new Vue({
                      10,
                      1.137
                 ]],
-                standard_series: []
             },
         ],
         selected: ''
     },
     methods: {
+        get_series(){
+            var data = myStorage.getItem(this.selected.name);
+            var new_data = [];
+            data = data.split(',');
+            data = data.map(Number);
+            var x = [];
+            for(var i=0; i<data.length/2; i++){
+                    x[i] = data.slice(i*2,i*2+2);
+                    new_data.push(x[i]);
+            }
+            this.selected.standard_series = new_data; 
+        },
         add_item() {
-            this.selected.items.push(this.new_item);
+            this.selected.standard_series.push(this.new_item);
         },
         del(index) {
-            this.selected.items.splice(index, 1);
+            this.selected.standard_series.splice(index, 1);
         },
-        get_cols(id){
+        save_series(id){
             this.x = [];
             this.y = [];
-            var cols = document.getElementById(id).rows;
-            this.selected.standard_series=[];
-            for(var i=1; i<cols.length; i++){
-                var value1 = Number(cols[i].cells[1].innerText);
-                var value2 = Number(cols[i].cells[2].innerText);
+            var rows = document.getElementById(id).rows;
+            for(var i=1; i<rows.length; i++){
+                var value1 = Number(rows[i].cells[1].innerText);
+                var value2 = Number(rows[i].cells[2].innerText);
                 var value = [];
                 value.push(value1,value2);
                 this.x.push(value1);
                 this.y.push(value2);
-                this.selected.standard_series.push(value);
+                this.names[this.selected.id-1].standard_series[i-1] = value;
             }
+            myStorage.setItem(this.selected.name, this.names[this.selected.id-1].standard_series)
             this.math_show();
             this.show = !this.show;
         },
@@ -659,24 +671,11 @@ var app = new Vue({
                 var a = -(this.a);
                 this.gs = "<p>回归方程为：y = " + this.b +"x - " + a + "</p><p>相关系数为：r = " + this.r + "</p>";
             }
-            this.toStorage();
         },
         show_table(){
+            this.get_series();
             this.table_show = !this.table_show;
         },
-        toStorage() {
-            var d = localStorage.getItem(this.selected.name);
-            var a = d.split(',');
-            var b = new Array();
-            for (let i = 0; i < a.length; i++) {
-                b[i] = new Array();
-                for (let j = 0; j < 2; j++) {
-                    b[i][j] = Number(a[i * 2 + j]);
-                }
-            }
-            var c = b.slice(0, b.length / 2);
-            this.selected.standard_series = c;
-        }
     },
     
     computed: {
@@ -728,22 +727,10 @@ function getTableContent(id) {
     }
     return data;
 };
-function getId(){
-    return app.selected.id;
-};
-
-function getName(){
-    return app.selected.name;
-};
-
 function focus_move() {
     window.scrollTo(0, document.documentElement.clientHeight);
 };
 
-function save_series() {
-    localStorage.removeItem(app.selected.name);
-    localStorage.setItem(app.selected.name, app.selected.standard_series);
-};
 
 
 function show_data(){
@@ -752,19 +739,12 @@ function show_data(){
 };
 
 function show_chart() {
-    var data;
-    if(app.selected.standard_series == []){
-        data = getTableContent(getId());
-    }else{
-        data = app.selected.standard_series;
-    }
-    var name = getName();
     chart = Highcharts.chart('line', {
         title: {
             text: "标准回归曲线"
         },
         subtitle: {
-            text: name
+            text: app.selected.name
         },
         xAxis:{
             title:{
@@ -791,7 +771,7 @@ function show_chart() {
         },
         series: [{
             name: "吸光度",
-            data: data
+            data: app.selected.standard_series
         }],
         responsive: {
             rules: [{
@@ -809,4 +789,11 @@ function show_chart() {
         }
     });
     focus_move();
+}
+function useCount(){
+    if(myStorage.pagecount){
+        myStorage.pagecount = Number(myStorage.pagecount) + 1;
+    }else{
+        myStorage.pagecount = 1;
+    }
 }
