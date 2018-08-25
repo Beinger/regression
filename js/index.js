@@ -3,13 +3,10 @@ var app = new Vue({
     data: {
         index: 0,  //这个是表格索引==序号
         new_item: '',   //表格新行
-        show: false, 
         x: [],
         y: [],
         xgd: '',
         gs: '',
-        table_show: true,
-        
         names: [
             {
                 id: 1,
@@ -641,8 +638,6 @@ var app = new Vue({
                 this.names[this.selected.id-1].standard_series[i-1] = value;
             }
             myStorage.setItem(this.selected.name, this.names[this.selected.id-1].standard_series)
-            this.math_show();
-            this.show = !this.show;
         },
         sum(arr1, arr2){
             var result = 0;
@@ -673,8 +668,9 @@ var app = new Vue({
             }
         },
         show_table(){
-            this.get_series();
-            this.table_show = !this.table_show;
+            this.save_series(this.selected.id);
+            this.math_show();
+            show_chart();
         },
     },
     
