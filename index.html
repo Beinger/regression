@@ -37,20 +37,18 @@
 </head>
 
 <body>
+
     <div class="container">
 
-        <div class="jumbotron" @click="toStorage()">
+        <div class="jumbotron"> 
             <h1>回归计算器</h1>
         </div>
         <div id="root">
-            <select class="form-control input-lg" name="xm" id="xm" v-model="selected">
+            <select @change="set_show()" class="form-control input-lg" name="xm" id="xm" v-model="selected">
                 <option :value="item" v-for="(item,index) in names">{{ item.name }}</option>
             </select>
-            <table class="table table-bordered text-center table-striped" :id="selected.id">
-                <caption>
-                    <h3><a @click="get_series()">显示保存的标准系列</a></h3>
-                    <h3 @click="show_table()">水中{{ selected.name }}的标准系列 <i class="fa fa-table"></i></h3>
-                </caption>
+            <h3><a @click="get_series()">查看标准系列</a></h3>
+            <table v-show="show" class="table table-bordered text-center table-striped" :id="selected.id">
                 <thead>
                     <th class="text-center">序号</th>
                     <th class="text-center">加样量</th>
@@ -67,29 +65,33 @@
                         <td @click="del(index)"><i class="fa fa-trash fa-2x"></i></td>
                     </tr>
                 </tbody>
+                <caption>
+                    <h4>水中{{ selected.name }}的标准系列 </h4>
+                </caption>
             </table>
             <form>
+                <a class="form-contral btn btn-lg" @click="show_table()">回归分析</a>
                 <fieldset>
-                            <h4 v-html="gs"></h4>
+                    <legend>{{ selected.name }}的回归公式</legend>
+                    <h4 v-html="gs"></h4>
                 </fieldset>
                 <fieldset>
-                    <legend>样品浓度计算</legend>
-                    <!-- <label>样品吸光度：</label><input name="xgd" placeholder="请输入样品的吸光度" v-model="xgd">
-                    <label>样品加入量：</label><input v-model="selected.input_v" placeholder="请输入样品的加样量"> -->
+                    <legend>样品中{{ selected.name }}浓度计算</legend>
                     <table class="table table-bordered table-striped">
                         <thead>
-                            <th class="text-center">名称</th>
+                            <th class="text-center"><i class="fa fa-plus" @click="add_yangPin()"></i></th>
+                            <th class="text-center">编号</th>
                             <th class="text-center">加样量</th>
                             <th class="text-center">吸光度</th>
                             <th class="text-center">质量</th>
                             <th class="text-center">结果</th>
                         </thead>
                         <tbody class="text-center">
-                            <tr>
-                                <td>{{ selected.name }}</td>
-                                <!-- <td><input placeholder="请输入样品的加入量" v-model="selected.input_v"></td> -->
+                            <tr v-for="(item, index) in selected.results_save" :key="index">
+                                <td><i class="fa fa-trash" @click="del_yangPin()"></i></td>
+                                <td>{{ item.id=index+1 }}</td>
                                 <td>
-                                    <select name="" id="" v-model="selected.input_v">
+                                    <select name="" id="" v-model="item.input_v">
                                         <option value="50">50 ml</option>
                                         <option value="25">25 ml</option>
                                         <option value="100">100 ml</option>
@@ -98,9 +100,9 @@
                                         <option value="1">1 ml</option>
                                     </select>
                                 </td>
-                                <td><input name="xgd" placeholder="输入吸光度" v-model="xgd"></td>
-                                <td>{{ result }} μg</td>
-                                <td>{{ calculation }} mg/L</td>
+                                <td><input name="xgd" placeholder="输入吸光度" v-model="item.xgd"></td>
+                                <td>{{ item.m = result(item.id) }} μg</td>
+                                <td>{{ item.result = calculation(item.id) }} mg/L</td>
                             </tr>
                         </tbody>
                     </table>
@@ -113,4 +115,5 @@
 
     <script src="js/index.js"></script>
 </body>
+
 </html>
