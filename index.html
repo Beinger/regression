@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="js/jquery3.3.1.js"></script>
     <script src="js/vue.js"></script>
     <link rel="stylesheet" href="css/bootstrap.css">
 
@@ -80,22 +80,25 @@
                 </fieldset>
                 <fieldset>
                     <legend>样品中{{ selected.name }}浓度计算</legend>
+                    <button class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">
+                        开始输入吸光度
+                    </button>
                 </fieldset>
-                <!-- <table class="table table-bordered table-striped" id="report_value">
+                <table class="table table-bordered table-striped" id="report_value">
                         <thead>
                             <th class="text-center" @click="add_yangPin()"><i class="fa fa-plus"></i></th>
                             <th class="text-center">编号</th>
                             <th class="text-center">加样量</th>
                             <th class="text-center">吸光度</th>
-                            <th @click="get_result(index)" class="text-center">质量</th>
-                            <th @click="get_result(index)" class="text-center">结果</th>
+                            <th class="text-center">质量</th>
+                            <th class="text-center">结果</th>
                         </thead>
                         <tbody class="text-center">
                             <tr v-for="(item, index) in selected.results_save">
                                 <td><i class="fa fa-trash" @click="del_yangPin()"></i></td>
                                 <td>YXCDC2018水-{{ index+1 }}</td>
                                 <td>
-                                    <select name="" id="" v-model="item.input_v">
+                                    <select name="" id="" v-model="item[1]">
                                         <option value="50">50 ml</option>
                                         <option value="25">25 ml</option>
                                         <option value="100">100 ml</option>
@@ -104,19 +107,15 @@
                                         <option value="1">1 ml</option>
                                     </select>
                                 </td>
-                                <td><input v-model="item.xgd"></td>
-                                <td><input v-model="item.m"></td>
-                                <td><input v-model="item.result"></td>
+                                <td><input type="text" v-model="item[2]"></td>
+                                <td>{{ get_m(index) }}</td>
+                                <td>{{ get_result(index) }}</td>
                             </tr>
                         </tbody>
-                    </table> -->
+                    </table>
             </form>
-        </div>
         <div id="line"></div>
-        <button class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">
-            开始输入吸光度
-        </button>
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -125,36 +124,34 @@
                         </button>
                     </div>
                     <div class="modal-body">
+                        <div class="btn-group">
 
-                        <ul v-for="(item, index) in selected.results_save" :key="index">
-                            <li>
-                                <label for="sample_id">编号</label>
-                                <input type="button" id="sample_id" v-model="item.id">
-                            </li>
-                            <li>
-                                <label for="sample_v">加样量（ml）</label>
-                                <input type="button" id="sample_v" v-model="item.v">
-                            </li>
-                            <li>
-                                <label for="sample_A">吸光度</label>
-                                <input type="button" id="sample_A" v-model="item.A">
-                            </li>
-                            <li>
-                                <label for="sample_m">质量（μg）</label>
-                                <input type="button" id="sample_m" v-model="item.m">
-                            </li>
-                            <li>
-                                <label for="sample_result">浓度（mg/L）</label>
-                                <input type="button" id="sample_result" v-model="item.result">
-                            </li>
-                        </ul>
+                        <label for="sample_id">编号
+                        <input id="sample_id" :value="selected.results_save[selected.id-1].id"></label>
+                        <label for="sample_v">加样量（ml）
+                        <select id="sample_v">
+                            <option value="50">50 ml</option>
+                            <option value="100">100 ml</option>
+                            <option value="25">25 ml</option>
+                            <option value="250">250 ml</option>
+                            <option value="1">1 ml</option>
+                            </select>
+                        </label>
+                        <label for="sample_A">吸光度
+                        <input id="sample_A"></label>
+                        <label for="sample_m">质量（μg）
+                        <input id="sample_m"></label>
+                        <label for="sample_result">浓度（mg/L）
+                        <input id="sample_result"></label>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-default" data-dismiss="modal">关闭</button>
-                        <button class="btn btn-default">确认</button>
+                        <button @click="get_result(selected.id-1)" class="btn btn-default">确认</button>
                     </div>
                 </div>
             </div>
+        </div> -->
         </div>
 
         <button class="btn" onclick="show_data()">显示数据</button>

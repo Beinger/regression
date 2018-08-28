@@ -1,4 +1,4 @@
-var app = new Vue({
+let app = new Vue({
     el: "#root",
     data: {
         index: 0,  //这个是表格索引==序号
@@ -38,14 +38,7 @@ var app = new Vue({
                     0.055
                 ]],
                 new_results_save: [],
-                results_save:[{
-                    id: 0,
-                    v: 50,
-                    A: 0,
-                    m: 0,
-                    c: 0,
-                    report: 0 
-                }],
+                results_save:[[],[],[],[],[],[],[]],
             },
             {
                 id: 2,
@@ -77,7 +70,8 @@ var app = new Vue({
                     0.9,
                     0.092
                 ]],
-                results:[]
+                new_results_save:[],
+                results_save:[]
             },
             {
                 id: 3,
@@ -108,7 +102,8 @@ var app = new Vue({
                     90,
                     0.068
                 ]],
-                results:[]
+                new_results_save:[],
+                results_save:[]
             },
             {
                 id: 4,
@@ -139,7 +134,8 @@ var app = new Vue({
                     40,
                     1.053
                 ]],
-                results:[]
+                new_results_save:[],
+                results_save:[]
             },
             {
                 id: 5,
@@ -174,7 +170,8 @@ var app = new Vue({
                     10,
                     0.405
                 ]],
-                results:[]
+                new_results_save:[],
+                results_save:[]
             },
             {
                 id: 6,
@@ -209,7 +206,8 @@ var app = new Vue({
                     5,
                     0.725
                 ]],
-                results:[]
+                new_results_save:[],
+                results_save:[]
             },
             {
                 id: 7,
@@ -244,7 +242,8 @@ var app = new Vue({
                     10,
                     0.234
                 ]],
-                results:[]
+                new_results_save:[],
+                results_save:[]
             },
             {
                 id: 8,
@@ -279,7 +278,8 @@ var app = new Vue({
                     8,
                     0.660
                 ]],
-                results:[]
+                new_results_save:[],
+                results_save:[]
             },
             {
                 id: 9,
@@ -314,7 +314,8 @@ var app = new Vue({
                     50,
                     0.290
                 ]],
-                results:[]
+                new_results_save:[],
+                results_save:[]
             },
             {
                 id: 10,
@@ -345,7 +346,8 @@ var app = new Vue({
                     8,
                     0.110
                 ]],
-                results:[]
+                new_results_save:[],
+                results_save:[]
             },
             {
                 id: 11,
@@ -376,7 +378,8 @@ var app = new Vue({
                     4,
                     0.336
                 ]],
-                results:[]
+                new_results_save:[],
+                results_save:[]
             },
             {
                 id: 12,
@@ -407,7 +410,8 @@ var app = new Vue({
                     6,
                     0.630
                 ]],
-                results:[]
+                new_results_save:[],
+                results_save:[]
             },
             {
                 id: 13,
@@ -475,7 +479,8 @@ var app = new Vue({
                     10,
                     0.238
                 ]],
-                results:[]
+                new_results_save:[],
+                results_save:[]
             },
             {
                 id: 15,
@@ -506,7 +511,8 @@ var app = new Vue({
                     90,
                     0.068
                 ]],
-                results:[]
+                new_results_save:[],
+                results_save:[]
             },
             {
                 id: 16,
@@ -537,7 +543,8 @@ var app = new Vue({
                     40,
                     0.290
                 ]],
-                results:[]
+                new_results_save:[],
+                results_save:[]
             },
             {
                 id: 17,
@@ -568,7 +575,8 @@ var app = new Vue({
                     6,
                     1.602
                 ]],
-                results:[]
+                new_results_save:[],
+                results_save:[]
             },
             {
                 id: 18,
@@ -595,7 +603,8 @@ var app = new Vue({
                     10,
                     1.137
                 ]],
-                results:[]
+                new_results_save:[],
+                results_save:[]
             },
         ],
         selected: ''
@@ -617,12 +626,12 @@ var app = new Vue({
                  * 如果数据不存在于localStorage,就要从data的默认值中取出
                  * 默认系列，否则就从localStorage中取值
                  */
-                var data = myStorage.getItem(this.selected.name);
-                var new_data = [];
+                let data = myStorage.getItem(this.selected.name);
+                let new_data = [];
                 data = data.split(',');
                 data = data.map(Number);
-                var x = [];
-                for (var i = 0; i < data.length / 2; i++) {
+                let x = [];
+                for (let i = 0; i < data.length / 2; i++) {
                     x[i] = data.slice(i * 2, i * 2 + 2);
                     new_data.push(x[i]);
                 }
@@ -662,11 +671,11 @@ var app = new Vue({
              */
             this.x = []; //标准系列的加样量数据
             this.y = []; //标准系列的吸光度数据
-            var rows = document.getElementById(id).rows;
-            for (var i = 1; i < rows.length; i++) {
-                var value1 = Number(rows[i].cells[1].innerText);
-                var value2 = Number(rows[i].cells[2].innerText);
-                var value = [];
+            let rows = document.getElementById(id).rows;
+            for (let i = 1; i < rows.length; i++) {
+                let value1 = Number(rows[i].cells[1].innerText);
+                let value2 = Number(rows[i].cells[2].innerText);
+                let value = [];
                 value.push(value1, value2);
                 this.x.push(value1);
                 this.y.push(value2);
@@ -675,21 +684,21 @@ var app = new Vue({
             myStorage.setItem(this.selected.name, this.names[this.selected.id - 1].standard_series)
         },
         sum(arr1, arr2) {
-            var result = 0;
-            for (var i = 0; i < arr1.length; i++) {
+            let result = 0;
+            for (let i = 0; i < arr1.length; i++) {
                 result += (arr1[i] * arr2[i]);
             }
             return result;
         },
         sum_1(arr3) {
-            var z = 0;
-            for (var i = 0; i < arr3.length; i++) {
+            let z = 0;
+            for (let i = 0; i < arr3.length; i++) {
                 z += arr3[i];
             }
             return z;
         },
         average(arr) {
-            var over = this.sum_1(arr);
+            let over = this.sum_1(arr);
             return over / arr.length;
         },
         math_show() {
@@ -698,7 +707,7 @@ var app = new Vue({
                 this.gs = "<p>回归方程为：y = " + this.b + "x + " + this.a + "</p><p>相关系数为：r = " + this.r + "</p>";
 
             } else {
-                var a = -(this.a);
+                let a = -(this.a);
                 this.gs = "<p>回归方程为：y = " + this.b + "x - " + a + "</p><p>相关系数为：r = " + this.r + "</p>";
             }
         },
@@ -707,46 +716,50 @@ var app = new Vue({
             this.math_show();
             show_chart();
         },
-        get_result(id) {
-            var data = this.selected.results_save[id];
-            data.m = ((data.xgd - this.a) / this.b).toFixed(2);
-            data.c = (data.m / data.input_v).toFixed(2);
-            if (data.c > this.selected.limit) {
-                data.result = data.c;
+        get_m(element){
+            let x = this.selected.results_save[element];
+            return (((x[2] - this.a) / this.b).toFixed(3));
+        },
+        get_result(element) {
+            let x = this.selected.results_save[element];
+            x[3] = this.get_m(element);
+            let c = (x[3] / x[1]).toFixed(2);
+            if (c > this.selected.limit) {
+                return c;
             } else {
-                data.result = '<' + this.selected.limit;
+                return ('<' + this.selected.limit);
             }
         },
     },
 
     computed: {
         b() {
-            var n = this.x.length;
-            var x_ = [];
-            for (var i = 0; i < n; i++) {
+            let n = this.x.length;
+            let x_ = [];
+            for (let i = 0; i < n; i++) {
                 x_.push(this.x[i] * this.x[i]);
             }
-            var over = this.sum(this.y, this.x) - n * this.average(this.x) * this.average(this.y);
-            var under = this.sum_1(x_) - n * (this.average(this.x) * this.average(this.x));
+            let over = this.sum(this.y, this.x) - n * this.average(this.x) * this.average(this.y);
+            let under = this.sum_1(x_) - n * (this.average(this.x) * this.average(this.x));
             return (over / under).toFixed(4);
         },
         a() {
             return (this.average(this.y) - this.b * this.average(this.x)).toFixed(4);
         },
         r() {
-            var n = this.x.length;
-            var over = this.sum(this.y, this.x) - n * this.average(this.x) * this.average(this.y);
-            var under = Math.sqrt((this.sum(this.x, this.x) - n * this.average(this.x) * this.average(this.x)) * (this.sum(this.y, this.y) - n * this.average(this.y) * this.average(this.y)));
+            let n = this.x.length;
+            let over = this.sum(this.y, this.x) - n * this.average(this.x) * this.average(this.y);
+            let under = Math.sqrt((this.sum(this.x, this.x) - n * this.average(this.x) * this.average(this.x)) * (this.sum(this.y, this.y) - n * this.average(this.y) * this.average(this.y)));
             return (over / under).toFixed(4);
         },
     }
 });
 
 function getTableContent(id) {
-    var myTable = document.getElementById(id).rows;
-    var data = [];
-    for (var i = 1; i < myTable.length; i++) {
-        var arr = [];
+    let myTable = document.getElementById(id).rows;
+    let data = [];
+    for (let i = 1; i < myTable.length; i++) {
+        let arr = [];
         arr.push(myTable[i].innerText.split('\t'));
         arr[0][1] = Number(arr[0][1]);
         arr[0][2] = Number(arr[0][2]);
@@ -761,7 +774,7 @@ function focus_move() {
 
 
 function show_data() {
-    var x = localStorage.getItem(app.selected.name);
+    let x = localStorage.getItem(app.selected.name);
     alert(x);
 };
 
@@ -818,7 +831,7 @@ function show_chart() {
     focus_move();
 }
 (function useCount() {
-    var pagecount = 'pagecount';
+    let pagecount = 'pagecount';
     if (myStorage.getItem(pagecount)) {
         myStorage.setItem(pagecount, Number(myStorage.getItem(pagecount)) + 1);
     } else {
