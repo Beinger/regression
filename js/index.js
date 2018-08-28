@@ -5,7 +5,6 @@ var app = new Vue({
         new_item: '',   //表格新行
         x: [],
         y: [],
-        xgd: '',
         gs: '',
         show: false,
         names: [
@@ -38,12 +37,14 @@ var app = new Vue({
                     10,
                     0.055
                 ]],
+                new_results_save: [],
                 results_save:[{
-                    id: '',
-                    input_v: 50,
-                    xgd: '',
-                    m: '',
-                    result: ''
+                    id: 0,
+                    v: 50,
+                    A: 0,
+                    m: 0,
+                    c: 0,
+                    report: 0 
                 }],
             },
             {
@@ -646,9 +647,12 @@ var app = new Vue({
             /**
              * 增加样品行
              */
-            this.selected.results_save.push(this.new_item);
+            this.selected.results_save.push(this.selected.new_results_save);
         },
         del_yangPin(index){
+            /**
+             * 删除样品行
+             */
             this.selected.results_save.splice(index, 1);
         },
         save_series(id) {
@@ -703,19 +707,15 @@ var app = new Vue({
             this.math_show();
             show_chart();
         },
-        result(id) {
-            return ((this.selected.results_save[id].xgd - this.a) / this.b).toFixed(2);
-        },
-        result_c(id) {
-            return (this.result(id) / this.selected.results_save[id].input_v).toFixed(2);
-        },
-        calculation(id) {
-            if (this.result_c(id) > this.selected.limit) {
-                this.selected.results_save[id].result = this.result_c(id);
+        get_result(id) {
+            var data = this.selected.results_save[id];
+            data.m = ((data.xgd - this.a) / this.b).toFixed(2);
+            data.c = (data.m / data.input_v).toFixed(2);
+            if (data.c > this.selected.limit) {
+                data.result = data.c;
             } else {
-                this.selected.results_save[id].result = '<' + this.selected.limit;
+                data.result = '<' + this.selected.limit;
             }
-            return this.selected.results_save[id].result;
         },
     },
 
