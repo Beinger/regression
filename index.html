@@ -35,6 +35,41 @@
         :focus {
             background-color: rgb(161, 220, 228);
         }
+
+        table{
+            margin: 30px;
+            box-shadow: 10px 10px 10px #000;
+            border-spacing: 15px;
+        }
+
+        th {
+    font: bold 11px sans-serif;
+    color: #4f6b72;
+    border-right: 1px solid #C1DAD7;
+    border-bottom: 1px solid #C1DAD7;
+    border-top: 1px solid #C1DAD7;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: left;
+    padding: 0px 6px 6px 0px;
+}
+
+        td {
+            border-right: 1px solid #C1DAD7;
+            border-bottom: 1px solid #C1DAD7;
+    background: #fff;
+    font-size:11px;
+    padding: 0px 6px 6px 0px;
+    color: #4f6b72;
+        }
+
+        #save2{
+            display: none;
+        }
+
+        #save2:hover{
+            display: block;
+        }
     </style>
     <title>标准回归</title>
 </head>
@@ -47,10 +82,9 @@
             <h1>回归计算器</h1>
         </div>
         <div id="root">
-            <select @change="set_show()" class="form-control input-lg" name="xm" id="xm" v-model="selected">
+            <select class="form-control input-lg" name="xm" id="xm" v-model="selected">
                 <option :value="item" v-for="(item,index) in names">{{ item.name }}</option>
             </select>
-            <h3><a @click="get_series()">查看标准系列</a></h3>
             <table v-show="show" class="table table-bordered text-center table-striped" :id="selected.id">
                 <thead>
                     <th class="text-center">序号</th>
@@ -65,96 +99,54 @@
                         <td>{{ index + 1 }}</td>
                         <td :contenteditable="true" :id="'v'+index">{{ item[0] }}</td>
                         <td :contenteditable="true" :id="'a'+index">{{ item[1] }}</td>
-                        <td @click="del(index)"><i class="fa fa-trash fa-2x"></i></td>
+                        <td :id="'save'+index"><i @click="get_list()" class="fa fa-save fa-2x"></i></td>
+                        <td><i @click="del(index)" class="fa fa-trash fa-2x"></i></td>
                     </tr>
                 </tbody>
                 <caption>
                     <h4>水中{{ selected.name }}的标准系列 </h4>
                 </caption>
             </table>
-            <form>
-                <a class="form-contral btn btn-lg" @click="show_table()">回归分析</a>
+            <form v-show="show">
                 <fieldset>
                     <legend>{{ selected.name }}的回归公式</legend>
-                    <h4 v-html="gs"></h4>
+                    <h4 v-html="selected.formula"></h4>
                 </fieldset>
                 <fieldset>
                     <legend>样品中{{ selected.name }}浓度计算</legend>
-                    <button class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">
-                        开始输入吸光度
-                    </button>
                 </fieldset>
                 <table class="table table-bordered table-striped" id="report_value">
-                        <thead>
-                            <th class="text-center" @click="add_yangPin()"><i class="fa fa-plus"></i></th>
-                            <th class="text-center">编号</th>
-                            <th class="text-center">加样量</th>
-                            <th class="text-center">吸光度</th>
-                            <th class="text-center">质量</th>
-                            <th class="text-center">结果</th>
-                        </thead>
-                        <tbody class="text-center">
-                            <tr v-for="(item, index) in selected.results_save">
-                                <td><i class="fa fa-trash" @click="del_yangPin()"></i></td>
-                                <td>YXCDC2018水-{{ index+1 }}</td>
-                                <td>
-                                    <select name="" id="" v-model="item[1]">
-                                        <option value="50">50 ml</option>
-                                        <option value="25">25 ml</option>
-                                        <option value="100">100 ml</option>
-                                        <option value="250">250 ml</option>
-                                        <option value="10">10 ml</option>
-                                        <option value="1">1 ml</option>
-                                    </select>
-                                </td>
-                                <td><input type="text" v-model="item[2]"></td>
-                                <td>{{ get_m(index) }}</td>
-                                <td>{{ get_result(index) }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <thead>
+                        <th class="text-center" @click="add_yangPin()"><i class="fa fa-plus"></i></th>
+                        <th class="text-center">编号</th>
+                        <th class="text-center">加样量</th>
+                        <th class="text-center">吸光度</th>
+                        <th class="text-center">质量</th>
+                        <th class="text-center">结果</th>
+                    </thead>
+                    <tbody class="text-center">
+                        <tr v-for="(item, index) in selected.results_save">
+                            <td><i class="fa fa-trash" @click="del_yangPin()"></i></td>
+                            <td>YXCDC2018水-{{ index+1 }}</td>
+                            <td>
+                                <select name="" id="" v-model="item[1]">
+                                    <option value="50" :selected="selected">50 ml</option>
+                                    <option value="25">25 ml</option>
+                                    <option value="100">100 ml</option>
+                                    <option value="250">250 ml</option>
+                                    <option value="10">10 ml</option>
+                                    <option value="1">1 ml</option>
+                                </select>
+                            </td>
+                            <td><input type="text" v-model="item[2]"></td>
+                            <td>{{ get_m(index) }}</td>
+                            <td>{{ get_result(index) }}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </form>
-        <div id="line"></div>
-        <!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button class="close" data-dismiss="modal" aria-hidden="true">
-                            &times;
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="btn-group">
-
-                        <label for="sample_id">编号
-                        <input id="sample_id" :value="selected.results_save[selected.id-1].id"></label>
-                        <label for="sample_v">加样量（ml）
-                        <select id="sample_v">
-                            <option value="50">50 ml</option>
-                            <option value="100">100 ml</option>
-                            <option value="25">25 ml</option>
-                            <option value="250">250 ml</option>
-                            <option value="1">1 ml</option>
-                            </select>
-                        </label>
-                        <label for="sample_A">吸光度
-                        <input id="sample_A"></label>
-                        <label for="sample_m">质量（μg）
-                        <input id="sample_m"></label>
-                        <label for="sample_result">浓度（mg/L）
-                        <input id="sample_result"></label>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-default" data-dismiss="modal">关闭</button>
-                        <button @click="get_result(selected.id-1)" class="btn btn-default">确认</button>
-                    </div>
-                </div>
-            </div>
-        </div> -->
+            <div id="line"></div>
         </div>
-
-        <button class="btn" onclick="show_data()">显示数据</button>
     </div>
 
     <script src="js/index.js"></script>

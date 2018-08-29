@@ -7,11 +7,19 @@ let app = new Vue({
         y: [],
         gs: '',
         show: false,
+        show_save: false,
+        a: 0,
+        b: 1,
+        r: 1,
         names: [
             {
                 id: 1,
                 name: '氨氮',
                 limit: 0.05,
+                v: 50,
+                formula: '',
+                x: [],
+                y: [],
                 standard_series: [],
                 items: [[
                     0,
@@ -37,8 +45,10 @@ let app = new Vue({
                     10,
                     0.055
                 ]],
+                // new_results_save: [],
+                // results_save:[[],[],[],[],[],[],[]],
                 new_results_save: [],
-                results_save:[[],[],[],[],[],[],[]],
+                results_save: [{}]
             },
             {
                 id: 2,
@@ -252,7 +262,7 @@ let app = new Vue({
                 standard_series: [],
                 items: [[
                     0,
-                    0.006
+                    0.406
                 ],
                 [
                     0.5,
@@ -609,30 +619,52 @@ let app = new Vue({
         ],
         selected: ''
     },
-    methods: {
-        set_show() {
+    watch: {
             /**
              * 当选择了项目时，显示标准系列的列表
              */
-            this.show = true
+        selected: function(){
+            this.show = true;
+            this.get_series();
+            this.save_series();
+            this.math_formula();
+            show_chart();
         },
+        x: {
+            handler(){
+                this.show_save = true;
+            },
+            deep: true
+        }
 
+    },
+    methods: {
+        get_list(){
+            let rows = document.getElementById(this.selected.id).rows;
+            for (let i = 1; i < rows.length; i++) {
+                let value1 = Number(rows[i].cells[1].innerText);
+                let value2 = Number(rows[i].cells[2].innerText);
+                let value = [];
+                value.push(value1, value2);
+                this.x.push(value1);
+                this.y.push(value2);
+                this.selected.standard_series[i-1] = value;
+            }
+            myStorage.setItem(this.selected.name,this.selected.standard_series);
+        },
         get_series() {
             /**
-             * 从localStorage中获取保存的标准系列,同时渲染出标准系列表格。
+             * 从localStorage中获取保存的标准系列,如果是第一次使用，
+             * 会调用默认的标准系列,同时渲染出标准系列表格。
              */
-            if (myStorage.getItem(this.selected.name)) {
-                /**
-                 * 如果数据不存在于localStorage,就要从data的默认值中取出
-                 * 默认系列，否则就从localStorage中取值
-                 */
-                let data = myStorage.getItem(this.selected.name);
+            let series_data = myStorage.getItem(this.selected.name);
+            if (series_data) {
+                series_data = series_data.split(',');
+                series_data = series_data.map(Number);
                 let new_data = [];
-                data = data.split(',');
-                data = data.map(Number);
                 let x = [];
-                for (let i = 0; i < data.length / 2; i++) {
-                    x[i] = data.slice(i * 2, i * 2 + 2);
+                for (let i = 0; i < series_data.length / 2; i++) {
+                    x[i] = series_data.slice(i * 2, i * 2 + 2);
                     new_data.push(x[i]);
                 }
                 this.selected.standard_series = new_data;
@@ -664,76 +696,92 @@ let app = new Vue({
              */
             this.selected.results_save.splice(index, 1);
         },
-        save_series(id) {
+        save_series() {
             /**
              * 从页面的表格中取值，做好回归分析的准备。
              * 同时，把数据存入所选项目的standard_series中。
              */
             this.x = []; //标准系列的加样量数据
             this.y = []; //标准系列的吸光度数据
-            let rows = document.getElementById(id).rows;
-            for (let i = 1; i < rows.length; i++) {
-                let value1 = Number(rows[i].cells[1].innerText);
-                let value2 = Number(rows[i].cells[2].innerText);
-                let value = [];
-                value.push(value1, value2);
-                this.x.push(value1);
-                this.y.push(value2);
-                this.names[this.selected.id - 1].standard_series[i - 1] = value;
+            let rows = this.selected.standard_series;
+            for(let i=0; i<rows.length; i++){
+                this.x[i] = rows[i][0];
+                this.y[i] = rows[i][1];
             }
-            myStorage.setItem(this.selected.name, this.names[this.selected.id - 1].standard_series)
+            // }
         },
         sum(arr1, arr2) {
+            /**
+             * 功能函数
+             * 两个列表一一对应的相乘然后求总和
+             * 
+             */
             let result = 0;
             for (let i = 0; i < arr1.length; i++) {
                 result += (arr1[i] * arr2[i]);
             }
             return result;
         },
-        sum_1(arr3) {
+        sum_1(arr) {
+            /**
+             * 功能函数
+             * 列表中数据求和
+             */
             let z = 0;
-            for (let i = 0; i < arr3.length; i++) {
-                z += arr3[i];
+            for (let i = 0; i < arr.length; i++) {
+                z += arr[i];
             }
             return z;
         },
         average(arr) {
+            /**
+             * 功能函数
+             * 求列表数据的平均值
+             */
             let over = this.sum_1(arr);
             return over / arr.length;
         },
-        math_show() {
-            this.gs = "";
+        math_formula() {
+            /**
+             * 当计算结果小于最小检出限时，应当报告为<最小检出限
+             */
+            this.cal_b();
+            this.cal_a();
+            this.cal_r();
+            this.selected.formula = "";
             if (this.a >= 0) {
-                this.gs = "<p>回归方程为：y = " + this.b + "x + " + this.a + "</p><p>相关系数为：r = " + this.r + "</p>";
+                this.selected.formula = "<p>回归方程为：y = " + this.b + "x + " + this.a + "</p><p>相关系数为：r = " + this.r + "</p>";
 
             } else {
                 let a = -(this.a);
-                this.gs = "<p>回归方程为：y = " + this.b + "x - " + a + "</p><p>相关系数为：r = " + this.r + "</p>";
+                this.selected.formula = "<p>回归方程为：y = " + this.b + "x - " + a + "</p><p>相关系数为：r = " + this.r + "</p>";
             }
         },
-        show_table() {
-            this.save_series(this.selected.id);
-            this.math_show();
-            show_chart();
-        },
         get_m(element){
+            /**
+             * 根据出当前项目的吸光度计算出样品所含物质质量
+             */
             let x = this.selected.results_save[element];
             return (((x[2] - this.a) / this.b).toFixed(3));
         },
         get_result(element) {
+            /**
+             * 根据当前项目的加样体积和质量算出样品中物质的浓度
+             */
             let x = this.selected.results_save[element];
             x[3] = this.get_m(element);
             let c = (x[3] / x[1]).toFixed(2);
-            if (c > this.selected.limit) {
+            if (c >= this.selected.limit) {
                 return c;
             } else {
                 return ('<' + this.selected.limit);
             }
         },
-    },
-
-    computed: {
-        b() {
+        cal_b() {
+            /**
+             * 根据当前项目的标准系列算出标准回归公式的回归系数
+             */
+            this.b = 0;
             let n = this.x.length;
             let x_ = [];
             for (let i = 0; i < n; i++) {
@@ -741,44 +789,58 @@ let app = new Vue({
             }
             let over = this.sum(this.y, this.x) - n * this.average(this.x) * this.average(this.y);
             let under = this.sum_1(x_) - n * (this.average(this.x) * this.average(this.x));
-            return (over / under).toFixed(4);
+            this.b = (over / under).toFixed(4);
         },
-        a() {
-            return (this.average(this.y) - this.b * this.average(this.x)).toFixed(4);
+        cal_a() {
+            /**
+             * 根据当前项目的标准系列算出标准回归公式的斜率
+             */
+            this.a = 1;
+            this.a = (this.average(this.y) - this.b * this.average(this.x)).toFixed(4);
         },
-        r() {
+        cal_r() {
+            /**
+             * 根据当前项目的标准系列算出标准系列的相关系数
+             */
+            this.r = 1;
             let n = this.x.length;
             let over = this.sum(this.y, this.x) - n * this.average(this.x) * this.average(this.y);
             let under = Math.sqrt((this.sum(this.x, this.x) - n * this.average(this.x) * this.average(this.x)) * (this.sum(this.y, this.y) - n * this.average(this.y) * this.average(this.y)));
-            return (over / under).toFixed(4);
+            this.r = (over / under).toFixed(4);
         },
     }
 });
-
-function getTableContent(id) {
-    let myTable = document.getElementById(id).rows;
-    let data = [];
-    for (let i = 1; i < myTable.length; i++) {
-        let arr = [];
-        arr.push(myTable[i].innerText.split('\t'));
-        arr[0][1] = Number(arr[0][1]);
-        arr[0][2] = Number(arr[0][2]);
-        data.push(arr[0].slice(1, 3));
-    }
-    return data;
+let series_data = [];
+function getTableContent() {
+    /**
+     * 从网页上显示的标准系列表中提取数据，以备绘制出标准曲线
+     */
+    series_data = app.selected.standard_series;
+    // let myTable = document.getElementById(id).rows;
+    // let arr = [];
+    // for (let i = 1; i < myTable.length; i++) {
+    //     arr.push(myTable[i].innerText.split('\t'));
+    // }
+    // for(let m = 0; m < arr.length; m++){
+    //     arr[m][1] = Number(arr[m][1]);
+    //     arr[m][2] = Number(arr[m][2]);
+    //     series_data.push(arr[m].slice(1, 3));
+    // }
+    myStorage.setItem(app.selected.name, series_data)
+    //同时把数据存入localStorage
 };
 function focus_move() {
+    /**
+     * 移动焦点到页面底部
+     */
     window.scrollTo(0, document.documentElement.clientHeight);
 };
 
-
-
-function show_data() {
-    let x = localStorage.getItem(app.selected.name);
-    alert(x);
-};
-
 function show_chart() {
+    /**
+     * 用highcharts绘制标准曲线
+     */
+    getTableContent(app.selected.id); //获取当前项目的标准系列数据
     chart = Highcharts.chart('line', {
         title: {
             text: "标准回归曲线"
@@ -811,7 +873,8 @@ function show_chart() {
         },
         series: [{
             name: "吸光度",
-            data: app.selected.standard_series
+            // data: app.selected.standard_series
+            data: series_data
         }],
         responsive: {
             rules: [{
@@ -831,6 +894,7 @@ function show_chart() {
     focus_move();
 }
 (function useCount() {
+    //计数页面登录次数
     let pagecount = 'pagecount';
     if (myStorage.getItem(pagecount)) {
         myStorage.setItem(pagecount, Number(myStorage.getItem(pagecount)) + 1);
