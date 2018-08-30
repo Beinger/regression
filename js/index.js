@@ -15,12 +15,9 @@ let app = new Vue({
                 id: 1,
                 name: '氨氮',
                 limit: 0.05,
-                v: 50,
-                a: 0,
                 b: 1,
                 r: 1,
                 c: 0,
-                result: 0,
                 result: 0,
                 formula: '',
                 x: [],
@@ -50,21 +47,22 @@ let app = new Vue({
                     10,
                     0.055
                 ]],
-                // new_results_save:'',,
-                // results_save:[[[],[],[],[],[],[],[],[],[],[]],[],[],[],[],[],[]],
-                new_results_save:'',
-                results_save: [[],[],[],[],[],[],[],[],[],[]]
+                new_results_save: {
+                    id: 1,
+                    v: 50,
+                    a: 0,
+                    m: 0,
+                    result: 0,
+                },
+                results_save: [{}],
             },
             {
                 id: 2,
                 name: '氰化物',
-                v: 0,                
-                a: 0,
+                limit: 0.01,
                 b: 1,
                 r: 1,
-                r: 1,
                 c: 0,
-                result: 0,
                 formula: '',
                 x: [],
                 y: [],
@@ -94,20 +92,22 @@ let app = new Vue({
                     0.9,
                     0.092
                 ]],
-                new_results_save:'',
-                results_save:[[],[],[],[],[],[],[],[],[],[]]
+                new_results_save: [{
+                    id: 1,
+                    v: 250,
+                    a: 0,
+                    m: 0,
+                    result: 0,
+                }],
+                results_save: [],
             },
             {
                 id: 3,
                 name: '锰',
                 limit: 0.05,
-                v: 0,
-                a: 0,
                 b: 1,
                 r: 1,
                 c: 0,
-                result: 0,
-                r: 1,
                 formula: '',
                 x: [],
                 y: [],
@@ -136,20 +136,22 @@ let app = new Vue({
                     90,
                     0.068
                 ]],
-                new_results_save:'',
-                results_save:[[],[],[],[],[],[],[],[],[],[]]
+                new_results_save: [{
+                    id: 1,
+                    v: 50,
+                    a: 0,
+                    m: 0,
+                    result: 0,
+                }],
+                results_save: [],
             },
             {
                 id: 4,
-                name: '氟化物-离子选择电极法',
+                name: '氟化物',
                 limit: 0.2,
-                v: 0,
-                a: 0,
                 b: 1,
                 r: 1,
                 c: 0,
-                result: 0,
-                r: 1,
                 formula: '',
                 x: [],
                 y: [],
@@ -178,20 +180,22 @@ let app = new Vue({
                     40,
                     1.053
                 ]],
-                new_results_save:'',
-                results_save:[[],[],[],[],[],[],[],[],[],[]]
+                new_results_save: [{
+                    id: 1,
+                    v: '',
+                    a: 0,
+                    m: 0,
+                    result: 0,
+                }],
+                results_save: [],
             },
             {
                 id: 5,
-                name: '硝酸盐氮-麝香草酚分光光度法',
+                name: '硝酸盐氮',
                 limit: 0.5,
-                v: 0,
-                a: 0,
                 b: 1,
                 r: 1,
                 c: 0,
-                result: 0,
-                r: 1,
                 formula: '',
                 x: [],
                 y: [],
@@ -224,20 +228,22 @@ let app = new Vue({
                     10,
                     0.405
                 ]],
-                new_results_save:'',
-                results_save:[[],[],[],[],[],[],[],[],[],[]]
+                new_results_save: [{
+                    id: 1,
+                    v: 0,
+                    a: 0,
+                    m: 0,
+                    result: 0,
+                }],
+                results_save: [],
             },
             {
                 id: 6,
                 name: '铝-铬天青S分光光度法',
                 limit: 0.008,
-                v: 0,
-                a: 0,
                 b: 1,
                 r: 1,
                 c: 0,
-                result: 0,
-                r: 1,
                 formula: '',
                 x: [],
                 y: [],
@@ -270,20 +276,22 @@ let app = new Vue({
                     5,
                     0.725
                 ]],
-                new_results_save:'',
-                results_save:[[],[],[],[],[],[],[],[],[],[]]
+                new_results_save: [{
+                    id: 1,
+                    v: 0,
+                    a: 0,
+                    m: 0,
+                    result: 0,
+                }],
+                results_save: [],
             },
             {
                 id: 7,
                 name: '挥发酚-4-氨基安替比林直接分光光度法',
                 limit: 0.002,
-                v: 0,
-                a: 0,
                 b: 1,
                 r: 1,
                 c: 0,
-                result: 0,
-                r: 1,
                 formula: '',
                 x: [],
                 y: [],
@@ -316,20 +324,22 @@ let app = new Vue({
                     10,
                     0.234
                 ]],
-                new_results_save:'',
-                results_save:[[],[],[],[],[],[],[],[],[],[]]
+                new_results_save: [{
+                    id: 1,
+                    v: 0,
+                    a: 0,
+                    m: 0,
+                    result: 0,
+                }],
+                results_save: [],
             },
             {
                 id: 8,
                 name: '汞-双硫腙分光光度法',
                 limit: 0.001,
-                v: 0,
-                a: 0,
                 b: 1,
                 r: 1,
                 c: 0,
-                result: 0,
-                r: 1,
                 formula: '',
                 x: [],
                 y: [],
@@ -362,20 +372,22 @@ let app = new Vue({
                     8,
                     0.660
                 ]],
-                new_results_save:'',
-                results_save:[[],[],[],[],[],[],[],[],[],[]]
+                new_results_save: [{
+                    id: 1,
+                    v: 0,
+                    a: 0,
+                    m: 0,
+                    result: 0,
+                }],
+                results_save: [],
             },
             {
                 id: 9,
                 name: '阴离子合成洗涤剂-二氮杂菲萃取分光光度法',
                 limit: 0.025,
-                v: 0,
-                a: 0,
                 b: 1,
                 r: 1,
                 c: 0,
-                result: 0,
-                r: 1,
                 formula: '',
                 x: [],
                 y: [],
@@ -408,20 +420,22 @@ let app = new Vue({
                     50,
                     0.290
                 ]],
-                new_results_save:'',
-                results_save:[[],[],[],[],[],[],[],[],[],[]]
+                new_results_save: [{
+                    id: 1,
+                    v: 0,
+                    a: 0,
+                    m: 0,
+                    result: 0,
+                }],
+                results_save: [],
             },
             {
                 id: 10,
                 name: '硒-双硫腙分光光度法',
                 limit: 0.001,
-                v: 0,
-                a: 0,
                 b: 1,
                 r: 1,
                 c: 0,
-                result: 0,
-                r: 1,
                 formula: '',
                 x: [],
                 y: [],
@@ -450,20 +464,22 @@ let app = new Vue({
                     8,
                     0.110
                 ]],
-                new_results_save:'',
-                results_save:[[],[],[],[],[],[],[],[],[],[]]
+                new_results_save: [{
+                    id: 1,
+                    v: 0,
+                    a: 0,
+                    m: 0,
+                    result: 0,
+                }],
+                results_save: [],
             },
             {
                 id: 11,
                 name: '镉-双硫腙分光光度法',
                 limit: 0.01,
-                v: 0,
-                a: 0,
                 b: 1,
                 r: 1,
                 c: 0,
-                result: 0,
-                r: 1,
                 formula: '',
                 x: [],
                 y: [],
@@ -492,20 +508,22 @@ let app = new Vue({
                     4,
                     0.336
                 ]],
-                new_results_save:'',
-                results_save:[[],[],[],[],[],[],[],[],[],[]]
+                new_results_save: [{
+                    id: 1,
+                    v: 0,
+                    a: 0,
+                    m: 0,
+                    result: 0,
+                }],
+                results_save: [],
             },
             {
                 id: 12,
                 name: '铅-双硫腙分光光度法',
                 limit: 0.01,
-                v: 0,
-                a: 0,
                 b: 1,
                 r: 1,
                 c: 0,
-                result: 0,
-                r: 1,
                 formula: '',
                 x: [],
                 y: [],
@@ -534,20 +552,22 @@ let app = new Vue({
                     6,
                     0.630
                 ]],
-                new_results_save:'',
-                results_save:[[],[],[],[],[],[],[],[],[],[]]
+                new_results_save: [{
+                    id: 1,
+                    v: 0,
+                    a: 0,
+                    m: 0,
+                    result: 0,
+                }],
+                results_save: [],
             },
             {
                 id: 13,
                 name: '六价铬-二苯碳酰二肼分光光度法',
                 limit: 0.004,
-                v: 0,
-                a: 0,
                 b: 1,
                 r: 1,
                 c: 0,
-                result: 0,
-                r: 1,
                 formula: '',
                 x: [],
                 y: [],
@@ -576,7 +596,13 @@ let app = new Vue({
                     6,
                     0.103
                 ]],
-                new_results_save:'',
+                new_results_save: [{
+                    id: 1,
+                    v: 0,
+                    a: 0,
+                    m: 0,
+                    result: 0,
+                }],
                 results_save:{
                     id: '',
                     input_v: 50,
@@ -589,13 +615,9 @@ let app = new Vue({
                 id: 14,
                 name: '铜-二乙基二硫氨基甲酸钠分光光度法',
                 limit: 0.02,
-                v: 0,
-                a: 0,
                 b: 1,
                 r: 1,
                 c: 0,
-                result: 0,
-                r: 1,
                 formula: '',
                 x: [],
                 y: [],
@@ -624,20 +646,22 @@ let app = new Vue({
                     10,
                     0.238
                 ]],
-                new_results_save:'',
-                results_save:[[],[],[],[],[],[],[],[],[],[]]
+                new_results_save: [{
+                    id: 1,
+                    v: 0,
+                    a: 0,
+                    m: 0,
+                    result: 0,
+                }],
+                results_save: [],
             },
             {
                 id: 15,
                 name: '锰-过硫酸铵分光光度法',
                 limit: 0.05,
-                v: 0,
-                a: 0,
                 b: 1,
                 r: 1,
                 c: 0,
-                result: 0,
-                r: 1,
                 formula: '',
                 x: [],
                 y: [],
@@ -666,20 +690,22 @@ let app = new Vue({
                     90,
                     0.068
                 ]],
-                new_results_save:'',
-                results_save:[[],[],[],[],[],[],[],[],[],[]]
+                new_results_save: [{
+                    id: 1,
+                    v: 0,
+                    a: 0,
+                    m: 0,
+                    result: 0,
+                }],
+                results_save: [],
             },
             {
                 id: 16,
                 name: '铁-二氮杂菲分光光度法',
                 limit: 0.05,
-                v: 0,
-                a: 0,
                 b: 1,
                 r: 1,
                 c: 0,
-                result: 0,
-                r: 1,
                 formula: '',
                 x: [],
                 y: [],
@@ -708,20 +734,22 @@ let app = new Vue({
                     40,
                     0.290
                 ]],
-                new_results_save:'',
-                results_save:[[],[],[],[],[],[],[],[],[],[]]
+                new_results_save: [{
+                    id: 1,
+                    v: 0,
+                    a: 0,
+                    m: 0,
+                    result: 0,
+                }],
+                results_save: [],
             },
             {
                 id: 17,
                 name: '锌-双硫腙分光光度法',
                 limit: 0.05,
-                v: 0,
-                a: 0,
                 b: 1,
                 r: 1,
                 c: 0,
-                result: 0,
-                r: 1,
                 formula: '',
                 x: [],
                 y: [],
@@ -750,20 +778,22 @@ let app = new Vue({
                     6,
                     1.602
                 ]],
-                new_results_save:'',
-                results_save:[[],[],[],[],[],[],[],[],[],[]]
+                new_results_save: [{
+                    id: 1,
+                    v: 0,
+                    a: 0,
+                    m: 0,
+                    result: 0,
+                }],
+                results_save: [],
             },
             {
                 id: 18,
                 name: '硫酸盐-硫酸钡分光光度法（热法）',
                 limit: 5,
-                v: 0,
-                a: 0,
                 b: 1,
                 r: 1,
                 c: 0,
-                result: 0,
-                r: 1,
                 formula: '',
                 x: [],
                 y: [],
@@ -788,8 +818,14 @@ let app = new Vue({
                     10,
                     1.137
                 ]],
-                new_results_save:'',
-                results_save:[[],[],[],[],[],[],[],[],[],[]]
+                new_results_save: [{
+                    id: 1,
+                    v: 0,
+                    a: 0,
+                    m: 0,
+                    result: 0,
+                }],
+                results_save: [],
             },
         ],
         selected: ''
@@ -814,10 +850,16 @@ let app = new Vue({
 
     },
     methods: {
+        change(item, index){
+            this.selected.results_save[index] = item;
+        },
         set_input(){
             this.show_v = !this.show_v
         },
         get_list(){
+            /**
+             * 从标准系列表格中获取数据，存入数据组中，同时存入localStorage中。
+             */
             let rows = document.getElementById(this.selected.id).rows;
             for (let i = 1; i < rows.length; i++) {
                 let value1 = Number(rows[i].cells[1].innerText);
@@ -862,6 +904,37 @@ let app = new Vue({
                 this.selected.x[i] = rows[i][0];
                 this.selected.y[i] = rows[i][1];
             }
+        },
+        cal_b() {
+            /**
+             * 根据当前项目的标准系列算出标准回归公式的回归系数
+             */
+            this.selected.b = 0;
+            let n = this.selected.x.length;
+            let x_ = [];
+            for (let i = 0; i < n; i++) {
+                x_.push(this.selected.x[i] * this.selected.x[i]);
+            }
+            let over = this.sum(this.selected.y, this.selected.x) - n * this.average(this.selected.x) * this.average(this.selected.y);
+            let under = this.sum_1(x_) - n * (this.average(this.selected.x) * this.average(this.selected.x));
+            this.selected.b = (over / under).toFixed(4);
+        },
+        cal_a() {
+            /**
+             * 根据当前项目的标准系列算出标准回归公式的斜率
+             */
+            this.selected.a = 1;
+            this.selected.a = (this.average(this.selected.y) - this.selected.b * this.average(this.selected.x)).toFixed(4);
+        },
+        cal_r() {
+            /**
+             * 根据当前项目的标准系列算出标准系列的相关系数
+             */
+            this.selected.r = 1;
+            let n = this.selected.x.length;
+            let over = this.sum(this.selected.y, this.selected.x) - n * this.average(this.selected.x) * this.average(this.selected.y);
+            let under = Math.sqrt((this.sum(this.selected.x, this.selected.x) - n * this.average(this.selected.x) * this.average(this.selected.x)) * (this.sum(this.selected.y, this.selected.y) - n * this.average(this.selected.y) * this.average(this.selected.y)));
+            this.selected.r = (over / under).toFixed(4);
         },
         math_formula() {
             /**
@@ -933,54 +1006,31 @@ let app = new Vue({
             let over = this.sum_1(arr);
             return over / arr.length;
         },
-        get_result(element){
+        get_m(element){
+
             /**
              * 根据出当前项目的吸光度计算出样品所含物质质量
              */
-            let x = this.selected.results_save[element];
-            this.selected.m = (((x[2] - this.selected.a) / this.selected.b).toFixed(3));
+            let a = this.selected.results_save[element].a;
+            // let id = this.selected.results_save[element].id;
+            this.selected.results_save[element].m = (((a - this.selected.a) / this.selected.b).toFixed(3));
+            return this.selected.results_save[element].m;
+        },
+        get_result(element){
             /**
              * 根据当前项目的加样体积和质量算出样品中物质的浓度
              */
-            x[3] = this.selected.m;
-            this.selected.c = (x[3] / x[1]).toFixed(2);
-            if (this.selected.c >= this.selected.limit) {
-                this.selected.result = this.selected.c;
+            let v = this.selected.results_save[element].v;
+            let m = this.selected.results_save[element].m;
+            this.selected.results_save[element].c = (m / v).toFixed(2);
+            let c = this.selected.results_save[element].c;
+            if (c >= this.selected.limit) {
+                this.selected.results_save[element].result = c;
             } else {
-                this.selected.result = ('<' + this.selected.limit);
+                this.selected.results_save[element].result = ('<' + this.selected.limit);
             }
-        },
-        cal_b() {
-            /**
-             * 根据当前项目的标准系列算出标准回归公式的回归系数
-             */
-            this.selected.b = 0;
-            let n = this.selected.x.length;
-            let x_ = [];
-            for (let i = 0; i < n; i++) {
-                x_.push(this.selected.x[i] * this.selected.x[i]);
-            }
-            let over = this.sum(this.selected.y, this.selected.x) - n * this.average(this.selected.x) * this.average(this.selected.y);
-            let under = this.sum_1(x_) - n * (this.average(this.selected.x) * this.average(this.selected.x));
-            this.selected.b = (over / under).toFixed(4);
-        },
-        cal_a() {
-            /**
-             * 根据当前项目的标准系列算出标准回归公式的斜率
-             */
-            this.selected.a = 1;
-            this.selected.a = (this.average(this.selected.y) - this.selected.b * this.average(this.selected.x)).toFixed(4);
-        },
-        cal_r() {
-            /**
-             * 根据当前项目的标准系列算出标准系列的相关系数
-             */
-            this.selected.r = 1;
-            let n = this.selected.x.length;
-            let over = this.sum(this.selected.y, this.selected.x) - n * this.average(this.selected.x) * this.average(this.selected.y);
-            let under = Math.sqrt((this.sum(this.selected.x, this.selected.x) - n * this.average(this.selected.x) * this.average(this.selected.x)) * (this.sum(this.selected.y, this.selected.y) - n * this.average(this.selected.y) * this.average(this.selected.y)));
-            this.selected.r = (over / under).toFixed(4);
-        },
+            return this.selected.results_save[element].result;
+        }
     }
 });
 let series_data = [];

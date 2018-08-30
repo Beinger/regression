@@ -106,13 +106,13 @@
                         <th class="text-center">质量</th>
                         <th class="text-center">结果</th>
                     </thead>
-                    <tbody class="text-center">
-                        <tr v-for="(item, index) in selected.results_save">
+                    <tbody class="text-center" v-for="(item, index) in selected.results_save"
+                     :key="index">
+                        <tr>
                             <td><i class="fa fa-trash" @click="del_yangPin()"></i></td>
                             <td>YXCDC2018水-{{ index+1 }}</td>
-                            <td v-if="show_v">{{ selected.v }} ml</td>
-                            <td v-else>
-                                <select name="" id="" v-model="item[1]">
+                            <td>
+                                <select name="" id="" v-model="selected.results_save[index].v" @change="change(item, index)">
                                     <option value="50">50 ml</option>
                                     <option value="25">25 ml</option>
                                     <option value="100">100 ml</option>
@@ -121,9 +121,9 @@
                                     <option value="1">1 ml</option>
                                 </select>
                             </td>
-                            <td class="animated bounceInUp"><input type="text" v-model="item[2]"></td>
-                            <td>{{ selected.m }}</td>
-                            <td>{{ selected.result }}</td>
+                            <td class="animated bounceInUp"><input type="text" v-model="selected.results_save[index].a" @change="change(item, index)"></td>
+                            <td>{{ get_m(index) }}</td>
+                            <td>{{ get_result(index) }}</td>
                         </tr>
                     </tbody>
                 </table>
