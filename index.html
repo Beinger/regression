@@ -94,6 +94,8 @@
                 </fieldset>
                 <fieldset>
                     <legend>样品中{{ selected.name }}浓度计算</legend>
+                    <label for="">样品起始编号：YXCDC2018水第<input type="number" :value="start">号</label>
+                    <label for="">样品起始编号：YXCDC2018水第<input type="number" :value="end">号</label>
                 </fieldset>
                 <table class="table table-bordered table-striped" id="report_value">
                     <thead>
@@ -120,8 +122,8 @@
                                 </select>
                             </td>
                             <td class="animated bounceInUp"><input type="text" v-model="item[2]"></td>
-                            <td>{{ get_m(index) }}</td>
-                            <td>{{ get_result(index) }}</td>
+                            <td>{{ selected.m }}</td>
+                            <td>{{ selected.result }}</td>
                         </tr>
                     </tbody>
                 </table>

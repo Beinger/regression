@@ -8,6 +8,8 @@ let app = new Vue({
         vol_select:[
             50,100,250,1,25,10
         ],
+        start: 1,
+        end: 1,
         names: [
             {
                 id: 1,
@@ -17,6 +19,9 @@ let app = new Vue({
                 a: 0,
                 b: 1,
                 r: 1,
+                c: 0,
+                result: 0,
+                result: 0,
                 formula: '',
                 x: [],
                 y: [],
@@ -57,6 +62,9 @@ let app = new Vue({
                 a: 0,
                 b: 1,
                 r: 1,
+                r: 1,
+                c: 0,
+                result: 0,
                 formula: '',
                 x: [],
                 y: [],
@@ -97,6 +105,9 @@ let app = new Vue({
                 a: 0,
                 b: 1,
                 r: 1,
+                c: 0,
+                result: 0,
+                r: 1,
                 formula: '',
                 x: [],
                 y: [],
@@ -136,6 +147,9 @@ let app = new Vue({
                 a: 0,
                 b: 1,
                 r: 1,
+                c: 0,
+                result: 0,
+                r: 1,
                 formula: '',
                 x: [],
                 y: [],
@@ -174,6 +188,9 @@ let app = new Vue({
                 v: 0,
                 a: 0,
                 b: 1,
+                r: 1,
+                c: 0,
+                result: 0,
                 r: 1,
                 formula: '',
                 x: [],
@@ -218,6 +235,9 @@ let app = new Vue({
                 a: 0,
                 b: 1,
                 r: 1,
+                c: 0,
+                result: 0,
+                r: 1,
                 formula: '',
                 x: [],
                 y: [],
@@ -260,6 +280,9 @@ let app = new Vue({
                 v: 0,
                 a: 0,
                 b: 1,
+                r: 1,
+                c: 0,
+                result: 0,
                 r: 1,
                 formula: '',
                 x: [],
@@ -304,6 +327,9 @@ let app = new Vue({
                 a: 0,
                 b: 1,
                 r: 1,
+                c: 0,
+                result: 0,
+                r: 1,
                 formula: '',
                 x: [],
                 y: [],
@@ -346,6 +372,9 @@ let app = new Vue({
                 v: 0,
                 a: 0,
                 b: 1,
+                r: 1,
+                c: 0,
+                result: 0,
                 r: 1,
                 formula: '',
                 x: [],
@@ -390,6 +419,9 @@ let app = new Vue({
                 a: 0,
                 b: 1,
                 r: 1,
+                c: 0,
+                result: 0,
+                r: 1,
                 formula: '',
                 x: [],
                 y: [],
@@ -428,6 +460,9 @@ let app = new Vue({
                 v: 0,
                 a: 0,
                 b: 1,
+                r: 1,
+                c: 0,
+                result: 0,
                 r: 1,
                 formula: '',
                 x: [],
@@ -468,6 +503,9 @@ let app = new Vue({
                 a: 0,
                 b: 1,
                 r: 1,
+                c: 0,
+                result: 0,
+                r: 1,
                 formula: '',
                 x: [],
                 y: [],
@@ -506,6 +544,9 @@ let app = new Vue({
                 v: 0,
                 a: 0,
                 b: 1,
+                r: 1,
+                c: 0,
+                result: 0,
                 r: 1,
                 formula: '',
                 x: [],
@@ -552,6 +593,9 @@ let app = new Vue({
                 a: 0,
                 b: 1,
                 r: 1,
+                c: 0,
+                result: 0,
+                r: 1,
                 formula: '',
                 x: [],
                 y: [],
@@ -590,6 +634,9 @@ let app = new Vue({
                 v: 0,
                 a: 0,
                 b: 1,
+                r: 1,
+                c: 0,
+                result: 0,
                 r: 1,
                 formula: '',
                 x: [],
@@ -630,6 +677,9 @@ let app = new Vue({
                 a: 0,
                 b: 1,
                 r: 1,
+                c: 0,
+                result: 0,
+                r: 1,
                 formula: '',
                 x: [],
                 y: [],
@@ -669,6 +719,9 @@ let app = new Vue({
                 a: 0,
                 b: 1,
                 r: 1,
+                c: 0,
+                result: 0,
+                r: 1,
                 formula: '',
                 x: [],
                 y: [],
@@ -707,6 +760,9 @@ let app = new Vue({
                 v: 0,
                 a: 0,
                 b: 1,
+                r: 1,
+                c: 0,
+                result: 0,
                 r: 1,
                 formula: '',
                 x: [],
@@ -760,7 +816,6 @@ let app = new Vue({
     methods: {
         set_input(){
             this.show_v = !this.show_v
-            
         },
         get_list(){
             let rows = document.getElementById(this.selected.id).rows;
@@ -795,6 +850,35 @@ let app = new Vue({
                 this.selected.standard_series = this.selected.items
             }
         },
+        save_series() {
+            /**
+             * 从页面的表格中取值，做好回归分析的准备。
+             * 同时，把数据存入所选项目的standard_series中。
+             */
+            this.selected.x = []; //标准系列的加样量数据
+            this.selected.y = []; //标准系列的吸光度数据
+            let rows = this.selected.standard_series;
+            for(let i=0; i<rows.length; i++){
+                this.selected.x[i] = rows[i][0];
+                this.selected.y[i] = rows[i][1];
+            }
+        },
+        math_formula() {
+            /**
+             * 当计算结果小于最小检出限时，应当报告为<最小检出限
+             */
+            this.cal_b();
+            this.cal_a();
+            this.cal_r();
+            this.selected.formula = "";
+            if (this.selected.a >= 0) {
+                this.selected.formula = "<p>回归方程为：y = " + this.selected.b + "x + " + this.selected.a + "</p><p>相关系数为：r = " + this.selected.r + "</p>";
+
+            } else {
+                let a = -(this.selected.a);
+                this.selected.formula = "<p>回归方程为：y = " + this.selected.b + "x - " + a + "</p><p>相关系数为：r = " + this.selected.r + "</p>";
+            }
+        },
         add_item() {
             /**
              * 在标准系列列表中增加一行
@@ -818,19 +902,6 @@ let app = new Vue({
              * 删除样品行
              */
             this.selected.results_save.splice(index, 1);
-        },
-        save_series() {
-            /**
-             * 从页面的表格中取值，做好回归分析的准备。
-             * 同时，把数据存入所选项目的standard_series中。
-             */
-            this.selected.x = []; //标准系列的加样量数据
-            this.selected.y = []; //标准系列的吸光度数据
-            let rows = this.selected.standard_series;
-            for(let i=0; i<rows.length; i++){
-                this.selected.x[i] = rows[i][0];
-                this.selected.y[i] = rows[i][1];
-            }
         },
         sum(arr1, arr2) {
             /**
@@ -862,40 +933,21 @@ let app = new Vue({
             let over = this.sum_1(arr);
             return over / arr.length;
         },
-        math_formula() {
-            /**
-             * 当计算结果小于最小检出限时，应当报告为<最小检出限
-             */
-            this.cal_b();
-            this.cal_a();
-            this.cal_r();
-            this.selected.formula = "";
-            if (this.selected.a >= 0) {
-                this.selected.formula = "<p>回归方程为：y = " + this.selected.b + "x + " + this.selected.a + "</p><p>相关系数为：r = " + this.selected.r + "</p>";
-
-            } else {
-                let a = -(this.selected.a);
-                this.selected.formula = "<p>回归方程为：y = " + this.selected.b + "x - " + a + "</p><p>相关系数为：r = " + this.selected.r + "</p>";
-            }
-        },
-        get_m(element){
+        get_result(element){
             /**
              * 根据出当前项目的吸光度计算出样品所含物质质量
              */
             let x = this.selected.results_save[element];
-            return (((x[2] - this.selected.a) / this.selected.b).toFixed(3));
-        },
-        get_result(element) {
+            this.selected.m = (((x[2] - this.selected.a) / this.selected.b).toFixed(3));
             /**
              * 根据当前项目的加样体积和质量算出样品中物质的浓度
              */
-            let x = this.selected.results_save[element];
-            x[3] = this.get_m(element);
-            let c = (x[3] / x[1]).toFixed(2);
-            if (c >= this.selected.limit) {
-                return c;
+            x[3] = this.selected.m;
+            this.selected.c = (x[3] / x[1]).toFixed(2);
+            if (this.selected.c >= this.selected.limit) {
+                this.selected.result = this.selected.c;
             } else {
-                return ('<' + this.selected.limit);
+                this.selected.result = ('<' + this.selected.limit);
             }
         },
         cal_b() {
