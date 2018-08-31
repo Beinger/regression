@@ -104,8 +104,8 @@
                 </fieldset>
                 <fieldset v-if="add">
                     <p>
-                        <span>YXCDC2018水第</span>
-                        <input type="text" tabindex="0" v-model="selected.new_results.id">
+                        <span>YXCDC2018水第</span>{{ selected.new_results.id}}
+                        <!-- <input type="text" tabindex="0" v-model="selected.new_results.id"> -->
                         <span>号</span>
                     </p>
                     <p>
@@ -127,7 +127,7 @@
                     </p>
                     <p><button tabindex="0" @click="submit_result">提交</button></p>
                 </fieldset>
-                <table class="table table-bordered table-striped" id="report_value">
+                <table class="table table-bordered table-striped table-hover" id="report_value">
                     <thead>
                         <th class="text-center" @click="add_sample()"><i class="fa fa-plus"></i></th>
                         <th class="text-center">编号</th>
@@ -136,14 +136,14 @@
                         <th class="text-center">质量</th>
                         <th class="text-center">结果</th>
                     </thead>
-                    <tbody class="text-center" v-for="(item, index) in selected.product">
+                    <tbody class="text-center" v-for="(item, index) in selected.results">
                         <tr>
                             <td><i class="fa fa-trash" @click="del_sample()"></i></td>
                             <td>{{ get_id(index) }}</td>
                             <td>{{ item.v }}</td>
-                            <td class="animated bounceInUp">{{ item.a }}</td>
+                            <td>{{ item.a }}</td>
                             <td>{{ get_m(index) }}</td>
-                            <td>{{ get_result(index) }}</td>
+                            <td class="animated bounceInUp">{{ get_result(index) }}</td>
                         </tr>
                     </tbody>
                 </table>

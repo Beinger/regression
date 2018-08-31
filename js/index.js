@@ -49,10 +49,9 @@ let app = new Vue({
                     0.055
                 ]],
                 results: [
-                    {id: 0, v: 50, a: 0, m: 0, result: 0}
                 ],
                 new_results: {
-                    id: 0 ,v: 50 ,a:'',m:'',result:''
+                    id: 1 ,v: 50 ,a:'',m:'',result:''
                 },
                 product:[] 
             },
@@ -880,7 +879,7 @@ let app = new Vue({
             this.selected.a = (this.average(this.selected.y) - this.selected.b * this.average(this.selected.x)).toFixed(4);
         },
         cal_r() {
-            /**
+            /*
              * 根据当前项目的标准系列算出标准系列的相关系数
              */
             this.selected.r = 1;
@@ -929,9 +928,13 @@ let app = new Vue({
              * 提交数据到结果数组中
              */
             this.selected.results.push(this.selected.new_results);
-            this.selected.new_results = {};
-            this.selected.product.push(this.selected.new_results);
-            this.selected.new_results.a = '';
+            this.selected.new_results = {
+                id: this.selected.new_results.id + 1,
+                v: '',
+                a: '',
+                m: '',
+                result: '',
+            };
         },
         del_sample(index){
             /**
