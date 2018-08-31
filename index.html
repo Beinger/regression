@@ -28,7 +28,7 @@
             width: auto
         }
 
-        input{
+        input {
             width: 5em;
         }
 
@@ -64,78 +64,89 @@
             <select tabindex="-1" class="form-control input-lg" name="xm" id="xm" v-model="selected">
                 <option :value="item" v-for="(item,index) in names">{{ item.name }}</option>
             </select>
-            <table v-show="show" class="animated fadeInUp table table-hover table-bordered text-center table-striped"
-                :id="selected.id">
-                <thead>
-                    <tr>
-                        <th class="text-center">序号</th>
-                        <th class="text-center">加样量</th>
-                        <th class="text-center">吸光度</th>
-                        <th title="保存" class="save btn btn-info" :id="'save'+index"><i @click="get_list()" class="fa fa-save"></i></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="(item, index) in selected.standard_series" :key="index">
-                        <td>{{ index + 1 }}</td>
-                        <td :contenteditable="true" :id="'v'+index">{{ item[0] }}</td>
-                        <td :contenteditable="true" :id="'a'+index">{{ item[1] }}</td>
-                        <td class="text-center btn btn-warning" title="增加序列">
-                            <i @click="add_item(selected.id)" class="fa fa-plus"></i>
-                        </td>
-                        <td title="删除" class="btn btn-danger"><i @click="del(index)" class="fa fa-trash"></i></td>
-                    </tr>
-                </tbody>
-                <caption>
-                    <h4>水中{{ selected.name }}的标准系列 </h4>
-                </caption>
-            </table>
-            <div id="line"></div>
-            <form v-show="show">
-                <fieldset>
-                    <legend>{{ selected.name }}的回归公式</legend>
-                    <h4 v-html="selected.formula"></h4>
-                </fieldset>
-                <fieldset>
-                    <legend>样品中{{ selected.name }}浓度计算</legend>
-                    <div>
-                        <i class="text-warning">样品编号</i>YXCDC2018水第<input tabindex="11" type="number" v-model="start">号
-                        <div tabindex="11" class="btn btn-default" @click="add_sample()"><i class="fa fa-pencil"></i></div>
-                    </div>
-                </fieldset>
-                <fieldset v-if="add">
-                    <table class="table table-hover text-center">
-                        <tr>
-                            <th>样品编号</th>
-                            <th>加样体积</th>
-                            <th>吸光度</th>
-                        </tr>
-                        <tr>
-                            <td>
+            <div class="row">
+                <div class="col-lg-6">
 
-                        YXCDC2018水第{{ start }}号
-                            </td>
-                            <td>
-
-                                <select class="form-control" name="" id="" v-model="selected.new_results.v">
-                                    <option actived value="50">50 ml</option>
-                                    <option value="25">25 ml</option>
-                                    <option value="100">100 ml</option>
-                                    <option value="250">250 ml</option>
-                                    <option value="10">10 ml</option>
-                                    <option value="1">1 ml</option>
-                                </select>
-                            </td>
-                            <td>
-
-                                <input class="form-control" type="number" tabindex="0" v-model="selected.new_results.a">
-                            </td>
-                            <td>
-
-                                <button class="btn btn-success" tabindex="0" @click="submit_result">提交</button>
-                            </td>
-                        </tr>
+                    <table v-show="show" class="animated fadeInUp table table-hover table-bordered text-center table-striped" :id="selected.id">
+                        <thead>
+                            <tr>
+                                <th class="text-center">序号</th>
+                                <th class="text-center">加样量</th>
+                                <th class="text-center">吸光度</th>
+                                <th title="保存" class="save btn btn-info" :id="'save'+index"><i @click="get_list()" class="fa fa-save"></i></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(item, index) in selected.standard_series" :key="index">
+                                <td>{{ index + 1 }}</td>
+                                <td :contenteditable="true" :id="'v'+index">{{ item[0] }}</td>
+                                <td :contenteditable="true" :id="'a'+index">{{ item[1] }}</td>
+                                <td class="text-center btn btn-warning" title="增加序列">
+                                    <i @click="add_item(selected.id)" class="fa fa-plus"></i>
+                                </td>
+                                <td title="删除" class="btn btn-danger"><i @click="del(index)" class="fa fa-trash"></i></td>
+                            </tr>
+                        </tbody>
+                        <caption>
+                            <h4>水中{{ selected.name }}的标准系列 </h4>
+                        </caption>
                     </table>
-                </fieldset>
+                </div>
+                <div class="col-lg-6">
+
+                    <div id="line"></div>
+                </div>
+            </div>
+            <form v-show="show">
+                <div class="row">
+                    <div class="col-lg-5">
+
+                        <fieldset>
+                            <legend>{{ selected.name }}的回归公式</legend>
+                            <h4 v-html="selected.formula"></h4>
+                            <div>
+                                <i class="text-warning">样品编号</i>YXCDC2018水第<input tabindex="11" type="number" v-model="start">号
+                                <div tabindex="11" class="btn btn-default" @click="add_sample()"><i class="fa fa-pencil"></i></div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="col-lg-7">
+                        <fieldset v-if="add">
+                            <legend>样品中{{ selected.name }}浓度计算</legend>
+                            <table class="table table-hover">
+                                <tr>
+                                    <th class="text-center">样品编号</th>
+                                    <th class="text-center">加样体积</th>
+                                    <th class="text-center">吸光度</th>
+                                </tr>
+                                <tr class="text-center">
+                                    <td>
+                                        YXCDC2018水第{{ start }}号
+                                    </td>
+                                    <td>
+
+                                        <select class="form-control" name="" id="" v-model="selected.new_results.v">
+                                            <option actived value="50">50 ml</option>
+                                            <option value="25">25 ml</option>
+                                            <option value="100">100 ml</option>
+                                            <option value="250">250 ml</option>
+                                            <option value="10">10 ml</option>
+                                            <option value="1">1 ml</option>
+                                        </select>
+                                    </td>
+                                    <td>
+
+                                        <input class="animated bounceInRight" type="number" tabindex="0" v-model="selected.new_results.a">
+                                    </td>
+                                    <td>
+
+                                        <button class="btn btn-success" tabindex="0" @click="submit_result">提交</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                    </div>
+                </div>
                 <table class="table table-bordered table-striped table-hover" id="report_value">
                     <thead>
                         <th></th>
