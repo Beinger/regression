@@ -61,10 +61,11 @@
             <h1>回归计算器</h1>
         </div>
         <div id="root">
-            <select class="form-control input-lg" name="xm" id="xm" v-model="selected">
+            <select tabindex="-1" class="form-control input-lg" name="xm" id="xm" v-model="selected">
                 <option :value="item" v-for="(item,index) in names">{{ item.name }}</option>
             </select>
-            <table v-show="show" class="animated fadeInUp table table-hover table-bordered text-center table-striped" :id="selected.id">
+            <table v-show="show" class="animated fadeInUp table table-hover table-bordered text-center table-striped"
+                :id="selected.id">
                 <thead>
                     <tr>
                         <th class="text-center">序号</th>
@@ -96,43 +97,21 @@
                 <fieldset>
                     <legend>样品中{{ selected.name }}浓度计算</legend>
                     <div>
-                        样品编号从YXCDC2018水第<input type="number" v-model="start"><span>号----<input v-model="end">号</span>
-                        <div class="btn btn-default" @click="add_yangPin()"><i class="fa fa-plus"></i></div>
+                        样品编号从YXCDC2018水第<input type="number" v-model="start">
+                        号----<input v-model="end">号
+                        <div class="btn btn-default" @click="add_sample()"><i class="fa fa-plus"></i></div>
                     </div>
                 </fieldset>
-                <fieldset>
-                    <ul>
-                        <li>
-                            <span>编号</span>
-                            <span>加样体积</span>
-                            <span>吸光度</span>
-                            <span>物质含量</span>
-                            <span>物质浓度</span>
-                        </li>
-                        <li v-for="(item,index) in this.selected.results">
-                            <label for="">{{ Number(index)+Number(start) }}</label>
-                            <input type="number" v-model="item.v">
-                            <input type="number" v-model="item.a">
-                            <span>{{ item.m }}</span>
-                            <span>{{ item.result }}</span>
-                        </li>
-                    </ul>
-                </fieldset>
-                <table class="table table-bordered table-striped" id="report_value">
-                    <thead>
-                        <!-- <th class="text-center" @click="add_yangPin()"><i class="fa fa-plus"></i></th> -->
-                        <th class="text-center">编号</th>
-                        <th class="text-center" @click="set_input()">加样量</th>
-                        <th class="text-center">吸光度</th>
-                        <th class="text-center">质量</th>
-                        <th class="text-center">结果</th>
-                    </thead>
-                    <tbody class="text-center" v-for="(item, index) in selected.results" :key="index">
-                        <tr>
-                            <td><i class="fa fa-trash" @click="del_yangPin()"></i></td>
-                            <td>{{ this.start + index }}</td>
-                            <td>
-                                <select name="" id="" v-model="selected.results[index].v" @change="change(item, index)">
+                <fieldset v-if="add">
+                    <p>
+                        <span>YXCDC2018水第</span>
+                        <input type="text" tabindex="0" v-model="selected.new_results.id">
+                        <span>号</span>
+                    </p>
+                    <p>
+                        <label for="">加样体积：</label>
+                        
+                                <select name="" id="" v-model="selected.new_results.v">
                                     <option value="50">50 ml</option>
                                     <option value="25">25 ml</option>
                                     <option value="100">100 ml</option>
@@ -140,8 +119,29 @@
                                     <option value="10">10 ml</option>
                                     <option value="1">1 ml</option>
                                 </select>
-                            </td>
-                            <td class="animated bounceInUp"><input type="text" v-model="selected.results[index].a" @change="change(item, index)"></td>
+                    </p>
+                    <p>
+                        <label for="">吸光度：</label>
+                        
+                        <input type="number" tabindex="0" v-model="selected.new_results.a">
+                    </p>
+                    <p><button tabindex="0" @click="submit_result">提交</button></p>
+                </fieldset>
+                <table class="table table-bordered table-striped" id="report_value">
+                    <thead>
+                        <th class="text-center" @click="add_sample()"><i class="fa fa-plus"></i></th>
+                        <th class="text-center">编号</th>
+                        <th class="text-center">加样量</th>
+                        <th class="text-center">吸光度</th>
+                        <th class="text-center">质量</th>
+                        <th class="text-center">结果</th>
+                    </thead>
+                    <tbody class="text-center" v-for="(item, index) in selected.product">
+                        <tr>
+                            <td><i class="fa fa-trash" @click="del_sample()"></i></td>
+                            <td>{{ get_id(index) }}</td>
+                            <td>{{ item.v }}</td>
+                            <td class="animated bounceInUp">{{ item.a }}</td>
                             <td>{{ get_m(index) }}</td>
                             <td>{{ get_result(index) }}</td>
                         </tr>
