@@ -28,28 +28,27 @@
             width: auto
         }
 
-        input {
-            width: 60%;
+        input{
+            width: 5em;
         }
 
         :focus {
             background-color: rgb(161, 220, 228);
         }
 
-        table{
+        table {
             box-shadow: 10px 10px 10px #000;
         }
 
         th {
-    color: #4f6b72;
-    border-top: 1px solid #C1DAD7;
-    letter-spacing: 2px;
+            color: #4f6b72;
+            border-top: 1px solid #C1DAD7;
+            letter-spacing: 2px;
         }
 
         td {
-    color: #4f6b72;
+            color: #4f6b72;
         }
-
     </style>
     <title>标准回归</title>
 </head>
@@ -67,19 +66,21 @@
             </select>
             <table v-show="show" class="animated fadeInUp table table-hover table-bordered text-center table-striped" :id="selected.id">
                 <thead>
-                    <th class="text-center">序号</th>
-                    <th class="text-center">加样量</th>
-                    <th class="text-center">吸光度</th>
-                    <th class="text-center btn btn-warning" title="增加序列">
-                        <i @click="add_item(selected.id)" class="fa fa-plus fa-2x"></i>
-                    </th>
+                    <tr>
+                        <th class="text-center">序号</th>
+                        <th class="text-center">加样量</th>
+                        <th class="text-center">吸光度</th>
+                        <th title="保存" class="save btn btn-info" :id="'save'+index"><i @click="get_list()" class="fa fa-save fa-2x"></i></th>
+                    </tr>
                 </thead>
                 <tbody>
                     <tr v-for="(item, index) in selected.standard_series" :key="index">
                         <td>{{ index + 1 }}</td>
                         <td :contenteditable="true" :id="'v'+index">{{ item[0] }}</td>
                         <td :contenteditable="true" :id="'a'+index">{{ item[1] }}</td>
-                        <td title="保存" class="save btn btn-info" :id="'save'+index"><i @click="get_list()" class="fa fa-save fa-2x"></i></td>
+                        <td class="text-center btn btn-warning" title="增加序列">
+                            <i @click="add_item(selected.id)" class="fa fa-plus fa-2x"></i>
+                        </td>
                         <td title="删除" class="btn btn-danger"><i @click="del(index)" class="fa fa-trash fa-2x"></i></td>
                     </tr>
                 </tbody>
@@ -94,10 +95,22 @@
                 </fieldset>
                 <fieldset>
                     <legend>样品中{{ selected.name }}浓度计算</legend>
-                    <label for="">样品起始编号：YXCDC2018水第<input type="number" :value="start">号</label>
-                    <label for="">样品起始编号：YXCDC2018水第<input type="number" :value="end">号</label>
+                    <div>
+                        <label for="">第一份样品编号：YXCDC2018水第</label><input type="number" v-model="start"><span>号</span>
+                    </div>
+                    <div>
+                        <label for="">最后一份样品编号：YXCDC2018水第</label><input type="number" v-model="end"><span>号</span>
+                    </div>
+                    <button class="btn btn-default" @click="add_yangPin()"><i class="fa fa-plus"></i></button>
                 </fieldset>
-                <table class="table table-bordered table-striped" id="report_value">
+                <fieldset>
+                    <div v-for="(item,index) in this.selected.results">
+                        <label for="">{{ item.id }}</label>
+                        <input type="number" v-model="item.v">
+                        <input type="number" v-model="item.a">
+                    </div>
+                </fieldset>
+                <!-- <table class="table table-bordered table-striped" id="report_value">
                     <thead>
                         <th class="text-center" @click="add_yangPin()"><i class="fa fa-plus"></i></th>
                         <th class="text-center">编号</th>
@@ -106,13 +119,12 @@
                         <th class="text-center">质量</th>
                         <th class="text-center">结果</th>
                     </thead>
-                    <tbody class="text-center" v-for="(item, index) in selected.results_save"
-                     :key="index">
+                    <tbody class="text-center" v-for="(item, index) in selected.results" :key="index">
                         <tr>
                             <td><i class="fa fa-trash" @click="del_yangPin()"></i></td>
-                            <td>YXCDC2018水-{{ index+1 }}</td>
+                            <td>{{ this.start + index }}</td>
                             <td>
-                                <select name="" id="" v-model="selected.results_save[index].v" @change="change(item, index)">
+                                <select name="" id="" v-model="selected.results[index].v" @change="change(item, index)">
                                     <option value="50">50 ml</option>
                                     <option value="25">25 ml</option>
                                     <option value="100">100 ml</option>
@@ -121,12 +133,12 @@
                                     <option value="1">1 ml</option>
                                 </select>
                             </td>
-                            <td class="animated bounceInUp"><input type="text" v-model="selected.results_save[index].a" @change="change(item, index)"></td>
+                            <td class="animated bounceInUp"><input type="text" v-model="selected.results[index].a" @change="change(item, index)"></td>
                             <td>{{ get_m(index) }}</td>
                             <td>{{ get_result(index) }}</td>
                         </tr>
                     </tbody>
-                </table>
+                </table> -->
             </form>
             <div id="line"></div>
         </div>

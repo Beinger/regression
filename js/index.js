@@ -5,10 +5,11 @@ let app = new Vue({
         index: 0,  //这个是表格索引==序号
         new_item: '',   //表格新行
         show: false,
+        calculation: false,
         vol_select:[
             50,100,250,1,25,10
         ],
-        start: 1,
+        start: 0,
         end: 1,
         names: [
             {
@@ -47,14 +48,14 @@ let app = new Vue({
                     10,
                     0.055
                 ]],
-                new_results_save: {
+                new_results: {
                     id: 1,
                     v: 50,
                     a: 0,
                     m: 0,
                     result: 0,
                 },
-                results_save: [{}],
+                results: [{}],
             },
             {
                 id: 2,
@@ -92,14 +93,14 @@ let app = new Vue({
                     0.9,
                     0.092
                 ]],
-                new_results_save: [{
+                results: [{
                     id: 1,
                     v: 250,
                     a: 0,
                     m: 0,
                     result: 0,
                 }],
-                results_save: [],
+                new_results: [],
             },
             {
                 id: 3,
@@ -136,14 +137,14 @@ let app = new Vue({
                     90,
                     0.068
                 ]],
-                new_results_save: [{
+                results: [{
                     id: 1,
                     v: 50,
                     a: 0,
                     m: 0,
                     result: 0,
                 }],
-                results_save: [],
+                new_results: [],
             },
             {
                 id: 4,
@@ -180,14 +181,14 @@ let app = new Vue({
                     40,
                     1.053
                 ]],
-                new_results_save: [{
+                results: [{
                     id: 1,
                     v: '',
                     a: 0,
                     m: 0,
                     result: 0,
                 }],
-                results_save: [],
+                new_results: [],
             },
             {
                 id: 5,
@@ -228,14 +229,14 @@ let app = new Vue({
                     10,
                     0.405
                 ]],
-                new_results_save: [{
+                results: [{
                     id: 1,
                     v: 0,
                     a: 0,
                     m: 0,
                     result: 0,
                 }],
-                results_save: [],
+                new_results: [],
             },
             {
                 id: 6,
@@ -276,14 +277,14 @@ let app = new Vue({
                     5,
                     0.725
                 ]],
-                new_results_save: [{
+                results: [{
                     id: 1,
                     v: 0,
                     a: 0,
                     m: 0,
                     result: 0,
                 }],
-                results_save: [],
+                new_results: [],
             },
             {
                 id: 7,
@@ -324,14 +325,14 @@ let app = new Vue({
                     10,
                     0.234
                 ]],
-                new_results_save: [{
+                results: [{
                     id: 1,
                     v: 0,
                     a: 0,
                     m: 0,
                     result: 0,
                 }],
-                results_save: [],
+                new_results: [],
             },
             {
                 id: 8,
@@ -372,14 +373,14 @@ let app = new Vue({
                     8,
                     0.660
                 ]],
-                new_results_save: [{
+                results: [{
                     id: 1,
                     v: 0,
                     a: 0,
                     m: 0,
                     result: 0,
                 }],
-                results_save: [],
+                new_results: [],
             },
             {
                 id: 9,
@@ -420,14 +421,14 @@ let app = new Vue({
                     50,
                     0.290
                 ]],
-                new_results_save: [{
+                results: [{
                     id: 1,
                     v: 0,
                     a: 0,
                     m: 0,
                     result: 0,
                 }],
-                results_save: [],
+                new_results: [],
             },
             {
                 id: 10,
@@ -464,14 +465,14 @@ let app = new Vue({
                     8,
                     0.110
                 ]],
-                new_results_save: [{
+                results: [{
                     id: 1,
                     v: 0,
                     a: 0,
                     m: 0,
                     result: 0,
                 }],
-                results_save: [],
+                new_results: [],
             },
             {
                 id: 11,
@@ -508,14 +509,14 @@ let app = new Vue({
                     4,
                     0.336
                 ]],
-                new_results_save: [{
+                results: [{
                     id: 1,
                     v: 0,
                     a: 0,
                     m: 0,
                     result: 0,
                 }],
-                results_save: [],
+                new_results: [],
             },
             {
                 id: 12,
@@ -552,14 +553,14 @@ let app = new Vue({
                     6,
                     0.630
                 ]],
-                new_results_save: [{
+                results: [{
                     id: 1,
                     v: 0,
                     a: 0,
                     m: 0,
                     result: 0,
                 }],
-                results_save: [],
+                new_results: [],
             },
             {
                 id: 13,
@@ -596,14 +597,14 @@ let app = new Vue({
                     6,
                     0.103
                 ]],
-                new_results_save: [{
+                results: [{
                     id: 1,
                     v: 0,
                     a: 0,
                     m: 0,
                     result: 0,
                 }],
-                results_save:{
+                new_results:{
                     id: '',
                     input_v: 50,
                     xgd: '',
@@ -646,14 +647,14 @@ let app = new Vue({
                     10,
                     0.238
                 ]],
-                new_results_save: [{
+                results: [{
                     id: 1,
                     v: 0,
                     a: 0,
                     m: 0,
                     result: 0,
                 }],
-                results_save: [],
+                new_results: [],
             },
             {
                 id: 15,
@@ -690,14 +691,14 @@ let app = new Vue({
                     90,
                     0.068
                 ]],
-                new_results_save: [{
+                results: [{
                     id: 1,
                     v: 0,
                     a: 0,
                     m: 0,
                     result: 0,
                 }],
-                results_save: [],
+                new_results: [],
             },
             {
                 id: 16,
@@ -734,14 +735,14 @@ let app = new Vue({
                     40,
                     0.290
                 ]],
-                new_results_save: [{
+                results: [{
                     id: 1,
                     v: 0,
                     a: 0,
                     m: 0,
                     result: 0,
                 }],
-                results_save: [],
+                new_results: [],
             },
             {
                 id: 17,
@@ -778,14 +779,14 @@ let app = new Vue({
                     6,
                     1.602
                 ]],
-                new_results_save: [{
+                results: [{
                     id: 1,
                     v: 0,
                     a: 0,
                     m: 0,
                     result: 0,
                 }],
-                results_save: [],
+                new_results: [],
             },
             {
                 id: 18,
@@ -818,14 +819,14 @@ let app = new Vue({
                     10,
                     1.137
                 ]],
-                new_results_save: [{
+                results: [{
                     id: 1,
                     v: 0,
                     a: 0,
                     m: 0,
                     result: 0,
                 }],
-                results_save: [],
+                new_results: [],
             },
         ],
         selected: ''
@@ -834,24 +835,17 @@ let app = new Vue({
             /**
              * 当选择了项目时，显示标准系列的列表
              */
-        selected: function(){
+        selected: function (){
             this.show = true;
             this.get_series();
             this.save_series();
             this.math_formula();
             show_chart();
         },
-        x: {
-            handler(){
-                this.show_save = true;
-            },
-            deep: true
-        }
-
     },
     methods: {
         change(item, index){
-            this.selected.results_save[index] = item;
+            this.selected.results[index] = item;
         },
         set_input(){
             this.show_v = !this.show_v
@@ -968,13 +962,18 @@ let app = new Vue({
             /**
              * 增加样品行
              */
-            this.selected.results_save.push(this.selected.new_results_save);
+            let count = this.end - this.start + 1;
+            for(let i=0; i<count; i++){
+                this.selected.results.push(this.selected.new_results);
+            }
+            this.show = true;
+            this.calculation = true;
         },
         del_yangPin(index){
             /**
              * 删除样品行
              */
-            this.selected.results_save.splice(index, 1);
+            this.selected.results.splice(index, 1);
         },
         sum(arr1, arr2) {
             /**
@@ -1006,30 +1005,36 @@ let app = new Vue({
             let over = this.sum_1(arr);
             return over / arr.length;
         },
+        get_id(element){
+            let id = 1;
+            id = this.selected.results[element].id;
+            id = "YXCDC2018水-"+Number(id)+Number(element)+"号";
+            return id;
+        },
         get_m(element){
 
             /**
              * 根据出当前项目的吸光度计算出样品所含物质质量
              */
-            let a = this.selected.results_save[element].a;
-            // let id = this.selected.results_save[element].id;
-            this.selected.results_save[element].m = (((a - this.selected.a) / this.selected.b).toFixed(3));
-            return this.selected.results_save[element].m;
+            let a = this.selected.results[element].a;
+            // let id = this.selected.results[element].id;
+            this.selected.results[element].m = (((a - this.selected.a) / this.selected.b).toFixed(3));
+            return this.selected.results[element].m;
         },
         get_result(element){
             /**
              * 根据当前项目的加样体积和质量算出样品中物质的浓度
              */
-            let v = this.selected.results_save[element].v;
-            let m = this.selected.results_save[element].m;
-            this.selected.results_save[element].c = (m / v).toFixed(2);
-            let c = this.selected.results_save[element].c;
+            let v = this.selected.results[element].v;
+            let m = this.selected.results[element].m;
+            this.selected.results[element].c = (m / v).toFixed(2);
+            let c = this.selected.results[element].c;
             if (c >= this.selected.limit) {
-                this.selected.results_save[element].result = c;
+                this.selected.results[element].result = c;
             } else {
-                this.selected.results_save[element].result = ('<' + this.selected.limit);
+                this.selected.results[element].result = ('<' + this.selected.limit);
             }
-            return this.selected.results_save[element].result;
+            return this.selected.results[element].result;
         }
     }
 });
