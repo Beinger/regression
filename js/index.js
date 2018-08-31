@@ -920,7 +920,7 @@ let app = new Vue({
             /**
              * 增加样品行
              */
-            this.add = true;
+            this.add = !this.add;
             this.calculation = true;
         },
         submit_result(){
@@ -935,6 +935,7 @@ let app = new Vue({
                 m: '',
                 result: '',
             };
+            this.start = Number(this.start) + 1;
         },
         del_sample(index){
             /**
