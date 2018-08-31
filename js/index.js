@@ -53,7 +53,6 @@ let app = new Vue({
                 new_results: {
                     id: 1 ,v: 50 ,a:'',m:'',result:''
                 },
-                product:[] 
             },
             {
                 id: 2,
@@ -92,10 +91,9 @@ let app = new Vue({
                     0.092
                 ]],
                 results: [
-                    {id: 1, v: 50, a: 0, m: 0, result: 0}
                 ],
                 new_results: {
-                    id:'',v:'',a:'',m:'',result:''
+                    id:1, v: 250,a:'',m:'',result:''
                 },
             },
             {
@@ -134,10 +132,9 @@ let app = new Vue({
                     0.068
                 ]],
                 results: [
-                    {id: 1, v: 50, a: 0, m: 0, result: 0}
                 ],
                 new_results: {
-                    id:'',v:'',a:'',m:'',result:''
+                    id:1,v:50,a:'',m:'',result:''
                 },
             },
             {
@@ -176,10 +173,9 @@ let app = new Vue({
                     1.053
                 ]],
                 results: [
-                    {id: 1, v: 50, a: 0, m: 0, result: 0}
                 ],
                 new_results: {
-                    id:'',v:'',a:'',m:'',result:''
+                    id:1,v:25,a:'',m:'',result:''
                 },
             },
             {
@@ -222,10 +218,9 @@ let app = new Vue({
                     0.405
                 ]],
                 results: [
-                    {id: 1, v: 50, a: 0, m: 0, result: 0}
                 ],
                 new_results: {
-                    id:'',v:'',a:'',m:'',result:''
+                    id:1,v:1,a:'',m:'',result:''
                 },
             },
             {
@@ -268,10 +263,9 @@ let app = new Vue({
                     0.725
                 ]],
                 results: [
-                    {id: 1, v: 50, a: 0, m: 0, result: 0}
                 ],
                 new_results: {
-                    id:'',v:'',a:'',m:'',result:''
+                    id:1,v:100,a:'',m:'',result:''
                 },
             },
             {
@@ -314,10 +308,9 @@ let app = new Vue({
                     0.234
                 ]],
                 results: [
-                    {id: 1, v: 50, a: 0, m: 0, result: 0}
                 ],
                 new_results: {
-                    id:'',v:'',a:'',m:'',result:''
+                    id:1,v:50,a:'',m:'',result:''
                 },
             },
             {
@@ -360,10 +353,9 @@ let app = new Vue({
                     0.660
                 ]],
                 results: [
-                    {id: 1, v: 50, a: 0, m: 0, result: 0}
                 ],
                 new_results: {
-                    id:'',v:'',a:'',m:'',result:''
+                    id:1,v:50,a:'',m:'',result:''
                 },
             },
             {
@@ -406,10 +398,9 @@ let app = new Vue({
                     0.290
                 ]],
                 results: [
-                    {id: 1, v: 50, a: 0, m: 0, result: 0}
                 ],
                 new_results: {
-                    id:'',v:'',a:'',m:'',result:''
+                    id:1,v:50,a:'',m:'',result:''
                 },
             },
             {
@@ -448,10 +439,9 @@ let app = new Vue({
                     0.110
                 ]],
                 results: [
-                    {id: 1, v: 50, a: 0, m: 0, result: 0}
                 ],
                 new_results: {
-                    id:'',v:'',a:'',m:'',result:''
+                    id:1,v:50,a:'',m:'',result:''
                 },
             },
             {
@@ -490,10 +480,9 @@ let app = new Vue({
                     0.336
                 ]],
                 results: [
-                    {id: 1, v: 50, a: 0, m: 0, result: 0}
                 ],
                 new_results: {
-                    id:'',v:'',a:'',m:'',result:''
+                    id:1,v:100,a:'',m:'',result:''
                 },
             },
             {
@@ -532,10 +521,9 @@ let app = new Vue({
                     0.630
                 ]],
                 results: [
-                    {id: 1, v: 50, a: 0, m: 0, result: 0}
                 ],
                 new_results: {
-                    id:'',v:'',a:'',m:'',result:''
+                    id:1,v:50,a:'',m:'',result:''
                 },
             },
             {
@@ -574,10 +562,9 @@ let app = new Vue({
                     0.103
                 ]],
                 results: [
-                    {id: 1, v: 50, a: 0, m: 0, result: 0}
                 ],
                 new_results: {
-                    id: 1, v: 50, a: 0, m: 0, result: 0
+                    id: 1, v: 50, a: '', m: '', result:'' 
                 }
             },
             {
@@ -616,10 +603,9 @@ let app = new Vue({
                     0.238
                 ]],
                 results: [
-                    {id: 1, v: 50, a: 0, m: 0, result: 0}
                 ],
                 new_results: {
-                    id:'',v:'',a:'',m:'',result:''
+                    id:1,v:50,a:'',m:'',result:''
                 },
             },
             {
@@ -658,10 +644,9 @@ let app = new Vue({
                     0.068
                 ]],
                 results: [
-                    {id: 1, v: 50, a: 0, m: 0, result: 0}
                 ],
                 new_results: {
-                    id:'',v:'',a:'',m:'',result:''
+                    id:1,v:50,a:'',m:'',result:''
                 },
             },
             {
@@ -700,10 +685,9 @@ let app = new Vue({
                     0.290
                 ]],
                 results: [
-                    {id: 1, v: 50, a: 0, m: 0, result: 0}
                 ],
                 new_results: {
-                    id:'',v:'',a:'',m:'',result:''
+                    id:1,v:50,a:'',m:'',result:''
                 },
             },
             {
@@ -742,10 +726,9 @@ let app = new Vue({
                     1.602
                 ]],
                 results: [
-                    {id: 1, v: 50, a: 0, m: 0, result: 0}
                 ],
                 new_results: {
-                    id:'',v:'',a:'',m:'',result:''
+                    id:1,v:50,a:'',m:'',result:''
                 },
             },
             {
@@ -780,10 +763,9 @@ let app = new Vue({
                     1.137
                 ]],
                 results: [
-                    {id: 1, v: 50, a: 0, m: 0, result: 0}
                 ],
                 new_results: {
-                    id:'',v:'',a:'',m:'',result:''
+                    id:1,v:25,a:'',m:'',result:''
                 },
             },
         ],
@@ -930,7 +912,7 @@ let app = new Vue({
             this.selected.results.push(this.selected.new_results);
             this.selected.new_results = {
                 id: this.selected.new_results.id + 1,
-                v: '',
+                v: this.selected.v,
                 a: '',
                 m: '',
                 result: '',

@@ -71,7 +71,7 @@
                         <th class="text-center">序号</th>
                         <th class="text-center">加样量</th>
                         <th class="text-center">吸光度</th>
-                        <th title="保存" class="save btn btn-info" :id="'save'+index"><i @click="get_list()" class="fa fa-save fa-2x"></i></th>
+                        <th title="保存" class="save btn btn-info" :id="'save'+index"><i @click="get_list()" class="fa fa-save"></i></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -80,9 +80,9 @@
                         <td :contenteditable="true" :id="'v'+index">{{ item[0] }}</td>
                         <td :contenteditable="true" :id="'a'+index">{{ item[1] }}</td>
                         <td class="text-center btn btn-warning" title="增加序列">
-                            <i @click="add_item(selected.id)" class="fa fa-plus fa-2x"></i>
+                            <i @click="add_item(selected.id)" class="fa fa-plus"></i>
                         </td>
-                        <td title="删除" class="btn btn-danger"><i @click="del(index)" class="fa fa-trash fa-2x"></i></td>
+                        <td title="删除" class="btn btn-danger"><i @click="del(index)" class="fa fa-trash"></i></td>
                     </tr>
                 </tbody>
                 <caption>
@@ -98,9 +98,8 @@
                 <fieldset>
                     <legend>样品中{{ selected.name }}浓度计算</legend>
                     <div>
-                        <i class="text-warning">样品编号</i>YXCDC2018水第<input tabindex="1" type="number" v-model="start">
-                        号
-                        <div tabindex="1" class="btn btn-default" @click="add_sample()"><i class="fa fa-pencil"></i></div>
+                        <i class="text-warning">样品编号</i>YXCDC2018水第<input tabindex="11" type="number" v-model="start">号
+                        <div tabindex="11" class="btn btn-default" @click="add_sample()"><i class="fa fa-pencil"></i></div>
                     </div>
                 </fieldset>
                 <fieldset v-if="add">
