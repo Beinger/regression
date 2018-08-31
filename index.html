@@ -96,23 +96,31 @@
                 <fieldset>
                     <legend>样品中{{ selected.name }}浓度计算</legend>
                     <div>
-                        <label for="">第一份样品编号：YXCDC2018水第</label><input type="number" v-model="start"><span>号</span>
+                        样品编号从YXCDC2018水第<input type="number" v-model="start"><span>号----<input v-model="end">号</span>
+                        <div class="btn btn-default" @click="add_yangPin()"><i class="fa fa-plus"></i></div>
                     </div>
-                    <div>
-                        <label for="">最后一份样品编号：YXCDC2018水第</label><input type="number" v-model="end"><span>号</span>
-                    </div>
-                    <button class="btn btn-default" @click="add_yangPin()"><i class="fa fa-plus"></i></button>
                 </fieldset>
                 <fieldset>
-                    <div v-for="(item,index) in this.selected.results">
-                        <label for="">{{ item.id }}</label>
-                        <input type="number" v-model="item.v">
-                        <input type="number" v-model="item.a">
-                    </div>
+                    <ul>
+                        <li>
+                            <span>编号</span>
+                            <span>加样体积</span>
+                            <span>吸光度</span>
+                            <span>物质含量</span>
+                            <span>物质浓度</span>
+                        </li>
+                        <li v-for="(item,index) in this.selected.results">
+                            <label for="">{{ Number(index)+Number(start) }}</label>
+                            <input type="number" v-model="item.v">
+                            <input type="number" v-model="item.a">
+                            <span>{{ item.m }}</span>
+                            <span>{{ item.result }}</span>
+                        </li>
+                    </ul>
                 </fieldset>
-                <!-- <table class="table table-bordered table-striped" id="report_value">
+                <table class="table table-bordered table-striped" id="report_value">
                     <thead>
-                        <th class="text-center" @click="add_yangPin()"><i class="fa fa-plus"></i></th>
+                        <!-- <th class="text-center" @click="add_yangPin()"><i class="fa fa-plus"></i></th> -->
                         <th class="text-center">编号</th>
                         <th class="text-center" @click="set_input()">加样量</th>
                         <th class="text-center">吸光度</th>
@@ -138,7 +146,7 @@
                             <td>{{ get_result(index) }}</td>
                         </tr>
                     </tbody>
-                </table> -->
+                </table>
             </form>
             <div id="line"></div>
         </div>

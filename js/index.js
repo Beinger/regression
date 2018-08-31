@@ -55,7 +55,7 @@ let app = new Vue({
                     m: 0,
                     result: 0,
                 },
-                results: [{}],
+                results: [],
             },
             {
                 id: 2,
@@ -962,6 +962,7 @@ let app = new Vue({
             /**
              * 增加样品行
              */
+            this.selected.results = [];
             let count = this.end - this.start + 1;
             for(let i=0; i<count; i++){
                 this.selected.results.push(this.selected.new_results);
