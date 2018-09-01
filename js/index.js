@@ -785,8 +785,11 @@ let app = new Vue({
         
     },
     methods: {
+        save_results_all(){
+            
+        },
         save_results(){
-            let project = (this.selected.name + '报告结果');
+            let project = (this.selected.name + this.start + '报告结果');
             let str = JSON.stringify(this.selected.results);
             myStorage.setItem(project, str);
         },
@@ -1002,8 +1005,9 @@ let app = new Vue({
             return this.selected.results[element].result;
         },
         mystorages(){
-            return myStorage.getItem(this.selected.name+'project');
-        }
+            return myStorage.getItem(this.selected.name+this.start+'报告结果');
+        },
+
     }
 });
 let series_data = [];

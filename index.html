@@ -147,22 +147,24 @@
                 <table class="table table-bordered table-striped table-hover" id="report_value">
                     <thead>
                         <tr>
-                        <th><i class="fa fa-save" @click="save_results()"></i></th>
                         <th class="text-center">编号</th>
                         <th class="text-center">加样量</th>
                         <th class="text-center">吸光度</th>
                         <th class="text-center">质量</th>
                         <th class="text-center">结果</th>
+                        <th><i class="fa fa-save" @click="save_results_all()"></i></th>
                         </tr>
                     </thead>
                     <tbody class="text-center" v-for="(item, index) in selected.results">
                         <tr>
-                            <td><i class="fa fa-trash" @click="del_sample()"></i></td>
                             <td>{{ item.id }}</td>
                             <td>{{ item.v }}</td>
                             <td>{{ item.a }}</td>
                             <td>{{ get_m(index) }}</td>
                             <td class="animated bounceInUp">{{ get_result(index) }}</td>
+                            <td>
+                                <i class="fa fa-save" @click="save_results()"></i>
+                                <i class="fa fa-trash" @click="del_sample()"></i></td>
                         </tr>
                         <tr aria-colspan="5">
                             <div>{{ mystorages() }}</div>
