@@ -146,12 +146,14 @@
                 </div>
                 <table class="table table-bordered table-striped table-hover" id="report_value">
                     <thead>
-                        <th></th>
+                        <tr>
+                        <th><i class="fa fa-save" @click="save_results()"></i></th>
                         <th class="text-center">编号</th>
                         <th class="text-center">加样量</th>
                         <th class="text-center">吸光度</th>
                         <th class="text-center">质量</th>
                         <th class="text-center">结果</th>
+                        </tr>
                     </thead>
                     <tbody class="text-center" v-for="(item, index) in selected.results">
                         <tr>

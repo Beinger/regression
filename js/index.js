@@ -781,15 +781,15 @@ let app = new Vue({
             this.save_series();
             this.math_formula();
             show_chart();
-        },
-        results: function(){
-            let project = (this.selected.name + 'project' + this.start);
-            let str = JSON.stringify(this.selected.results[this.start]);
-            myStorage.setItem(project, str);
         }
         
     },
     methods: {
+        save_results(){
+            let project = (this.selected.name + '报告结果');
+            let str = JSON.stringify(this.selected.results);
+            myStorage.setItem(project, str);
+        },
         change(item, index){
             this.selected.results[index] = item;
         },
@@ -911,10 +911,22 @@ let app = new Vue({
             this.add = !this.add;
             this.calculation = true;
         },
+        find_element(arrays, attr, value){
+            for(let i=0; i<arrays.length; i++){
+                if(arrays[i][attr] == value){
+                    return true;
+                }
+            }
+            return false;
+        },
         submit_result(index){
             /**
              * 提交数据到结果数组中
              */
+
+            if(this.find_element(this.selected.results, 'id', this.start)){
+                this.selected.results.splice(index, 1);
+            }
             this.selected.new_results.id = this.start;
             this.selected.results.push(this.selected.new_results);
             this.selected.new_results = {
@@ -990,7 +1002,7 @@ let app = new Vue({
             return this.selected.results[element].result;
         },
         mystorages(){
-            return myStorage.getItem(this.selected.name+'project'+this.start);
+            return myStorage.getItem(this.selected.name+'project');
         }
     }
 });
