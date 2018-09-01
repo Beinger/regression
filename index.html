@@ -124,7 +124,6 @@
                                         YXCDC2018水第{{ start }}号
                                     </td>
                                     <td>
-
                                         <select class="form-control" name="" id="" v-model="selected.new_results.v">
                                             <option actived value="50">50 ml</option>
                                             <option value="25">25 ml</option>
@@ -135,12 +134,10 @@
                                         </select>
                                     </td>
                                     <td>
-
                                         <input class="animated bounceInRight" type="number" tabindex="0" v-model="selected.new_results.a">
                                     </td>
                                     <td>
-
-                                        <button class="btn btn-success" tabindex="0" @click="submit_result">提交</button>
+                                        <button class="btn btn-success" tabindex="0" @click="submit_result(start-1)">提交</button>
                                     </td>
                                 </tr>
                             </table>
@@ -159,18 +156,20 @@
                     <tbody class="text-center" v-for="(item, index) in selected.results">
                         <tr>
                             <td><i class="fa fa-trash" @click="del_sample()"></i></td>
-                            <td>{{ get_id(index) }}</td>
+                            <td>{{ item.id }}</td>
                             <td>{{ item.v }}</td>
                             <td>{{ item.a }}</td>
                             <td>{{ get_m(index) }}</td>
                             <td class="animated bounceInUp">{{ get_result(index) }}</td>
+                        </tr>
+                        <tr aria-colspan="5">
+                            <div>{{ mystorages() }}</div>
                         </tr>
                     </tbody>
                 </table>
             </form>
         </div>
     </div>
-
     <script src="js/index.js"></script>
 </body>
 </html>

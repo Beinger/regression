@@ -782,6 +782,12 @@ let app = new Vue({
             this.math_formula();
             show_chart();
         },
+        results: function(){
+            let project = (this.selected.name + 'project' + this.start);
+            let str = JSON.stringify(this.selected.results[this.start]);
+            myStorage.setItem(project, str);
+        }
+        
     },
     methods: {
         change(item, index){
@@ -905,19 +911,19 @@ let app = new Vue({
             this.add = !this.add;
             this.calculation = true;
         },
-        submit_result(){
+        submit_result(index){
             /**
              * 提交数据到结果数组中
              */
+            this.selected.new_results.id = this.start;
             this.selected.results.push(this.selected.new_results);
             this.selected.new_results = {
-                id: this.selected.new_results.id + 1,
+                id: this.start,
                 v: this.selected.v,
                 a: '',
                 m: '',
                 result: '',
             };
-            this.start = Number(this.start) + 1;
         },
         del_sample(index){
             /**
@@ -955,9 +961,8 @@ let app = new Vue({
             let over = this.sum_1(arr);
             return over / arr.length;
         },
-        get_id(element){
-            let id = "YXCDC2018水第"+(Number(this.start)+Number(element))+"号";
-            return id;
+        get_id(index){
+            return "YXCDC2018水第"+this.selected.results[index].id+"号";
         },
         get_m(element){
 
@@ -983,6 +988,9 @@ let app = new Vue({
                 this.selected.results[element].result = ('<' + this.selected.limit);
             }
             return this.selected.results[element].result;
+        },
+        mystorages(){
+            return myStorage.getItem(this.selected.name+'project'+this.start);
         }
     }
 });
