@@ -14,6 +14,7 @@ let app = new Vue({
         end: 3,
         names: [
             {
+                storages: [],
                 id: 1,
                 name: '氨氮',
                 limit: 0.05,
@@ -780,6 +781,9 @@ let app = new Vue({
             this.get_series();
             this.save_series();
             this.math_formula();
+            if(myStorage.count){
+                this.mystorages();
+            }
             show_chart();
         }
         
@@ -789,9 +793,10 @@ let app = new Vue({
             
         },
         save_results(){
-            let project = (this.selected.name + this.start + '报告结果');
-            let str = JSON.stringify(this.selected.results);
-            myStorage.setItem(project, str);
+            let p = ((this.selected.name + this.start + '报告结果'));
+            let str = JSON.stringify(this.selected.results[this.start-1]);
+            myStorage.setItem(p, str);
+            return p;
         },
         change(item, index){
             this.selected.results[index] = item;
@@ -1005,9 +1010,11 @@ let app = new Vue({
             return this.selected.results[element].result;
         },
         mystorages(){
-            return myStorage.getItem(this.selected.name+this.start+'报告结果');
+            let x = ((this.selected.name + this.start + '报告结果'));
+            let p = myStorage.getItem(x);
+            p = eval(JSON.parse(p));
+            this.selected.storages.push(p);
         },
-
     }
 });
 let series_data = [];

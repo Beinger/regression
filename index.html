@@ -113,11 +113,12 @@
                     <div class="col-lg-7">
                         <fieldset v-if="add">
                             <legend>样品中{{ selected.name }}浓度计算</legend>
-                            <table class="table table-hover">
+                            <table class="table table-hover table-bordered table-striped">
                                 <tr>
                                     <th class="text-center">样品编号</th>
                                     <th class="text-center">加样体积</th>
                                     <th class="text-center">吸光度</th>
+                                    <th class="text-center">操作</th>
                                 </tr>
                                 <tr class="text-center">
                                     <td>
@@ -125,12 +126,12 @@
                                     </td>
                                     <td>
                                         <select class="form-control" name="" id="" v-model="selected.new_results.v">
-                                            <option actived value="50">50 ml</option>
-                                            <option value="25">25 ml</option>
-                                            <option value="100">100 ml</option>
-                                            <option value="250">250 ml</option>
-                                            <option value="10">10 ml</option>
-                                            <option value="1">1 ml</option>
+                                            <option actived :value="50">50 ml</option>
+                                            <option :value="25">25 ml</option>
+                                            <option :value="100">100 ml</option>
+                                            <option :value="250">250 ml</option>
+                                            <option :value="10">10 ml</option>
+                                            <option :value="1">1 ml</option>
                                         </select>
                                     </td>
                                     <td>
@@ -146,7 +147,7 @@
                 </div>
                 <table class="table table-bordered table-striped table-hover" id="report_value">
                     <thead>
-                        <tr>
+                        <tr @click="mystorages">
                         <th class="text-center">编号</th>
                         <th class="text-center">加样量</th>
                         <th class="text-center">吸光度</th>
@@ -155,19 +156,28 @@
                         <th><i class="fa fa-save" @click="save_results_all()"></i></th>
                         </tr>
                     </thead>
-                    <tbody class="text-center" v-for="(item, index) in selected.results">
-                        <tr>
+                    <tbody class="text-center">
+                        <tr v-for="(item, index) in selected.storages" :key="index">
+                            <td>{{ item.id }}</td>
+                            <td>{{ item.v }}</td>
+                            <td>{{ item.a }}</td>
+                            <td>{{ item.m }}</td>
+                            <td class="animated bounceInUp">{{ item.result }}</td>
+                            <td>
+                                <i class="fa fa-trash fa-2x text-danger" @click="del_sample(index)"></i></td>
+                        </tr>
+                        <tr v-for="(item, index) in selected.results">
                             <td>{{ item.id }}</td>
                             <td>{{ item.v }}</td>
                             <td>{{ item.a }}</td>
                             <td>{{ get_m(index) }}</td>
                             <td class="animated bounceInUp">{{ get_result(index) }}</td>
                             <td>
-                                <i class="fa fa-save" @click="save_results()"></i>
-                                <i class="fa fa-trash" @click="del_sample()"></i></td>
+                                <i class="fa fa-save fa-2x text-success" @click="save_results()"></i>
+                                <i class="fa fa-trash fa-2x text-danger" @click="del_sample(index)"></i></td>
                         </tr>
                         <tr aria-colspan="5">
-                            <div>{{ mystorages() }}</div>
+                            <div>{{ selected.storages }}</div>
                         </tr>
                     </tbody>
                 </table>
