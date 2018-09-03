@@ -2,22 +2,22 @@ let app = new Vue({
     el: "#root",
     data: {
         show_v: true,
-        index: 0,  //这个是表格索引==序号
-        new_item: '',   //表格新行
+        index: 0, //这个是表格索引==序号
+        new_item: '', //表格新行
         show: false,
         calculation: false,
         add: false,
-        vol_select:[
-            50,100,250,1,25,10
+        vol_select: [
+            50, 100, 250, 1, 25, 10
         ],
-        start: 1,
-        end: 3,
-        names: [
-            {
-                storages: [],
+        names: [{
+                st: [],
+                start: 1,
+                end: 1,
                 id: 1,
                 name: '氨氮',
                 limit: 0.05,
+                a: 0,
                 b: 1,
                 r: 1,
                 c: 0,
@@ -25,40 +25,48 @@ let app = new Vue({
                 x: [],
                 y: [],
                 standard_series: [],
-                items: [[
-                    0,
-                    0.005
+                items: [
+                    [
+                        0,
+                        0.005
+                    ],
+                    [
+                        1,
+                        0.010
+                    ],
+                    [
+                        3,
+                        0.020
+                    ],
+                    [
+                        5,
+                        0.029
+                    ],
+                    [
+                        7,
+                        0.039
+                    ],
+                    [
+                        10,
+                        0.055
+                    ]
                 ],
-                [
-                    1,
-                    0.010
-                ],
-                [
-                    3,
-                    0.020
-                ],
-                [
-                    5,
-                    0.029
-                ],
-                [
-                    7,
-                    0.039
-                ],
-                [
-                    10,
-                    0.055
-                ]],
-                results: [
-                ],
+                results: [],
                 new_results: {
-                    id: 1 ,v: 50 ,a:'',m:'',result:''
+                    id: 1,
+                    v: 50,
+                    a: '',
+                    m: '',
+                    result: ''
                 },
             },
             {
                 id: 2,
+                st: [],
+                start: 1,
+                end: 1,
                 name: '氰化物',
-                limit: 0.01,
+                a: 0,
                 b: 1,
                 r: 1,
                 c: 0,
@@ -67,40 +75,49 @@ let app = new Vue({
                 y: [],
                 limit: 0.002,
                 standard_series: [],
-                items: [[
-                    0,
-                    0.004
+                items: [
+                    [
+                        0,
+                        0.004
+                    ],
+                    [
+                        0.1,
+                        0.016
+                    ],
+                    [
+                        0.3,
+                        0.035
+                    ],
+                    [
+                        0.5,
+                        0.053
+                    ],
+                    [
+                        0.7,
+                        0.073
+                    ],
+                    [
+                        0.9,
+                        0.092
+                    ]
                 ],
-                [
-                    0.1,
-                    0.016
-                ],
-                [
-                    0.3,
-                    0.035
-                ],
-                [
-                    0.5,
-                    0.053
-                ],
-                [
-                    0.7,
-                    0.073
-                ],
-                [
-                    0.9,
-                    0.092
-                ]],
-                results: [
-                ],
+                results: [],
                 new_results: {
-                    id:1, v: 250,a:'',m:'',result:''
+                    id: 1,
+                    v: 250,
+                    a: '',
+                    m: '',
+                    result: ''
                 },
             },
             {
                 id: 3,
+                st: [],
+                start: 1,
+                end: 1,
                 name: '锰',
                 limit: 0.05,
+                a: 0,
                 b: 1,
                 r: 1,
                 c: 0,
@@ -108,40 +125,49 @@ let app = new Vue({
                 x: [],
                 y: [],
                 standard_series: [],
-                items: [[
-                    0,
-                    0.002
+                items: [
+                    [
+                        0,
+                        0.002
+                    ],
+                    [
+                        10,
+                        0.008
+                    ],
+                    [
+                        30,
+                        0.024
+                    ],
+                    [
+                        50,
+                        0.038
+                    ],
+                    [
+                        70,
+                        1.053
+                    ],
+                    [
+                        90,
+                        0.068
+                    ]
                 ],
-                [
-                    10,
-                    0.008
-                ],
-                [
-                    30,
-                    0.024
-                ],
-                [
-                    50,
-                    0.038
-                ],
-                [
-                    70,
-                    1.053
-                ],
-                [
-                    90,
-                    0.068
-                ]],
-                results: [
-                ],
+                results: [],
                 new_results: {
-                    id:1,v:50,a:'',m:'',result:''
+                    id: 1,
+                    v: 50,
+                    a: '',
+                    m: '',
+                    result: ''
                 },
             },
             {
                 id: 4,
+                st: [],
+                start: 1,
+                end: 1,
                 name: '氟化物',
                 limit: 0.2,
+                a: 0,
                 b: 1,
                 r: 1,
                 c: 0,
@@ -149,40 +175,49 @@ let app = new Vue({
                 x: [],
                 y: [],
                 standard_series: [],
-                items: [[
-                    0,
-                    0.371
+                items: [
+                    [
+                        0,
+                        0.371
+                    ],
+                    [
+                        2.5,
+                        0.432
+                    ],
+                    [
+                        5,
+                        0.473
+                    ],
+                    [
+                        10,
+                        0.559
+                    ],
+                    [
+                        20,
+                        0.724
+                    ],
+                    [
+                        40,
+                        1.053
+                    ]
                 ],
-                [
-                    2.5,
-                    0.432
-                ],
-                [
-                    5,
-                    0.473
-                ],
-                [
-                    10,
-                    0.559
-                ],
-                [
-                    20,
-                    0.724
-                ],
-                [
-                    40,
-                    1.053
-                ]],
-                results: [
-                ],
+                results: [],
                 new_results: {
-                    id:1,v:25,a:'',m:'',result:''
+                    id: 1,
+                    v: 25,
+                    a: '',
+                    m: '',
+                    result: ''
                 },
             },
             {
                 id: 5,
+                st: [],
+                start: 1,
+                end: 1,
                 name: '硝酸盐氮',
                 limit: 0.5,
+                a: 0,
                 b: 1,
                 r: 1,
                 c: 0,
@@ -190,44 +225,53 @@ let app = new Vue({
                 x: [],
                 y: [],
                 standard_series: [],
-                items: [[
-                    0,
-                    0.007
+                items: [
+                    [
+                        0,
+                        0.007
+                    ],
+                    [
+                        0.5,
+                        0.030
+                    ],
+                    [
+                        1,
+                        0.047
+                    ],
+                    [
+                        3,
+                        0.130
+                    ],
+                    [
+                        5,
+                        0.197
+                    ],
+                    [
+                        7,
+                        0.278
+                    ],
+                    [
+                        10,
+                        0.405
+                    ]
                 ],
-                [
-                    0.5,
-                    0.030
-                ],
-                [
-                    1,
-                    0.047
-                ],
-                [
-                    3,
-                    0.130
-                ],
-                [
-                    5,
-                    0.197
-                ],
-                [
-                    7,
-                    0.278
-                ],
-                [
-                    10,
-                    0.405
-                ]],
-                results: [
-                ],
+                results: [],
                 new_results: {
-                    id:1,v:1,a:'',m:'',result:''
+                    id: 1,
+                    v: 1,
+                    a: '',
+                    m: '',
+                    result: ''
                 },
             },
             {
                 id: 6,
-                name: '铝-铬天青S分光光度法',
+                st: [],
+                start: 1,
+                end: 1,
+                name: '铝',
                 limit: 0.008,
+                a: 0,
                 b: 1,
                 r: 1,
                 c: 0,
@@ -235,44 +279,53 @@ let app = new Vue({
                 x: [],
                 y: [],
                 standard_series: [],
-                items: [[
-                    0,
-                    0.004
+                items: [
+                    [
+                        0,
+                        0.004
+                    ],
+                    [
+                        0.5,
+                        0.066
+                    ],
+                    [
+                        1,
+                        0.143
+                    ],
+                    [
+                        2,
+                        0.300
+                    ],
+                    [
+                        3,
+                        0.446
+                    ],
+                    [
+                        4,
+                        0.585
+                    ],
+                    [
+                        5,
+                        0.725
+                    ]
                 ],
-                [
-                    0.5,
-                    0.066
-                ],
-                [
-                    1,
-                    0.143
-                ],
-                [
-                    2,
-                    0.300
-                ],
-                [
-                    3,
-                    0.446
-                ],
-                [
-                    4,
-                    0.585
-                ],
-                [
-                    5,
-                    0.725
-                ]],
-                results: [
-                ],
+                results: [],
                 new_results: {
-                    id:1,v:100,a:'',m:'',result:''
+                    id: 1,
+                    v: 100,
+                    a: '',
+                    m: '',
+                    result: ''
                 },
             },
             {
                 id: 7,
-                name: '挥发酚-4-氨基安替比林直接分光光度法',
+                st: [],
+                start: 1,
+                end: 1,
+                name: '挥发酚',
                 limit: 0.002,
+                a: 0,
                 b: 1,
                 r: 1,
                 c: 0,
@@ -280,44 +333,53 @@ let app = new Vue({
                 x: [],
                 y: [],
                 standard_series: [],
-                items: [[
-                    0,
-                    0.006
+                items: [
+                    [
+                        0,
+                        0.006
+                    ],
+                    [
+                        0.5,
+                        0.016
+                    ],
+                    [
+                        1,
+                        0.028
+                    ],
+                    [
+                        3,
+                        0.070
+                    ],
+                    [
+                        5,
+                        0.121
+                    ],
+                    [
+                        7,
+                        0.162
+                    ],
+                    [
+                        10,
+                        0.234
+                    ]
                 ],
-                [
-                    0.5,
-                    0.016
-                ],
-                [
-                    1,
-                    0.028
-                ],
-                [
-                    3,
-                    0.070
-                ],
-                [
-                    5,
-                    0.121
-                ],
-                [
-                    7,
-                    0.162
-                ],
-                [
-                    10,
-                    0.234
-                ]],
-                results: [
-                ],
+                results: [],
                 new_results: {
-                    id:1,v:50,a:'',m:'',result:''
+                    id: 1,
+                    v: 50,
+                    a: '',
+                    m: '',
+                    result: ''
                 },
             },
             {
                 id: 8,
-                name: '汞-双硫腙分光光度法',
+                st: [],
+                start: 1,
+                end: 1,
+                name: '汞',
                 limit: 0.001,
+                a: 0,
                 b: 1,
                 r: 1,
                 c: 0,
@@ -325,44 +387,53 @@ let app = new Vue({
                 x: [],
                 y: [],
                 standard_series: [],
-                items: [[
-                    0,
-                    0.406
+                items: [
+                    [
+                        0,
+                        0.406
+                    ],
+                    [
+                        0.5,
+                        0.423
+                    ],
+                    [
+                        1,
+                        0.441
+                    ],
+                    [
+                        2,
+                        0.474
+                    ],
+                    [
+                        4,
+                        0.531
+                    ],
+                    [
+                        6,
+                        0.598
+                    ],
+                    [
+                        8,
+                        0.660
+                    ]
                 ],
-                [
-                    0.5,
-                    0.423
-                ],
-                [
-                    1,
-                    0.441
-                ],
-                [
-                    2,
-                    0.474
-                ],
-                [
-                    4,
-                    0.531
-                ],
-                [
-                    6,
-                    0.598
-                ],
-                [
-                    8,
-                    0.660
-                ]],
-                results: [
-                ],
+                results: [],
                 new_results: {
-                    id:1,v:50,a:'',m:'',result:''
+                    id: 1,
+                    v: 50,
+                    a: '',
+                    m: '',
+                    result: ''
                 },
             },
             {
                 id: 9,
-                name: '阴离子合成洗涤剂-二氮杂菲萃取分光光度法',
+                st: [],
+                start: 1,
+                end: 1,
+                name: '阴离子合成洗涤剂',
                 limit: 0.025,
+                a: 0,
                 b: 1,
                 r: 1,
                 c: 0,
@@ -370,44 +441,53 @@ let app = new Vue({
                 x: [],
                 y: [],
                 standard_series: [],
-                items: [[
-                    0,
-                    0.019
+                items: [
+                    [
+                        0,
+                        0.019
+                    ],
+                    [
+                        5,
+                        0.041
+                    ],
+                    [
+                        10,
+                        0.075
+                    ],
+                    [
+                        20,
+                        0.128
+                    ],
+                    [
+                        30,
+                        0.185
+                    ],
+                    [
+                        40,
+                        0.233
+                    ],
+                    [
+                        50,
+                        0.290
+                    ]
                 ],
-                [
-                    5,
-                    0.041
-                ],
-                [
-                    10,
-                    0.075
-                ],
-                [
-                    20,
-                    0.128
-                ],
-                [
-                    30,
-                    0.185
-                ],
-                [
-                    40,
-                    0.233
-                ],
-                [
-                    50,
-                    0.290
-                ]],
-                results: [
-                ],
+                results: [],
                 new_results: {
-                    id:1,v:50,a:'',m:'',result:''
+                    id: 1,
+                    v: 50,
+                    a: '',
+                    m: '',
+                    result: ''
                 },
             },
             {
                 id: 10,
-                name: '硒-双硫腙分光光度法',
+                st: [],
+                start: 1,
+                end: 1,
+                name: '硒',
                 limit: 0.001,
+                a: 0,
                 b: 1,
                 r: 1,
                 c: 0,
@@ -415,40 +495,49 @@ let app = new Vue({
                 x: [],
                 y: [],
                 standard_series: [],
-                items: [[
-                    0,
-                    0.024
+                items: [
+                    [
+                        0,
+                        0.024
+                    ],
+                    [
+                        1,
+                        0.035
+                    ],
+                    [
+                        2,
+                        0.047
+                    ],
+                    [
+                        4,
+                        0.068
+                    ],
+                    [
+                        6,
+                        0.088
+                    ],
+                    [
+                        8,
+                        0.110
+                    ]
                 ],
-                [
-                    1,
-                    0.035
-                ],
-                [
-                    2,
-                    0.047
-                ],
-                [
-                    4,
-                    0.068
-                ],
-                [
-                    6,
-                    0.088
-                ],
-                [
-                    8,
-                    0.110
-                ]],
-                results: [
-                ],
+                results: [],
                 new_results: {
-                    id:1,v:50,a:'',m:'',result:''
+                    id: 1,
+                    v: 50,
+                    a: '',
+                    m: '',
+                    result: ''
                 },
             },
             {
                 id: 11,
-                name: '镉-双硫腙分光光度法',
+                st: [],
+                start: 1,
+                end: 1,
+                name: '镉',
                 limit: 0.01,
+                a: 0,
                 b: 1,
                 r: 1,
                 c: 0,
@@ -456,40 +545,49 @@ let app = new Vue({
                 x: [],
                 y: [],
                 standard_series: [],
-                items: [[
-                    0,
-                    0.207
+                items: [
+                    [
+                        0,
+                        0.207
+                    ],
+                    [
+                        0.25,
+                        0.216
+                    ],
+                    [
+                        0.5,
+                        0.224
+                    ],
+                    [
+                        1,
+                        0.242
+                    ],
+                    [
+                        2,
+                        0.273
+                    ],
+                    [
+                        4,
+                        0.336
+                    ]
                 ],
-                [
-                    0.25,
-                    0.216
-                ],
-                [
-                    0.5,
-                    0.224
-                ],
-                [
-                    1,
-                    0.242
-                ],
-                [
-                    2,
-                    0.273
-                ],
-                [
-                    4,
-                    0.336
-                ]],
-                results: [
-                ],
+                results: [],
                 new_results: {
-                    id:1,v:100,a:'',m:'',result:''
+                    id: 1,
+                    v: 100,
+                    a: '',
+                    m: '',
+                    result: ''
                 },
             },
             {
                 id: 12,
-                name: '铅-双硫腙分光光度法',
+                st: [],
+                start: 1,
+                end: 1,
+                name: '铅',
                 limit: 0.01,
+                a: 0,
                 b: 1,
                 r: 1,
                 c: 0,
@@ -497,40 +595,49 @@ let app = new Vue({
                 x: [],
                 y: [],
                 standard_series: [],
-                items: [[
-                    0,
-                    0.434
+                items: [
+                    [
+                        0,
+                        0.434
+                    ],
+                    [
+                        0.5,
+                        0.451
+                    ],
+                    [
+                        1,
+                        0.471
+                    ],
+                    [
+                        2,
+                        0.502
+                    ],
+                    [
+                        4,
+                        0.567
+                    ],
+                    [
+                        6,
+                        0.630
+                    ]
                 ],
-                [
-                    0.5,
-                    0.451
-                ],
-                [
-                    1,
-                    0.471
-                ],
-                [
-                    2,
-                    0.502
-                ],
-                [
-                    4,
-                    0.567
-                ],
-                [
-                    6,
-                    0.630
-                ]],
-                results: [
-                ],
+                results: [],
                 new_results: {
-                    id:1,v:50,a:'',m:'',result:''
+                    id: 1,
+                    v: 50,
+                    a: '',
+                    m: '',
+                    result: ''
                 },
             },
             {
                 id: 13,
-                name: '六价铬-二苯碳酰二肼分光光度法',
+                st: [],
+                start: 1,
+                end: 1,
+                name: '六价铬',
                 limit: 0.004,
+                a: 0,
                 b: 1,
                 r: 1,
                 c: 0,
@@ -538,40 +645,49 @@ let app = new Vue({
                 x: [],
                 y: [],
                 standard_series: [],
-                items: [[
-                    0,
-                    0.002
+                items: [
+                    [
+                        0,
+                        0.002
+                    ],
+                    [
+                        0.5,
+                        0.012
+                    ],
+                    [
+                        1,
+                        0.019
+                    ],
+                    [
+                        2,
+                        0.034
+                    ],
+                    [
+                        4,
+                        0.069
+                    ],
+                    [
+                        6,
+                        0.103
+                    ]
                 ],
-                [
-                    0.5,
-                    0.012
-                ],
-                [
-                    1,
-                    0.019
-                ],
-                [
-                    2,
-                    0.034
-                ],
-                [
-                    4,
-                    0.069
-                ],
-                [
-                    6,
-                    0.103
-                ]],
-                results: [
-                ],
+                results: [],
                 new_results: {
-                    id: 1, v: 50, a: '', m: '', result:'' 
+                    id: 1,
+                    v: 50,
+                    a: '',
+                    m: '',
+                    result: ''
                 }
             },
             {
                 id: 14,
-                name: '铜-二乙基二硫氨基甲酸钠分光光度法',
+                st: [],
+                start: 1,
+                end: 1,
+                name: '铜',
                 limit: 0.02,
+                a: 0,
                 b: 1,
                 r: 1,
                 c: 0,
@@ -579,40 +695,49 @@ let app = new Vue({
                 x: [],
                 y: [],
                 standard_series: [],
-                items: [[
-                    0,
-                    0.038
+                items: [
+                    [
+                        0,
+                        0.038
+                    ],
+                    [
+                        2,
+                        0.080
+                    ],
+                    [
+                        4,
+                        0.121
+                    ],
+                    [
+                        6,
+                        0.160
+                    ],
+                    [
+                        8,
+                        0.201
+                    ],
+                    [
+                        10,
+                        0.238
+                    ]
                 ],
-                [
-                    2,
-                    0.080
-                ],
-                [
-                    4,
-                    0.121
-                ],
-                [
-                    6,
-                    0.160
-                ],
-                [
-                    8,
-                    0.201
-                ],
-                [
-                    10,
-                    0.238
-                ]],
-                results: [
-                ],
+                results: [],
                 new_results: {
-                    id:1,v:50,a:'',m:'',result:''
+                    id: 1,
+                    v: 50,
+                    a: '',
+                    m: '',
+                    result: ''
                 },
             },
             {
                 id: 15,
-                name: '锰-过硫酸铵分光光度法',
+                st: [],
+                start: 1,
+                end: 1,
+                name: '锰',
                 limit: 0.05,
+                a: 0,
                 b: 1,
                 r: 1,
                 c: 0,
@@ -620,40 +745,49 @@ let app = new Vue({
                 x: [],
                 y: [],
                 standard_series: [],
-                items: [[
-                    0,
-                    0.002
+                items: [
+                    [
+                        0,
+                        0.002
+                    ],
+                    [
+                        10,
+                        0.008
+                    ],
+                    [
+                        30,
+                        0.024
+                    ],
+                    [
+                        50,
+                        0.038
+                    ],
+                    [
+                        70,
+                        0.053
+                    ],
+                    [
+                        90,
+                        0.068
+                    ]
                 ],
-                [
-                    10,
-                    0.008
-                ],
-                [
-                    30,
-                    0.024
-                ],
-                [
-                    50,
-                    0.038
-                ],
-                [
-                    70,
-                    0.053
-                ],
-                [
-                    90,
-                    0.068
-                ]],
-                results: [
-                ],
+                results: [],
                 new_results: {
-                    id:1,v:50,a:'',m:'',result:''
+                    id: 1,
+                    v: 50,
+                    a: '',
+                    m: '',
+                    result: ''
                 },
             },
             {
                 id: 16,
-                name: '铁-二氮杂菲分光光度法',
+                st: [],
+                start: 1,
+                end: 1,
+                name: '铁',
                 limit: 0.05,
+                a: 0,
                 b: 1,
                 r: 1,
                 c: 0,
@@ -661,40 +795,49 @@ let app = new Vue({
                 x: [],
                 y: [],
                 standard_series: [],
-                items: [[
-                    0,
-                    0.095
+                items: [
+                    [
+                        0,
+                        0.095
+                    ],
+                    [
+                        5,
+                        0.122
+                    ],
+                    [
+                        10,
+                        0.149
+                    ],
+                    [
+                        20,
+                        0.196
+                    ],
+                    [
+                        30,
+                        0.246
+                    ],
+                    [
+                        40,
+                        0.290
+                    ]
                 ],
-                [
-                    5,
-                    0.122
-                ],
-                [
-                    10,
-                    0.149
-                ],
-                [
-                    20,
-                    0.196
-                ],
-                [
-                    30,
-                    0.246
-                ],
-                [
-                    40,
-                    0.290
-                ]],
-                results: [
-                ],
+                results: [],
                 new_results: {
-                    id:1,v:50,a:'',m:'',result:''
+                    id: 1,
+                    v: 50,
+                    a: '',
+                    m: '',
+                    result: ''
                 },
             },
             {
                 id: 17,
-                name: '锌-双硫腙分光光度法',
+                st: [],
+                start: 1,
+                end: 1,
+                name: '锌',
                 limit: 0.05,
+                a: 0,
                 b: 1,
                 r: 1,
                 c: 0,
@@ -702,40 +845,49 @@ let app = new Vue({
                 x: [],
                 y: [],
                 standard_series: [],
-                items: [[
-                    0,
-                    0.748
+                items: [
+                    [
+                        0,
+                        0.748
+                    ],
+                    [
+                        0.5,
+                        0.811
+                    ],
+                    [
+                        1,
+                        0.890
+                    ],
+                    [
+                        2,
+                        1.036
+                    ],
+                    [
+                        4,
+                        1.32
+                    ],
+                    [
+                        6,
+                        1.602
+                    ]
                 ],
-                [
-                    0.5,
-                    0.811
-                ],
-                [
-                    1,
-                    0.890
-                ],
-                [
-                    2,
-                    1.036
-                ],
-                [
-                    4,
-                    1.32
-                ],
-                [
-                    6,
-                    1.602
-                ]],
-                results: [
-                ],
+                results: [],
                 new_results: {
-                    id:1,v:50,a:'',m:'',result:''
+                    id: 1,
+                    v: 50,
+                    a: '',
+                    m: '',
+                    result: ''
                 },
             },
             {
                 id: 18,
-                name: '硫酸盐-硫酸钡分光光度法（热法）',
+                st: [],
+                start: 1,
+                end: 1,
+                name: '硫酸盐',
                 limit: 5,
+                a: 0,
                 b: 1,
                 r: 1,
                 c: 0,
@@ -743,68 +895,75 @@ let app = new Vue({
                 x: [],
                 y: [],
                 standard_series: [],
-                items: [[
-                    0,
-                    0.029
+                items: [
+                    [
+                        0,
+                        0.029
+                    ],
+                    [
+                        3,
+                        0.355
+                    ],
+                    [
+                        5,
+                        0.574
+                    ],
+                    [
+                        7,
+                        0.784
+                    ],
+                    [
+                        10,
+                        1.137
+                    ]
                 ],
-                [
-                    3,
-                    0.355
-                ],
-                [
-                    5,
-                    0.574
-                ],
-                [
-                    7,
-                    0.784
-                ],
-                [
-                    10,
-                    1.137
-                ]],
-                results: [
-                ],
+                results: [],
                 new_results: {
-                    id:1,v:25,a:'',m:'',result:''
+                    id: 1,
+                    v: 25,
+                    a: '',
+                    m: '',
+                    result: ''
                 },
             },
         ],
         selected: ''
     },
     watch: {
-            /**
-             * 当选择了项目时，显示标准系列的列表
-             */
-        selected: function (){
+        /**
+         * 当选择了项目时，显示标准系列的列表
+         */
+        selected: function () {
             this.show = true;
             this.get_series();
             this.save_series();
             this.math_formula();
-            if(myStorage.count){
-                this.mystorages();
-            }
             show_chart();
         }
-        
+
     },
     methods: {
-        save_results_all(){
-            
+        save_results_all() {
+
         },
-        save_results(){
-            let p = ((this.selected.name + this.start + '报告结果'));
-            let str = JSON.stringify(this.selected.results[this.start-1]);
-            myStorage.setItem(p, str);
-            return p;
+        save_results() {
+            let rows = document.getElementById("result_table").rows;
+            for (let i = this.selected.start+1; i < rows.length - 1; i++) {
+                let p = (this.selected.name + i + '报告结果');
+                let str = JSON.stringify(this.selected.results[i - 1]);
+                myStorage.setItem(p, str);
+                this.selected.end++;
+            }
+            let n = this.selected.name + 'end';
+            myStorage.setItem(n, this.selected.end);
         },
-        change(item, index){
+        change(item, index) {
             this.selected.results[index] = item;
         },
-        set_input(){
+        set_input() {
             this.show_v = !this.show_v
         },
-        get_list(){
+        get_list() {
             /**
              * 从标准系列表格中获取数据，存入数据组中，同时存入localStorage中。
              */
@@ -816,9 +975,9 @@ let app = new Vue({
                 value.push(value1, value2);
                 this.selected.x.push(value1);
                 this.selected.y.push(value2);
-                this.selected.standard_series[i-1] = value;
+                this.selected.standard_series[i - 1] = value;
             }
-            myStorage.setItem(this.selected.name,this.selected.standard_series);
+            myStorage.setItem(this.selected.name, this.selected.standard_series);
         },
         get_series() {
             /**
@@ -848,7 +1007,7 @@ let app = new Vue({
             this.selected.x = []; //标准系列的加样量数据
             this.selected.y = []; //标准系列的吸光度数据
             let rows = this.selected.standard_series;
-            for(let i=0; i<rows.length; i++){
+            for (let i = 0; i < rows.length; i++) {
                 this.selected.x[i] = rows[i][0];
                 this.selected.y[i] = rows[i][1];
             }
@@ -912,40 +1071,43 @@ let app = new Vue({
              */
             this.selected.standard_series.splice(index, 1);
         },
-        add_sample(){
+        add_sample() {
             /**
              * 增加样品行
              */
             this.add = !this.add;
             this.calculation = true;
+            this.mystorages()
         },
-        find_element(arrays, attr, value){
-            for(let i=0; i<arrays.length; i++){
-                if(arrays[i][attr] == value){
+        find_element(arrays, attr, value) {
+            for (let i = 0; i < arrays.length; i++) {
+                if (arrays[i][attr] == value) {
                     return true;
                 }
             }
             return false;
         },
-        submit_result(index){
+        submit_result(index) {
             /**
              * 提交数据到结果数组中
              */
 
-            if(this.find_element(this.selected.results, 'id', this.start)){
+            if (this.find_element(this.selected.results, 'id', this.selected.start)) {
                 this.selected.results.splice(index, 1);
             }
-            this.selected.new_results.id = this.start;
+            this.selected.new_results.id = this.selected.end;
             this.selected.results.push(this.selected.new_results);
             this.selected.new_results = {
-                id: this.start,
+                id: this.selected.end,
                 v: this.selected.v,
                 a: '',
                 m: '',
                 result: '',
             };
+            let n = Number(this.selected.end);
+            this.selected.end = n + 1;
         },
-        del_sample(index){
+        del_sample(index) {
             /**
              * 删除样品行
              */
@@ -981,10 +1143,10 @@ let app = new Vue({
             let over = this.sum_1(arr);
             return over / arr.length;
         },
-        get_id(index){
-            return "YXCDC2018水第"+this.selected.results[index].id+"号";
+        get_id(index) {
+            return "YXCDC2018水第" + this.selected.results[index].id + "号";
         },
-        get_m(element){
+        get_m(element) {
 
             /**
              * 根据出当前项目的吸光度计算出样品所含物质质量
@@ -994,7 +1156,7 @@ let app = new Vue({
             this.selected.results[element].m = (((a - this.selected.a) / this.selected.b).toFixed(3));
             return this.selected.results[element].m;
         },
-        get_result(element){
+        get_result(element) {
             /**
              * 根据当前项目的加样体积和质量算出样品中物质的浓度
              */
@@ -1009,15 +1171,26 @@ let app = new Vue({
             }
             return this.selected.results[element].result;
         },
-        mystorages(){
-            let x = ((this.selected.name + this.start + '报告结果'));
-            let p = myStorage.getItem(x);
-            p = eval(JSON.parse(p));
-            this.selected.storages.push(p);
+        mystorages() {
+            /**
+             * 从localStorage中获取保存的结果，存入st数组
+             */
+            this.selected.st = [];
+            let start = Number(this.selected.start);
+            for (let i = 1; i < start; i++) {
+                let x = (this.selected.name + i + '报告结果');
+                let p = myStorage.getItem(x);
+                p = eval(JSON.parse(p));
+                this.selected.st.push(p);
+            }
+            let n = (this.selected.name + 'end');
+            let n_value = myStorage.getItem(n);
+            this.selected.start = Number(n_value);
         },
     }
 });
 let series_data = [];
+
 function getTableContent() {
     /**
      * 从存入的standard_series的标准系列提取数据，以备绘制出标准曲线
@@ -1026,6 +1199,7 @@ function getTableContent() {
     series_data = app.selected.standard_series;
     myStorage.setItem(app.selected.name, series_data)
 };
+
 function focus_move() {
     /**
      * 移动焦点到页面底部
@@ -1090,11 +1264,11 @@ function show_chart() {
     });
 }
 (function useCount() {
-    //计数页面登录次数
-    let pagecount = 'pagecount';
-    if (myStorage.getItem(pagecount)) {
-        myStorage.setItem(pagecount, Number(myStorage.getItem(pagecount)) + 1);
-    } else {
-        myStorage.setItem(pagecount,1);
-    }
+        //计数页面登录次数
+        let pagecount = 'pagecount';
+        if (myStorage.getItem(pagecount)) {
+            myStorage.setItem(pagecount, Number(myStorage.getItem(pagecount)) + 1);
+        } else {
+            myStorage.setItem(pagecount, 1);
+        }
 })();
