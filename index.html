@@ -105,7 +105,7 @@
                             <legend>{{ selected.name }}的回归公式</legend>
                             <h4 v-html="selected.formula"></h4>
                             <div class="text-warning">
-                                <i>样品编号YXCDC2018水第<input tabindex="11" type="number" v-model="selected.end">号</i>
+                                <i>样品编号YXCDC2018水第<input tabindex="11" type="number" v-model="selected.start">号</i>
                                 <div tabindex="11" class="btn btn-default" @click="add_sample()"><i class="fa fa-pencil"></i></div>
                             </div>
                         </fieldset>
@@ -122,10 +122,10 @@
                                 </tr>
                                 <tr class="text-center">
                                     <td>
-                                        YXCDC2018水第{{ selected.end }}号
+                                        YXCDC2018水第{{ selected.start }}号
                                     </td>
                                     <td>
-                                        <select class="form-control" name="" id="" v-model="selected.new_results.v">
+                                        <select class="form-control" name="" id="" v-model="selected.v">
                                             <option actived :value="50">50 ml</option>
                                             <option :value="25">25 ml</option>
                                             <option :value="100">100 ml</option>
@@ -145,6 +145,25 @@
                         </fieldset>
                     </div>
                 </div>
+                <table class="table table-bordered table-striped table-hover" id="record">
+                    <thead>
+                        <tr @click="mystorages">
+                        <th class="text-center">编号</th>
+                        <th class="text-center">加样量</th>
+                        <th class="text-center">吸光度</th>
+                        <th class="text-center">质量</th>
+                        <th class="text-center">结果</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        <tr v-for="(item, index) in selected.st" :key="index">
+                            <td>{{ item.id }}</td>
+                            <td>{{ item.v }}</td>
+                            <td>{{ item.a }}</td>
+                            <td>{{ item.m }}</td>
+                            <td>{{ item.result }}</td>
+                        </tr>
+                    </tbody>
                 <table class="table table-bordered table-striped table-hover" id="result_table">
                     <thead>
                         <tr @click="mystorages">
@@ -156,15 +175,6 @@
                         <th class="text-center"><i class="fa fa-save text-success fa-2x" @click="save_results()"></i></th>
                         </tr>
                     </thead>
-                    <tbody class="text-center">
-                        <tr v-for="(item, index) in selected.st" :key="index">
-                            <td>{{ item.id }}</td>
-                            <td>{{ item.v }}</td>
-                            <td>{{ item.a }}</td>
-                            <td>{{ item.m }}</td>
-                            <td>{{ item.result }}</td>
-                            <td></td>
-                        </tr>
                         <tr v-for="(item, index) in selected.results">
                             <td>{{ item.id }}</td>
                             <td>{{ item.v }}</td>

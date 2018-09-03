@@ -965,11 +965,13 @@ let app = new Vue({
 
         },
         save_results() {
-            for(let n=0; n<this.selected.results.length; n++){
-                myStorage.removeItem(this.selected.name+n+'报告结果');
-            }
+            // for(let n=0; n<this.selected.results.length; n++){
+            //     myStorage.removeItem(this.selected.name+n+'报告结果');
+            // }
             let rows = document.getElementById("result_table").rows;
-            for (let i = this.selected.start; i < rows.length - 1; i++) {
+            let start_item = Number(rows[1].innerText[0]);
+            let end_item = rows.length - 1;
+            for (let i = start_item; i < end_item; i++) {
                 let p = (this.selected.name + i + '报告结果');
                 let str = JSON.stringify(this.selected.results[i - 1]);
                 myStorage.setItem(p, str);
@@ -1112,18 +1114,19 @@ let app = new Vue({
              * 提交数据到结果数组中
              */
 
-            if (this.find_element(this.selected.results, 'id', this.selected.start)) {
-                this.selected.results.splice(index, 1);
-            }
+            // if (this.find_element(this.selected.results, 'id', this.selected.start+1)) {
+            //     this.selected.results.splice(index, 1);
+            // }
             this.selected.new_results.id = this.selected.start;
             this.selected.results.push(this.selected.new_results);
             this.selected.new_results = {
-                id: this.selected.start,
+                id: this.selected.end,
                 v: this.selected.v,
                 a: '',
                 m: '',
                 result: '',
             };
+            this.selected.start = Number(this.selected.start) + 1;
             let n = Number(this.selected.end);
             this.selected.end = n + 1;
         },
@@ -1204,8 +1207,11 @@ let app = new Vue({
                 this.selected.st.push(p);
             }
             let n = (this.selected.name + 'end');
-            let n_value = myStorage.getItem(n);
-            this.selected.start = Number(n_value);
+            if(myStorage.getItem(n)){
+                this.selected.start = Number(myStorage.getItem(n));
+            }else{
+                this.selected.start = this.selected.start;
+            }
         },
     }
 });
