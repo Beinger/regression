@@ -12,6 +12,7 @@ let app = new Vue({
         ],
         names: [{
                 st: [],
+                v: 50,
                 start: 1,
                 end: 1,
                 id: 1,
@@ -63,6 +64,7 @@ let app = new Vue({
             {
                 id: 2,
                 st: [],
+                v: 250,
                 start: 1,
                 end: 1,
                 name: '氰化物',
@@ -113,6 +115,7 @@ let app = new Vue({
             {
                 id: 3,
                 st: [],
+                v: 50,
                 start: 1,
                 end: 1,
                 name: '锰',
@@ -163,6 +166,7 @@ let app = new Vue({
             {
                 id: 4,
                 st: [],
+                v: 25,
                 start: 1,
                 end: 1,
                 name: '氟化物',
@@ -213,6 +217,7 @@ let app = new Vue({
             {
                 id: 5,
                 st: [],
+                v: 1,
                 start: 1,
                 end: 1,
                 name: '硝酸盐氮',
@@ -267,6 +272,7 @@ let app = new Vue({
             {
                 id: 6,
                 st: [],
+                v: 100,
                 start: 1,
                 end: 1,
                 name: '铝',
@@ -321,6 +327,7 @@ let app = new Vue({
             {
                 id: 7,
                 st: [],
+                v: 50,
                 start: 1,
                 end: 1,
                 name: '挥发酚',
@@ -375,6 +382,7 @@ let app = new Vue({
             {
                 id: 8,
                 st: [],
+                v: 50,
                 start: 1,
                 end: 1,
                 name: '汞',
@@ -429,6 +437,7 @@ let app = new Vue({
             {
                 id: 9,
                 st: [],
+                v: 50,
                 start: 1,
                 end: 1,
                 name: '阴离子合成洗涤剂',
@@ -483,6 +492,7 @@ let app = new Vue({
             {
                 id: 10,
                 st: [],
+                v: 50,
                 start: 1,
                 end: 1,
                 name: '硒',
@@ -533,6 +543,7 @@ let app = new Vue({
             {
                 id: 11,
                 st: [],
+                v: 100,
                 start: 1,
                 end: 1,
                 name: '镉',
@@ -583,6 +594,7 @@ let app = new Vue({
             {
                 id: 12,
                 st: [],
+                v: 50,
                 start: 1,
                 end: 1,
                 name: '铅',
@@ -633,6 +645,7 @@ let app = new Vue({
             {
                 id: 13,
                 st: [],
+                v: 50,
                 start: 1,
                 end: 1,
                 name: '六价铬',
@@ -683,6 +696,7 @@ let app = new Vue({
             {
                 id: 14,
                 st: [],
+                v: 50,
                 start: 1,
                 end: 1,
                 name: '铜',
@@ -733,6 +747,7 @@ let app = new Vue({
             {
                 id: 15,
                 st: [],
+                v: 50,
                 start: 1,
                 end: 1,
                 name: '锰',
@@ -783,6 +798,7 @@ let app = new Vue({
             {
                 id: 16,
                 st: [],
+                v: 50,
                 start: 1,
                 end: 1,
                 name: '铁',
@@ -833,6 +849,7 @@ let app = new Vue({
             {
                 id: 17,
                 st: [],
+                v: 50,
                 start: 1,
                 end: 1,
                 name: '锌',
@@ -883,6 +900,7 @@ let app = new Vue({
             {
                 id: 18,
                 st: [],
+                v: 50,
                 start: 1,
                 end: 1,
                 name: '硫酸盐',
@@ -947,12 +965,14 @@ let app = new Vue({
 
         },
         save_results() {
+            for(let n=0; n<this.selected.results.length; n++){
+                myStorage.removeItem(this.selected.name+n+'报告结果');
+            }
             let rows = document.getElementById("result_table").rows;
-            for (let i = this.selected.start+1; i < rows.length - 1; i++) {
+            for (let i = this.selected.start; i < rows.length - 1; i++) {
                 let p = (this.selected.name + i + '报告结果');
                 let str = JSON.stringify(this.selected.results[i - 1]);
                 myStorage.setItem(p, str);
-                this.selected.end++;
             }
             let n = this.selected.name + 'end';
             myStorage.setItem(n, this.selected.end);
@@ -1095,10 +1115,10 @@ let app = new Vue({
             if (this.find_element(this.selected.results, 'id', this.selected.start)) {
                 this.selected.results.splice(index, 1);
             }
-            this.selected.new_results.id = this.selected.end;
+            this.selected.new_results.id = this.selected.start;
             this.selected.results.push(this.selected.new_results);
             this.selected.new_results = {
-                id: this.selected.end,
+                id: this.selected.start,
                 v: this.selected.v,
                 a: '',
                 m: '',

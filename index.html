@@ -104,8 +104,8 @@
                         <fieldset>
                             <legend>{{ selected.name }}的回归公式</legend>
                             <h4 v-html="selected.formula"></h4>
-                            <div>
-                                <i class="text-warning">样品编号</i>YXCDC2018水第<input tabindex="11" type="number" v-model="selected.end">号
+                            <div class="text-warning">
+                                <i>样品编号YXCDC2018水第<input tabindex="11" type="number" v-model="selected.end">号</i>
                                 <div tabindex="11" class="btn btn-default" @click="add_sample()"><i class="fa fa-pencil"></i></div>
                             </div>
                         </fieldset>
