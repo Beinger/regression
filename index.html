@@ -145,28 +145,7 @@
                         </fieldset>
                     </div>
                 </div>
-                <table class="table table-bordered table-striped table-hover" id="record">
-                    <thead>
-                        <tr @click="mystorages">
-                        <th class="text-center">编号</th>
-                        <th class="text-center">加样量</th>
-                        <th class="text-center">吸光度</th>
-                        <th class="text-center">质量</th>
-                        <th class="text-center">结果</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-center">
-                        <tr v-for="(item, index) in selected.st" :key="index">
-                            <td>{{ item.id }}</td>
-                            <td>{{ item.v }}</td>
-                            <td>{{ item.a }}</td>
-                            <td>{{ item.m }}</td>
-                            <td>{{ item.result }}</td>
-                        </tr>
-                    </tbody>
-                </table>
                 <table class="table table-bordered table-striped table-hover" id="result_table">
-                    <caption>原始记录</caption>
                     <thead>
                         <tr @click="mystorages">
                         <th class="text-center">编号</th>
@@ -188,6 +167,27 @@
                         </tr>
                         <tr aria-colspan="5">
                             <div>{{ selected.storages }}</div>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-bordered table-striped table-hover" id="record">
+                    <caption>历史记录</caption>
+                    <thead>
+                        <tr @click="mystorages">
+                        <th class="text-center">编号</th>
+                        <th class="text-center">加样量</th>
+                        <th class="text-center">吸光度</th>
+                        <th class="text-center">质量</th>
+                        <th class="text-center">结果</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        <tr v-for="(item, index) in selected.st" :key="index">
+                            <td>{{ item.id }}</td>
+                            <td>{{ item.v }}</td>
+                            <td>{{ item.a }}</td>
+                            <td>{{ item.m }}</td>
+                            <td>{{ item.result }}</td>
                         </tr>
                     </tbody>
                 </table>
