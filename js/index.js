@@ -969,11 +969,11 @@ let app = new Vue({
             //     myStorage.removeItem(this.selected.name+n+'报告结果');
             // }
             let rows = document.getElementById("result_table").rows;
-            let start_item = Number(rows[1].innerText[0]);
-            let end_item = rows.length - 1;
+            let start_item = Number(rows[1].cells[0]);
+            let end_item = Number(rows[rows.length-1].cells[0]);
             for (let i = start_item; i < end_item; i++) {
                 let p = (this.selected.name + i + '报告结果');
-                let str = JSON.stringify(this.selected.results[i - 1]);
+                let str = JSON.stringify(this.selected.results[i - start_item]);
                 myStorage.setItem(p, str);
             }
             let n = this.selected.name + 'end';
