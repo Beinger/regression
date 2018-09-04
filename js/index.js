@@ -1195,7 +1195,7 @@ let app = new Vue({
             let n = this.selected.name + 'end';
             if (myStorage.getItem(n)) {
                 let last = Number(myStorage.getItem(n));
-                let first = localStorage.key(1).replace(/^[^\d]*(\d+)[^\d]*$/, "$1");
+                let first = this.get_key();
                 first = Number(first);
                 for (let i = first; i < last; i++) {
                     let x = (this.selected.name + i + '报告结果');
@@ -1213,6 +1213,20 @@ let app = new Vue({
                 this.selected.end = 1;
             }
         },
+        get_key(){
+            let keys = [];
+            var n = myStorage.length;
+            for(let i=0; i<n; i++){
+                let k = localStorage.key(i);
+                if(k.search(this.selected.name) != -1){
+                    if(k.search('报告结果') != -1){
+                        let number = k.replace(/^[^\d]*(\d+)[^\d]*$/, "$1");
+                        keys.push(number);
+                    }
+                }
+            }
+            return Number(keys[0]);
+        }
     }
 });
 let series_data = [];
