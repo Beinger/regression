@@ -1178,7 +1178,7 @@ let app = new Vue({
              */
             let rows = document.getElementById("result_table").rows; //获取表格
             let start_item = Number(rows[1].cells[0].innerText); //表格第一个编号
-            let end_item = Number(rows[rows.length - 2].cells[0].innerText); //表格最后一个编号
+            let end_item = Number(rows[rows.length - 1].cells[0].innerText); //表格最后一个编号
             for (let i = start_item; i <= end_item; i++) {
                 let p = (this.selected.name + i + '报告结果');
                 let str = JSON.stringify(this.selected.results[i - start_item]); //格式化后才能存入 
@@ -1215,7 +1215,7 @@ let app = new Vue({
         },
         get_key(){
             let keys = [];
-            var n = myStorage.length;
+            var n = localStorage.length;
             for(let i=0; i<n; i++){
                 let k = localStorage.key(i);
                 if(k.search(this.selected.name) != -1){
