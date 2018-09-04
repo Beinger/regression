@@ -961,30 +961,6 @@ let app = new Vue({
 
     },
     methods: {
-        save_results_all() {
-
-        },
-        save_results() {
-            // for(let n=0; n<this.selected.results.length; n++){
-            //     myStorage.removeItem(this.selected.name+n+'报告结果');
-            // }
-            let rows = document.getElementById("result_table").rows;
-            let start_item = Number(rows[1].cells[0]);
-            let end_item = Number(rows[rows.length-1].cells[0]);
-            for (let i = start_item; i < end_item; i++) {
-                let p = (this.selected.name + i + '报告结果');
-                let str = JSON.stringify(this.selected.results[i - start_item]);
-                myStorage.setItem(p, str);
-            }
-            let n = this.selected.name + 'end';
-            myStorage.setItem(n, this.selected.end);
-        },
-        change(item, index) {
-            this.selected.results[index] = item;
-        },
-        set_input() {
-            this.show_v = !this.show_v
-        },
         get_list() {
             /**
              * 从标准系列表格中获取数据，存入数据组中，同时存入localStorage中。
@@ -1194,19 +1170,34 @@ let app = new Vue({
             }
             return this.selected.results[element].result;
         },
+        save_results() {
+            /**
+             * 从输入吸光度后计算得到的结果表格中获取数据,存入localStorage
+             */
+            let rows = document.getElementById("result_table").rows; //获取表格
+            let start_item = Number(rows[1].cells[0].innerText); //表格第一个编号
+            let end_item = Number(rows[rows.length-2].cells[0].innerText); //表格最后一个编号
+            for (let i = start_item; i <= end_item; i++) {
+                let p = (this.selected.name + i + '报告结果');
+                let str = JSON.stringify(this.selected.results[i - start_item]); //格式化后才能存入 
+                myStorage.setItem(p, str);
+            };
+            let n = this.selected.name + 'end';
+            myStorage.setItem(n, this.selected.start);
+        },
         mystorages() {
             /**
              * 从localStorage中获取保存的结果，存入st数组
              */
             this.selected.st = [];
-            let start = Number(this.selected.start);
+            let n = (this.selected.name + 'end');
+            let start = myStorage.getItem(n);
             for (let i = 1; i < start; i++) {
                 let x = (this.selected.name + i + '报告结果');
                 let p = myStorage.getItem(x);
                 p = eval(JSON.parse(p));
                 this.selected.st.push(p);
             }
-            let n = (this.selected.name + 'end');
             if(myStorage.getItem(n)){
                 this.selected.start = Number(myStorage.getItem(n));
             }else{

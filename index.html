@@ -153,9 +153,12 @@
                         <th class="text-center">吸光度</th>
                         <th class="text-center">质量</th>
                         <th class="text-center">结果</th>
-                        <th class="text-center"><i class="fa fa-save text-success fa-2x" @click="save_results()"></i></th>
+                        <th class="text-center" @click="save_results">
+                            <i class="fa fa-save text-success fa-2x"></i>
+                        </th>
                         </tr>
                     </thead>
+                    <tbody class="text-center">
                         <tr v-for="(item, index) in selected.results">
                             <td>{{ item.id }}</td>
                             <td>{{ item.v }}</td>
