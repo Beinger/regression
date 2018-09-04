@@ -93,20 +93,23 @@
                     </table>
                 </div>
                 <div class="col-lg-6">
-
                     <div id="line"></div>
                 </div>
             </div>
             <form v-show="show">
                 <div class="row">
                     <div class="col-lg-5">
-
                         <fieldset>
                             <legend>{{ selected.name }}的回归公式</legend>
                             <h4 v-html="selected.formula"></h4>
+                        </fieldset>
+                        <fieldset>
                             <div class="text-warning">
-                                <i>样品编号YXCDC2018水第<input tabindex="11" type="number" v-model="selected.start">号</i>
-                                <div tabindex="11" class="btn btn-default" @click="add_sample()"><i class="fa fa-pencil"></i></div>
+                                <a class="btn btn-default" @click="add_sample()"><i class="fa fa-pencil"></i>点击开始录入</a>
+                                <i>样品编号YXCDC2018水第
+                                    <input v-if="selected.judge" tabindex="11" type="number" v-model="selected.start">
+                                    <input v-else tabindex="11" type="number" v-model="selected.end"> 号
+                                </i>
                             </div>
                         </fieldset>
                     </div>
@@ -138,7 +141,7 @@
                                         <input class="animated bounceInRight" type="number" tabindex="0" v-model="selected.new_results.a">
                                     </td>
                                     <td>
-                                        <button class="btn btn-success" tabindex="0" @click="submit_result(selected.start-1)">提交</button>
+                                        <button class="btn btn-success" tabindex="0" @click="submit_result">提交</button>
                                     </td>
                                 </tr>
                             </table>
@@ -147,15 +150,15 @@
                 </div>
                 <table class="table table-bordered table-striped table-hover" id="result_table">
                     <thead>
-                        <tr @click="mystorages">
-                        <th class="text-center">编号</th>
-                        <th class="text-center">加样量</th>
-                        <th class="text-center">吸光度</th>
-                        <th class="text-center">质量</th>
-                        <th class="text-center">结果</th>
-                        <th class="text-center" @click="save_results">
-                            <i class="fa fa-save text-success fa-2x"></i>
-                        </th>
+                        <tr>
+                            <th class="text-center">编号</th>
+                            <th class="text-center">加样量</th>
+                            <th class="text-center">吸光度</th>
+                            <th class="text-center">质量</th>
+                            <th class="text-center">结果</th>
+                            <th class="text-center" @click="save_results">
+                                <i class="fa fa-save text-success fa-2x"></i>
+                            </th>
                         </tr>
                     </thead>
                     <tbody class="text-center">
@@ -168,20 +171,17 @@
                             <td>
                                 <i class="fa fa-trash fa-2x text-danger" @click="del_sample(index)"></i></td>
                         </tr>
-                        <tr aria-colspan="5">
-                            <div>{{ selected.storages }}</div>
-                        </tr>
                     </tbody>
                 </table>
                 <table class="table table-bordered table-striped table-hover" id="record">
                     <caption>历史记录</caption>
                     <thead>
                         <tr @click="mystorages">
-                        <th class="text-center">编号</th>
-                        <th class="text-center">加样量</th>
-                        <th class="text-center">吸光度</th>
-                        <th class="text-center">质量</th>
-                        <th class="text-center">结果</th>
+                            <th class="text-center">编号</th>
+                            <th class="text-center">加样量</th>
+                            <th class="text-center">吸光度</th>
+                            <th class="text-center">质量</th>
+                            <th class="text-center">结果</th>
                         </tr>
                     </thead>
                     <tbody class="text-center">
