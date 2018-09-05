@@ -1229,6 +1229,9 @@ let app = new Vue({
                     }
                 }
             }
+            keys.sort(function(i,j){
+                return i>j?1:-1
+            });
             return Number(keys[0]);
         }
     }
