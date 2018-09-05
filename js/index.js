@@ -1214,6 +1214,9 @@ let app = new Vue({
             }
         },
         get_key(){
+            /**
+             * 获取localStorage中当前项目的结果记录中的首项id
+             */
             let keys = [];
             var n = localStorage.length;
             for(let i=0; i<n; i++){
@@ -1221,6 +1224,7 @@ let app = new Vue({
                 if(k.search(this.selected.name) != -1){
                     if(k.search('报告结果') != -1){
                         let number = k.replace(/^[^\d]*(\d+)[^\d]*$/, "$1");
+                        //这个正则表达式获取字符串中的数字
                         keys.push(number);
                     }
                 }
@@ -1251,7 +1255,8 @@ function show_chart() {
     /**
      * 用highcharts绘制标准曲线
      */
-    getTableContent(app.selected.id); //获取当前项目的标准系列数据
+    getTableContent(app.selected.id); 
+    //获取当前项目的标准系列数据
     chart = Highcharts.chart('line', {
         title: {
             text: "标准回归曲线"
