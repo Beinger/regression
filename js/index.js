@@ -993,7 +993,7 @@ let app = new Vue({
     return false;
     },
 
-        date_(){
+        date_y(){
             this.date_show = !this.date_show;
         },
         get_list() {
