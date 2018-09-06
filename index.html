@@ -66,7 +66,7 @@
     <title>标准回归</title>
 </head>
 
-<body onclick="focus_move()">
+<body>
 
     <div class="container">
 
@@ -101,7 +101,7 @@
                             </tr>
                         </tbody>
                         <caption>
-                            <h4>水中{{ selected.name }}的标准系列 </h4>
+                            <h4 onclick="focus_move()">水中{{ selected.name }}的标准系列 </h4>
                         </caption>
                     </table>
                 </div>
@@ -138,7 +138,7 @@
                                 </tr>
                                 <tr class="text-center">
                                     <td>
-                                        YXCDC2018水第{{ selected.start }}号
+                                        <i class="form-control">YXCDC2018水第{{ selected.start }}号</i>
                                     </td>
                                     <td>
                                         <select class="form-control" name="" id="" v-model="selected.v">
@@ -151,7 +151,7 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <input class="animated bounceInRight" type="number" tabindex="0" v-model="selected.new_results.a">
+                                        <input class="form-control animated bounceInRight" type="number" tabindex="0" v-model="selected.new_results.a">
                                     </td>
                                     <td>
                                         <button class="btn btn-success" tabindex="0" @click="submit_result">提交</button>
@@ -181,13 +181,14 @@
                             <td>{{ item.a }}</td>
                             <td>{{ get_m(index) }}</td>
                             <td class="animated bounceInUp">{{ get_result(index) }}</td>
-                            <td>
-                                <i class="fa fa-trash fa-2x text-danger" @click="del_sample(index)"></i></td>
+                            <td style="display: none">
+                                <i class="fa fa-trash fa-2x text-danger" @click="del_sample(index)"></i>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
                 <table class="table table-bordered table-striped table-hover" id="record">
-                    <caption>历史记录</caption>
+                    <caption>{{ selected.name }}的历史记录</caption>
                     <thead>
                         <tr @click="mystorages">
                             <th class="text-center">编号</th>
