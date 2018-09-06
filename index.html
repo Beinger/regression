@@ -24,12 +24,19 @@
     <div class="container">
 
         <div class="jumbotron">
-            <h1>回归计算器</h1>
+            <img src="img/title.png" alt="水质检验回归分析系统">
         </div>
         <div id="root">
-            <select tabindex="-1" class="form-control input-lg" name="xm" id="xm" v-model="selected">
-                <option :value="item" v-for="(item,index) in names">{{ item.name }}</option>
-            </select>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-xs-6">
+                    <select tabindex="-1" class="form-control input-lg" name="xm" id="xm" v-model="selected">
+                        <option :value="item" v-for="(item,index) in names">{{ item.name }}</option>
+                    </select>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-6 text-right">
+                    <i class="fa fa-calendar"></i><i id="date"></i>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-lg-6">
 
@@ -139,21 +146,28 @@
                     <caption>{{ selected.name }}的历史记录</caption>
 
                     <thead>
+                        <tr>
+                            <th class="text-center" colspan="6">
+                                <h3><i>水样中{{ selected.name }}的原始记录</i></h3>
+                            </th>
+                        </tr>
                         <tr @click="mystorages">
                             <th class="text-center">编号</th>
-                            <th class="text-center">加样量</th>
+                            <th class="text-center">加样量(ml)</th>
                             <th class="text-center">吸光度</th>
-                            <th class="text-center">质量</th>
-                            <th class="text-center">结果</th>
+                            <th class="text-center">质量(μg)</th>
+                            <th class="text-center">结果(mg/L)</th>
+                            <th class="text-center">记录日期</th>
                         </tr>
                     </thead>
                     <tbody class="text-center">
                         <tr v-for="(item, index) in selected.st" :key="index">
-                            <td>{{ item.id }}</td>
+                            <td>YXCDC2018水第{{ item.id }}号</td>
                             <td>{{ item.v }}</td>
                             <td>{{ item.a }}</td>
                             <td>{{ item.m }}</td>
                             <td>{{ item.result }}</td>
+                            <td>{{ item.date }}</td>
                         </tr>
                     </tbody>
                 </table>

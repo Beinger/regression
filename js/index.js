@@ -58,7 +58,8 @@ let app = new Vue({
                 v: 50,
                 a: '',
                 m: '',
-                result: ''
+                result: '',
+                date: ''
             },
         },
         {
@@ -1181,6 +1182,9 @@ let app = new Vue({
             let end_item = Number(rows[rows.length - 1].cells[0].innerText); //表格最后一个编号
             for (let i = start_item; i <= end_item; i++) {
                 let p = (this.selected.name + i + '报告结果');
+                let date = new Date();
+                date = date.format("yyyy-MM-dd");
+                this.selected.results[i-start_item].date = date;
                 let str = JSON.stringify(this.selected.results[i - start_item]); //格式化后才能存入 
                 myStorage.setItem(p, str);
             };
@@ -1211,8 +1215,6 @@ let app = new Vue({
                 this.selected.end = 1;
             }
             this.selected.st.sort(function(i,j){
-                // i.replace(/^[^\d]*(\d+)[^\d]*$/, "$1");
-                // j.replace(/^[^\d]*(\d+)[^\d]*$/, "$1");
                 return Number(i.id)>Number(j.id)?1:-1
             });
         },
@@ -1331,3 +1333,25 @@ function useCount(item) {
         myStorage.setItem(judge, false);
     };
 };
+Date.prototype.format = function(fmt) { 
+    var o = { 
+       "M+" : this.getMonth()+1,                 //月份 
+       "d+" : this.getDate(),                    //日 
+       "h+" : this.getHours(),                   //小时 
+       "m+" : this.getMinutes(),                 //分 
+       "s+" : this.getSeconds(),                 //秒 
+       "q+" : Math.floor((this.getMonth()+3)/3), //季度 
+       "S"  : this.getMilliseconds()             //毫秒 
+   }; 
+   if(/(y+)/.test(fmt)) {
+           fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length)); 
+   }
+    for(var k in o) {
+       if(new RegExp("("+ k +")").test(fmt)){
+            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+        }
+    }
+   return fmt; 
+}        
+let date = new Date();
+document.getElementById("date").innerHTML=date.format("yyyy-MM-dd hh:mm")
