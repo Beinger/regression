@@ -449,7 +449,7 @@ let app = new Vue({
             start: 1,
             end: 1,
             name: '阴离子合成洗涤剂',
-            limit: 0.025,
+            limit: 0.05,
             a: 0,
             b: 1,
             r: 1,
