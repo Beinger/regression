@@ -1211,9 +1211,9 @@ let app = new Vue({
                 this.selected.end = 1;
             }
             this.selected.st.sort(function(i,j){
-                i.replace(/^[^\d]*(\d+)[^\d]*$/, "$1");
-                j.replace(/^[^\d]*(\d+)[^\d]*$/, "$1");
-                return i>j?1:-1
+                // i.replace(/^[^\d]*(\d+)[^\d]*$/, "$1");
+                // j.replace(/^[^\d]*(\d+)[^\d]*$/, "$1");
+                return Number(i.id)>Number(j.id)?1:-1
             });
         },
         get_key(){
