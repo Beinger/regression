@@ -142,35 +142,38 @@
                         </tr>
                     </tbody>
                 </table>
-                <table class="table table-bordered table-striped table-hover" id="record">
-                    <caption>{{ selected.name }}的历史记录</caption>
+                <button class="btn form-control" @click="printContent(e)">打印</button>
+                <div id="subOutputRank-print">
+                    <table class="table table-bordered table-striped table-hover" id="record">
+                        <caption>{{ selected.name }}的历史记录</caption>
 
-                    <thead>
-                        <tr>
-                            <th class="text-center" colspan="6">
-                                <h3><i>水样中{{ selected.name }}的原始记录</i></h3>
-                            </th>
-                        </tr>
-                        <tr @click="mystorages">
-                            <th class="text-center">编号</th>
-                            <th class="text-center">加样量(ml)</th>
-                            <th class="text-center">吸光度</th>
-                            <th class="text-center">质量(μg)</th>
-                            <th class="text-center">结果(mg/L)</th>
-                            <th class="text-center" @click="date_">记录日期</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-center">
-                        <tr v-for="(item, index) in selected.st" :key="index">
-                            <td>YXCDC2018水第{{ item.id }}号</td>
-                            <td>{{ item.v }}</td>
-                            <td>{{ item.a }}</td>
-                            <td>{{ item.m }}</td>
-                            <td>{{ item.result }}</td>
-                            <td v-show="date_show">{{ item.date }}</td>
-                        </tr>
-                    </tbody>
-                </table>
+                        <thead>
+                            <tr>
+                                <th @click="date_" class="text-center" colspan="5">
+                                    <h3><i>水样中{{ selected.name }}的原始记录</i></h3>
+                                </th>
+                            </tr>
+                            <tr @click="mystorages">
+                                <th class="text-center">编号</th>
+                                <th class="text-center">加样量(ml)</th>
+                                <th class="text-center">吸光度</th>
+                                <th class="text-center">质量(μg)</th>
+                                <th class="text-center">结果(mg/L)</th>
+                                <th v-show="date_show" class="text-center">记录日期</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+                            <tr v-for="(item, index) in selected.st" :key="index">
+                                <td>YXCDC2018水第{{ item.id }}号</td>
+                                <td>{{ item.v }}</td>
+                                <td>{{ item.a }}</td>
+                                <td>{{ item.m }}</td>
+                                <td>{{ item.result }}</td>
+                                <td v-show="date_show">{{ item.date }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </form>
         </div>
     </div>
