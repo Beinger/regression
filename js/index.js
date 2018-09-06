@@ -1194,11 +1194,9 @@ let app = new Vue({
             this.selected.st = [];
             let n = this.selected.name + 'end';
             if (myStorage.getItem(n)) {
-                let last = Number(myStorage.getItem(n));
-                let first = this.get_key();
-                first = Number(first);
-                for (let i = first; i < last; i++) {
-                    let x = (this.selected.name + i + '报告结果');
+                let keys = this.get_key();
+                for (let i = 0; i < keys.length; i++) {
+                    let x = (this.selected.name + keys[i] + '报告结果');
                     let p = myStorage.getItem(x);
                     p = eval(JSON.parse(p));
                     this.selected.st.push(p);
@@ -1212,6 +1210,11 @@ let app = new Vue({
             } else {
                 this.selected.end = 1;
             }
+            this.selected.st.sort(function(i,j){
+                i.replace(/^[^\d]*(\d+)[^\d]*$/, "$1");
+                j.replace(/^[^\d]*(\d+)[^\d]*$/, "$1");
+                return i>j?1:-1
+            });
         },
         get_key(){
             /**
@@ -1229,10 +1232,11 @@ let app = new Vue({
                     }
                 }
             }
+            keys = keys.map(Number);
             keys.sort(function(i,j){
                 return i>j?1:-1
             });
-            return Number(keys[0]);
+            return keys;
         }
     }
 });
