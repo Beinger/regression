@@ -6,6 +6,7 @@ let app = new Vue({
         new_item: '', //表格新行
         show: false,
         add: false,
+        date_show: false,
         vol_select: [
             50, 100, 250, 1, 25, 10
         ],
@@ -979,6 +980,22 @@ let app = new Vue({
 
     },
     methods: {
+    // 打印
+     printContent(e){
+    let subOutputRankPrint = document.getElementById('subOutputRank-print');
+    console.log(subOutputRankPrint.innerHTML);
+    let newContent =subOutputRankPrint.innerHTML;
+    let oldContent = document.body.innerHTML;
+    document.body.innerHTML = newContent;
+    window.print();
+    window.location.reload();
+    document.body.innerHTML = oldContent;
+    return false;
+    },
+
+        date_y(){
+            this.date_show = !this.date_show;
+        },
         get_list() {
             /**
              * 从标准系列表格中获取数据，存入数据组中，同时存入localStorage中。
