@@ -102,7 +102,7 @@ h2{
                                 </tr>
                                 <tr class="text-center">
                                     <td>
-                                        <i class="form-control">YXCDC2018水第{{ selected.start }}号</i>
+                                        <i class="form-control">YXCDC2018水第{{ f_n(selected.start, 3) }}号</i>
                                     </td>
                                     <td>
                                         <select class="form-control" name="" id="" v-model="selected.v">
@@ -135,12 +135,12 @@ h2{
                     </thead>
                     <tbody class="text-center">
                         <tr v-for="(item, index) in selected.results">
-                            <td>{{ item.id }}</td>
+                            <td>{{ f_n(item.id, 3) }}</td>
                             <td>{{ item.v }}</td>
                             <td>{{ item.a }}</td>
                             <td>{{ get_m(index) }}</td>
                             <td class="animated bounceInUp">{{ get_result(index) }}</td>
-                            <td style="display: none">
+                            <td>
                                 <i class="fa fa-trash fa-2x text-danger" @click="del_sample(index)"></i>
                             </td>
                         </tr>
@@ -156,17 +156,17 @@ h2{
                                 </th>
                             </tr>
                             <tr @click="mystorages">
-                                <th class="text-center">编号</th>
+                                <th class="text-center">样品编号</th>
                                 <th class="text-center">加样量(ml)</th>
                                 <th class="text-center">吸光度</th>
-                                <th class="text-center">质量(μg)</th>
-                                <th class="text-center">结果(mg/L)</th>
+                                <th class="text-center">实测质量(μg)</th>
+                                <th class="text-center">报告结果(mg/L)</th>
                                 <th v-show="date_show" class="text-center">记录日期</th>
                             </tr>
                         </thead>
                         <tbody class="text-center">
                             <tr v-for="(item, index) in selected.st" :key="index">
-                                <td>YXCDC2018水第{{ item.id }}号</td>
+                                <td>YXCDC2018水第{{ f_n(item.id, 3) }}号</td>
                                 <td>{{ item.v }}</td>
                                 <td>{{ item.a }}</td>
                                 <td>{{ item.m }}</td>

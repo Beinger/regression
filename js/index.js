@@ -957,7 +957,7 @@ let app = new Vue({
             results: [],
             new_results: {
                 id: 1,
-                v: 25,
+                v: 50,
                 a: '',
                 m: '',
                 result: ''
@@ -1057,14 +1057,14 @@ let app = new Vue({
             }
             let over = this.sum(this.selected.y, this.selected.x) - n * this.average(this.selected.x) * this.average(this.selected.y);
             let under = this.sum_1(x_) - n * (this.average(this.selected.x) * this.average(this.selected.x));
-            this.selected.b = (over / under).toFixed(4);
+            this.selected.b = (over / under);
         },
         cal_a() {
             /**
              * 根据当前项目的标准系列算出标准回归公式的斜率
              */
             this.selected.a = 1;
-            this.selected.a = (this.average(this.selected.y) - this.selected.b * this.average(this.selected.x)).toFixed(4);
+            this.selected.a = (this.average(this.selected.y) - this.selected.b * this.average(this.selected.x));
         },
         cal_r() {
             /*
@@ -1074,7 +1074,7 @@ let app = new Vue({
             let n = this.selected.x.length;
             let over = this.sum(this.selected.y, this.selected.x) - n * this.average(this.selected.x) * this.average(this.selected.y);
             let under = Math.sqrt((this.sum(this.selected.x, this.selected.x) - n * this.average(this.selected.x) * this.average(this.selected.x)) * (this.sum(this.selected.y, this.selected.y) - n * this.average(this.selected.y) * this.average(this.selected.y)));
-            this.selected.r = (over / under).toFixed(4);
+            this.selected.r = (over / under);
         },
         math_formula() {
             /**
@@ -1085,11 +1085,11 @@ let app = new Vue({
             this.cal_r();
             this.selected.formula = "";
             if (this.selected.a >= 0) {
-                this.selected.formula = "<p>回归方程为：y = " + this.selected.b + "x + " + this.selected.a + "</p><p>相关系数为：r = " + this.selected.r + "</p>";
+                this.selected.formula = "<p>回归方程为：y = " + this.selected.b.toFixed(4) + "x + " + this.selected.a.toFixed(4) + "</p><p>相关系数为：r = " + this.selected.r.toFixed(4) + "</p>";
 
             } else {
                 let a = -(this.selected.a);
-                this.selected.formula = "<p>回归方程为：y = " + this.selected.b + "x - " + a + "</p><p>相关系数为：r = " + this.selected.r + "</p>";
+                this.selected.formula = "<p>回归方程为：y = " + this.selected.b.toFixed(4) + "x - " + a.toFixed(4) + "</p><p>相关系数为：r = " + this.selected.r.toFixed(4) + "</p>";
             }
         },
         add_item() {
@@ -1181,7 +1181,11 @@ let app = new Vue({
              */
             let v = this.selected.results[element].v;
             let m = this.selected.results[element].m;
-            this.selected.results[element].c = (m / v).toFixed(2);
+            if(this.selected.name == "硫酸盐"){
+                this.selected.results[element].c = (1000 * m / v).toFixed(1);
+            }else{
+                this.selected.results[element].c = (m / v).toFixed(2);
+            }
             let c = this.selected.results[element].c;
             if (c >= this.selected.limit) {
                 this.selected.results[element].result = c;
@@ -1256,7 +1260,13 @@ let app = new Vue({
                 return i>j?1:-1
             });
             return keys;
-        }
+        },
+        f_n(num, length){
+            /**
+             * 格式化编号数字，不足三位的前面加0
+             */
+            return (Array(length).join('0') + num).slice(-length);
+        },
     }
 });
 let series_data = [];
