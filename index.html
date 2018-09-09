@@ -81,7 +81,7 @@
                     <div class="col-lg-7">
                         <fieldset>
                             <legend>样品中{{ selected.name }}浓度计算</legend>
-                            <div class="text-warning">
+                            <div class="text-warning" v-show="cal">
                                 <i>样品编号YXCDC2018水第
                                     <input v-if="selected.judge" tabindex="11" type="number" v-model="selected.start">
                                     <input v-else tabindex="11" type="number" v-model="selected.end"> 号

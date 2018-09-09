@@ -1,6 +1,7 @@
 let app = new Vue({
     el: "#root",
     data: {
+        cal: true,
         show_v: true,
         index: 0, //这个是表格索引==序号
         new_item: '', //表格新行
@@ -1109,8 +1110,9 @@ let app = new Vue({
              * 增加样品行
              */
             this.add = !this.add;
-            this.mystorages()
+            this.mystorages();
             useCount(this.selected.name);
+            this.cal = false;
         },
         submit_result() {
             /**
