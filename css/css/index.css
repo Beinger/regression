@@ -4,12 +4,6 @@ fieldset {
     border: 1px solid silver
 }
 
-legend {
-    padding: .5em;
-    border: 0;
-    width: auto
-}
-
 input {
     width: 5em;
 }
