@@ -13,9 +13,6 @@ let app = new Vue({
         sample: {
             id: '',
             v: 3,
-            recived_date: '',
-            test_date: '',
-            report_date: '',
             temprature: 0,
             rh: 0,
         },
@@ -1044,20 +1041,20 @@ let app = new Vue({
 
     },
     methods: {
-    // 打印
-     printContent(e){
-    let subOutputRankPrint = document.getElementById('subOutputRank-print');
-    console.log(subOutputRankPrint.innerHTML);
-    let newContent =subOutputRankPrint.innerHTML;
-    let oldContent = document.body.innerHTML;
-    document.body.innerHTML = newContent;
-    window.print();
-    window.location.reload();
-    document.body.innerHTML = oldContent;
-    return false;
-    },
+        // 打印
+        printContent(e) {
+            let subOutputRankPrint = document.getElementById('subOutputRank-print');
+            console.log(subOutputRankPrint.innerHTML);
+            let newContent = subOutputRankPrint.innerHTML;
+            let oldContent = document.body.innerHTML;
+            document.body.innerHTML = newContent;
+            window.print();
+            window.location.reload();
+            document.body.innerHTML = oldContent;
+            return false;
+        },
 
-        date_y(){
+        date_y() {
             this.date_show = !this.date_show;
         },
         get_list() {
@@ -1245,9 +1242,9 @@ let app = new Vue({
              */
             let v = this.selected.results[element].v;
             let m = this.selected.results[element].m;
-            if(this.selected.name == "硫酸盐"){
+            if (this.selected.name == "硫酸盐") {
                 this.selected.results[element].c = (1000 * m / v).toFixed(1);
-            }else{
+            } else {
                 this.selected.results[element].c = (m / v).toFixed(2);
             }
             let c = this.selected.results[element].c;
@@ -1269,7 +1266,7 @@ let app = new Vue({
                 let p = (this.selected.name + i + '报告结果');
                 let date = new Date();
                 date = date.format("yyyy-MM-dd");
-                this.selected.results[i-start_item].date = date;
+                this.selected.results[i - start_item].date = date;
                 let str = JSON.stringify(this.selected.results[i - start_item]); //格式化后才能存入 
                 myStorage.setItem(p, str);
             };
@@ -1299,20 +1296,20 @@ let app = new Vue({
             } else {
                 this.selected.end = 1;
             }
-            this.selected.st.sort(function(i,j){
-                return Number(i.id)>Number(j.id)?1:-1
+            this.selected.st.sort(function (i, j) {
+                return Number(i.id) > Number(j.id) ? 1 : -1
             });
         },
-        get_key(){
+        get_key() {
             /**
              * 获取localStorage中当前项目的结果记录中的首项id
              */
             let keys = [];
             var n = localStorage.length;
-            for(let i=0; i<n; i++){
+            for (let i = 0; i < n; i++) {
                 let k = localStorage.key(i);
-                if(k.search(this.selected.name) != -1){
-                    if(k.search('报告结果') != -1){
+                if (k.search(this.selected.name) != -1) {
+                    if (k.search('报告结果') != -1) {
                         let number = k.replace(/^[^\d]*(\d+)[^\d]*$/, "$1");
                         //这个正则表达式获取字符串中的数字
                         keys.push(number);
@@ -1320,20 +1317,48 @@ let app = new Vue({
                 }
             }
             keys = keys.map(Number);
-            keys.sort(function(i,j){
-                return i>j?1:-1
+            keys.sort(function (i, j) {
+                return i > j ? 1 : -1
             });
             return keys;
         },
-        f_n(num, length){
+        f_n(num, length) {
             /**
              * 格式化编号数字，不足三位的前面加0
              */
             return (Array(length).join('0') + num).slice(-length);
         },
-        set_html(){
-
+        //时间格式化函数，此处仅针对yyyy-MM-dd hh:mm:ss 的格式进行格式化
+        dateFormat: function (time) {
+            var date = new Date(time);
+            var year = date.getFullYear();
+            /* 在日期格式中，月份是从0开始的，因此要加0
+             * 使用三元表达式在小于10的前面加0，以达到格式统一  如 09:11:05
+             * */
+            var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+            var day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+            var hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+            var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+            var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+            // 拼接
+            return year + "-" + month + "-" + day;
         }
+    },
+    computed: {
+
+        recived_date() {
+            let date = new Date();
+            return this.dateFormat(date)
+        },
+        test_date() {
+            let date = new Date();
+            return this.dateFormat(date)
+
+        },
+        report_date() {
+            let date = new Date();
+            return this.dateFormat(date)
+        },
     }
 });
 let series_data = [];
@@ -1358,7 +1383,7 @@ function show_chart() {
     /**
      * 用highcharts绘制标准曲线
      */
-    getTableContent(app.selected.id); 
+    getTableContent(app.selected.id);
     //获取当前项目的标准系列数据
     chart = Highcharts.chart('line', {
         title: {
@@ -1427,25 +1452,25 @@ function useCount(item) {
         myStorage.setItem(judge, false);
     };
 };
-Date.prototype.format = function(fmt) { 
-    var o = { 
-       "M+" : this.getMonth()+1,                 //月份 
-       "d+" : this.getDate(),                    //日 
-       "h+" : this.getHours(),                   //小时 
-       "m+" : this.getMinutes(),                 //分 
-       "s+" : this.getSeconds(),                 //秒 
-       "q+" : Math.floor((this.getMonth()+3)/3), //季度 
-       "S"  : this.getMilliseconds()             //毫秒 
-   }; 
-   if(/(y+)/.test(fmt)) {
-           fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length)); 
-   }
-    for(var k in o) {
-       if(new RegExp("("+ k +")").test(fmt)){
-            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+Date.prototype.format = function (fmt) {
+    var o = {
+        "M+": this.getMonth() + 1,                 //月份 
+        "d+": this.getDate(),                    //日 
+        "h+": this.getHours(),                   //小时 
+        "m+": this.getMinutes(),                 //分 
+        "s+": this.getSeconds(),                 //秒 
+        "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+        "S": this.getMilliseconds()             //毫秒 
+    };
+    if (/(y+)/.test(fmt)) {
+        fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    }
+    for (var k in o) {
+        if (new RegExp("(" + k + ")").test(fmt)) {
+            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
         }
     }
-   return fmt; 
-}        
+    return fmt;
+}
 let date = new Date();
 document.getElementById("date").innerHTML=date.format("yyyy-MM-dd hh:mm")
