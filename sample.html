@@ -5,13 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/css/bootstrap.css">
-    <script src="js/bootstarp.js"></script>
+    <!-- <script src="js/bootstarp.js"></script> -->
     <script src="js/vue.min.js"></script>
     <title>样品登记</title>
 </head>
 <body>
-    <div id="sample" class="row">
-         
+    <div id="app">
+         <h3 @click="get_storage()"><i>水质检测报告</i></h3>
+         <table>
+             <thead>
+                 <th>检测项目</th>
+                 <th>参考范围</th>
+                 <th>检测结果</th>
+                 <th>结果评价</th>
+             </thead>
+             <tbody>
+                 <tr v-for="(item, index) in items" :key="index">
+                     <td>{{ item.name }}</td>
+                     <td>{{ item.range }}</td>
+                     <td>{{ item.result }}</td>
+                     <td>{{ item.judgment }}</td>
+                 </tr>
+             </tbody>
+         </table>
     </div> 
+    <script src="sample.js"></script>
 </body>
 </html>
