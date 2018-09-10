@@ -3,8 +3,6 @@ let app = new Vue({
     data: {
         index: 0, //这个是表格索引==序号
         new_item: '', //表格新行
-        temprature: 0,
-        rh: 0,
         show_v: true,
         show: false,
         add: false,
@@ -12,14 +10,16 @@ let app = new Vue({
         vol_select: [
             50, 100, 250, 1, 25, 10
         ],
-        sample:[
-            {
-                id: '',
-                v: 3,
-                recived_date: '',
-                test_date: '',
-            }
-        ],
+        sample: {
+            id: '',
+            v: 3,
+            recived_date: '',
+            test_date: '',
+            report_date: '',
+            temprature: 0,
+            rh: 0,
+        },
+
         names: [{
             st: [],
             judge: false,
@@ -37,7 +37,7 @@ let app = new Vue({
             x: [],
             y: [],
             standard_series: [],
-            instrument_model: '',
+            instrument_model: '分光光度计',
             GB: '',
             html: '',
             items: [
@@ -93,7 +93,7 @@ let app = new Vue({
             y: [],
             limit: 0.002,
             standard_series: [],
-            instrument_model: '',
+            instrument_model: '分光光度计',
             GB: '',
             html: '',
             items: [
@@ -148,7 +148,7 @@ let app = new Vue({
             x: [],
             y: [],
             standard_series: [],
-            instrument_model: '',
+            instrument_model: '分光光度计',
             GB: '',
             html: '',
             items: [
@@ -203,7 +203,7 @@ let app = new Vue({
             x: [],
             y: [],
             standard_series: [],
-            instrument_model: '',
+            instrument_model: '分光光度计',
             GB: '',
             html: '',
             items: [
@@ -258,7 +258,7 @@ let app = new Vue({
             x: [],
             y: [],
             standard_series: [],
-            instrument_model: '',
+            instrument_model: '分光光度计',
             GB: '',
             html: '',
             items: [
@@ -317,7 +317,7 @@ let app = new Vue({
             x: [],
             y: [],
             standard_series: [],
-            instrument_model: '',
+            instrument_model: '分光光度计',
             GB: '',
             html: '',
             items: [
@@ -376,7 +376,7 @@ let app = new Vue({
             x: [],
             y: [],
             standard_series: [],
-            instrument_model: '',
+            instrument_model: '分光光度计',
             GB: '',
             html: '',
             items: [
@@ -435,7 +435,7 @@ let app = new Vue({
             x: [],
             y: [],
             standard_series: [],
-            instrument_model: '',
+            instrument_model: '分光光度计',
             GB: '',
             html: '',
             items: [
@@ -494,7 +494,7 @@ let app = new Vue({
             x: [],
             y: [],
             standard_series: [],
-            instrument_model: '',
+            instrument_model: '分光光度计',
             GB: '',
             html: '',
             items: [
@@ -553,7 +553,7 @@ let app = new Vue({
             x: [],
             y: [],
             standard_series: [],
-            instrument_model: '',
+            instrument_model: '分光光度计',
             GB: '',
             html: '',
             items: [
@@ -608,7 +608,7 @@ let app = new Vue({
             x: [],
             y: [],
             standard_series: [],
-            instrument_model: '',
+            instrument_model: '分光光度计',
             GB: '',
             html: '',
             items: [
@@ -663,7 +663,7 @@ let app = new Vue({
             x: [],
             y: [],
             standard_series: [],
-            instrument_model: '',
+            instrument_model: '分光光度计',
             GB: '',
             html: '',
             items: [
@@ -718,7 +718,7 @@ let app = new Vue({
             x: [],
             y: [],
             standard_series: [],
-            instrument_model: '',
+            instrument_model: '分光光度计',
             GB: '',
             html: '',
             items: [
@@ -773,7 +773,7 @@ let app = new Vue({
             x: [],
             y: [],
             standard_series: [],
-            instrument_model: '',
+            instrument_model: '分光光度计',
             GB: '',
             html: '',
             items: [
@@ -828,7 +828,7 @@ let app = new Vue({
             x: [],
             y: [],
             standard_series: [],
-            instrument_model: '',
+            instrument_model: '分光光度计',
             GB: '',
             html: '',
             items: [
@@ -883,7 +883,7 @@ let app = new Vue({
             x: [],
             y: [],
             standard_series: [],
-            instrument_model: '',
+            instrument_model: '分光光度计',
             GB: '',
             html: '',
             items: [
@@ -938,7 +938,7 @@ let app = new Vue({
             x: [],
             y: [],
             standard_series: [],
-            instrument_model: '',
+            instrument_model: '分光光度计',
             GB: '',
             html: '',
             items: [
@@ -993,7 +993,7 @@ let app = new Vue({
             x: [],
             y: [],
             standard_series: [],
-            instrument_model: '',
+            instrument_model: '分光光度计',
             GB: '',
             html: '',
             items: [

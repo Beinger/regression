@@ -18,11 +18,6 @@
     <script src="js/webSQL.js"></script>
     <title>标准回归</title>
 </head>
-<style>
-h2{
-    background: #d5d5d5;
-}
-</style>
 <body>
 
     <div class="container">
@@ -130,7 +125,7 @@ h2{
                             <th class="text-center">质量</th>
                             <th class="text-center">结果</th>
                             <th class="text-center" @click="save_results">
-                                <i class="fa fa-save text-success fa-2x"></i>
+                                <i class="btn fa fa-save text-success"></i>
                             </th>
                         </tr>
                     </thead>
@@ -142,61 +137,51 @@ h2{
                             <td>{{ get_m(index) }}</td>
                             <td class="animated bounceInUp">{{ get_result(index) }}</td>
                             <td>
-                                <i class="fa fa-trash fa-2x text-danger" @click="del_sample(index)"></i>
+                                <i class="btn fa fa-trash text-danger" @click="del_sample(index)"></i>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <button class="btn form-control" @click="printContent(e)">打印</button>
+                <a class="btn text-danger" @click="printContent(e)">打印</a>
                 <div id="subOutputRank-print">
-                    <table class="table table-bordered table-striped table-hover" id="record">
-                        <thead>
+                    <table class="table table-bordered table-striped table-hover">
                             <tr>
                                 <th @click="date_y()" class="text-center" colspan="5">
-                                    <h2 v-text="user"></h2>
-                                    <h3><i>水样中{{ selected.name }}理化检验原始记录</i></h3>
-                                    
-                                    <h5 v-html="html"></h5>
+                                    <h3 title="点击这里可以查看每个样品的检测日期"><i>水样中{{ selected.name }}理化检验原始记录</i></h3>
                                 </th>
                             </tr>
                             <tr>
                                 <td>样品名称：</td>
-                                <td colspan="2">
-                                    <select style="border:0px; outline:none; cursor: pointer;" class="form-control">
+                                <td :contenteditable="true">
+                                    <!-- <select style="border:0px; outline:none; cursor: pointer;" class="form-control">
                                         <option value="井水">井水</option>
                                         <option value="泉水">泉水</option>
                                         <option value="河水">河水</option>
                                         <option value="溪水">溪水</option>
                                         <option value="自来水">自来水</option>
-                                    </select>
+                                    </select> -->
                                 </td>
                                 <td>样品数量(L)：</td>
-                                <td>
-                                    <input class="form-control" type="text" v-model="sample[0].v">
-                                </td>
+                                <td :contenteditable="true">3</td>
                             </tr>
                             <tr>
                                 <td>收样日期：</td>
-                                <td colspan="2">
-                                    <input class="form-control" type="date" v-model="sample.recived_date">
-                                </td>
+                                <td :contenteditable="true" v-text="sample.recived_date"></td>
                                 <td>检验日期：</td>
-                                <td>
-                                    <input class="form-control" type="date" v-model="sample.test_date">
-                                </td>
+                                <td :contenteditable="true" v-text="sample.test_date"></td>
                             </tr>
                             <tr>
                                 <td>样品性状：</td>
-                                <td colspan="2">液态</td>
+                                <td :contenteditable="true">液态</td>
                                 <td>检测环境：</td>
-                                <td>
-                                    <input type="text" v-model="temprature"> ℃
-                                    <input type="text" v-model="rh">% RH
+                                <td :contenteditable="true">
+                                    <span v-text="sample.temprature"></span> ℃
+                                    <span v-text="sample.rh"></span>% RH
                                 </td>
                             </tr>
                             <tr>
                                 <td>检测仪器：</td>
-                                <td colspan="2">
+                                <td>
                                     {{ selected.instrument_model }}
                                 </td>
                                 <td>检验依据：</td>
@@ -207,7 +192,10 @@ h2{
                             <tr>
                                 <td colspan="5">{{ selected.method }}</td>
                             </tr>
-                            <tr @click="mystorages">
+                    </table>
+                    <table @click="mystorages" class="table table-bordered table-striped table-hover" id="record">
+                        <thead>
+                            <tr>
                                 <th class="text-center">样品编号</th>
                                 <th class="text-center">加样量(ml)</th>
                                 <th class="text-center">吸光度</th>
