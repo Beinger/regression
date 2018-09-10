@@ -1,14 +1,24 @@
 let app = new Vue({
     el: "#root",
     data: {
-        show_v: true,
         index: 0, //这个是表格索引==序号
         new_item: '', //表格新行
+        temprature: 0,
+        rh: 0,
+        show_v: true,
         show: false,
         add: false,
         date_show: false,
         vol_select: [
             50, 100, 250, 1, 25, 10
+        ],
+        sample:[
+            {
+                id: '',
+                v: 3,
+                recived_date: '',
+                test_date: '',
+            }
         ],
         names: [{
             st: [],
@@ -27,6 +37,9 @@ let app = new Vue({
             x: [],
             y: [],
             standard_series: [],
+            instrument_model: '',
+            GB: '',
+            html: '',
             items: [
                 [
                     0,
@@ -80,6 +93,9 @@ let app = new Vue({
             y: [],
             limit: 0.002,
             standard_series: [],
+            instrument_model: '',
+            GB: '',
+            html: '',
             items: [
                 [
                     0,
@@ -132,6 +148,9 @@ let app = new Vue({
             x: [],
             y: [],
             standard_series: [],
+            instrument_model: '',
+            GB: '',
+            html: '',
             items: [
                 [
                     0,
@@ -184,6 +203,9 @@ let app = new Vue({
             x: [],
             y: [],
             standard_series: [],
+            instrument_model: '',
+            GB: '',
+            html: '',
             items: [
                 [
                     0,
@@ -236,6 +258,9 @@ let app = new Vue({
             x: [],
             y: [],
             standard_series: [],
+            instrument_model: '',
+            GB: '',
+            html: '',
             items: [
                 [
                     0,
@@ -292,6 +317,9 @@ let app = new Vue({
             x: [],
             y: [],
             standard_series: [],
+            instrument_model: '',
+            GB: '',
+            html: '',
             items: [
                 [
                     0,
@@ -348,6 +376,9 @@ let app = new Vue({
             x: [],
             y: [],
             standard_series: [],
+            instrument_model: '',
+            GB: '',
+            html: '',
             items: [
                 [
                     0,
@@ -404,6 +435,9 @@ let app = new Vue({
             x: [],
             y: [],
             standard_series: [],
+            instrument_model: '',
+            GB: '',
+            html: '',
             items: [
                 [
                     0,
@@ -460,6 +494,9 @@ let app = new Vue({
             x: [],
             y: [],
             standard_series: [],
+            instrument_model: '',
+            GB: '',
+            html: '',
             items: [
                 [
                     0,
@@ -516,6 +553,9 @@ let app = new Vue({
             x: [],
             y: [],
             standard_series: [],
+            instrument_model: '',
+            GB: '',
+            html: '',
             items: [
                 [
                     0,
@@ -568,6 +608,9 @@ let app = new Vue({
             x: [],
             y: [],
             standard_series: [],
+            instrument_model: '',
+            GB: '',
+            html: '',
             items: [
                 [
                     0,
@@ -620,6 +663,9 @@ let app = new Vue({
             x: [],
             y: [],
             standard_series: [],
+            instrument_model: '',
+            GB: '',
+            html: '',
             items: [
                 [
                     0,
@@ -672,6 +718,9 @@ let app = new Vue({
             x: [],
             y: [],
             standard_series: [],
+            instrument_model: '',
+            GB: '',
+            html: '',
             items: [
                 [
                     0,
@@ -724,6 +773,9 @@ let app = new Vue({
             x: [],
             y: [],
             standard_series: [],
+            instrument_model: '',
+            GB: '',
+            html: '',
             items: [
                 [
                     0,
@@ -776,6 +828,9 @@ let app = new Vue({
             x: [],
             y: [],
             standard_series: [],
+            instrument_model: '',
+            GB: '',
+            html: '',
             items: [
                 [
                     0,
@@ -828,6 +883,9 @@ let app = new Vue({
             x: [],
             y: [],
             standard_series: [],
+            instrument_model: '',
+            GB: '',
+            html: '',
             items: [
                 [
                     0,
@@ -880,6 +938,9 @@ let app = new Vue({
             x: [],
             y: [],
             standard_series: [],
+            instrument_model: '',
+            GB: '',
+            html: '',
             items: [
                 [
                     0,
@@ -932,6 +993,9 @@ let app = new Vue({
             x: [],
             y: [],
             standard_series: [],
+            instrument_model: '',
+            GB: '',
+            html: '',
             items: [
                 [
                     0,
@@ -1108,7 +1172,7 @@ let app = new Vue({
             /**
              * 增加样品行
              */
-            this.add = !this.add;
+            this.add = true;
             this.mystorages()
             useCount(this.selected.name);
         },
@@ -1267,6 +1331,9 @@ let app = new Vue({
              */
             return (Array(length).join('0') + num).slice(-length);
         },
+        set_html(){
+
+        }
     }
 });
 let series_data = [];

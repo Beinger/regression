@@ -79,19 +79,20 @@ h2{
                         <fieldset>
                             <legend>{{ selected.name }}的回归公式</legend>
                             <h4 v-html="selected.formula"></h4>
-                        </fieldset>
-                        <fieldset class="text-center">
                             <div>
-                                <a class="btn btn-lg btn-default btn-warning" @click="add_sample()"><i class="fa fa-pencil"></i>点击开始录入</a>
+                                <a class="btn btn-default" @click="add_sample()">
+                                    <i class="fa fa-pencil"></i>
+                                    点击开始录入
                                 <i>样品编号YXCDC2018水第
                                     <input v-if="selected.judge" tabindex="11" type="number" v-model="selected.start">
                                     <input v-else tabindex="11" type="number" v-model="selected.end"> 号
                                 </i>
+                                </a>
                             </div>
                         </fieldset>
                     </div>
                     <div class="col-lg-7">
-                        <fieldset v-if="add">
+                        <fieldset v-if="add" class="animated fadeInRight">
                             <legend>样品中{{ selected.name }}浓度计算</legend>
                             <table class="table table-hover table-bordered table-striped">
                                 <tr>
@@ -152,8 +153,59 @@ h2{
                         <thead>
                             <tr>
                                 <th @click="date_y()" class="text-center" colspan="5">
-                                    <h3><i>水样中{{ selected.name }}的原始记录</i></h3>
+                                    <h2 v-text="user"></h2>
+                                    <h3><i>水样中{{ selected.name }}理化检验原始记录</i></h3>
+                                    
+                                    <h5 v-html="html"></h5>
                                 </th>
+                            </tr>
+                            <tr>
+                                <td>样品名称：</td>
+                                <td colspan="2">
+                                    <select style="border:0px; outline:none; cursor: pointer;" class="form-control">
+                                        <option value="井水">井水</option>
+                                        <option value="泉水">泉水</option>
+                                        <option value="河水">河水</option>
+                                        <option value="溪水">溪水</option>
+                                        <option value="自来水">自来水</option>
+                                    </select>
+                                </td>
+                                <td>样品数量(L)：</td>
+                                <td>
+                                    <input class="form-control" type="text" v-model="sample[0].v">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>收样日期：</td>
+                                <td colspan="2">
+                                    <input class="form-control" type="date" v-model="sample.recived_date">
+                                </td>
+                                <td>检验日期：</td>
+                                <td>
+                                    <input class="form-control" type="date" v-model="sample.test_date">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>样品性状：</td>
+                                <td colspan="2">液态</td>
+                                <td>检测环境：</td>
+                                <td>
+                                    <input type="text" v-model="temprature"> ℃
+                                    <input type="text" v-model="rh">% RH
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>检测仪器：</td>
+                                <td colspan="2">
+                                    {{ selected.instrument_model }}
+                                </td>
+                                <td>检验依据：</td>
+                                <td>
+                                    {{ selected.GB }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="5">{{ selected.method }}</td>
                             </tr>
                             <tr @click="mystorages">
                                 <th class="text-center">样品编号</th>
