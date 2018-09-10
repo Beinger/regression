@@ -38,7 +38,7 @@ let app = new Vue({
             y: [],
             standard_series: [],
             instrument_model: '分光光度计',
-            GB: '',
+            GB: 'GB/T 5750.5-2006',
             html: '',
             items: [
                 [
@@ -94,7 +94,7 @@ let app = new Vue({
             limit: 0.002,
             standard_series: [],
             instrument_model: '分光光度计',
-            GB: '',
+            GB: 'GB/T 5750.5-2006',
             html: '',
             items: [
                 [
@@ -149,7 +149,7 @@ let app = new Vue({
             y: [],
             standard_series: [],
             instrument_model: '分光光度计',
-            GB: '',
+            GB: 'GB/T 5750.6-2006',
             html: '',
             items: [
                 [
@@ -204,7 +204,7 @@ let app = new Vue({
             y: [],
             standard_series: [],
             instrument_model: '分光光度计',
-            GB: '',
+            GB: 'GB/T 5750.5-2006',
             html: '',
             items: [
                 [
@@ -259,7 +259,7 @@ let app = new Vue({
             y: [],
             standard_series: [],
             instrument_model: '分光光度计',
-            GB: '',
+            GB: 'GB/T 5750.5-2006',
             html: '',
             items: [
                 [
@@ -318,7 +318,7 @@ let app = new Vue({
             y: [],
             standard_series: [],
             instrument_model: '分光光度计',
-            GB: '',
+            GB: 'GB/T 5750.6-2006',
             html: '',
             items: [
                 [
@@ -377,7 +377,7 @@ let app = new Vue({
             y: [],
             standard_series: [],
             instrument_model: '分光光度计',
-            GB: '',
+            GB: 'GB/T 5750.4-2006',
             html: '',
             items: [
                 [
@@ -436,7 +436,7 @@ let app = new Vue({
             y: [],
             standard_series: [],
             instrument_model: '分光光度计',
-            GB: '',
+            GB: 'GB/T 5750.6-2006',
             html: '',
             items: [
                 [
@@ -495,7 +495,7 @@ let app = new Vue({
             y: [],
             standard_series: [],
             instrument_model: '分光光度计',
-            GB: '',
+            GB: 'GB/T 5750.4-2006',
             html: '',
             items: [
                 [
@@ -554,7 +554,7 @@ let app = new Vue({
             y: [],
             standard_series: [],
             instrument_model: '分光光度计',
-            GB: '',
+            GB: 'GB/T 5750.6-2006',
             html: '',
             items: [
                 [
@@ -609,7 +609,7 @@ let app = new Vue({
             y: [],
             standard_series: [],
             instrument_model: '分光光度计',
-            GB: '',
+            GB: 'GB/T 5750.6-2006',
             html: '',
             items: [
                 [
@@ -664,7 +664,7 @@ let app = new Vue({
             y: [],
             standard_series: [],
             instrument_model: '分光光度计',
-            GB: '',
+            GB: 'GB/T 5750.6-2006',
             html: '',
             items: [
                 [
@@ -719,7 +719,7 @@ let app = new Vue({
             y: [],
             standard_series: [],
             instrument_model: '分光光度计',
-            GB: '',
+            GB: 'GB/T 5750.6-2006',
             html: '',
             items: [
                 [
@@ -774,7 +774,7 @@ let app = new Vue({
             y: [],
             standard_series: [],
             instrument_model: '分光光度计',
-            GB: '',
+            GB: 'GB/T 5750.6-2006',
             html: '',
             items: [
                 [
@@ -829,7 +829,7 @@ let app = new Vue({
             y: [],
             standard_series: [],
             instrument_model: '分光光度计',
-            GB: '',
+            GB: 'GB/T 5750.6-2006',
             html: '',
             items: [
                 [
@@ -884,7 +884,7 @@ let app = new Vue({
             y: [],
             standard_series: [],
             instrument_model: '分光光度计',
-            GB: '',
+            GB: 'GB/T 5750.6-2006',
             html: '',
             items: [
                 [
@@ -939,7 +939,7 @@ let app = new Vue({
             y: [],
             standard_series: [],
             instrument_model: '分光光度计',
-            GB: '',
+            GB: 'GB/T 5750.6-2006',
             html: '',
             items: [
                 [
@@ -994,7 +994,7 @@ let app = new Vue({
             y: [],
             standard_series: [],
             instrument_model: '分光光度计',
-            GB: '',
+            GB: 'GB/T 5750.5-2006',
             html: '',
             items: [
                 [
