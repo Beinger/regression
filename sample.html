@@ -11,9 +11,10 @@
 </head>
 <body>
     <div id="app">
-         <h3 @click="get_storage()"><i>水质检测报告</i></h3>
-         <table>
+         <h3 class="text-center" @click="get_storage()"><i>水质检测报告</i></h3>
+         <table class="table table-bordered table-striped table-hover">
              <thead>
+                 <th>编号</th>
                  <th>检测项目</th>
                  <th>参考范围</th>
                  <th>检测结果</th>
@@ -21,6 +22,7 @@
              </thead>
              <tbody>
                  <tr v-for="(item, index) in items" :key="index">
+                     <td>{{ item.id }}</td>
                      <td>{{ item.name }}</td>
                      <td>{{ item.range }}</td>
                      <td>{{ item.result }}</td>
