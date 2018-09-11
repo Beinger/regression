@@ -30,6 +30,12 @@
                  </tr>
              </tbody>
          </table>
+         <table class="table table-bordered">
+             <tr v-for="(key, value) in storage" :key="key">
+                 <td>{{ value.name }}</td>
+                 <td>{{ value.result }}</td>
+             </tr>
+         </table>
     </div> 
     <script src="sample.js"></script>
 </body>

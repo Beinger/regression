@@ -24,6 +24,21 @@ let sample = new Vue({
                     }
                     return arr;
                 },
+                storage(){
+                    let obj = new Object;
+                    obj.key = [];
+                    obj.value = [];
+                    
+                    let reg_s = new RegExp("^[\u4e00-\u9fa5]+[0-9]+报告结果$", "g")
+                    for(let i=0; i<localStorage.length; i++){
+                        let x = localStorage.key(i);
+                        if(reg_s.test(x)){
+                            obj.key.push(x);
+                            obj.value.push(localStorage.getItem(x));
+                        }
+                    }
+                    return obj;
+                }
             },
             methods: {
                 sort_obj(arr) {
