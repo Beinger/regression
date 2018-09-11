@@ -31,9 +31,15 @@
              </tbody>
          </table>
          <table class="table table-bordered">
-             <tr v-for="(key, value) in storage" :key="key">
-                 <td>{{ value.name }}</td>
-                 <td>{{ value.result }}</td>
+             <th>index</th>
+             <th>key</th>
+             <th>id</th>
+             <th>result</th>
+             <tr v-for="(value, key, index) in storage" :key="key">
+                 <td>{{ index }}</td>
+                 <td>{{ key }}</td>
+                 <td>{{ value.key }}</td>
+                 <td>{{ value.value }}</td>
              </tr>
          </table>
     </div> 
