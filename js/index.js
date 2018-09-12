@@ -1089,14 +1089,14 @@ let app = new Vue({
                 this.selected.y.push(value2);
                 this.selected.standard_series[i - 1] = value;
             }
-            myStorage.setItem(this.selected.name, this.selected.standard_series);
+            localStorage.setItem(this.selected.name, this.selected.standard_series);
         },
         get_series() {
             /**
              * 从localStorage中获取保存的标准系列,如果是第一次使用，
              * 会调用默认的标准系列,同时渲染出标准系列表格。
              */
-            let series_data = myStorage.getItem(this.selected.name);
+            let series_data = localStorage.getItem(this.selected.name);
             if (series_data) {
                 series_data = series_data.split(',');
                 series_data = series_data.map(Number);
@@ -1284,13 +1284,13 @@ let app = new Vue({
             for (let i = start_item; i <= end_item; i++) {
                 let p = (this.selected.name + i + '报告结果');
                 let date = new Date();
-                date = date.format("yyyy-MM-dd");
+                date = date.format("yyyy-MM-d");
                 this.selected.results[i - start_item].date = date;
                 let str = JSON.stringify(this.selected.results[i - start_item]); //格式化后才能存入 
-                myStorage.setItem(p, str);
+                localStorage.setItem(p, str);
             };
             let n = this.selected.name + 'end';
-            myStorage.setItem(n, end_item + 1);
+            localStorage.setItem(n, end_item + 1);
         },
         mystorages() {
             /**
@@ -1298,15 +1298,15 @@ let app = new Vue({
              */
             this.selected.st = [];
             let n = this.selected.name + 'end';
-            if (myStorage.getItem(n)) {
+            if (localStorage.getItem(n)) {
                 let keys = this.get_key();
                 for (let i = 0; i < keys.length; i++) {
                     let x = (this.selected.name + keys[i] + '报告结果');
-                    let p = myStorage.getItem(x);
+                    let p = localStorage.getItem(x);
                     p = eval(JSON.parse(p));
                     this.selected.st.push(p);
                 }
-                this.selected.start = Number(myStorage.getItem(n));
+                this.selected.start = Number(localStorage.getItem(n));
             } else {
                 this.selected.start = this.selected.start;
             }
@@ -1388,7 +1388,7 @@ function getTableContent() {
      * 同时把数据存入localStorage
      */
     series_data = app.selected.standard_series;
-    myStorage.setItem(app.selected.name, series_data)
+    localStorage.setItem(app.selected.name, series_data)
 };
 
 function focus_move() {
@@ -1458,17 +1458,17 @@ function useCount(item) {
     //计数页面登录次数
     let pagecount = item + 'pagecount';
     let judge = item + 'judge';
-    if (myStorage.getItem(pagecount)) {
-        myStorage.setItem(pagecount, Number(myStorage.getItem(pagecount)) + 1);
+    if (localStorage.getItem(pagecount)) {
+        localStorage.setItem(pagecount, Number(localStorage.getItem(pagecount)) + 1);
     } else {
-        myStorage.setItem(pagecount, 1);
+        localStorage.setItem(pagecount, 1);
     };
-    if (myStorage.getItem(judge)) {
+    if (localStorage.getItem(judge)) {
         app.selected.judge = true;
-        myStorage.setItem(judge, true);
+        localStorage.setItem(judge, true);
     } else {
         app.selected.judge = false;
-        myStorage.setItem(judge, false);
+        localStorage.setItem(judge, false);
     };
 };
 Date.prototype.format = function (fmt) {

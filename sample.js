@@ -11,32 +11,57 @@ let sample = new Vue({
                 }
             },
             computed: {
-                report_number(){
+                report_number() {
                     let arr = 0;
-                    let reg_end = new RegExp("end$","g");
-                    for(let i=0; i<localStorage.length; i++){
+                    let reg_end = new RegExp("end$", "g");
+                    for (let i = 0; i < localStorage.length; i++) {
                         let x = localStorage.key(i);
-                        if(reg_end.test(x)){
-                            if(localStorage.getItem(x)>arr){
+                        if (reg_end.test(x)) {
+                            if (localStorage.getItem(x) > arr) {
                                 arr = localStorage.getItem(x);
                             }
                         }
                     }
                     return arr;
                 },
-                storage(){
+                storage() {
                     let obj = new Object;
                     obj.key = [];
                     obj.value = [];
-                    
-                    let reg_s = new RegExp("^[\u4e00-\u9fa5]+[0-9]+报告结果$", "g")
-                    for(let i=0; i<localStorage.length; i++){
-                        let x = localStorage.key(i);
-                        if(reg_s.test(x)){
-                            obj.key.push(x);
-                            obj.value.push(localStorage.getItem(x));
+                    let reg_s = new RegExp("报告结果$", "g");
+                    let reg_end = new RegExp("end$","g");
+                    let num = 1;
+                    let max = 0;
+                    for (let i = 0; i < obj.value.length; i++) {
+                        if (Number(obj.value[i]).id > max) {
+                            max = Number(obj.value[i].id);
                         }
                     }
+                    let reg_value = "["+num+"]";
+
+                    for (let i = 0; i < localStorage.getItem(; i++) {
+                        if(reg_value.test(localStorage.key(i))){
+
+                        }
+                        let x = localStorage.key(i);
+                        if (reg_s.test(x)) {
+                            let name = x.match(/^[\u4e00-\u9fa5]+/g).join("");
+                            obj.key.push(name);
+                            let y = localStorage.getItem(x);
+                            y = eval(JSON.parse(y));
+                            obj.value.push(y);
+                        }
+                    }
+                    let value_ = [];
+                    for (let i = 1; i < max; i++) {
+                        let x = [];
+                        if (Number(obj.value[i].id) == i) {
+                            x.push(Number(obj.value[i]));
+                        }
+                        value_.push(x);
+                        x = [];
+                    }
+                    // obj.value = value_;
                     return obj;
                 }
             },
@@ -92,14 +117,14 @@ let sample = new Vue({
                                 this.item.judgment = "不合格";
                             }
                         }
-                    this.items.push(this.item);
-                    this.item = {
-                        judgment: '',
-                        name: '',
-                        range: [0, 0.1],
-                        result: 0,
-                        id: 0,
-                    }
+                        this.items.push(this.item);
+                        this.item = {
+                            judgment: '',
+                            name: '',
+                            range: [0, 0.1],
+                            result: 0,
+                            id: 0,
+                        }
                     }
                     // for (let i = 0; i < names_ids.length; i++) {
                     //     let name = names_ids[i].replace(/^[\u4e00-\u9fa5]*(\u4e00-\u9fa5)[\u4e00-\u9fa5]*$/, "$1")

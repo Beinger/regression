@@ -31,16 +31,16 @@
              </tbody>
          </table>
          <table class="table table-bordered">
-             <th>index</th>
-             <th>key</th>
+             <th>name</th>
              <th>id</th>
              <th>result</th>
-             <tr v-for="(value, key, index) in storage" :key="key">
-                 <td>{{ index }}</td>
-                 <td>{{ key }}</td>
-                 <td>{{ value.key }}</td>
-                 <td>{{ value.value }}</td>
-             </tr>
+             <tbody v-for="(value, key) in storage.value" :key="key">
+                 <tr v-for="(item, index) in value" :key="index">
+                 <td>{{ storage.key[key] }}</td>
+                 <td>{{ item[index].id }}</td>
+                 <td>{{ item[index].result }}</td>
+                 </tr>
+             </tbody>
          </table>
     </div> 
     <script src="sample.js"></script>
