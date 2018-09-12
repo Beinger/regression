@@ -1,6 +1,8 @@
 let sample = new Vue({
             el: "#app",
             data: {
+                reg_s: /报告结果$/g,
+                reg_st: /^[\u4e00-\u9fa5]+/g,
                 items: [],
                 item: {
                     judgment: '',
@@ -8,6 +10,10 @@ let sample = new Vue({
                     range: [0, 0.1],
                     result: 0,
                     id: 0,
+                },
+                obj: {
+                    key: [],
+                    value: []
                 }
             },
             computed: {
@@ -25,48 +31,52 @@ let sample = new Vue({
                     return arr;
                 },
                 storage() {
-                    let obj = new Object;
-                    obj.key = [];
-                    obj.value = [];
-                    let reg_s = /报告结果$/g;
-                    let reg_end = /end$/g;
-                    let reg_st = /^[\u4e00-\u9fa5]+/g;
-                    let num = 1;
-                    let reg_value = /[0-9]+/g;
                     //先把所有结果存储找出来，存入obj.value
-                    for (let i = 0; i < localStorage.length; i++) {
-                        let x = localStorage.key(i);
-                        if(reg_value.test(x)){
-                            reg_value.lastIndex = 0
-                            let y = localStorage.getItem(x);
-                            y = eval(JSON.parse(y));
-                            obj.value.push(y)
-                        }
-                    }
+                    this.local_get()
                     //算出结果里面最大的样品编号
-                    let max = 0;
-                    for (let i = 0; i < obj.value.length; i++) {
-                        if (Number(obj.value[i]).id > max) {
-                            max = Number(obj.value[i].id);
-                        }
-                    }
+                    let max = this.find_max(this.obj.value)
                     //然后根据id进行分类
+                    let item = []
                     let new_list = []
-                    for(let i=0; i<max; i++){
-                        let item = []
-                        for(let n=0; n<obj.value.length; n++){
-                            if(obj.value[n].id == i){
-                                item.push(obj.value[n])
+                    for(let i=1; i<max; i++){
+                        for(let n=0; n<this.obj.value.length; n++){
+                            if(Number(this.obj.value[n].id) == i){
+                                item.push(this.obj.value[n])
                             }
                         }
-                        new_list.push(item);
+                        new_list.push(item)
+                        item = []
                     }
-                    
-                    obj.value = new_list;
-                    return obj;
-                }
+                    return new_list;
+                },
+
             },
             methods: {
+                local_get(){
+                    for (let i = 0; i < localStorage.length; i++) {
+                        let x = localStorage.key(i);
+                        if(this.reg_s.test(x)){
+                            this.reg_s.lastIndex = 0
+                            let y = localStorage.getItem(x);
+                            y = eval(JSON.parse(y));
+
+                            this.obj.value.push(y)
+                            let name = this.reg_st.exec(x)
+                            this.reg_st.lastIndex = 0
+                            y.name = name[0]
+                        }
+                    }
+                },
+                find_max(arr){
+                    //这里的arr是[{},{},{}....]
+                    let max = 0;
+                    for (let i = 0; i < arr.length; i++) {
+                        if (Number(arr[i].id) > max) {
+                            max = Number(arr[i].id)
+                        }
+                    }
+                    return max+1
+                },
                 sort_obj(arr) {
                     let new_arr = [];
                     for (let n = 1; n < this.report_number; n++) {

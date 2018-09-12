@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,40 +10,23 @@
     <script src="js/vue.min.js"></script>
     <title>样品登记</title>
 </head>
+
 <body>
     <div id="app">
-         <h3 class="text-center" @click="get_storage()"><i>水质检测报告</i></h3>
-         <table class="table table-bordered table-striped table-hover">
-             <thead>
-                 <th>编号</th>
-                 <th>检测项目</th>
-                 <th>参考范围</th>
-                 <th>检测结果</th>
-                 <th>结果评价</th>
-             </thead>
-             <tbody>
-                 <tr v-for="(item, index) in items" :key="index">
-                     <td>{{ item.id }}</td>
-                     <td>{{ item.name }}</td>
-                     <td>{{ item.range }}</td>
-                     <td>{{ item.result }}</td>
-                     <td>{{ item.judgment }}</td>
-                 </tr>
-             </tbody>
-         </table>
-         <table class="table table-bordered">
-             <th>name</th>
-             <th>id</th>
-             <th>result</th>
-             <tbody v-for="(value, key) in storage.value" :key="key">
-                 <tr v-for="(item, index) in value" :key="index">
-                 <td>{{ storage.key[key] }}</td>
-                 <td>{{ item[index].id }}</td>
-                 <td>{{ item[index].result }}</td>
-                 </tr>
-             </tbody>
-         </table>
-    </div> 
+        <h3 class="text-center" @click="get_storage()"><i>水质检测报告</i></h3>
+        <table v-for="(value, key) in storage" :key="key" class="table table-bordered table-striped table-hover">
+            <thead>
+                <th>name</th>
+                <th>result</th>
+            </thead>
+            <tbody>
+                <tr v-for="(item, index) in value" :key="index">
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.result }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <script src="sample.js"></script>
 </body>
 </html>
