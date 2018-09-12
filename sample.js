@@ -28,40 +28,41 @@ let sample = new Vue({
                     let obj = new Object;
                     obj.key = [];
                     obj.value = [];
-                    let reg_s = new RegExp("报告结果$", "g");
-                    let reg_end = new RegExp("end$","g");
+                    let reg_s = /报告结果$/g;
+                    let reg_end = /end$/g;
+                    let reg_st = /^[\u4e00-\u9fa5]+/g;
                     let num = 1;
+                    let reg_value = /[0-9]+/g;
+                    //先把所有结果存储找出来，存入obj.value
+                    for (let i = 0; i < localStorage.length; i++) {
+                        let x = localStorage.key(i);
+                        if(reg_value.test(x)){
+                            reg_value.lastIndex = 0
+                            let y = localStorage.getItem(x);
+                            y = eval(JSON.parse(y));
+                            obj.value.push(y)
+                        }
+                    }
+                    //算出结果里面最大的样品编号
                     let max = 0;
                     for (let i = 0; i < obj.value.length; i++) {
                         if (Number(obj.value[i]).id > max) {
                             max = Number(obj.value[i].id);
                         }
                     }
-                    let reg_value = "["+num+"]";
-
-                    for (let i = 0; i < localStorage.getItem(; i++) {
-                        if(reg_value.test(localStorage.key(i))){
-
+                    //然后根据id进行分类
+                    let new_list = []
+                    for(let i=0; i<max; i++){
+                        let item = []
+                        for(let n=0; n<obj.value.length; n++){
+                            if(obj.value[n].id == i){
+                                item.push(obj.value[n])
+                            }
                         }
-                        let x = localStorage.key(i);
-                        if (reg_s.test(x)) {
-                            let name = x.match(/^[\u4e00-\u9fa5]+/g).join("");
-                            obj.key.push(name);
-                            let y = localStorage.getItem(x);
-                            y = eval(JSON.parse(y));
-                            obj.value.push(y);
-                        }
+                        new_list.push(item);
                     }
-                    let value_ = [];
-                    for (let i = 1; i < max; i++) {
-                        let x = [];
-                        if (Number(obj.value[i].id) == i) {
-                            x.push(Number(obj.value[i]));
-                        }
-                        value_.push(x);
-                        x = [];
-                    }
-                    // obj.value = value_;
+                    
+                    obj.value = new_list;
                     return obj;
                 }
             },
