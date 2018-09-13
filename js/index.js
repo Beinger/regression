@@ -1336,7 +1336,7 @@ let app = new Vue({
             /**
              * 根据当前项目的最小检出限计算出报告结果
              */
-            let c = get_c(element);
+            let c = this.get_c(element);
             if (c >= this.selected.limit) {
                 this.selected.results[element].result = c;
             } else {
