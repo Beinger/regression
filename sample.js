@@ -11,6 +11,7 @@ let sample = new Vue({
                     result: 0,
                     id: 0,
                 },
+                new_list: [],
                 obj: {
                     key: [],
                     value: []
@@ -37,19 +38,17 @@ let sample = new Vue({
                     let max = this.find_max(this.obj.value)
                     //然后根据id进行分类
                     let item = []
-                    let new_list = []
                     for(let i=1; i<max; i++){
                         for(let n=0; n<this.obj.value.length; n++){
                             if(Number(this.obj.value[n].id) == i){
                                 item.push(this.obj.value[n])
                             }
                         }
-                        new_list.push(item)
+                        this.new_list.push(item)
                         item = []
                     }
                     return new_list;
                 },
-
             },
             methods: {
                 local_get(){
