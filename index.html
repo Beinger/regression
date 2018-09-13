@@ -110,7 +110,7 @@
                             <table class="table table-hover table-bordered table-striped">
                                 <tr>
                                     <th class="text-center">样品编号</th>
-                                    <th class="text-center">加样体积</th>
+                                    <th class="text-center">加样体积(ml)</th>
                                     <th class="text-center">吸光度</th>
                                     <th class="text-center">操作</th>
                                 </tr>
@@ -120,7 +120,7 @@
                                     </td>
                                     <td>
                                         <select class="form-control" name="" id="" v-model="selected.v">
-                                            <option :value="opt" v-for="opt in vol_select"> <span v-text="opt"></span> ml</option>
+                                            <option :value="opt" v-for="opt of vol_select" v-text="opt"> </option>
                                         </select>
                                     </td>
                                     <td>
