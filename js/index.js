@@ -1060,7 +1060,7 @@ let app = new Vue({
     },
     methods: {
         // 打印
-        printContent(e) {
+        printContent() {
             let subOutputRankPrint = document.getElementById('subOutputRank-print');
             console.log(subOutputRankPrint.innerHTML);
             let newContent = subOutputRankPrint.innerHTML;

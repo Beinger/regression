@@ -16,21 +16,36 @@
     <script src="js/highcharts_zh.js"></script>
     <script src="js/myStorage.min.js"></script>
     <script src="js/webSQL.js"></script>
+    <script src="https://cdn.bootcss.com/babel-polyfill/7.0.0-beta.49/polyfill.min.js"></script>
+    <script type="text/babel">
+ 
+        var arrayLike = {
+            '0': 1,
+            '1': 2,
+            '2': 3,
+            length: 3
+        };
+        // Array.from为ES6新添加的方法
+        var arr2 = Array.from(arrayLike, x => x + x);
+        console.log(arr2); // [2, 4, 6]
+         
+      </script>
     <title>标准回归</title>
 </head>
+
 <body>
 
     <div class="container">
 
         <div class="jumbotron">
-            <h1>水质检验回归分析系统</h1>
+            <h1><i class="fa fa-tint"></i>--水质检验回归分析系统--<i class="fa fa-tint"></i></h1>
         </div>
         <div id="root">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-xs-6">
                     <select tabindex="-1" class="form-control input-lg" name="xm" id="xm" v-model="selected">
-                        <option disabled>－－请选择－－</option>
-                        <option :value="item" v-for="(item,index) in names">{{ item.name }}</option>
+                        <option style="font-size: 80%" disabled>---请选择---</option>
+                        <option :id="'select'+index" :value="item" v-for="(item,index) in names" v-text="item.name"></option>
                     </select>
                 </div>
                 <div class="col-lg-6 col-md-6 col-xs-6 text-right">
@@ -40,7 +55,8 @@
             <div class="row">
                 <div class="col-lg-6">
 
-                    <table v-show="show" class="animated fadeInUp table table-hover table-bordered text-center table-striped" :id="selected.id">
+                    <table v-show="show" class="animated fadeInUp table table-hover table-bordered text-center table-striped"
+                        :id="selected.id">
                         <thead>
                             <tr>
                                 <th class="text-center">序号</th>
@@ -51,9 +67,9 @@
                         </thead>
                         <tbody>
                             <tr v-for="(item, index) in selected.standard_series" :key="index">
-                                <td>{{ index + 1 }}</td>
-                                <td :contenteditable="true" :id="'v'+index">{{ item[0] }}</td>
-                                <td :contenteditable="true" :id="'a'+index">{{ item[1] }}</td>
+                                <td v-text="index+1"></td>
+                                <td :contenteditable="true" :id="'v'+index" v-text="item[0]"></td>
+                                <td :contenteditable="true" :id="'a'+index" v-text="item[1]"></td>
                                 <td @click="add_item(selected.id)" class="btn text-warning" title="增加序列">
                                     <i class="fa fa-plus"></i>
                                 </td>
@@ -61,7 +77,7 @@
                             </tr>
                         </tbody>
                         <caption>
-                            <h4 onclick="focus_move()">水中{{ selected.name }}的标准系列 </h4>
+                            <h4 onclick="focus_move()">水中<span v-text="selected.name"></span>的标准系列 </h4>
                         </caption>
                     </table>
                 </div>
@@ -73,24 +89,24 @@
                 <div class="row">
                     <div class="col-lg-5">
                         <fieldset>
-                            <legend>{{ selected.name }}的回归公式</legend>
+                            <legend><span v-text="selected.name"></span>的回归公式</legend>
                             <h4 v-html="selected.formula"></h4>
                             <span class="text-danger animated bounceIn infinite" v-if="selected.r<0.999">------注意：相关系数若小于0.999，说明标准曲线不合格，请重新核对数据，分析检测过程，必要时重新测定标准系列。</span>
                             <div>
                                 <a class="btn btn-default" @click="add_sample()">
                                     <i class="fa fa-hand-o-right fa-2x"></i><i class="fa fa-pencil"></i>
                                     开始录入
-                                <i>样品编号YXCDC2018水第
-                                    <input v-if="selected.judge" tabindex="11" type="number" v-model="selected.start">
-                                    <input v-else tabindex="11" type="number" v-model="selected.end"> 号
-                                </i>
+                                    <i>样品编号YXCDC2018水第
+                                        <input v-if="selected.judge" tabindex="11" type="number" v-model="selected.start">
+                                        <input v-else tabindex="11" type="number" v-model="selected.end"> 号
+                                    </i>
                                 </a>
                             </div>
                         </fieldset>
                     </div>
                     <div class="col-lg-7">
                         <fieldset v-if="add" class="animated fadeInRight">
-                            <legend>样品中{{ selected.name }}浓度计算</legend>
+                            <legend>样品中 <span v-text="selected.name"></span> 浓度计算</legend>
                             <table class="table table-hover table-bordered table-striped">
                                 <tr>
                                     <th class="text-center">样品编号</th>
@@ -100,18 +116,19 @@
                                 </tr>
                                 <tr class="text-center">
                                     <td>
-                                        <i class="form-control">YXCDC2018水第{{ f_n(selected.start, 3) }}号</i>
+                                        <i class="form-control">YXCDC2018水第<span v-text="f_n(selected.start,3)"></span>号</i>
                                     </td>
                                     <td>
                                         <select class="form-control" name="" id="" v-model="selected.v">
-                                            <option :value="opt" v-for="opt in vol_select">{{ opt }} ml</option>
+                                            <option :value="opt" v-for="opt in vol_select"> <span v-text="opt"></span> ml</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <input class="form-control animated bounceInRight" type="number" tabindex="0" v-model="selected.new_results.a">
+                                        <input class="form-control animated bounceInRight" type="number" tabindex="0"
+                                            placeholder="输入后直接回车，不用&rarr;提交" v-model="selected.new_results.a">
                                     </td>
                                     <td>
-                                        <button class="btn btn-success" tabindex="0" @click="submit_result">提交</button>
+                                        <button class="btn" tabindex="0" @click="submit_result">提交</button>
                                     </td>
                                 </tr>
                             </table>
@@ -133,67 +150,65 @@
                     </thead>
                     <tbody class="text-center">
                         <tr v-for="(item, index) in selected.results">
-                            <td>{{ f_n(item.id, 3) }}</td>
-                            <td>{{ item.v }}</td>
-                            <td>{{ item.a }}</td>
-                            <td>{{ get_m(index) }}</td>
-                            <td class="animated bounceInUp">{{ get_result(index) }}</td>
+                            <td v-text="f_n(item.id, 3)"></td>
+                            <td v-text="item.v"></td>
+                            <td v-text="item.a"></td>
+                            <td v-text="get_m(index)"></td>
+                            <td class="animated bounceInUp" v-text="get_result(index)"></td>
                             <td>
                                 <i class="btn fa fa-trash text-danger" @click="del_sample(index)">删除</i>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <a class="btn text-danger" @click="printContent(e)">打印</a>
-                <a class="btn text-warning"　style="float: right" href="sample.html">生成报告</a>
+                <a class="btn text-danger" @click="printContent()"><i class="fa fa-print"></i>打印</a>
+                <a class="btn text-warning" 　style="float: right" href="sample.html">生成报告</a>
                 <div id="subOutputRank-print">
-                                <div @click="date_y()" class="text-center" colspan="5">
-                                    <h3 title="点击这里可以查看每个样品的检测日期"><i>水样中{{ selected.name }}检验记录</i></h3>
-                                </div>
+                    <div @click="date_y()" class="text-center" colspan="5">
+                        <h3 title="点击这里可以查看每个样品的检测日期"><i>水样中<span v-text="selected.name"></span>检验记录</i></h3>
+                    </div>
                     <table class="table table-bordered table-striped table-hover">
-                            <tr>
-                                <td class="text-center">样品名称：</td>
-                                <td :contenteditable="true">
-                                    <!-- <select style="border:0px; outline:none; cursor: pointer;" class="form-control">
-                                        <option value="井水">井水</option>
-                                        <option value="泉水">泉水</option>
-                                        <option value="河水">河水</option>
-                                        <option value="溪水">溪水</option>
-                                        <option value="自来水">自来水</option>
-                                    </select> -->
-                                </td>
-                                <td class="text-center">样品数量(L)：</td>
-                                <td :contenteditable="true">3</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">收样日期：</td>
-                                <td :contenteditable="true" v-text="recived_date"></td>
-                                <td class="text-center">检验日期：</td>
-                                <td :contenteditable="true" v-text="test_date"></td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">样品性状：</td>
-                                <td :contenteditable="true">液态</td>
-                                <td class="text-center">检测环境：</td>
-                                <td :contenteditable="true">
-                                    <span v-text="sample.temprature"></span> ℃
-                                    <span v-text="sample.rh"></span>% RH
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">检测仪器：</td>
-                                <td>
-                                    {{ selected.instrument_model }}
-                                </td>
-                                <td class="text-center">检验依据：</td>
-                                <td>
-                                    {{ selected.GB }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">检测方法：</td>
-                                <td colspan="5" :contenteditable="true">{{ selected.method }}</td>
-                            </tr>
+                        <tr>
+                            <td class="text-center">样品名称：</td>
+                            <td :contenteditable="true">
+                                <select style="border:0px; outline:none; cursor: pointer;">
+                                    <option value="井水">井水</option>
+                                    <option value="泉水">泉水</option>
+                                    <option value="河水">河水</option>
+                                    <option value="溪水">溪水</option>
+                                    <option value="自来水">自来水</option>
+                                </select>
+                            </td>
+                            <td class="text-center">样品数量(L)：</td>
+                            <td :contenteditable="true">3</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">收样日期：</td>
+                            <td :contenteditable="true" v-text="recived_date"></td>
+                            <td class="text-center">检验日期：</td>
+                            <td :contenteditable="true" v-text="test_date"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">样品性状：</td>
+                            <td :contenteditable="true">液态</td>
+                            <td class="text-center">检测环境：</td>
+                            <td :contenteditable="true">
+                                <span v-text="sample.temprature"></span> ℃
+                                <span v-text="sample.rh"></span>% RH
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">检测仪器：</td>
+                            <td v-text="selected.instrument_model">
+                            </td>
+                            <td class="text-center">检验依据：</td>
+                            <td v-text="selected.GB">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">检测方法：</td>
+                            <td colspan="5" :contenteditable="true" v-text="selected.method"></td>
+                        </tr>
                     </table>
                     <table @click="mystorages" class="table table-bordered table-striped table-hover" id="record">
                         <thead>
@@ -208,14 +223,20 @@
                         </thead>
                         <tbody class="text-center">
                             <tr v-for="(item, index) in selected.st" :key="index">
-                                <td>YXCDC2018水第{{ f_n(item.id, 3) }}号</td>
-                                <td>{{ item.v }}</td>
-                                <td>{{ item.a }}</td>
-                                <td>{{ item.m }}</td>
-                                <td>{{ item.result }}</td>
-                                <td v-show="date_show">{{ item.date }}</td>
+                                <td>YXCDC2018水第<span v-text="f_n(item.id, 3)"></span>号</td>
+                                <td v-text="item.v"></td>
+                                <td v-text="item.a"></td>
+                                <td v-text="item.m"></td>
+                                <td v-text="item.result"></td>
+                                <td v-show="date_show" v-text="item.date"></td>
                             </tr>
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="2">检验者:</th>
+                                <th colspan="3">审核者:</th>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </form>

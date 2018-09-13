@@ -7,8 +7,10 @@ var webSQL_select_handle = null;
 var webSQL_drop_handle = null;
  
 //连接数据库(数据库名，数据大小)
-function webSQL(database="MyDatabase", datasize=1024*1024){
-    this.db = openDatabase(database, "", "My Database", datasize);
+class webSQL {
+    constructor(database = "MyDatabase", datasize = 1024 * 1024) {
+        this.db = openDatabase(database, "", "My Database", datasize);
+    }
 }
 webSQL.prototype={
  
