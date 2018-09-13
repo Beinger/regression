@@ -16,20 +16,7 @@
     <script src="js/highcharts_zh.js"></script>
     <script src="js/myStorage.min.js"></script>
     <script src="js/webSQL.js"></script>
-    <script src="https://cdn.bootcss.com/babel-polyfill/7.0.0-beta.49/polyfill.min.js"></script>
-    <script type="text/babel">
- 
-        var arrayLike = {
-            '0': 1,
-            '1': 2,
-            '2': 3,
-            length: 3
-        };
-        // Array.from为ES6新添加的方法
-        var arr2 = Array.from(arrayLike, x => x + x);
-        console.log(arr2); // [2, 4, 6]
-         
-      </script>
+    <script src="https://cdn.bootcss.com/store.js/1.3.20/store.min.js"></script>
     <title>标准回归</title>
 </head>
 
@@ -42,13 +29,18 @@
         </div>
         <div id="root">
             <div class="row">
-                <div class="col-lg-6 col-md-6 col-xs-6">
+                <div class="col-lg-5 col-md-5 col-xs-7">
                     <select tabindex="-1" class="form-control input-lg" name="xm" id="xm" v-model="selected">
                         <option style="font-size: 80%" disabled>---请选择---</option>
-                        <option :id="'select'+index" :value="item" v-for="(item,index) in names" v-text="item.name"></option>
+                        <option v-bind:id="'select'+index" v-bind:value="item" v-for="(item,index) in names" v-text="item.name"></option>
                     </select>
                 </div>
-                <div class="col-lg-6 col-md-6 col-xs-6 text-right">
+                <div class="col-lg-3 col-md-3 col-xs-5">
+                    <a class="btn btn-default" @click="add_opt">
+                        <i class="fa fa-plus"></i>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-4 col-xs-12 text-right">
                     <i class="fa fa-calendar"></i><i id="date"></i>
                 </div>
             </div>
@@ -56,20 +48,20 @@
                 <div class="col-lg-6">
 
                     <table v-show="show" class="animated fadeInUp table table-hover table-bordered text-center table-striped"
-                        :id="selected.id">
+                        v-bind:id="selected.id">
                         <thead>
                             <tr>
                                 <th class="text-center">序号</th>
                                 <th class="text-center">标准加入量(μg)</th>
                                 <th class="text-center">吸光度</th>
-                                <th @click="get_list()" title="保存" class="btn text-info" :id="'save'+index"><i class="fa fa-save"></i>保存</th>
+                                <th @click="get_list()" title="保存" class="btn text-info" v-bind:id="'save'+index"><i class="fa fa-save"></i>保存</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="(item, index) in selected.standard_series" :key="index">
                                 <td v-text="index+1"></td>
-                                <td :contenteditable="true" :id="'v'+index" v-text="item[0]"></td>
-                                <td :contenteditable="true" :id="'a'+index" v-text="item[1]"></td>
+                                <td v-bind:contenteditable="true" v-bind:id="'v'+index" v-text="item[0]"></td>
+                                <td v-bind:contenteditable="true" v-bind:id="'a'+index" v-text="item[1]"></td>
                                 <td @click="add_item(selected.id)" class="btn text-warning" title="增加序列">
                                     <i class="fa fa-plus"></i>
                                 </td>
@@ -120,7 +112,7 @@
                                     </td>
                                     <td>
                                         <select class="form-control" name="" id="" v-model="selected.v">
-                                            <option :value="opt" v-for="opt of vol_select" v-text="opt"> </option>
+                                            <option v-bind:value="opt" v-for="opt of vol_select" v-text="opt"> </option>
                                         </select>
                                     </td>
                                     <td>
@@ -170,7 +162,7 @@
                     <table class="table table-bordered table-striped table-hover">
                         <tr>
                             <td class="text-center">样品名称：</td>
-                            <td :contenteditable="true">
+                            <td v-bind:contenteditable="true">
                                 <select style="border:0px; outline:none; cursor: pointer;">
                                     <option value="井水">井水</option>
                                     <option value="泉水">泉水</option>
@@ -180,19 +172,19 @@
                                 </select>
                             </td>
                             <td class="text-center">样品数量(L)：</td>
-                            <td :contenteditable="true">3</td>
+                            <td v-bind:contenteditable="true">3</td>
                         </tr>
                         <tr>
                             <td class="text-center">收样日期：</td>
-                            <td :contenteditable="true" v-text="recived_date"></td>
+                            <td v-bind:contenteditable="true" v-text="recived_date"></td>
                             <td class="text-center">检验日期：</td>
-                            <td :contenteditable="true" v-text="test_date"></td>
+                            <td v-bind:contenteditable="true" v-text="test_date"></td>
                         </tr>
                         <tr>
                             <td class="text-center">样品性状：</td>
-                            <td :contenteditable="true">液态</td>
+                            <td v-bind:contenteditable="true">液态</td>
                             <td class="text-center">检测环境：</td>
-                            <td :contenteditable="true">
+                            <td v-bind:contenteditable="true">
                                 <span v-text="sample.temprature"></span> ℃
                                 <span v-text="sample.rh"></span>% RH
                             </td>
@@ -207,7 +199,7 @@
                         </tr>
                         <tr>
                             <td class="text-center">检测方法：</td>
-                            <td colspan="5" :contenteditable="true" v-text="selected.method"></td>
+                            <td colspan="5" v-bind:contenteditable="true" v-text="selected.method"></td>
                         </tr>
                     </table>
                     <table @click="mystorages" class="table table-bordered table-striped table-hover" id="record">

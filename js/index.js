@@ -10,11 +10,68 @@ let app = new Vue({
         vol_select: [
             50, 100, 250, 1, 25, 10
         ],
+        new_opt: {
+            st: [],
+            judge: false,
+            v: 50,
+            start: 1,
+            end: 1,
+            id: 1,
+            name: '新建',
+            method: '',
+            limit: 0.05,
+            a: 0,
+            b: 1,
+            r: 1,
+            c: 0,
+            formula: '',
+            x: [],
+            y: [],
+            standard_series: [],
+            instrument_model: '分光光度计',
+            GB: 'GB/T 5750.5-2006',
+            html: '',
+            items: [
+                [
+                    0,
+                    0.005
+                ],
+                [
+                    1,
+                    0.010
+                ],
+                [
+                    3,
+                    0.020
+                ],
+                [
+                    5,
+                    0.029
+                ],
+                [
+                    7,
+                    0.039
+                ],
+                [
+                    10,
+                    0.055
+                ]
+            ],
+            results: [],
+            new_results: {
+                id: 1,
+                v: 50,
+                a: '',
+                m: '',
+                result: '',
+                date: ''
+            },
+        },
         sample: {
             id: '',
             v: 3,
-            temprature: 0,
-            rh: 0,
+            temprature: 20,
+            rh: 70,
         },
 
         names: [{
@@ -1046,21 +1103,26 @@ let app = new Vue({
         selected: ''
     },
     watch: {
+        selected: function () {
         /**
          * 当选择了项目时，显示标准系列的列表
          */
-        selected: function () {
             this.show = true;
             this.get_series();
             this.save_series();
             this.math_formula();
             show_chart();
         }
-
     },
     methods: {
-        // 打印
+        add_opt(){
+            alert(true);
+            this.names.push(new_opt);
+        },
         printContent() {
+            /**
+             * 打印页面函数，从网上抄的
+             */
             let subOutputRankPrint = document.getElementById('subOutputRank-print');
             console.log(subOutputRankPrint.innerHTML);
             let newContent = subOutputRankPrint.innerHTML;
@@ -1073,6 +1135,9 @@ let app = new Vue({
         },
 
         date_y() {
+            /**
+             * 控制记录日期是否显示在页面上
+             */
             this.date_show = !this.date_show;
         },
         get_list() {
@@ -1247,7 +1312,6 @@ let app = new Vue({
             return "YXCDC2018水第" + this.selected.results[index].id + "号";
         },
         get_m(element) {
-
             /**
              * 根据出当前项目的吸光度计算出样品所含物质质量
              */
@@ -1255,7 +1319,7 @@ let app = new Vue({
             this.selected.results[element].m = (((a - this.selected.a) / this.selected.b).toFixed(3));
             return this.selected.results[element].m;
         },
-        get_result(element) {
+        get_c(element){
             /**
              * 根据当前项目的加样体积和质量算出样品中物质的浓度
              */
@@ -1266,7 +1330,13 @@ let app = new Vue({
             } else {
                 this.selected.results[element].c = (m / v).toFixed(2);
             }
-            let c = this.selected.results[element].c;
+            return this.selected.results[element].c
+        },
+        get_result(element) {
+            /**
+             * 根据当前项目的最小检出限计算出报告结果
+             */
+            let c = get_c(element);
             if (c >= this.selected.limit) {
                 this.selected.results[element].result = c;
             } else {
