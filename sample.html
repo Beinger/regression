@@ -15,45 +15,43 @@
     <div class="container">
 
         <div id="app">
-            <h3 class="text-center" @click="get_storage()"><i>水质检测报告</i></h3>
-            <table v-for="(value, key) in storage" :key="key" class="table table-bordered table-striped table-hover">
-                <thead>
-                    <tr>
-                    <th colspan="4" class="text-center">YXCDC水第
-                        <span v-text="value[0].id"></span>号</th>
-                    </tr>
-                    <tr>
-                        <th>检测类型</th>
-                        <td></td>
-                        <th>送检日期</th>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th>委托单位</th>
-                        <td></td>
-                        <th>样品类型</th>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th>检验项目</th>
-                        <th>单位</th>
-                        <th>参考范围</th>
-                        <th>检验结果</th>
-                        <th>结果评价</th>
-                    </tr>
-                </thead>
-                <tbody v-for="(item, index) in value" :key="index">
-                    <tr>
-                        <td>{{ item.name }}</td>
-                        <td>{{ item.unit }}</td>
-                        <td>&lt;{{ item.range_large }}</td>
-                        <td>{{ item.result }}</td>
-                        <td>{{ item.assessment }}</td>
-                    </tr>
-                </tbody>
-            </table>
+            <input placeholder="请输入公司或单位名称" class="form-control" type="text" v-model="company">
+            <a class="btn text-danger" @click="printContent()"><i class="fa fa-print"></i>打印</a>
+            <div id="subOutputRank-print">
+                <table v-for="(value, key) in storage" :key="key" class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th colspan="5" style="font-size: 200%;" class="text-center table_border" v-text="company"></th>
+                        </tr>
+                        <tr>
+                            <th colspan="5" class="table_border text-center"><h3>检验报告</h3></th>
+                        </tr>
+                        <tr>
+                            <th colspan="5" class="text-left">样品编号：YXCDC(水)2018第
+                                <span v-text="f_n(value[0].id,3)"></span>号</th>
+                        </tr>
+                        <tr>
+                            <th>检验项目</th>
+                            <th>单位</th>
+                            <th>参考范围</th>
+                            <th>检验结果</th>
+                            <th>单项评价</th>
+                        </tr>
+                    </thead>
+                    <tbody v-for="(item, index) in value" :key="index">
+                        <tr>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.unit }}</td>
+                            <td>&lt;{{ item.range_large }}</td>
+                            <td>{{ item.result }}</td>
+                            <td>{{ item.assessment }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <script src="sample.js"></script>
 </body>
+
 </html>
