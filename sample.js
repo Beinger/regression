@@ -3,14 +3,6 @@ let sample = new Vue({
     data: {
         reg_s: /报告结果$/g,
         reg_st: /^[\u4e00-\u9fa5]+/g,
-        items: [],
-        item: {
-            judgment: '',
-            name: '',
-            range: [0, 0.1],
-            result: 0,
-            id: 0,
-        },
         new_list: [],
         obj: {
             key: [],
@@ -19,17 +11,17 @@ let sample = new Vue({
     },
     computed: {
         report_number() {
-            let arr = 0;
-            let reg_end = new RegExp("end$", "g");
+            let n = 0;
             for (let i = 0; i < localStorage.length; i++) {
                 let x = localStorage.key(i);
-                if (reg_end.test(x)) {
-                    if (localStorage.getItem(x) > arr) {
-                        arr = localStorage.getItem(x);
+                if (this.reg_s.test(x)) {
+                    this.reg_s.lastIndex = 0;
+                    if (localStorage.getItem(x) > n) {
+                        n = localStorage.getItem(x);
                     }
                 }
             }
-            return arr;
+            return n;
         },
         storage() {
             //先把所有结果存储找出来，存入obj.value

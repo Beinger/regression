@@ -10,13 +10,13 @@ let app = new Vue({
         vol_select: [
             50, 100, 250, 1, 25, 10
         ],
+        selected: '',
         new_opt: {
             st: [],
             judge: false,
-            range_small: '',
-            range_large: '',
+            range_large: 0,
             assessment: '',
-
+            unit: 'mg/L',
             v: 50,
             start: 1,
             end: 1,
@@ -79,1110 +79,1091 @@ let app = new Vue({
         },
 
         names: [{
-            st: [],
-            judge: false,
-            range_small: '',
-            range_large: '',
-            assessment: '',
-
-            v: 50,
-            start: 1,
-            end: 1,
-            id: 1,
-            name: '氨氮',
-            method: '',
-            limit: 0.05,
-            a: 0,
-            b: 1,
-            r: 1,
-            c: 0,
-            formula: '',
-            x: [],
-            y: [],
-            standard_series: [],
-            instrument_model: '分光光度计',
-            GB: 'GB/T 5750.5-2006',
-            html: '',
-            items: [
-                [
-                    0,
-                    0.005
-                ],
-                [
-                    1,
-                    0.010
-                ],
-                [
-                    3,
-                    0.020
-                ],
-                [
-                    5,
-                    0.029
-                ],
-                [
-                    7,
-                    0.039
-                ],
-                [
-                    10,
-                    0.055
-                ]
-            ],
-            results: [],
-            new_results: {
-                id: 1,
+                st: [],
+                judge: false,
+                range_large: 0.5,
+                assessment: '',
+                unit: 'mg/L',
                 v: 50,
-                a: '',
-                m: '',
-                result: '',
-                date: ''
-            },
-        },
-        {
-            id: 2,
-            st: [],
-            judge: false,
-            range_small: '',
-            range_large: '',
-            assessment: '',
-
-            v: 250,
-            start: 1,
-            end: 1,
-            name: '氰化物',
-            a: 0,
-            method: '',
-            b: 1,
-            r: 1,
-            c: 0,
-            formula: '',
-            x: [],
-            y: [],
-            limit: 0.002,
-            standard_series: [],
-            instrument_model: '分光光度计',
-            GB: 'GB/T 5750.5-2006',
-            html: '',
-            items: [
-                [
-                    0,
-                    0.004
-                ],
-                [
-                    0.1,
-                    0.016
-                ],
-                [
-                    0.3,
-                    0.035
-                ],
-                [
-                    0.5,
-                    0.053
-                ],
-                [
-                    0.7,
-                    0.073
-                ],
-                [
-                    0.9,
-                    0.092
-                ]
-            ],
-            results: [],
-            new_results: {
+                start: 1,
+                end: 1,
                 id: 1,
+                name: '氨氮',
+                method: '',
+                limit: 0.05,
+                a: 0,
+                b: 1,
+                r: 1,
+                c: 0,
+                formula: '',
+                x: [],
+                y: [],
+                standard_series: [],
+                instrument_model: '分光光度计',
+                GB: 'GB/T 5750.5-2006',
+                html: '',
+                items: [
+                    [
+                        0,
+                        0.005
+                    ],
+                    [
+                        1,
+                        0.010
+                    ],
+                    [
+                        3,
+                        0.020
+                    ],
+                    [
+                        5,
+                        0.029
+                    ],
+                    [
+                        7,
+                        0.039
+                    ],
+                    [
+                        10,
+                        0.055
+                    ]
+                ],
+                results: [],
+                new_results: {
+                    id: 1,
+                    v: 50,
+                    a: '',
+                    m: '',
+                    result: '',
+                    date: ''
+                },
+            },
+            {
+                id: 2,
+                st: [],
+                judge: false,
+                range_large: 0.05,
+                assessment: '',
+                unit: 'mg/L',
                 v: 250,
-                a: '',
-                m: '',
-                result: ''
+                start: 1,
+                end: 1,
+                name: '氰化物',
+                a: 0,
+                method: '',
+                b: 1,
+                r: 1,
+                c: 0,
+                formula: '',
+                x: [],
+                y: [],
+                limit: 0.002,
+                standard_series: [],
+                instrument_model: '分光光度计',
+                GB: 'GB/T 5750.5-2006',
+                html: '',
+                items: [
+                    [
+                        0,
+                        0.004
+                    ],
+                    [
+                        0.1,
+                        0.016
+                    ],
+                    [
+                        0.3,
+                        0.035
+                    ],
+                    [
+                        0.5,
+                        0.053
+                    ],
+                    [
+                        0.7,
+                        0.073
+                    ],
+                    [
+                        0.9,
+                        0.092
+                    ]
+                ],
+                results: [],
+                new_results: {
+                    id: 1,
+                    v: 250,
+                    a: '',
+                    m: '',
+                    result: ''
+                },
             },
-        },
-        {
-            id: 3,
-            st: [],
-            judge: false,
-            range_small: '',
-            range_large: '',
-            assessment: '',
-
-            v: 50,
-            start: 1,
-            end: 1,
-            name: '锰',
-            limit: 0.05,
-            method: '',
-            a: 0,
-            b: 1,
-            r: 1,
-            c: 0,
-            formula: '',
-            x: [],
-            y: [],
-            standard_series: [],
-            instrument_model: '分光光度计',
-            GB: 'GB/T 5750.6-2006',
-            html: '',
-            items: [
-                [
-                    0,
-                    0.002
-                ],
-                [
-                    10,
-                    0.008
-                ],
-                [
-                    30,
-                    0.024
-                ],
-                [
-                    50,
-                    0.038
-                ],
-                [
-                    70,
-                    0.053
-                ],
-                [
-                    90,
-                    0.068
-                ]
-            ],
-            results: [],
-            new_results: {
-                id: 1,
+            {
+                id: 3,
+                st: [],
+                judge: false,
+                range_large: 0.1,
+                assessment: '',
+                unit: 'mg/L',
                 v: 50,
-                a: '',
-                m: '',
-                result: ''
+                start: 1,
+                end: 1,
+                name: '锰',
+                limit: 0.05,
+                method: '',
+                a: 0,
+                b: 1,
+                r: 1,
+                c: 0,
+                formula: '',
+                x: [],
+                y: [],
+                standard_series: [],
+                instrument_model: '分光光度计',
+                GB: 'GB/T 5750.6-2006',
+                html: '',
+                items: [
+                    [
+                        0,
+                        0.002
+                    ],
+                    [
+                        10,
+                        0.008
+                    ],
+                    [
+                        30,
+                        0.024
+                    ],
+                    [
+                        50,
+                        0.038
+                    ],
+                    [
+                        70,
+                        0.053
+                    ],
+                    [
+                        90,
+                        0.068
+                    ]
+                ],
+                results: [],
+                new_results: {
+                    id: 1,
+                    v: 50,
+                    a: '',
+                    m: '',
+                    result: ''
+                },
             },
-        },
-        {
-            id: 4,
-            st: [],
-            judge: false,
-            range_small: '',
-            range_large: '',
-            assessment: '',
-
-            v: 25,
-            start: 1,
-            end: 1,
-            name: '氟化物',
-            limit: 0.2,
-            method: '',
-            a: 0,
-            b: 1,
-            r: 1,
-            c: 0,
-            formula: '',
-            x: [],
-            y: [],
-            standard_series: [],
-            instrument_model: '分光光度计',
-            GB: 'GB/T 5750.5-2006',
-            html: '',
-            items: [
-                [
-                    0,
-                    0.371
-                ],
-                [
-                    2.5,
-                    0.432
-                ],
-                [
-                    5,
-                    0.473
-                ],
-                [
-                    10,
-                    0.559
-                ],
-                [
-                    20,
-                    0.724
-                ],
-                [
-                    40,
-                    1.053
-                ]
-            ],
-            results: [],
-            new_results: {
-                id: 1,
+            {
+                id: 4,
+                st: [],
+                judge: false,
+                range_large: 1.0,
+                assessment: '',
+                unit: 'mg/L',
                 v: 25,
-                a: '',
-                m: '',
-                result: ''
+                start: 1,
+                end: 1,
+                name: '氟化物',
+                limit: 0.2,
+                method: '',
+                a: 0,
+                b: 1,
+                r: 1,
+                c: 0,
+                formula: '',
+                x: [],
+                y: [],
+                standard_series: [],
+                instrument_model: '分光光度计',
+                GB: 'GB/T 5750.5-2006',
+                html: '',
+                items: [
+                    [
+                        0,
+                        0.371
+                    ],
+                    [
+                        2.5,
+                        0.432
+                    ],
+                    [
+                        5,
+                        0.473
+                    ],
+                    [
+                        10,
+                        0.559
+                    ],
+                    [
+                        20,
+                        0.724
+                    ],
+                    [
+                        40,
+                        1.053
+                    ]
+                ],
+                results: [],
+                new_results: {
+                    id: 1,
+                    v: 25,
+                    a: '',
+                    m: '',
+                    result: ''
+                },
             },
-        },
-        {
-            id: 5,
-            st: [],
-            judge: false,
-            range_small: '',
-            range_large: '',
-            assessment: '',
-
-            v: 1,
-            start: 1,
-            end: 1,
-            name: '硝酸盐氮',
-            limit: 0.5,
-            method: '',
-            a: 0,
-            b: 1,
-            r: 1,
-            c: 0,
-            formula: '',
-            x: [],
-            y: [],
-            standard_series: [],
-            instrument_model: '分光光度计',
-            GB: 'GB/T 5750.5-2006',
-            html: '',
-            items: [
-                [
-                    0,
-                    0.007
-                ],
-                [
-                    0.5,
-                    0.030
-                ],
-                [
-                    1,
-                    0.047
-                ],
-                [
-                    3,
-                    0.130
-                ],
-                [
-                    5,
-                    0.197
-                ],
-                [
-                    7,
-                    0.278
-                ],
-                [
-                    10,
-                    0.405
-                ]
-            ],
-            results: [],
-            new_results: {
-                id: 1,
+            {
+                id: 5,
+                st: [],
+                judge: false,
+                range_large: 20,
+                assessment: '',
+                unit: 'mg/L',
                 v: 1,
-                a: '',
-                m: '',
-                result: ''
+                start: 1,
+                end: 1,
+                name: '硝酸盐氮',
+                limit: 0.5,
+                method: '',
+                a: 0,
+                b: 1,
+                r: 1,
+                c: 0,
+                formula: '',
+                x: [],
+                y: [],
+                standard_series: [],
+                instrument_model: '分光光度计',
+                GB: 'GB/T 5750.5-2006',
+                html: '',
+                items: [
+                    [
+                        0,
+                        0.007
+                    ],
+                    [
+                        0.5,
+                        0.030
+                    ],
+                    [
+                        1,
+                        0.047
+                    ],
+                    [
+                        3,
+                        0.130
+                    ],
+                    [
+                        5,
+                        0.197
+                    ],
+                    [
+                        7,
+                        0.278
+                    ],
+                    [
+                        10,
+                        0.405
+                    ]
+                ],
+                results: [],
+                new_results: {
+                    id: 1,
+                    v: 1,
+                    a: '',
+                    m: '',
+                    result: ''
+                },
             },
-        },
-        {
-            id: 6,
-            st: [],
-            judge: false,
-            range_small: '',
-            range_large: '',
-            assessment: '',
-
-            v: 100,
-            start: 1,
-            end: 1,
-            name: '铝',
-            limit: 0.008,
-            method: '',
-            a: 0,
-            b: 1,
-            r: 1,
-            c: 0,
-            formula: '',
-            x: [],
-            y: [],
-            standard_series: [],
-            instrument_model: '分光光度计',
-            GB: 'GB/T 5750.6-2006',
-            html: '',
-            items: [
-                [
-                    0,
-                    0.004
-                ],
-                [
-                    0.5,
-                    0.066
-                ],
-                [
-                    1,
-                    0.143
-                ],
-                [
-                    2,
-                    0.300
-                ],
-                [
-                    3,
-                    0.446
-                ],
-                [
-                    4,
-                    0.585
-                ],
-                [
-                    5,
-                    0.725
-                ]
-            ],
-            results: [],
-            new_results: {
-                id: 1,
+            {
+                id: 6,
+                st: [],
+                judge: false,
+                range_large: 0.2,
+                assessment: '',
+                unit: 'mg/L',
                 v: 100,
-                a: '',
-                m: '',
-                result: ''
+                start: 1,
+                end: 1,
+                name: '铝',
+                limit: 0.008,
+                method: '',
+                a: 0,
+                b: 1,
+                r: 1,
+                c: 0,
+                formula: '',
+                x: [],
+                y: [],
+                standard_series: [],
+                instrument_model: '分光光度计',
+                GB: 'GB/T 5750.6-2006',
+                html: '',
+                items: [
+                    [
+                        0,
+                        0.004
+                    ],
+                    [
+                        0.5,
+                        0.066
+                    ],
+                    [
+                        1,
+                        0.143
+                    ],
+                    [
+                        2,
+                        0.300
+                    ],
+                    [
+                        3,
+                        0.446
+                    ],
+                    [
+                        4,
+                        0.585
+                    ],
+                    [
+                        5,
+                        0.725
+                    ]
+                ],
+                results: [],
+                new_results: {
+                    id: 1,
+                    v: 100,
+                    a: '',
+                    m: '',
+                    result: ''
+                },
             },
-        },
-        {
-            id: 7,
-            st: [],
-            judge: false,
-            range_small: '',
-            range_large: '',
-            assessment: '',
-
-            v: 50,
-            start: 1,
-            end: 1,
-            name: '挥发酚',
-            limit: 0.002,
-            method: '',
-            a: 0,
-            b: 1,
-            r: 1,
-            c: 0,
-            formula: '',
-            x: [],
-            y: [],
-            standard_series: [],
-            instrument_model: '分光光度计',
-            GB: 'GB/T 5750.4-2006',
-            html: '',
-            items: [
-                [
-                    0,
-                    0.006
-                ],
-                [
-                    0.5,
-                    0.016
-                ],
-                [
-                    1,
-                    0.028
-                ],
-                [
-                    3,
-                    0.070
-                ],
-                [
-                    5,
-                    0.121
-                ],
-                [
-                    7,
-                    0.162
-                ],
-                [
-                    10,
-                    0.234
-                ]
-            ],
-            results: [],
-            new_results: {
-                id: 1,
+            {
+                id: 7,
+                st: [],
+                judge: false,
+                range_large: 0.002,
+                assessment: '',
+                unit: 'mg/L',
                 v: 50,
-                a: '',
-                m: '',
-                result: ''
+                start: 1,
+                end: 1,
+                name: '挥发酚',
+                limit: 0.002,
+                method: '',
+                a: 0,
+                b: 1,
+                r: 1,
+                c: 0,
+                formula: '',
+                x: [],
+                y: [],
+                standard_series: [],
+                instrument_model: '分光光度计',
+                GB: 'GB/T 5750.4-2006',
+                html: '',
+                items: [
+                    [
+                        0,
+                        0.006
+                    ],
+                    [
+                        0.5,
+                        0.016
+                    ],
+                    [
+                        1,
+                        0.028
+                    ],
+                    [
+                        3,
+                        0.070
+                    ],
+                    [
+                        5,
+                        0.121
+                    ],
+                    [
+                        7,
+                        0.162
+                    ],
+                    [
+                        10,
+                        0.234
+                    ]
+                ],
+                results: [],
+                new_results: {
+                    id: 1,
+                    v: 50,
+                    a: '',
+                    m: '',
+                    result: ''
+                },
             },
-        },
-        {
-            id: 8,
-            st: [],
-            judge: false,
-            range_small: '',
-            range_large: '',
-            assessment: '',
-
-            v: 50,
-            start: 1,
-            end: 1,
-            name: '汞',
-            limit: 0.001,
-            method: '',
-            a: 0,
-            b: 1,
-            r: 1,
-            c: 0,
-            formula: '',
-            x: [],
-            y: [],
-            standard_series: [],
-            instrument_model: '分光光度计',
-            GB: 'GB/T 5750.6-2006',
-            html: '',
-            items: [
-                [
-                    0,
-                    0.406
-                ],
-                [
-                    0.5,
-                    0.423
-                ],
-                [
-                    1,
-                    0.441
-                ],
-                [
-                    2,
-                    0.474
-                ],
-                [
-                    4,
-                    0.531
-                ],
-                [
-                    6,
-                    0.598
-                ],
-                [
-                    8,
-                    0.660
-                ]
-            ],
-            results: [],
-            new_results: {
-                id: 1,
+            {
+                id: 8,
+                st: [],
+                judge: false,
+                range_large: 0.001,
+                assessment: '',
+                unit: 'mg/L',
                 v: 50,
-                a: '',
-                m: '',
-                result: ''
+                start: 1,
+                end: 1,
+                name: '汞',
+                limit: 0.001,
+                method: '',
+                a: 0,
+                b: 1,
+                r: 1,
+                c: 0,
+                formula: '',
+                x: [],
+                y: [],
+                standard_series: [],
+                instrument_model: '分光光度计',
+                GB: 'GB/T 5750.6-2006',
+                html: '',
+                items: [
+                    [
+                        0,
+                        0.406
+                    ],
+                    [
+                        0.5,
+                        0.423
+                    ],
+                    [
+                        1,
+                        0.441
+                    ],
+                    [
+                        2,
+                        0.474
+                    ],
+                    [
+                        4,
+                        0.531
+                    ],
+                    [
+                        6,
+                        0.598
+                    ],
+                    [
+                        8,
+                        0.660
+                    ]
+                ],
+                results: [],
+                new_results: {
+                    id: 1,
+                    v: 50,
+                    a: '',
+                    m: '',
+                    result: ''
+                },
             },
-        },
-        {
-            id: 9,
-            st: [],
-            judge: false,
-            range_small: '',
-            range_large: '',
-            assessment: '',
-
-            v: 50,
-            start: 1,
-            end: 1,
-            name: '阴离子合成洗涤剂',
-            limit: 0.05,
-            method: '',
-            a: 0,
-            b: 1,
-            r: 1,
-            c: 0,
-            formula: '',
-            x: [],
-            y: [],
-            standard_series: [],
-            instrument_model: '分光光度计',
-            GB: 'GB/T 5750.4-2006',
-            html: '',
-            items: [
-                [
-                    0,
-                    0.019
-                ],
-                [
-                    5,
-                    0.041
-                ],
-                [
-                    10,
-                    0.075
-                ],
-                [
-                    20,
-                    0.128
-                ],
-                [
-                    30,
-                    0.185
-                ],
-                [
-                    40,
-                    0.233
-                ],
-                [
-                    50,
-                    0.290
-                ]
-            ],
-            results: [],
-            new_results: {
-                id: 1,
+            {
+                id: 9,
+                st: [],
+                judge: false,
+                range_large: 0.3,
+                assessment: '',
+                unit: 'mg/L',
                 v: 50,
-                a: '',
-                m: '',
-                result: ''
+                start: 1,
+                end: 1,
+                name: '阴离子合成洗涤剂',
+                limit: 0.05,
+                method: '',
+                a: 0,
+                b: 1,
+                r: 1,
+                c: 0,
+                formula: '',
+                x: [],
+                y: [],
+                standard_series: [],
+                instrument_model: '分光光度计',
+                GB: 'GB/T 5750.4-2006',
+                html: '',
+                items: [
+                    [
+                        0,
+                        0.019
+                    ],
+                    [
+                        5,
+                        0.041
+                    ],
+                    [
+                        10,
+                        0.075
+                    ],
+                    [
+                        20,
+                        0.128
+                    ],
+                    [
+                        30,
+                        0.185
+                    ],
+                    [
+                        40,
+                        0.233
+                    ],
+                    [
+                        50,
+                        0.290
+                    ]
+                ],
+                results: [],
+                new_results: {
+                    id: 1,
+                    v: 50,
+                    a: '',
+                    m: '',
+                    result: ''
+                },
             },
-        },
-        {
-            id: 10,
-            st: [],
-            judge: false,
-            range_small: '',
-            range_large: '',
-            assessment: '',
-
-            v: 50,
-            start: 1,
-            end: 1,
-            name: '硒',
-            limit: 0.001,
-            method: '',
-            a: 0,
-            b: 1,
-            r: 1,
-            c: 0,
-            formula: '',
-            x: [],
-            y: [],
-            standard_series: [],
-            instrument_model: '分光光度计',
-            GB: 'GB/T 5750.6-2006',
-            html: '',
-            items: [
-                [
-                    0,
-                    0.024
-                ],
-                [
-                    1,
-                    0.035
-                ],
-                [
-                    2,
-                    0.047
-                ],
-                [
-                    4,
-                    0.068
-                ],
-                [
-                    6,
-                    0.088
-                ],
-                [
-                    8,
-                    0.110
-                ]
-            ],
-            results: [],
-            new_results: {
-                id: 1,
+            {
+                id: 10,
+                st: [],
+                judge: false,
+                range_large: 0.01,
+                assessment: '',
+                unit: 'mg/L',
                 v: 50,
-                a: '',
-                m: '',
-                result: ''
+                start: 1,
+                end: 1,
+                name: '硒',
+                limit: 0.001,
+                method: '',
+                a: 0,
+                b: 1,
+                r: 1,
+                c: 0,
+                formula: '',
+                x: [],
+                y: [],
+                standard_series: [],
+                instrument_model: '分光光度计',
+                GB: 'GB/T 5750.6-2006',
+                html: '',
+                items: [
+                    [
+                        0,
+                        0.024
+                    ],
+                    [
+                        1,
+                        0.035
+                    ],
+                    [
+                        2,
+                        0.047
+                    ],
+                    [
+                        4,
+                        0.068
+                    ],
+                    [
+                        6,
+                        0.088
+                    ],
+                    [
+                        8,
+                        0.110
+                    ]
+                ],
+                results: [],
+                new_results: {
+                    id: 1,
+                    v: 50,
+                    a: '',
+                    m: '',
+                    result: ''
+                },
             },
-        },
-        {
-            id: 11,
-            st: [],
-            judge: false,
-            range_small: '',
-            range_large: '',
-            assessment: '',
-
-            v: 100,
-            start: 1,
-            end: 1,
-            name: '镉',
-            limit: 0.01,
-            method: '',
-            a: 0,
-            b: 1,
-            r: 1,
-            c: 0,
-            formula: '',
-            x: [],
-            y: [],
-            standard_series: [],
-            instrument_model: '分光光度计',
-            GB: 'GB/T 5750.6-2006',
-            html: '',
-            items: [
-                [
-                    0,
-                    0.207
-                ],
-                [
-                    0.25,
-                    0.216
-                ],
-                [
-                    0.5,
-                    0.224
-                ],
-                [
-                    1,
-                    0.242
-                ],
-                [
-                    2,
-                    0.273
-                ],
-                [
-                    4,
-                    0.336
-                ]
-            ],
-            results: [],
-            new_results: {
-                id: 1,
+            {
+                id: 11,
+                st: [],
+                judge: false,
+                range_large: 0.005,
+                assessment: '',
+                unit: 'mg/L',
                 v: 100,
-                a: '',
-                m: '',
-                result: ''
+                start: 1,
+                end: 1,
+                name: '镉',
+                limit: 0.005,
+                method: '',
+                a: 0,
+                b: 1,
+                r: 1,
+                c: 0,
+                formula: '',
+                x: [],
+                y: [],
+                standard_series: [],
+                instrument_model: '分光光度计',
+                GB: 'GB/T 5750.6-2006',
+                html: '',
+                items: [
+                    [
+                        0,
+                        0.207
+                    ],
+                    [
+                        0.25,
+                        0.216
+                    ],
+                    [
+                        0.5,
+                        0.224
+                    ],
+                    [
+                        1,
+                        0.242
+                    ],
+                    [
+                        2,
+                        0.273
+                    ],
+                    [
+                        4,
+                        0.336
+                    ]
+                ],
+                results: [],
+                new_results: {
+                    id: 1,
+                    v: 100,
+                    a: '',
+                    m: '',
+                    result: ''
+                },
             },
-        },
-        {
-            id: 12,
-            st: [],
-            judge: false,
-            range_small: '',
-            range_large: '',
-            assessment: '',
-
-            v: 50,
-            start: 1,
-            end: 1,
-            name: '铅',
-            limit: 0.01,
-            method: '',
-            a: 0,
-            b: 1,
-            r: 1,
-            c: 0,
-            formula: '',
-            x: [],
-            y: [],
-            standard_series: [],
-            instrument_model: '分光光度计',
-            GB: 'GB/T 5750.6-2006',
-            html: '',
-            items: [
-                [
-                    0,
-                    0.434
-                ],
-                [
-                    0.5,
-                    0.451
-                ],
-                [
-                    1,
-                    0.471
-                ],
-                [
-                    2,
-                    0.502
-                ],
-                [
-                    4,
-                    0.567
-                ],
-                [
-                    6,
-                    0.630
-                ]
-            ],
-            results: [],
-            new_results: {
-                id: 1,
+            {
+                id: 12,
+                st: [],
+                judge: false,
+                range_large: 0.01,
+                assessment: '',
+                unit: 'mg/L',
                 v: 50,
-                a: '',
-                m: '',
-                result: ''
+                start: 1,
+                end: 1,
+                name: '铅',
+                limit: 0.01,
+                method: '',
+                a: 0,
+                b: 1,
+                r: 1,
+                c: 0,
+                formula: '',
+                x: [],
+                y: [],
+                standard_series: [],
+                instrument_model: '分光光度计',
+                GB: 'GB/T 5750.6-2006',
+                html: '',
+                items: [
+                    [
+                        0,
+                        0.434
+                    ],
+                    [
+                        0.5,
+                        0.451
+                    ],
+                    [
+                        1,
+                        0.471
+                    ],
+                    [
+                        2,
+                        0.502
+                    ],
+                    [
+                        4,
+                        0.567
+                    ],
+                    [
+                        6,
+                        0.630
+                    ]
+                ],
+                results: [],
+                new_results: {
+                    id: 1,
+                    v: 50,
+                    a: '',
+                    m: '',
+                    result: ''
+                },
             },
-        },
-        {
-            id: 13,
-            st: [],
-            judge: false,
-            range_small: '',
-            range_large: '',
-            assessment: '',
-
-            v: 50,
-            start: 1,
-            end: 1,
-            name: '六价铬',
-            limit: 0.004,
-            method: '',
-            a: 0,
-            b: 1,
-            r: 1,
-            c: 0,
-            formula: '',
-            x: [],
-            y: [],
-            standard_series: [],
-            instrument_model: '分光光度计',
-            GB: 'GB/T 5750.6-2006',
-            html: '',
-            items: [
-                [
-                    0,
-                    0.002
-                ],
-                [
-                    0.5,
-                    0.012
-                ],
-                [
-                    1,
-                    0.019
-                ],
-                [
-                    2,
-                    0.034
-                ],
-                [
-                    4,
-                    0.069
-                ],
-                [
-                    6,
-                    0.103
-                ]
-            ],
-            results: [],
-            new_results: {
-                id: 1,
+            {
+                id: 13,
+                st: [],
+                judge: false,
+                range_large: 0.05,
+                assessment: '',
+                unit: 'mg/L',
                 v: 50,
-                a: '',
-                m: '',
-                result: ''
-            }
-        },
-        {
-            id: 14,
-            st: [],
-            judge: false,
-            range_small: '',
-            range_large: '',
-            assessment: '',
-
-            v: 50,
-            start: 1,
-            end: 1,
-            name: '铜',
-            limit: 0.02,
-            method: '',
-            a: 0,
-            b: 1,
-            r: 1,
-            c: 0,
-            formula: '',
-            x: [],
-            y: [],
-            standard_series: [],
-            instrument_model: '分光光度计',
-            GB: 'GB/T 5750.6-2006',
-            html: '',
-            items: [
-                [
-                    0,
-                    0.038
+                start: 1,
+                end: 1,
+                name: '六价铬',
+                limit: 0.004,
+                method: '',
+                a: 0,
+                b: 1,
+                r: 1,
+                c: 0,
+                formula: '',
+                x: [],
+                y: [],
+                standard_series: [],
+                instrument_model: '分光光度计',
+                GB: 'GB/T 5750.6-2006',
+                html: '',
+                items: [
+                    [
+                        0,
+                        0.002
+                    ],
+                    [
+                        0.5,
+                        0.012
+                    ],
+                    [
+                        1,
+                        0.019
+                    ],
+                    [
+                        2,
+                        0.034
+                    ],
+                    [
+                        4,
+                        0.069
+                    ],
+                    [
+                        6,
+                        0.103
+                    ]
                 ],
-                [
-                    2,
-                    0.080
-                ],
-                [
-                    4,
-                    0.121
-                ],
-                [
-                    6,
-                    0.160
-                ],
-                [
-                    8,
-                    0.201
-                ],
-                [
-                    10,
-                    0.238
-                ]
-            ],
-            results: [],
-            new_results: {
-                id: 1,
-                v: 50,
-                a: '',
-                m: '',
-                result: ''
+                results: [],
+                new_results: {
+                    id: 1,
+                    v: 50,
+                    a: '',
+                    m: '',
+                    result: ''
+                }
             },
-        },
-        {
-            id: 15,
-            st: [],
-            judge: false,
-            range_small: '',
-            range_large: '',
-            assessment: '',
-
-            v: 50,
-            start: 1,
-            end: 1,
-            name: '锰',
-            limit: 0.05,
-            method: '',
-            a: 0,
-            b: 1,
-            r: 1,
-            c: 0,
-            formula: '',
-            x: [],
-            y: [],
-            standard_series: [],
-            instrument_model: '分光光度计',
-            GB: 'GB/T 5750.6-2006',
-            html: '',
-            items: [
-                [
-                    0,
-                    0.002
-                ],
-                [
-                    10,
-                    0.008
-                ],
-                [
-                    30,
-                    0.024
-                ],
-                [
-                    50,
-                    0.038
-                ],
-                [
-                    70,
-                    0.053
-                ],
-                [
-                    90,
-                    0.068
-                ]
-            ],
-            results: [],
-            new_results: {
-                id: 1,
+            {
+                id: 14,
+                st: [],
+                judge: false,
+                range_large: 1.0,
+                assessment: '',
+                unit: 'mg/L',
                 v: 50,
-                a: '',
-                m: '',
-                result: ''
+                start: 1,
+                end: 1,
+                name: '铜',
+                limit: 0.02,
+                method: '',
+                a: 0,
+                b: 1,
+                r: 1,
+                c: 0,
+                formula: '',
+                x: [],
+                y: [],
+                standard_series: [],
+                instrument_model: '分光光度计',
+                GB: 'GB/T 5750.6-2006',
+                html: '',
+                items: [
+                    [
+                        0,
+                        0.038
+                    ],
+                    [
+                        2,
+                        0.080
+                    ],
+                    [
+                        4,
+                        0.121
+                    ],
+                    [
+                        6,
+                        0.160
+                    ],
+                    [
+                        8,
+                        0.201
+                    ],
+                    [
+                        10,
+                        0.238
+                    ]
+                ],
+                results: [],
+                new_results: {
+                    id: 1,
+                    v: 50,
+                    a: '',
+                    m: '',
+                    result: ''
+                },
             },
-        },
-        {
-            id: 16,
-            st: [],
-            judge: false,
-            range_small: '',
-            range_large: '',
-            assessment: '',
-
-            v: 50,
-            start: 1,
-            end: 1,
-            name: '铁',
-            limit: 0.05,
-            method: '',
-            a: 0,
-            b: 1,
-            r: 1,
-            c: 0,
-            formula: '',
-            x: [],
-            y: [],
-            standard_series: [],
-            instrument_model: '分光光度计',
-            GB: 'GB/T 5750.6-2006',
-            html: '',
-            items: [
-                [
-                    0,
-                    0.095
-                ],
-                [
-                    5,
-                    0.122
-                ],
-                [
-                    10,
-                    0.149
-                ],
-                [
-                    20,
-                    0.196
-                ],
-                [
-                    30,
-                    0.246
-                ],
-                [
-                    40,
-                    0.290
-                ]
-            ],
-            results: [],
-            new_results: {
-                id: 1,
+            {
+                id: 15,
+                st: [],
+                judge: false,
+                range_large: 0.1,
+                assessment: '',
+                unit: 'mg/L',
                 v: 50,
-                a: '',
-                m: '',
-                result: ''
+                start: 1,
+                end: 1,
+                name: '锰',
+                limit: 0.05,
+                method: '',
+                a: 0,
+                b: 1,
+                r: 1,
+                c: 0,
+                formula: '',
+                x: [],
+                y: [],
+                standard_series: [],
+                instrument_model: '分光光度计',
+                GB: 'GB/T 5750.6-2006',
+                html: '',
+                items: [
+                    [
+                        0,
+                        0.002
+                    ],
+                    [
+                        10,
+                        0.008
+                    ],
+                    [
+                        30,
+                        0.024
+                    ],
+                    [
+                        50,
+                        0.038
+                    ],
+                    [
+                        70,
+                        0.053
+                    ],
+                    [
+                        90,
+                        0.068
+                    ]
+                ],
+                results: [],
+                new_results: {
+                    id: 1,
+                    v: 50,
+                    a: '',
+                    m: '',
+                    result: ''
+                },
             },
-        },
-        {
-            id: 17,
-            st: [],
-            judge: false,
-            range_small: '',
-            range_large: '',
-            assessment: '',
-
-            v: 50,
-            start: 1,
-            end: 1,
-            name: '锌',
-            limit: 0.05,
-            method: '',
-            a: 0,
-            b: 1,
-            r: 1,
-            c: 0,
-            formula: '',
-            x: [],
-            y: [],
-            standard_series: [],
-            instrument_model: '分光光度计',
-            GB: 'GB/T 5750.6-2006',
-            html: '',
-            items: [
-                [
-                    0,
-                    0.748
-                ],
-                [
-                    0.5,
-                    0.811
-                ],
-                [
-                    1,
-                    0.890
-                ],
-                [
-                    2,
-                    1.036
-                ],
-                [
-                    4,
-                    1.32
-                ],
-                [
-                    6,
-                    1.602
-                ]
-            ],
-            results: [],
-            new_results: {
-                id: 1,
+            {
+                id: 16,
+                st: [],
+                judge: false,
+                range_large: 0.3,
+                assessment: '',
+                unit: 'mg/L',
                 v: 50,
-                a: '',
-                m: '',
-                result: ''
+                start: 1,
+                end: 1,
+                name: '铁',
+                limit: 0.05,
+                method: '',
+                a: 0,
+                b: 1,
+                r: 1,
+                c: 0,
+                formula: '',
+                x: [],
+                y: [],
+                standard_series: [],
+                instrument_model: '分光光度计',
+                GB: 'GB/T 5750.6-2006',
+                html: '',
+                items: [
+                    [
+                        0,
+                        0.095
+                    ],
+                    [
+                        5,
+                        0.122
+                    ],
+                    [
+                        10,
+                        0.149
+                    ],
+                    [
+                        20,
+                        0.196
+                    ],
+                    [
+                        30,
+                        0.246
+                    ],
+                    [
+                        40,
+                        0.290
+                    ]
+                ],
+                results: [],
+                new_results: {
+                    id: 1,
+                    v: 50,
+                    a: '',
+                    m: '',
+                    result: ''
+                },
             },
-        },
-        {
-            id: 18,
-            st: [],
-            judge: false,
-            range_small: '',
-            range_large: '',
-            assessment: '',
-
-            v: 50,
-            start: 1,
-            end: 1,
-            name: '硫酸盐',
-            limit: 5,
-            method: '',
-            a: 0,
-            b: 1,
-            r: 1,
-            c: 0,
-            formula: '',
-            x: [],
-            y: [],
-            standard_series: [],
-            instrument_model: '分光光度计',
-            GB: 'GB/T 5750.5-2006',
-            html: '',
-            items: [
-                [
-                    0,
-                    0.029
-                ],
-                [
-                    3,
-                    0.355
-                ],
-                [
-                    5,
-                    0.574
-                ],
-                [
-                    7,
-                    0.784
-                ],
-                [
-                    10,
-                    1.137
-                ]
-            ],
-            results: [],
-            new_results: {
-                id: 1,
+            {
+                id: 17,
+                st: [],
+                judge: false,
+                range_large: 1.0,
+                assessment: '',
+                unit: 'mg/L',
                 v: 50,
-                a: '',
-                m: '',
-                result: ''
+                start: 1,
+                end: 1,
+                name: '锌',
+                limit: 0.05,
+                method: '',
+                a: 0,
+                b: 1,
+                r: 1,
+                c: 0,
+                formula: '',
+                x: [],
+                y: [],
+                standard_series: [],
+                instrument_model: '分光光度计',
+                GB: 'GB/T 5750.6-2006',
+                html: '',
+                items: [
+                    [
+                        0,
+                        0.748
+                    ],
+                    [
+                        0.5,
+                        0.811
+                    ],
+                    [
+                        1,
+                        0.890
+                    ],
+                    [
+                        2,
+                        1.036
+                    ],
+                    [
+                        4,
+                        1.32
+                    ],
+                    [
+                        6,
+                        1.602
+                    ]
+                ],
+                results: [],
+                new_results: {
+                    id: 1,
+                    v: 50,
+                    a: '',
+                    m: '',
+                    result: ''
+                },
             },
-        },
+            {
+                id: 18,
+                st: [],
+                judge: false,
+                range_large: 250,
+                assessment: '',
+                unit: 'mg/L',
+                v: 50,
+                start: 1,
+                end: 1,
+                name: '硫酸盐',
+                limit: 5,
+                method: '',
+                a: 0,
+                b: 1,
+                r: 1,
+                c: 0,
+                formula: '',
+                x: [],
+                y: [],
+                standard_series: [],
+                instrument_model: '分光光度计',
+                GB: 'GB/T 5750.5-2006',
+                html: '',
+                items: [
+                    [
+                        0,
+                        0.029
+                    ],
+                    [
+                        3,
+                        0.355
+                    ],
+                    [
+                        5,
+                        0.574
+                    ],
+                    [
+                        7,
+                        0.784
+                    ],
+                    [
+                        10,
+                        1.137
+                    ]
+                ],
+                results: [],
+                new_results: {
+                    id: 1,
+                    v: 50,
+                    a: '',
+                    m: '',
+                    result: ''
+                },
+            },
         ],
-        selected: ''
     },
     watch: {
         selected: function () {
-        /**
-         * 当选择了项目时，显示标准系列的列表
-         */
+            /**
+             * 当选择了项目时，显示标准系列的列表
+             */
             this.show = true;
             this.get_series();
             this.save_series();
@@ -1191,7 +1172,7 @@ let app = new Vue({
         }
     },
     methods: {
-        add_opt(){
+        add_opt() {
             alert(true);
             this.names.push(new_opt);
         },
@@ -1231,6 +1212,10 @@ let app = new Vue({
                 this.selected.standard_series[i - 1] = value;
             }
             localStorage.setItem(this.selected.name, this.selected.standard_series);
+            this.get_series();
+            this.save_series();
+            this.math_formula();
+            show_chart();
         },
         get_series() {
             /**
@@ -1311,7 +1296,7 @@ let app = new Vue({
                 let a = -(this.selected.a);
                 this.selected.formula = "<p>回归方程为：y = " + this.selected.b.toFixed(4) + "x - " + a.toFixed(4) + "</p><p>相关系数为：r = " + this.selected.r.toFixed(4) + "</p>";
             }
-            
+
         },
         add_item() {
             /**
@@ -1395,7 +1380,7 @@ let app = new Vue({
             this.selected.results[element].m = (((a - this.selected.a) / this.selected.b).toFixed(3));
             return this.selected.results[element].m;
         },
-        get_c(element){
+        get_c(element) {
             /**
              * 根据当前项目的加样体积和质量算出样品中物质的浓度
              */
@@ -1600,6 +1585,7 @@ function show_chart() {
         }
     });
 }
+
 function useCount(item) {
     //计数页面登录次数
     let pagecount = item + 'pagecount';
@@ -1619,13 +1605,13 @@ function useCount(item) {
 };
 Date.prototype.format = function (fmt) {
     var o = {
-        "M+": this.getMonth() + 1,                 //月份 
-        "d+": this.getDate(),                    //日 
-        "h+": this.getHours(),                   //小时 
-        "m+": this.getMinutes(),                 //分 
-        "s+": this.getSeconds(),                 //秒 
+        "M+": this.getMonth() + 1, //月份 
+        "d+": this.getDate(), //日 
+        "h+": this.getHours(), //小时 
+        "m+": this.getMinutes(), //分 
+        "s+": this.getSeconds(), //秒 
         "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
-        "S": this.getMilliseconds()             //毫秒 
+        "S": this.getMilliseconds() //毫秒 
     };
     if (/(y+)/.test(fmt)) {
         fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));

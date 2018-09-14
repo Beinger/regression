@@ -54,14 +54,14 @@
                                 <th class="text-center">序号</th>
                                 <th class="text-center">标准加入量(μg)</th>
                                 <th class="text-center">吸光度</th>
-                                <th @click="get_list()" title="保存" class="btn text-info" v-bind:id="'save'+index"><i class="fa fa-save"></i>保存</th>
+                                <th @click="get_list()" title="保存" class="btn text-info"><i class="fa fa-save"></i>保存</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="(item, index) in selected.standard_series" :key="index">
                                 <td v-text="index+1"></td>
-                                <td v-bind:contenteditable="true" v-bind:id="'v'+index" v-text="item[0]"></td>
-                                <td v-bind:contenteditable="true" v-bind:id="'a'+index" v-text="item[1]"></td>
+                                <td contenteditable="true" v-bind:id="'v'+index" v-text="item[0]"></td>
+                                <td contenteditable="true" v-bind:id="'a'+index" v-text="item[1]"></td>
                                 <td @click="add_item(selected.id)" class="btn text-warning" title="增加序列">
                                     <i class="fa fa-plus"></i>
                                 </td>
@@ -162,8 +162,8 @@
                     <table class="table table-bordered table-striped table-hover">
                         <tr>
                             <td class="text-center">样品名称：</td>
-                            <td>
-                                <select style="border:0px; outline:none; cursor: pointer;">
+                            <td style="padding: 0px;">
+                                <select style="border:0px; height: 2.4em; width: auto; outline:none; cursor: pointer;">
                                     <option value="井水">井水</option>
                                     <option value="泉水">泉水</option>
                                     <option value="河水">河水</option>
@@ -171,20 +171,20 @@
                                     <option value="自来水">自来水</option>
                                 </select>
                             </td>
-                            <td class="text-center">样品数量(L)：</td>
-                            <td v-bind:contenteditable="true">3</td>
+                            <td class="text-center">样品量：</td>
+                            <td contenteditable="true">3L</td>
                         </tr>
                         <tr>
                             <td class="text-center">收样日期：</td>
-                            <td v-bind:contenteditable="true" v-text="recived_date"></td>
+                            <td contenteditable="true" v-text="recived_date"></td>
                             <td class="text-center">检验日期：</td>
-                            <td v-bind:contenteditable="true" v-text="test_date"></td>
+                            <td contenteditable="true" v-text="test_date"></td>
                         </tr>
                         <tr>
                             <td class="text-center">样品性状：</td>
-                            <td v-bind:contenteditable="true">液态</td>
+                            <td contenteditable="true">液态</td>
                             <td class="text-center">检测环境：</td>
-                            <td v-bind:contenteditable="true">
+                            <td contenteditable="true">
                                 <span v-text="sample.temprature"></span> ℃
                                 <span v-text="sample.rh"></span>% RH
                             </td>
@@ -199,7 +199,7 @@
                         </tr>
                         <tr>
                             <td class="text-center">检测方法：</td>
-                            <td colspan="5" v-bind:contenteditable="true" v-text="selected.method"></td>
+                            <td colspan="5" contenteditable="true" v-text="selected.method"></td>
                         </tr>
                     </table>
                     <table @click="mystorages" class="table table-bordered table-striped table-hover" id="record">
