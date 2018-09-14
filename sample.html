@@ -19,7 +19,8 @@
             <table v-for="(value, key) in storage" :key="key" class="table table-bordered table-striped table-hover">
                 <thead>
                     <tr>
-                        <th colspan="4" class="text-center">YXCDC水第{{ value[0].id }}号</th>
+                    <th colspan="4" class="text-center">YXCDC水第
+                        <span v-text="value[0].id"></span>号</th>
                     </tr>
                     <tr>
                         <th>检测类型</th>
@@ -43,7 +44,7 @@
                 <tbody v-for="(item, index) in value" :key="index">
                     <tr>
                         <td>{{ item.name }}</td>
-                        <td>{{ item.range_small }}---{{ item.range_large</td>
+                        <td>&larr;{{ item.range_large }}</td>
                         <td>{{ item.result }}</td>
                         <td>{{ item.assessment }}</td>
                     </tr>
