@@ -47,8 +47,3 @@ footer {
     font-size: 12px;
     letter-spacing: 1px;
 }
-table .table_border{
-    border-right-style: none;
-    border-left-style: none;
-    border-top-style: none;
-}

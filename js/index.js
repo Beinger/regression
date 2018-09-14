@@ -67,7 +67,6 @@ let app = new Vue({
                 v: 50,
                 a: '',
                 m: '',
-                result: '',
                 date: ''
             },
         },
@@ -134,7 +133,6 @@ let app = new Vue({
                     v: 50,
                     a: '',
                     m: '',
-                    result: '',
                     date: ''
                 },
             },
@@ -194,7 +192,6 @@ let app = new Vue({
                     v: 250,
                     a: '',
                     m: '',
-                    result: ''
                 },
             },
             {
@@ -253,7 +250,6 @@ let app = new Vue({
                     v: 50,
                     a: '',
                     m: '',
-                    result: ''
                 },
             },
             {
@@ -312,7 +308,6 @@ let app = new Vue({
                     v: 25,
                     a: '',
                     m: '',
-                    result: ''
                 },
             },
             {
@@ -375,7 +370,6 @@ let app = new Vue({
                     v: 1,
                     a: '',
                     m: '',
-                    result: ''
                 },
             },
             {
@@ -438,7 +432,6 @@ let app = new Vue({
                     v: 100,
                     a: '',
                     m: '',
-                    result: ''
                 },
             },
             {
@@ -501,7 +494,6 @@ let app = new Vue({
                     v: 50,
                     a: '',
                     m: '',
-                    result: ''
                 },
             },
             {
@@ -564,7 +556,6 @@ let app = new Vue({
                     v: 50,
                     a: '',
                     m: '',
-                    result: ''
                 },
             },
             {
@@ -627,7 +618,6 @@ let app = new Vue({
                     v: 50,
                     a: '',
                     m: '',
-                    result: ''
                 },
             },
             {
@@ -686,7 +676,6 @@ let app = new Vue({
                     v: 50,
                     a: '',
                     m: '',
-                    result: ''
                 },
             },
             {
@@ -745,7 +734,6 @@ let app = new Vue({
                     v: 100,
                     a: '',
                     m: '',
-                    result: ''
                 },
             },
             {
@@ -804,7 +792,6 @@ let app = new Vue({
                     v: 50,
                     a: '',
                     m: '',
-                    result: ''
                 },
             },
             {
@@ -863,7 +850,6 @@ let app = new Vue({
                     v: 50,
                     a: '',
                     m: '',
-                    result: ''
                 }
             },
             {
@@ -922,7 +908,6 @@ let app = new Vue({
                     v: 50,
                     a: '',
                     m: '',
-                    result: ''
                 },
             },
             {
@@ -981,7 +966,6 @@ let app = new Vue({
                     v: 50,
                     a: '',
                     m: '',
-                    result: ''
                 },
             },
             {
@@ -1040,7 +1024,6 @@ let app = new Vue({
                     v: 50,
                     a: '',
                     m: '',
-                    result: ''
                 },
             },
             {
@@ -1099,7 +1082,6 @@ let app = new Vue({
                     v: 50,
                     a: '',
                     m: '',
-                    result: ''
                 },
             },
             {
@@ -1154,7 +1136,6 @@ let app = new Vue({
                     v: 50,
                     a: '',
                     m: '',
-                    result: ''
                 },
             },
         ],
@@ -1316,6 +1297,7 @@ let app = new Vue({
              */
             this.add = true;
             this.mystorages()
+            this.set_record()
             useCount(this.selected.name);
             useJudge(this.selected.name)
         },
@@ -1370,9 +1352,6 @@ let app = new Vue({
             let over = this.sum_1(arr);
             return over / arr.length;
         },
-        get_id(index) {
-            return "YXCDC2018水第" + this.selected.results[index].id + "号";
-        },
         get_m(element) {
             /**
              * 根据出当前项目的吸光度计算出样品所含物质质量
@@ -1394,18 +1373,6 @@ let app = new Vue({
             }
             return this.selected.results[element].c
         },
-        get_result(element) {
-            /**
-             * 根据当前项目的最小检出限计算出报告结果
-             */
-            let c = this.get_c(element);
-            if (c >= this.selected.limit) {
-                this.selected.results[element].result = c;
-            } else {
-                this.selected.results[element].result = ('<' + this.selected.limit);
-            }
-            return this.selected.results[element].result;
-        },
         save_results() {
             /**
              * 从输入吸光度后计算得到的结果表格中获取数据,存入localStorage
@@ -1420,9 +1387,10 @@ let app = new Vue({
                 date = date.format("yyyy-MM-d");
                 let res = this.selected.results[i - start_item]
                 res.date = date;
+                res.limit = this.selected.limit
                 res.range_large = this.selected.range_large;
                 res.unit = this.selected.unit
-                if(res.result < res.range_large){
+                if(res.c < res.range_large){
                     res.assessment = "合格"
                 }else{
                     res.assessment = "不合格"
@@ -1448,17 +1416,18 @@ let app = new Vue({
                     this.selected.st.push(p);
                 }
                 this.selected.start = Number(localStorage.getItem(n));
-            } else {
-                this.selected.start = this.selected.start;
             }
+            this.selected.st.sort(function (i, j) {
+                return Number(i.id) > Number(j.id) ? 1 : -1
+            });
+        },
+        set_record(){
+            //最后一次输入记录后的标记
             if (this.selected.judge) {
                 this.selected.end = this.selected.start;
             } else {
                 this.selected.end = 1;
             }
-            this.selected.st.sort(function (i, j) {
-                return Number(i.id) > Number(j.id) ? 1 : -1
-            });
         },
         get_key() {
             /**

@@ -5,9 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/css/index.css">
     <link rel="stylesheet" href="css/css/bootstrap.css">
     <!-- <script src="js/bootstarp.js"></script> -->
     <script src="js/vue.min.js"></script>
+    <style>
+    .table_border{
+        border-right-style: none;
+        border-left-style: none;
+        border-top-style: none;
+
+    }
+    </style>
     <title>样品登记</title>
 </head>
 
@@ -21,13 +30,7 @@
                 <table v-for="(value, key) in storage" :key="key" class="table table-bordered table-striped table-hover">
                     <thead>
                         <tr>
-                            <th colspan="5" style="font-size: 200%;" class="text-center table_border" v-text="company"></th>
-                        </tr>
-                        <tr>
-                            <th colspan="5" class="table_border text-center"><h3>检验报告</h3></th>
-                        </tr>
-                        <tr>
-                            <th colspan="5" class="text-left">样品编号：YXCDC(水)2018第
+                            <th colspan="5" class="text-center"><h3>{{ company }}<br>检验报告</h3><br><h6 class="text-left">样品编号：YXCDC(水)2018第
                                 <span v-text="f_n(value[0].id,3)"></span>号</th>
                         </tr>
                         <tr>
@@ -43,7 +46,8 @@
                             <td>{{ item.name }}</td>
                             <td>{{ item.unit }}</td>
                             <td>&lt;{{ item.range_large }}</td>
-                            <td>{{ item.result }}</td>
+                            <td v-if="item.c<item.limit" v-text="'<'+item.limit"></td>
+                            <td v-else v-text="item.c"></td>
                             <td>{{ item.assessment }}</td>
                         </tr>
                     </tbody>

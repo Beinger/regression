@@ -146,7 +146,7 @@
                             <td v-text="item.v"></td>
                             <td v-text="item.a"></td>
                             <td v-text="get_m(index)"></td>
-                            <td class="animated bounceInUp" v-text="get_result(index)"></td>
+                            <td class="animated bounceInUp" v-text="get_c(index)"></td>
                             <td>
                                 <i class="btn fa fa-trash text-danger" @click="del_sample(index)">删除</i>
                             </td>
@@ -222,7 +222,8 @@
                                 <td v-text="item.v"></td>
                                 <td v-text="item.a"></td>
                                 <td v-text="item.m"></td>
-                                <td v-text="item.result"></td>
+                                <td v-if="item.c<selected.limit" v-text="'<'+selected.limit"></td>
+                                <td v-else v-text="item.c"></td>
                                 <td v-show="date_show" v-text="item.unit"></td>
                                 <td v-show="date_show" v-text="item.range_large"></td>
                                 <td v-show="date_show" v-text="item.assessment"></td>
