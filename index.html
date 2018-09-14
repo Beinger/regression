@@ -210,6 +210,9 @@
                                 <th class="text-center">吸光度</th>
                                 <th class="text-center">实测质量(μg)</th>
                                 <th class="text-center">报告结果(mg/L)</th>
+                                <th v-show="date_show" class="text-center">计量单位</th>
+                                <th v-show="date_show" class="text-center">参考范围(mg/L)</th>
+                                <th v-show="date_show" class="text-center">结果评价</th>
                                 <th v-show="date_show" class="text-center">记录日期</th>
                             </tr>
                         </thead>
@@ -220,6 +223,9 @@
                                 <td v-text="item.a"></td>
                                 <td v-text="item.m"></td>
                                 <td v-text="item.result"></td>
+                                <td v-show="date_show" v-text="item.unit"></td>
+                                <td v-show="date_show" v-text="item.range_large"></td>
+                                <td v-show="date_show" v-text="item.assessment"></td>
                                 <td v-show="date_show" v-text="item.date"></td>
                             </tr>
                         </tbody>

@@ -44,17 +44,19 @@ let sample = new Vue({
     },
     methods: {
         local_get(){
+            /**
+             * 把localStorage中的结果报告数据整理出来，存入obj.value中
+             */
             for (let i = 0; i < localStorage.length; i++) {
                 let x = localStorage.key(i);
                 if(this.reg_s.test(x)){
                     this.reg_s.lastIndex = 0
                     let y = localStorage.getItem(x);
-                    y = eval(JSON.parse(y));
-
-                    this.obj.value.push(y)
                     let name = this.reg_st.exec(x)
                     this.reg_st.lastIndex = 0
+                    y = eval(JSON.parse(y));
                     y.name = name[0]
+                    this.obj.value.push(y)
                 }
             }
         },

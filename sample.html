@@ -36,6 +36,7 @@
                     </tr>
                     <tr>
                         <th>检验项目</th>
+                        <th>单位</th>
                         <th>参考范围</th>
                         <th>检验结果</th>
                         <th>结果评价</th>
@@ -44,7 +45,8 @@
                 <tbody v-for="(item, index) in value" :key="index">
                     <tr>
                         <td>{{ item.name }}</td>
-                        <td>&larr;{{ item.range_large }}</td>
+                        <td>{{ item.unit }}</td>
+                        <td>&lt;{{ item.range_large }}</td>
                         <td>{{ item.result }}</td>
                         <td>{{ item.assessment }}</td>
                     </tr>

@@ -15,7 +15,7 @@ let app = new Vue({
             st: [],
             judge: false,
             range_large: 0,
-            assessment: '',
+            assessment: true,
             unit: 'mg/L',
             v: 50,
             start: 1,
@@ -82,7 +82,7 @@ let app = new Vue({
                 st: [],
                 judge: false,
                 range_large: 0.5,
-                assessment: '',
+                assessment: true,
                 unit: 'mg/L',
                 v: 50,
                 start: 1,
@@ -143,7 +143,7 @@ let app = new Vue({
                 st: [],
                 judge: false,
                 range_large: 0.05,
-                assessment: '',
+                assessment: true,
                 unit: 'mg/L',
                 v: 250,
                 start: 1,
@@ -202,7 +202,7 @@ let app = new Vue({
                 st: [],
                 judge: false,
                 range_large: 0.1,
-                assessment: '',
+                assessment: true,
                 unit: 'mg/L',
                 v: 50,
                 start: 1,
@@ -261,7 +261,7 @@ let app = new Vue({
                 st: [],
                 judge: false,
                 range_large: 1.0,
-                assessment: '',
+                assessment: true,
                 unit: 'mg/L',
                 v: 25,
                 start: 1,
@@ -320,7 +320,7 @@ let app = new Vue({
                 st: [],
                 judge: false,
                 range_large: 20,
-                assessment: '',
+                assessment: true,
                 unit: 'mg/L',
                 v: 1,
                 start: 1,
@@ -383,7 +383,7 @@ let app = new Vue({
                 st: [],
                 judge: false,
                 range_large: 0.2,
-                assessment: '',
+                assessment: true,
                 unit: 'mg/L',
                 v: 100,
                 start: 1,
@@ -446,7 +446,7 @@ let app = new Vue({
                 st: [],
                 judge: false,
                 range_large: 0.002,
-                assessment: '',
+                assessment: true,
                 unit: 'mg/L',
                 v: 50,
                 start: 1,
@@ -509,7 +509,7 @@ let app = new Vue({
                 st: [],
                 judge: false,
                 range_large: 0.001,
-                assessment: '',
+                assessment: true,
                 unit: 'mg/L',
                 v: 50,
                 start: 1,
@@ -572,7 +572,7 @@ let app = new Vue({
                 st: [],
                 judge: false,
                 range_large: 0.3,
-                assessment: '',
+                assessment: true,
                 unit: 'mg/L',
                 v: 50,
                 start: 1,
@@ -635,7 +635,7 @@ let app = new Vue({
                 st: [],
                 judge: false,
                 range_large: 0.01,
-                assessment: '',
+                assessment: true,
                 unit: 'mg/L',
                 v: 50,
                 start: 1,
@@ -694,7 +694,7 @@ let app = new Vue({
                 st: [],
                 judge: false,
                 range_large: 0.005,
-                assessment: '',
+                assessment: true,
                 unit: 'mg/L',
                 v: 100,
                 start: 1,
@@ -753,7 +753,7 @@ let app = new Vue({
                 st: [],
                 judge: false,
                 range_large: 0.01,
-                assessment: '',
+                assessment: true,
                 unit: 'mg/L',
                 v: 50,
                 start: 1,
@@ -812,7 +812,7 @@ let app = new Vue({
                 st: [],
                 judge: false,
                 range_large: 0.05,
-                assessment: '',
+                assessment: true,
                 unit: 'mg/L',
                 v: 50,
                 start: 1,
@@ -871,7 +871,7 @@ let app = new Vue({
                 st: [],
                 judge: false,
                 range_large: 1.0,
-                assessment: '',
+                assessment: true,
                 unit: 'mg/L',
                 v: 50,
                 start: 1,
@@ -930,7 +930,7 @@ let app = new Vue({
                 st: [],
                 judge: false,
                 range_large: 0.1,
-                assessment: '',
+                assessment: true,
                 unit: 'mg/L',
                 v: 50,
                 start: 1,
@@ -989,7 +989,7 @@ let app = new Vue({
                 st: [],
                 judge: false,
                 range_large: 0.3,
-                assessment: '',
+                assessment: true,
                 unit: 'mg/L',
                 v: 50,
                 start: 1,
@@ -1048,7 +1048,7 @@ let app = new Vue({
                 st: [],
                 judge: false,
                 range_large: 1.0,
-                assessment: '',
+                assessment: true,
                 unit: 'mg/L',
                 v: 50,
                 start: 1,
@@ -1107,7 +1107,7 @@ let app = new Vue({
                 st: [],
                 judge: false,
                 range_large: 250,
-                assessment: '',
+                assessment: true,
                 unit: 'mg/L',
                 v: 50,
                 start: 1,
@@ -1221,6 +1221,7 @@ let app = new Vue({
             /**
              * 从localStorage中获取保存的标准系列,如果是第一次使用，
              * 会调用默认的标准系列,同时渲染出标准系列表格。
+             * 同时，把数据存入所选项目的standard_series中。
              */
             let series_data = localStorage.getItem(this.selected.name);
             if (series_data) {
@@ -1239,8 +1240,7 @@ let app = new Vue({
         },
         save_series() {
             /**
-             * 从页面的表格中取值，做好回归分析的准备。
-             * 同时，把数据存入所选项目的standard_series中。
+             * 从页面的标准系列表格中取值，做好回归分析的准备。
              */
             this.selected.x = []; //标准系列的加样量数据
             this.selected.y = []; //标准系列的吸光度数据
@@ -1317,6 +1317,7 @@ let app = new Vue({
             this.add = true;
             this.mystorages()
             useCount(this.selected.name);
+            useJudge(this.selected.name)
         },
         submit_result() {
             /**
@@ -1409,6 +1410,7 @@ let app = new Vue({
             /**
              * 从输入吸光度后计算得到的结果表格中获取数据,存入localStorage
              */
+            useJudge(this.selected.name)
             let rows = document.getElementById("result_table").rows; //获取表格
             let start_item = Number(rows[1].cells[0].innerText); //表格第一个编号
             let end_item = Number(rows[rows.length - 1].cells[0].innerText); //表格最后一个编号
@@ -1416,8 +1418,16 @@ let app = new Vue({
                 let p = (this.selected.name + i + '报告结果');
                 let date = new Date();
                 date = date.format("yyyy-MM-d");
-                this.selected.results[i - start_item].date = date;
-                let str = JSON.stringify(this.selected.results[i - start_item]); //格式化后才能存入 
+                let res = this.selected.results[i - start_item]
+                res.date = date;
+                res.range_large = this.selected.range_large;
+                res.unit = this.selected.unit
+                if(res.result < res.range_large){
+                    res.assessment = "合格"
+                }else{
+                    res.assessment = "不合格"
+                }
+                let str = JSON.stringify(res); //格式化后才能存入 
                 localStorage.setItem(p, str);
             };
             let n = this.selected.name + 'end';
@@ -1429,7 +1439,7 @@ let app = new Vue({
              */
             this.selected.st = [];
             let n = this.selected.name + 'end';
-            if (localStorage.getItem(n)) {
+            if (localStorage.getItem(n) !== null) {
                 let keys = this.get_key();
                 for (let i = 0; i < keys.length; i++) {
                     let x = (this.selected.name + keys[i] + '报告结果');
@@ -1507,6 +1517,7 @@ let app = new Vue({
         },
         report_date() {
             let date = new Date();
+            data.day += 15;
             return this.dateFormat(date)
         },
     }
@@ -1589,13 +1600,16 @@ function show_chart() {
 function useCount(item) {
     //计数页面登录次数
     let pagecount = item + 'pagecount';
-    let judge = item + 'judge';
     if (localStorage.getItem(pagecount)) {
         localStorage.setItem(pagecount, Number(localStorage.getItem(pagecount)) + 1);
     } else {
         localStorage.setItem(pagecount, 1);
     };
-    if (localStorage.getItem(judge)) {
+}
+function useJudge(item){
+    //判断是否保存过报告结果
+    let judge = item + 'judge';
+    if (localStorage.getItem(judge) !== null) {
         app.selected.judge = true;
         localStorage.setItem(judge, true);
     } else {
