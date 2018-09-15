@@ -2,6 +2,7 @@ let sample = new Vue({
     el: "#app",
     data: {
         company: '',
+        username: '',
         reg_s: /报告结果$/g,
         reg_st: /^[\u4e00-\u9fa5]+/g,
         new_list: [],
@@ -49,7 +50,14 @@ let sample = new Vue({
             return this.new_list;
         },
     },
+    created: function(){
+        this.get_login_info()
+    },
     methods: {
+        get_login_info(){
+            this.company = localStorage.getItem("company")
+            this.username = localStorage.getItem("username")
+        },
         printContent() {
             /**
              * 打印页面函数，从网上抄的

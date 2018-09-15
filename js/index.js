@@ -1,6 +1,9 @@
 let app = new Vue({
     el: "#root",
     data: {
+        company: '',
+        username: '',
+        login_f: true,
         index: 0, //这个是表格索引==序号
         new_item: '', //表格新行
         show_v: true,
@@ -1155,7 +1158,7 @@ let app = new Vue({
     methods: {
         add_opt() {
             alert(true);
-            this.names.push(new_opt);
+            this.names.push(this.new_opt);
         },
         printContent() {
             /**
@@ -1456,6 +1459,11 @@ let app = new Vue({
              * 格式化编号数字，不足三位的前面加0
              */
             return (Array(length).join('0') + num).slice(-length);
+        },
+        login_s(){
+            localStorage.setItem("username",this.username)
+            localStorage.setItem("company",this.company)
+            this.login_f = false
         },
         //时间格式化函数，此处仅针对yyyy-MM-dd hh:mm:ss 的格式进行格式化
         dateFormat: function (time) {

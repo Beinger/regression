@@ -24,7 +24,6 @@
     <div class="container">
 
         <div id="app">
-            <input placeholder="请输入公司或单位名称" class="form-control" type="text" v-model="company">
             <a class="btn text-danger" @click="printContent()"><i class="fa fa-print"></i>打印</a>
             <div id="subOutputRank-print">
                 <table v-for="(value, key) in storage" :key="key" class="table table-bordered table-striped table-hover">

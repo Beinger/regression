@@ -23,11 +23,38 @@
 <body>
 
     <div class="container">
-
-        <div class="jumbotron">
-            <h1><i class="fa fa-tint"></i>--水质检验回归分析系统--<i class="fa fa-tint"></i></h1>
-        </div>
         <div id="root">
+            <div class="jumbotron row">
+                <div class="col-xs-10 col-lg-11 col-md-11 col-sm-10">
+                    <h3>{{ company }}</h3>
+                    <h1>水质检验回归分析系统</h1>
+                </div>
+                <div class="col-xs-2 col-lg-1 col-md-1 col-sm-2">
+                    <a class="btn btn-defult btn-lg" data-toggle="modal" data-target="#login" v-if="login_f">
+                        注册
+                    </a>
+                    <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class='modal-content'>
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="myModalLabel">注册</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <input class="form-control" type="text" placeholder="请输入单位名称" v-model="company">
+                                    <input class="form-control" type="text" placeholder="请输入名字" v-model="username">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                    <button type="button" class="btn btn-primary" @click="login_s" data-dismiss="modal">提交更改</button>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal -->
+                    </div>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-lg-5 col-md-5 col-xs-7">
                     <select tabindex="-1" class="form-control input-lg" name="xm" id="xm" v-model="selected">
@@ -112,7 +139,8 @@
                                     </td>
                                     <td>
                                         <select class="form-control" name="" id="" v-model="selected.v">
-                                            <option v-bind:value="opt" v-for="opt of vol_select" v-text="opt"> </option>
+                                            <option v-bind:value="opt" v-for="opt of vol_select" v-text="opt">
+                                            </option>
                                         </select>
                                     </td>
                                     <td>
