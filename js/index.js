@@ -1143,6 +1143,9 @@ let app = new Vue({
             },
         ],
     },
+    created:function(){
+        this.init_login()
+    },
     watch: {
         selected: function () {
             /**
@@ -1464,6 +1467,13 @@ let app = new Vue({
             localStorage.setItem("username",this.username)
             localStorage.setItem("company",this.company)
             this.login_f = false
+        },
+        init_login(){
+            if(localStorage.getItem("company")){
+                this.login_f = false
+                this.company = localStorage.getItem("company")
+                this.username = localStorage.getItem("username")
+            }
         },
         //时间格式化函数，此处仅针对yyyy-MM-dd hh:mm:ss 的格式进行格式化
         dateFormat: function (time) {
