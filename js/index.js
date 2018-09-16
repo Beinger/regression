@@ -1304,8 +1304,8 @@ let app = new Vue({
             this.add = true;
             this.mystorages()
             this.set_record()
-            useCount(this.selected.name);
-            useJudge(this.selected.name)
+            this.useCount(this.selected.name);
+            this.useJudge(this.selected.name)
         },
         submit_result() {
             /**
@@ -1383,14 +1383,14 @@ let app = new Vue({
             /**
              * 从输入吸光度后计算得到的结果表格中获取数据,存入localStorage
              */
-            useJudge(this.selected.name)
+            this.useJudge(this.selected.name)
             let rows = document.getElementById("result_table").rows; //获取表格
             let start_item = Number(rows[1].cells[0].innerText); //表格第一个编号
             let end_item = Number(rows[rows.length - 1].cells[0].innerText); //表格最后一个编号
             for (let i = start_item; i <= end_item; i++) {
                 let p = (this.selected.name + i + '报告结果');
                 let date = new Date();
-                date = this.dateFormat("yyyy-MM-d");
+                date = this.dateFormat(date);
                 let res = this.selected.results[i - start_item]
                 res.date = date;
                 res.limit = this.selected.limit
