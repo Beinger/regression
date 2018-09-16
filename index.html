@@ -24,7 +24,7 @@
 
     <div class="container">
         <div id="root">
-            <div class="jumbotron row">
+            <div onclick="focus_move()" class="jumbotron row">
                 <div class="col-xs-10 col-lg-11 col-md-11 col-sm-10">
                     <h3>{{ company }}</h3>
                     <h1>水质检验回归分析系统</h1>
@@ -96,7 +96,7 @@
                             </tr>
                         </tbody>
                         <caption>
-                            <h4 onclick="focus_move()">水中<span v-text="selected.name"></span>的标准系列 </h4>
+                            <h4>水中<span v-text="selected.name"></span>的标准系列 </h4>
                         </caption>
                     </table>
                 </div>
@@ -112,7 +112,7 @@
                             <h4 v-html="selected.formula"></h4>
                             <span class="text-danger animated bounceIn infinite" v-if="selected.r<0.999">------注意：相关系数若小于0.999，说明标准曲线不合格，请重新核对数据，分析检测过程，必要时重新测定标准系列。</span>
                             <div>
-                                <a class="btn btn-default" @click="add_sample()">
+                                <a class="btn btn-default" @click="add_sample()" ref="welcome">
                                     <i class="fa fa-hand-o-right fa-2x"></i><i class="fa fa-pencil"></i>
                                     开始录入
                                     <i>样品编号YXCDC2018水第
@@ -144,7 +144,7 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <input class="form-control animated bounceInRight" type="number" tabindex="0"
+                                        <input class="form-control animated bounceInRight" id="go" ref="go" type="number" tabindex="0"
                                             placeholder="输入后直接回车，不用&rarr;提交" v-model="selected.new_results.a">
                                     </td>
                                     <td>

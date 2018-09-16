@@ -1143,11 +1143,11 @@ let app = new Vue({
             },
         ],
     },
-    created:function(){
+    created(){
         this.init_login()
     },
     watch: {
-        selected: function () {
+        selected () {
             /**
              * 当选择了项目时，显示标准系列的列表
              */
@@ -1545,7 +1545,13 @@ function focus_move() {
     /**
      * 移动焦点到页面底部
      */
-    window.scrollTo(0, document.documentElement.clientHeight);
+    // window.scrollTo(0, docuent.documentElement.clientHeight);
+    setTimeout(() => {
+        let x = Math.ceil(5000)
+        let y = 0
+        y += x
+        window.scrollTo(y, x)
+    })
 };
 
 function show_chart() {
