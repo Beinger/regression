@@ -81,64 +81,64 @@ let app = new Vue({
         },
 
         names: [{
-                st: [],
-                judge: false,
-                range_large: 0.5,
-                assessment: true,
-                unit: 'mg/L',
-                v: 50,
-                start: 1,
-                end: 1,
-                id: 1,
-                name: '氨氮',
-                method: '',
-                limit: 0.05,
-                a: 0,
-                b: 1,
-                r: 1,
-                c: 0,
-                formula: '',
-                x: [],
-                y: [],
-                standard_series: [],
-                instrument_model: '分光光度计',
-                GB: 'GB/T 5750.5-2006',
-                html: '',
-                items: [
-                    [
-                        0,
-                        0.005
-                    ],
-                    [
-                        1,
-                        0.010
-                    ],
-                    [
-                        3,
-                        0.020
-                    ],
-                    [
-                        5,
-                        0.029
-                    ],
-                    [
-                        7,
-                        0.039
-                    ],
-                    [
-                        10,
-                        0.055
-                    ]
+            st: [],
+            judge: false,
+            range_large: 0.5,
+            assessment: true,
+            unit: 'mg/L',
+            v: 50,
+            start: 1,
+            end: 1,
+            id: 1,
+            name: '氨氮',
+            method: '',
+            limit: 0.05,
+            a: 0,
+            b: 1,
+            r: 1,
+            c: 0,
+            formula: '',
+            x: [],
+            y: [],
+            standard_series: [],
+            instrument_model: '分光光度计',
+            GB: 'GB/T 5750.5-2006',
+            html: '',
+            items: [
+                [
+                    0,
+                    0.005
                 ],
-                results: [],
-                new_results: {
-                    id: 1,
-                    v: 50,
-                    a: '',
-                    m: '',
-                    date: ''
-                },
+                [
+                    1,
+                    0.010
+                ],
+                [
+                    3,
+                    0.020
+                ],
+                [
+                    5,
+                    0.029
+                ],
+                [
+                    7,
+                    0.039
+                ],
+                [
+                    10,
+                    0.055
+                ]
+            ],
+            results: [],
+            new_results: {
+                id: 1,
+                v: 50,
+                a: '',
+                m: '',
+                date: ''
             },
+        },
             {
                 id: 2,
                 st: [],
@@ -1390,7 +1390,7 @@ let app = new Vue({
             for (let i = start_item; i <= end_item; i++) {
                 let p = (this.selected.name + i + '报告结果');
                 let date = new Date();
-                date = date.format("yyyy-MM-d");
+                date = this.dateFormat("yyyy-MM-d");
                 let res = this.selected.results[i - start_item]
                 res.date = date;
                 res.limit = this.selected.limit
@@ -1476,7 +1476,7 @@ let app = new Vue({
             }
         },
         //时间格式化函数，此处仅针对yyyy-MM-dd hh:mm:ss 的格式进行格式化
-        dateFormat: function (time) {
+        dateFormat(time) {
             var date = new Date(time);
             var year = date.getFullYear();
             /* 在日期格式中，月份是从0开始的，因此要加0
@@ -1489,7 +1489,28 @@ let app = new Vue({
             // var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
             // 拼接
             return year + "-" + month + "-" + day;
-        }
+        },
+
+        useCount(item) {
+            //计数页面登录次数
+            let pagecount = item + 'pagecount';
+            if (localStorage.getItem(pagecount)) {
+                localStorage.setItem(pagecount, Number(localStorage.getItem(pagecount)) + 1);
+            } else {
+                localStorage.setItem(pagecount, 1);
+            }
+        },
+        useJudge(item){
+            //判断是否保存过报告结果
+            let judge = item + 'judge';
+            if (localStorage.getItem(judge) !== null) {
+                app.selected.judge = true;
+                localStorage.setItem(judge, true);
+            } else {
+                app.selected.judge = false;
+                localStorage.setItem(judge, false);
+            }
+        },
     },
     computed: {
 
@@ -1497,16 +1518,16 @@ let app = new Vue({
             let date = new Date();
             return this.dateFormat(date)
         },
-        test_date() {
-            let date = new Date();
-            return this.dateFormat(date)
+            test_date() {
+                let date = new Date();
+                return this.dateFormat(date)
 
-        },
-        report_date() {
-            let date = new Date();
-            data.day += 15;
-            return this.dateFormat(date)
-        },
+            },
+            report_date() {
+                let date = new Date();
+                data.day += 15;
+                return this.dateFormat(date)
+            },
     }
 });
 let series_data = [];
@@ -1583,46 +1604,3 @@ function show_chart() {
         }
     });
 }
-
-function useCount(item) {
-    //计数页面登录次数
-    let pagecount = item + 'pagecount';
-    if (localStorage.getItem(pagecount)) {
-        localStorage.setItem(pagecount, Number(localStorage.getItem(pagecount)) + 1);
-    } else {
-        localStorage.setItem(pagecount, 1);
-    };
-}
-function useJudge(item){
-    //判断是否保存过报告结果
-    let judge = item + 'judge';
-    if (localStorage.getItem(judge) !== null) {
-        app.selected.judge = true;
-        localStorage.setItem(judge, true);
-    } else {
-        app.selected.judge = false;
-        localStorage.setItem(judge, false);
-    };
-};
-// Date.prototype.format = function (fmt) {
-//     var o = {
-//         "M+": this.getMonth() + 1, //月份 
-//         "d+": this.getDate(), //日 
-//         "h+": this.getHours(), //小时 
-//         "m+": this.getMinutes(), //分 
-//         "s+": this.getSeconds(), //秒 
-//         "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
-//         "S": this.getMilliseconds() //毫秒 
-//     };
-//     if (/(y+)/.test(fmt)) {
-//         fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-//     }
-//     for (var k in o) {
-//         if (new RegExp("(" + k + ")").test(fmt)) {
-//             fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
-//         }
-//     }
-//     return fmt;
-// }
-// let date = new Date();
-// document.getElementById("date").innerHTML=date.format("yyyy-MM-dd hh:mm")
