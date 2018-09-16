@@ -10,12 +10,12 @@
     <!-- <script src="js/bootstarp.js"></script> -->
     <script src="js/vue.min.js"></script>
     <style>
-    .table_border{
-        border-right-style: none;
-        border-left-style: none;
-        border-top-style: none;
+        .table_border {
+            border-right-style: none;
+            border-left-style: none;
+            border-top-style: none;
 
-    }
+        }
     </style>
     <title>样品登记</title>
 </head>
@@ -25,36 +25,41 @@
 
         <div id="app">
             <a class="btn text-danger" @click="printContent()"><i class="fa fa-print"></i>打印</a>
-            <div id="subOutputRank-print">
-                <table v-for="(value, key) in storage" :key="key" class="table table-bordered table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th colspan="5" class="text-center"><h3>{{ company }}<br>检验报告</h3><br><h6 class="text-left">样品编号：YXCDC(水)2018第
-                                <span v-text="f_n(value[0].id,3)"></span>号</th>
-                        </tr>
-                        <tr>
-                            <th>检验项目</th>
-                            <th>单位</th>
-                            <th>参考范围</th>
-                            <th>检验结果</th>
-                            <th>单项评价</th>
-                        </tr>
-                    </thead>
-                    <tbody v-for="(item, index) in value" :key="index">
-                        <tr>
-                            <td>{{ item.name }}</td>
-                            <td>{{ item.unit }}</td>
-                            <td>&lt;{{ item.range_large }}</td>
-                            <td v-if="item.c<item.limit" v-text="'<'+item.limit"></td>
-                            <td v-else v-text="item.c"></td>
-                            <td>{{ item.assessment }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+                <div id="subOutputRank-print">
+                    <div v-for="(value, key) in storage">
+                    <table class="table table-bordered table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th colspan="5" class="text-center">
+                                    <h3>{{ company }}<br>检验报告</h3><br>
+                                    <h6 class="text-left">样品编号：YXCDC(水)2018第
+                                        <span v-text="f_n(value[0].id,3)"></span>号
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>检验项目</th>
+                                <th>单位</th>
+                                <th>参考范围</th>
+                                <th>检验结果</th>
+                                <th>单项评价</th>
+                            </tr>
+                        </thead>
+                        <tbody v-for="(item, index) in value" :key="index">
+                            <tr>
+                                <td>{{ item.name }}</td>
+                                <td>{{ item.unit }}</td>
+                                <td>&lt;{{ item.range_large }}</td>
+                                <td v-if="item.c<item.limit" v-text="'<'+item.limit"></td>
+                                <td v-else v-text="item.c"></td>
+                                <td>{{ item.assessment }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div style="page-break-after:always"></div>
+                    </div>
+                </div>
         </div>
     </div>
     <script src="sample.js"></script>
 </body>
-
 </html>
