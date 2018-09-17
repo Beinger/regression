@@ -17,16 +17,16 @@ let app = new Vue({
         new_opt: {
             st: [],
             judge: false,
-            range_large: 0,
+            range_large: '',
             assessment: true,
             unit: 'mg/L',
-            v: 50,
+            v: '',
             start: 1,
             end: 1,
             id: 1,
-            name: '新建',
+            name: '',
             method: '',
-            limit: 0.05,
+            limit: '',
             a: 0,
             b: 1,
             r: 1,
@@ -38,36 +38,11 @@ let app = new Vue({
             instrument_model: '分光光度计',
             GB: 'GB/T 5750.5-2006',
             html: '',
-            items: [
-                [
-                    0,
-                    0.005
-                ],
-                [
-                    1,
-                    0.010
-                ],
-                [
-                    3,
-                    0.020
-                ],
-                [
-                    5,
-                    0.029
-                ],
-                [
-                    7,
-                    0.039
-                ],
-                [
-                    10,
-                    0.055
-                ]
-            ],
+            items: [],
             results: [],
             new_results: {
                 id: 1,
-                v: 50,
+                v: '',
                 a: '',
                 m: '',
                 date: ''
@@ -1160,7 +1135,6 @@ let app = new Vue({
     },
     methods: {
         add_opt() {
-            alert(true);
             this.names.push(this.new_opt);
         },
         printContent() {

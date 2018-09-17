@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/css/index.css">
     <link rel="stylesheet" href="css/css/bootstrap.css">
+    <link rel="stylesheet" href="css/css/font-awesome.min.css">
     <script src="js/vue.min.js"></script>
     <title>样品登记</title>
 </head>
@@ -45,12 +46,26 @@
                                 <td>{{ item.assessment }}</td>
                             </tr>
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="6">检验者：</td>
+                            </tr>
+                        </tfoot>
                     </table>
                     <div style="page-break-after:always"></div>
                 </div>
             </div>
         </div>
     </div>
+    <br>
+    <br>
+    <br>
     <script src="sample.js"></script>
+    <footer class="footer">
+        <div>使用过程中有任何疑问或想法，欢迎在我的
+            <a href="img/myWX.jpg"><i class="fa fa-comments"></i></a>
+            留言
+        </div>
+    </footer>
 </body>
 </html>
