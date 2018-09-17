@@ -8,12 +8,14 @@ let app = new Vue({
         new_item: '', //表格新行
         show_v: true,
         show: false,
+        show2: false,
         add: false,
         date_show: false,
         vol_select: [
             50, 100, 250, 1, 25, 10
         ],
         selected: '',
+        selected2: '',
         new_opt: {
             st: [],
             judge: false,
@@ -48,72 +50,103 @@ let app = new Vue({
                 date: ''
             },
         },
+        new_opt2: {
+            st: [],
+            judge: false,
+            range_large: '',
+            assessment: true,
+            unit: 'mg/L',
+            v: 1,
+            start: 1,
+            end: 1,
+            id: 1,
+            name: '',
+            method: '',
+            limit: '',
+            a0: '',
+            a1: '',
+            a: '',
+            c: 0,
+            formula: '',
+            instrument_model: '',
+            GB: 'GB/T 5750.5-2006',
+            html: '',
+            items: [],
+            results: [],
+            new_results: {
+                id: 1,
+                v: '',
+                a: '',
+                m: '',
+                date: ''
+            },
+        },
         sample: {
             id: '',
             v: 3,
             temprature: 20,
             rh: 70,
         },
-
+        names2: [],
         names: [{
-            st: [],
-            judge: false,
-            range_large: 0.5,
-            assessment: true,
-            unit: 'mg/L',
-            v: 50,
-            start: 1,
-            end: 1,
-            id: 1,
-            name: '氨氮',
-            method: '',
-            limit: 0.05,
-            a: 0,
-            b: 1,
-            r: 1,
-            c: 0,
-            formula: '',
-            x: [],
-            y: [],
-            standard_series: [],
-            instrument_model: '分光光度计',
-            GB: 'GB/T 5750.5-2006',
-            html: '',
-            items: [
-                [
-                    0,
-                    0.005
-                ],
-                [
-                    1,
-                    0.010
-                ],
-                [
-                    3,
-                    0.020
-                ],
-                [
-                    5,
-                    0.029
-                ],
-                [
-                    7,
-                    0.039
-                ],
-                [
-                    10,
-                    0.055
-                ]
-            ],
-            results: [],
-            new_results: {
-                id: 1,
+                st: [],
+                judge: false,
+                range_large: 0.5,
+                assessment: true,
+                unit: 'mg/L',
                 v: 50,
-                a: '',
-                m: '',
-                date: ''
+                start: 1,
+                end: 1,
+                id: 1,
+                name: '氨氮',
+                method: '',
+                limit: 0.05,
+                a: 0,
+                b: 1,
+                r: 1,
+                c: 0,
+                formula: '',
+                x: [],
+                y: [],
+                standard_series: [],
+                instrument_model: '分光光度计',
+                GB: 'GB/T 5750.5-2006',
+                html: '',
+                items: [
+                    [
+                        0,
+                        0.005
+                    ],
+                    [
+                        1,
+                        0.010
+                    ],
+                    [
+                        3,
+                        0.020
+                    ],
+                    [
+                        5,
+                        0.029
+                    ],
+                    [
+                        7,
+                        0.039
+                    ],
+                    [
+                        10,
+                        0.055
+                    ]
+                ],
+                results: [],
+                new_results: {
+                    id: 1,
+                    v: 50,
+                    a: '',
+                    m: '',
+                    date: ''
+                },
             },
-        },
             {
                 id: 2,
                 st: [],
@@ -1118,25 +1151,43 @@ let app = new Vue({
             },
         ],
     },
-    created(){
+    created() {
         this.init_login()
     },
     watch: {
-        selected () {
+        selected() {
             /**
              * 当选择了项目时，显示标准系列的列表
              */
             this.show = true;
+            this.show2 = false
             this.get_series();
             this.save_series();
             this.math_formula();
             show_chart();
+        },
+        selected2(){
+            /**
+             * 当选择了非比色类项目时，只需要计算，不需要标准系列和曲线
+             */
+            this.show2 = true;
+            this.show = false
         }
     },
     methods: {
         add_opt() {
+            /**
+             * 增加比色类项目
+             */
             this.names.push(this.new_opt);
         },
+        add_opt2() {
+            /**
+             * 增加非比色类项目
+             */
+            this.names2.push(this.new_opt2);
+        },
+
         printContent() {
             /**
              * 打印页面函数，从网上抄的
@@ -1265,42 +1316,49 @@ let app = new Vue({
              */
             this.selected.standard_series.push(this.new_item);
         },
+
         del(index) {
             /**
              * 在列表中删除本行
              */
             this.selected.standard_series.splice(index, 1);
         },
-        add_sample() {
+        add_sample(item) {
             /**
              * 增加样品行
              */
             this.add = true;
-            this.mystorages()
+            this.mystorages(item)
             this.set_record()
-            this.useCount(this.selected.name);
-            this.useJudge(this.selected.name)
+            this.useCount(item.name);
+            this.useJudge(item.name)
         },
-        submit_result() {
+        submit_result(somes) {
             /**
              * 提交数据到结果数组中
              */
-            this.selected.new_results.id = this.selected.start;
-            this.selected.results.push(this.selected.new_results);
-            this.selected.new_results = {
-                id: this.selected.start,
-                v: this.selected.v,
+            somes.new_results.id = somes.start;
+            somes.results.push(somes.new_results);
+            somes.new_results = {
+                id: somes.start,
+                v: somes.v,
                 a: '',
                 m: '',
-                result: '',
+                date: '',
             };
-            this.selected.start = Number(this.selected.start) + 1;
+            somes.start = Number(somes.start) + 1;
         },
         del_sample(index) {
             /**
              * 删除样品行
              */
             this.selected.results.splice(index, 1);
+        },
+        del_sample2(index) {
+            /**
+             * 删除样品行
+             */
+            this.selected2.results.splice(index, 1);
         },
         sum(arr1, arr2) {
             /**
@@ -1340,6 +1398,17 @@ let app = new Vue({
             this.selected.results[element].m = (((a - this.selected.a) / this.selected.b).toFixed(3));
             return this.selected.results[element].m;
         },
+        get_m2(element) {
+            /**
+             * 根据出当前项目的吸光度计算出样品所含物质质量
+             */
+            let a1 = this.selected2.results[element].a1;
+            let a0 = this.selected2.results[element].a0;
+            let a = a1 - a0;
+            this.selected2.results[element].a = a
+            this.selected2.results[element].m = ((a / this.selected2.v).toFixed(3));
+            return this.selected2.results[element].m;
+        },
         get_c(element) {
             /**
              * 根据当前项目的加样体积和质量算出样品中物质的浓度
@@ -1353,55 +1422,57 @@ let app = new Vue({
             }
             return this.selected.results[element].c
         },
-        save_results() {
+        save_results(id,st) {
             /**
              * 从输入吸光度后计算得到的结果表格中获取数据,存入localStorage
              */
-            this.useJudge(this.selected.name)
-            let rows = document.getElementById("result_table").rows; //获取表格
+
+            this.useJudge(st.name)
+            let rows = document.getElementById(id).rows; //获取表格
             let start_item = Number(rows[1].cells[0].innerText); //表格第一个编号
             let end_item = Number(rows[rows.length - 1].cells[0].innerText); //表格最后一个编号
             for (let i = start_item; i <= end_item; i++) {
-                let p = (this.selected.name + i + '报告结果');
+                let p = (st.name + i + '报告结果');
                 let date = new Date();
                 date = this.dateFormat(date);
-                let res = this.selected.results[i - start_item]
+                let res = st.results[i - start_item]
                 res.date = date;
-                res.limit = this.selected.limit
-                res.range_large = this.selected.range_large;
-                res.unit = this.selected.unit
-                if(res.c < res.range_large){
+                res.v = st.v
+                res.limit = st.limit
+                res.range_large = st.range_large;
+                res.unit = st.unit
+                if (res.c < res.range_large) {
                     res.assessment = "合格"
-                }else{
+                } else {
                     res.assessment = "不合格"
                 }
                 let str = JSON.stringify(res); //格式化后才能存入 
                 localStorage.setItem(p, str);
             };
-            let n = this.selected.name + 'end';
+            let n = st.name + 'end';
             localStorage.setItem(n, end_item + 1);
         },
-        mystorages() {
+        mystorages(somes) {
             /**
              * 从localStorage中获取保存的结果，存入st数组
              */
-            this.selected.st = [];
-            let n = this.selected.name + 'end';
+            somes.st = [];
+            let n = somes.name + 'end';
             if (localStorage.getItem(n) !== null) {
-                let keys = this.get_key();
+                let keys = this.get_key(somes);
                 for (let i = 0; i < keys.length; i++) {
-                    let x = (this.selected.name + keys[i] + '报告结果');
+                    let x = (somes.name + keys[i] + '报告结果');
                     let p = localStorage.getItem(x);
                     p = eval(JSON.parse(p));
-                    this.selected.st.push(p);
+                    somes.st.push(p);
                 }
-                this.selected.start = Number(localStorage.getItem(n));
+                somes.start = Number(localStorage.getItem(n));
             }
-            this.selected.st.sort(function (i, j) {
+            somes.st.sort(function (i, j) {
                 return Number(i.id) > Number(j.id) ? 1 : -1
             });
         },
-        set_record(){
+        set_record() {
             //最后一次输入记录后的标记
             if (this.selected.judge) {
                 this.selected.end = this.selected.start;
@@ -1409,7 +1480,7 @@ let app = new Vue({
                 this.selected.end = 1;
             }
         },
-        get_key() {
+        get_key(item) {
             /**
              * 获取localStorage中当前项目的结果记录中的首项id
              */
@@ -1417,7 +1488,7 @@ let app = new Vue({
             var n = localStorage.length;
             for (let i = 0; i < n; i++) {
                 let k = localStorage.key(i);
-                if (k.search(this.selected.name) != -1) {
+                if (k.search(item.name) != -1) {
                     if (k.search('报告结果') != -1) {
                         let number = k.replace(/^[^\d]*(\d+)[^\d]*$/, "$1");
                         //这个正则表达式获取字符串中的数字
@@ -1437,13 +1508,13 @@ let app = new Vue({
              */
             return (Array(length).join('0') + num).slice(-length);
         },
-        login_s(){
-            localStorage.setItem("username",this.username)
-            localStorage.setItem("company",this.company)
+        login_s() {
+            localStorage.setItem("username", this.username)
+            localStorage.setItem("company", this.company)
             this.login_f = false
         },
-        init_login(){
-            if(localStorage.getItem("company")){
+        init_login() {
+            if (localStorage.getItem("company")) {
                 this.login_f = false
                 this.company = localStorage.getItem("company")
                 this.username = localStorage.getItem("username")
@@ -1474,7 +1545,7 @@ let app = new Vue({
                 localStorage.setItem(pagecount, 1);
             }
         },
-        useJudge(item){
+        useJudge(item) {
             //判断是否保存过报告结果
             let judge = item + 'judge';
             if (localStorage.getItem(judge) !== null) {
@@ -1492,16 +1563,16 @@ let app = new Vue({
             let date = new Date();
             return this.dateFormat(date)
         },
-            test_date() {
-                let date = new Date();
-                return this.dateFormat(date)
+        test_date() {
+            let date = new Date();
+            return this.dateFormat(date)
 
-            },
-            report_date() {
-                let date = new Date();
-                data.day += 15;
-                return this.dateFormat(date)
-            },
+        },
+        report_date() {
+            let date = new Date();
+            data.day += 15;
+            return this.dateFormat(date)
+        },
     }
 });
 let series_data = [];
