@@ -1329,9 +1329,9 @@ let app = new Vue({
              */
             this.add = true;
             this.mystorages(item)
-            this.set_record()
+            this.set_record(item)
             this.useCount(item.name);
-            this.useJudge(item.name)
+            this.useJudge(item)
         },
         submit_result(somes) {
             /**
@@ -1407,6 +1407,7 @@ let app = new Vue({
             let a = a1 - a0;
             this.selected2.results[element].a = a
             this.selected2.results[element].m = ((a / this.selected2.v).toFixed(3));
+            this.selected2.results[element].c = this.selected2.results[element].m;
             return this.selected2.results[element].m;
         },
         get_c(element) {
@@ -1422,12 +1423,13 @@ let app = new Vue({
             }
             return this.selected.results[element].c
         },
+        
         save_results(id,st) {
             /**
              * 从输入吸光度后计算得到的结果表格中获取数据,存入localStorage
              */
 
-            this.useJudge(st.name)
+            this.useJudge(st)
             let rows = document.getElementById(id).rows; //获取表格
             let start_item = Number(rows[1].cells[0].innerText); //表格第一个编号
             let end_item = Number(rows[rows.length - 1].cells[0].innerText); //表格最后一个编号
@@ -1472,12 +1474,12 @@ let app = new Vue({
                 return Number(i.id) > Number(j.id) ? 1 : -1
             });
         },
-        set_record() {
+        set_record(somes) {
             //最后一次输入记录后的标记
-            if (this.selected.judge) {
-                this.selected.end = this.selected.start;
+            if (somes.judge) {
+                somes.end = somes.start;
             } else {
-                this.selected.end = 1;
+                somes.end = 1;
             }
         },
         get_key(item) {
@@ -1549,10 +1551,10 @@ let app = new Vue({
             //判断是否保存过报告结果
             let judge = item + 'judge';
             if (localStorage.getItem(judge) !== null) {
-                app.selected.judge = true;
+                item.judge = true;
                 localStorage.setItem(judge, true);
             } else {
-                app.selected.judge = false;
+                item.judge = false;
                 localStorage.setItem(judge, false);
             }
         },
