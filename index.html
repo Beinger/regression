@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="js/jquery3.3.1.min.js"></script>
     <script src="js/vue.min.js"></script>
-    <link rel="stylesheet" href="css/css/index.css">
     <link rel="stylesheet" href="css/css/bootstrap.css">
     <link rel="stylesheet" href="css/css/animation.min.css">
     <link rel="stylesheet" href="css/css/font-awesome.min.css">
@@ -21,20 +20,25 @@
 </head>
 
 <body>
+    <style>
+        .threed {
+            text-shadow: 0px 1px 0px #999, 0px 2px 0px #888, 0px 3px 0px #777, 0px 4px 0px #666, 0px 5px 0px #555, 0px 6px 0px #444, 0px 7px 0px #333, 0px 9px 0px #222
+        }
+    </style>
 
     <div class="container">
         <div id="root">
             <div class="jumbotron row">
-                <div onclick="focus_move()" class=" col-xs-9 col-lg-10 col-md-10 col-sm-10">
-                    <h2 data-toggle="modal" data-target="#login">{{ company }}</h2>
-                    <h1>水质检验回归分析系统</h1>
+                <div onclick="focus_move()" class="col-xs-9 col-lg-10 col-md-10 col-sm-10">
+                    <h2 data-toggle="modal" data-target="#login" v-text="company"></h2>
+                    <h1 class="threed">水质检验回归分析系统</h1>
                 </div>
                 <div class="col-xs-3 col-lg-2 col-md-2 col-sm-2">
                     <a class="btn btn-defult btn-lg" data-toggle="modal" data-target="#login" v-if="login_f">
-                        <i class="fa fa-sign-in"></i>注册
+                        <i class="fa fa-sign-in"></i>机构注册
                     </a>
                     <a class="btn btn-defult btn-lg" data-toggle="modal" data-target="#environment" v-else>
-                        <i class="fa fa-thermometer-empty"></i>温湿度记录
+                        <i class="fa fa-thermometer-empty"></i>实验环境记录
                     </a>
                     <div class="modal fade" id="environment" tabindex="-1" role="dialog" aria-labelledby="myEnv"
                         aria-hidden="true">
@@ -52,7 +56,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                    <button type="button" class="btn btn-primary" @click="login_s" data-dismiss="modal">确认</button>
+                                    <button type="button" class="btn btn-primary" @click="login_env" data-dismiss="modal">确认</button>
                                 </div>
                             </div><!-- /.modal-content -->
                         </div><!-- /.modal -->
@@ -81,30 +85,31 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row form-group">
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                    <label calss="form-label">比色法测定项目</label>
+                    <label calss="form-label">---<i class="fa fa-hand-o-down"></i>比色法测定项目选择框 <i class="fa fa-hand-o-down"></i>---
+                    <a class="btn btn-default" data-toggle="modal" data-target="#opt">
+                        <i class="fa fa-plus">增加项目</i>
+                    </a>
+                    </label>
                     <select tabindex="-1" class="form-control input-lg" v-model="selected">
                         <option style="font-size: 80%" disabled>---请选择---</option>
                         <option v-bind:id="'select'+index" v-bind:value="item" v-for="(item,index) in names" v-text="item.name"></option>
                     </select>
                 </div>
-                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-                    <a class="btn btn-default" data-toggle="modal" data-target="#opt">
-                        <i class="fa fa-plus"></i>
-                    </a>
-                </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                    <label class="form-label">非比色法测定项目</label>
+                    <label class="form-label">
+                        <span>---<i class="fa fa-hand-o-down"></i>非比色法测定项目选择框<i class="fa fa-hand-o-down"></i>---</span>
+                        <a class="btn btn-default" data-toggle="modal" data-target="#opt2">
+                            <i class="fa fa-plus">增加项目</i>
+                        </a>
+                    </label>
                     <select tabindex="-1" class="form-control input-lg" v-model="selected2">
                         <option style="font-size: 80%" disabled>---请选择---</option>
                         <option v-bind:id="'select2'+index" v-bind:value="item" v-for="(item,index) in names2" v-text="item.name"></option>
                     </select>
                 </div>
                 <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-                    <a class="btn btn-default" data-toggle="modal" data-target="#opt2">
-                        <i class="fa fa-plus"></i>
-                    </a>
                     <div class="modal fade" id="opt2" tabindex="-1" role="dialog" aria-labelledby="myOpt" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class='modal-content'>
@@ -115,19 +120,19 @@
                                 <div class="modal-body form-group">
 
                                     <label class="form-label">项目名称：</label>
-                                    <input type="text" class="form-control" placeholder="项目名称" v-model="new_opt2.name">
+                                    <input type="text" class="form-control" v-model="new_opt2.name">
                                     <label class="form-label">单位：</label>
-                                    <input type="text" class="form-control" placeholder="计量单位" v-model="new_opt2.unit">
+                                    <input type="text" class="form-control" v-model="new_opt2.unit">
                                     <label class="form-label">检测仪器：</label>
-                                    <input type="text" class="form-control" placeholder="检测仪器" v-model="new_opt2.instrument_model">
+                                    <input type="text" class="form-control" v-model="new_opt2.instrument_model">
                                     <label class="form-label">检验依据：</label>
-                                    <input type="text" class="form-control" placeholder="检测依据" v-model="new_opt2.GB">
+                                    <input type="text" class="form-control" v-model="new_opt2.GB">
                                     <label class="form-label">检验方法：</label>
-                                    <input type="text" class="form-control" placeholder="检测方法" v-model="new_opt2.method">
+                                    <input type="text" class="form-control" v-model="new_opt2.method">
                                     <label class="form-label">最小检出限</label>:
-                                    <input type="text" class="form-control" placeholder="最小检出限" v-model="new_opt2.limit">
+                                    <input type="text" class="form-control" v-model="new_opt2.limit">
                                     <label class="form-label">最高限值：</label>
-                                    <input type="text" class="form-control" placeholder="参考范围" v-model="new_opt2.range_large">
+                                    <input type="text" class="form-control" v-model="new_opt2.range_large">
                                     <label class="form-label">加样量：</label>
                                         <select id="v2" class="form-control" v-model="new_opt2.v">
                                             <option value="50">50ml</option>
@@ -155,19 +160,19 @@
                                 <div class="modal-body form-group">
 
                                     <label class="form-label">项目名称：</label>
-                                    <input type="text" class="form-control" placeholder="项目名称" v-model="new_opt.name">
+                                    <input type="text" class="form-control" v-model="new_opt.name">
                                     <label class="form-label">单位：</label>
-                                    <input type="text" class="form-control" placeholder="计量单位" v-model="new_opt.unit">
+                                    <input type="text" class="form-control" v-model="new_opt.unit">
                                     <label class="form-label">检测仪器：</label>
-                                    <input type="text" class="form-control" placeholder="检测仪器" v-model="new_opt.instrument_model">
+                                    <input type="text" class="form-control" v-model="new_opt.instrument_model">
                                     <label class="form-label">检验依据：</label>
-                                    <input type="text" class="form-control" placeholder="检测依据" v-model="new_opt.GB">
+                                    <input type="text" class="form-control" v-model="new_opt.GB">
                                     <label class="form-label">检验方法：</label>
-                                    <input type="text" class="form-control" placeholder="检测方法" v-model="new_opt.method">
+                                    <input type="text" class="form-control" v-model="new_opt.method">
                                     <label class="form-label">最小检出限</label>:
-                                    <input type="text" class="form-control" placeholder="最小检出限" v-model="new_opt.limit">
+                                    <input type="text" class="form-control" v-model="new_opt.limit">
                                     <label class="form-label">最高限值：</label>
-                                    <input type="text" class="form-control" placeholder="参考范围" v-model="new_opt.range_large">
+                                    <input type="text" class="form-control" v-model="new_opt.range_large">
                                     <label class="form-label">加样量：</label>
                                         <select id="v" class="form-control" v-model="new_opt.v">
                                             <option value="50">50ml</option>
@@ -222,7 +227,7 @@
                     </table>
                 </div>
                 <div class="col-lg-6">
-                    <div id="line" v-show="show"></div>
+                    <div id="line" style="box-shadow:5px 5px 4px" v-show="show"></div>
                 </div>
             </div>
             <form v-if="show">
@@ -569,6 +574,7 @@
             留言
         </div>
     </footer>
+    <link rel="stylesheet" href="css/css/index.css">
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-let app = new Vue({
+var app = new Vue({
     el: "#root",
     data: {
         company: '',
@@ -1514,6 +1514,22 @@ let app = new Vue({
             localStorage.setItem("username", this.username)
             localStorage.setItem("company", this.company)
             this.login_f = false
+        },
+        login_env(){
+            let date = new Date()
+            date = dateFormat(date)
+            let wendu = date + "wendu"
+            let shidu = date + "shidu"
+            localStorage.setItem("wendu",this.sample.temprature)
+            localStorage.setItem("shidu",this.sample.rh)
+        },
+        get_env(date){
+            let wendu = date + "wendu"
+            let shidu = date + "shidu"
+            let env = new Object
+            env.wendu = localStorage.getItem("wendu")
+            env.shidu = localStorage.getItem("shidu")
+            return env
         },
         init_login() {
             if (localStorage.getItem("company")) {
