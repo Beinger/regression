@@ -1,6 +1,23 @@
 var app = new Vue({
     el: "#root",
     data: {
+        projects: {
+            normal: [
+                'pH',
+                '浑浊度',
+                '色度',
+                '肉眼可见物',
+                '余氯'
+            ],
+            toxicology:[
+                '氰化物',
+                '砷'
+            ],
+
+        }, 
+        pend_project: [],
+        numbering: '',
+        category: '',
         company: '',
         username: '',
         login_f: true,

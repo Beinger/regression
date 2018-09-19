@@ -70,10 +70,30 @@
                                     <h4 class="modal-title" id="myModalLabel">注册</h4>
                                 </div>
                                 <div class="modal-body form-group">
-                                    <label for="" class="form-label">单位名称</label>
-                                    <input type="text" class="form-control" placeholder="请输入单位名称" v-model="company">
-                                    <label for="" class="form-label">检验者名字</label>
-                                    <input type="text" class="form-control" placeholder="请输入名字" v-model="username">
+                                    <label for="" class="form-label">单位名称
+                                    <input type="text" placeholder="请输入单位名称" v-model="company"></label>
+                                    <label class="form-label">样品类别
+                                    <!-- <div class="btn-group">
+                                        <label for="">水质
+                                    <input type="radio" value="水" v-model="category"></label>
+                                    食品<input type="radio" value="食" v-model="category">
+                                    气体<input type="radio" value="气" v-model="category">
+                                    </div></label> -->
+                                    <select v-model="category">
+                                        <option value="水">水样</option>
+                                        <option value="食">食品</option>
+                                        <option value="气">气体</option>
+                                    </select></label>
+                                    <label class="form-label">机构代号
+                                    <input type="text" v-model="numbering"></label>
+                                    <label for="" class="form-label">检验者
+                                    <input type="text" placeholder="请输入名字" v-model="username"></label>
+                                    <label for="" class="form-label">检测项目</label>
+                                    <div v-for="(item, index) in projects" :key="index">
+                                        <div v-for="(value, key) in item" :key="key">
+                                            <input type="checkbox" value="value">{{ value }}
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -241,7 +261,7 @@
                                 <a class="btn btn-default" @click="add_sample(selected)" ref="welcome">
                                     <i class="fa fa-hand-o-right fa-2x"></i><i class="fa fa-pencil"></i>
                                     开始录入
-                                    <i>样品编号YXCDC2018水第
+                                    <i>样品编号{{numbering+(new Date()).getFullYear()+category}}第
                                         <input v-if="selected.judge==true" tabindex="11" type="number" v-model="selected.start">
                                         <input v-else-if="selected2.judge==true" type="number" v-model="selected2.end">
                                         <input v-else-if="selected2.judge==false" type="number" v-model="selected2.start">
@@ -263,7 +283,7 @@
                                 </tr>
                                 <tr class="text-center">
                                     <td>
-                                        <i>YXCDC2018水第<span v-text="f_n(selected.start,3)"></span>号</i>
+                                        <i>{{numbering+(new Date()).getFullYear()+category}}第<span v-text="f_n(selected.start,3)"></span>号</i>
                                     </td>
                                     <td>
                                         <select name="" id="" v-model="selected.v">
@@ -377,7 +397,7 @@
                         </thead>
                         <tbody class="text-center">
                             <tr v-for="(item, index) in selected.st" :key="index">
-                                <td>YXCDC2018水第<span v-text="f_n(item.id, 3)"></span>号</td>
+                                <td>{{numbering+(new Date()).getFullYear()+category}}第<span v-text="f_n(item.id, 3)"></span>号</td>
                                 <td v-text="item.v"></td>
                                 <td v-text="item.a"></td>
                                 <td v-text="item.m"></td>
@@ -406,7 +426,7 @@
                                 <a class="btn btn-default" @click="add_sample(selected2)" ref="welcome">
                                     <i class="fa fa-hand-o-right fa-2x"></i><i class="fa fa-pencil"></i>
                                     开始录入
-                                    <i>样品编号YXCDC2018水第
+                                    <i>样品编号{{numbering+(new Date()).getFullYear()+category}}第
                                         <input v-if="selected2.judge" tabindex="11" type="number" v-model="selected2.start">
                                         <input v-else tabindex="11" type="number" v-model="selected2.end"> 号
                                     </i>
@@ -427,7 +447,7 @@
                                 </tr>
                                 <tr class="text-center">
                                     <td>
-                                        <i>YXCDC2018水第<span v-text="f_n(selected2.start,3)"></span>号</i>
+                                        <i>{{numbering+(new Date()).getFullYear()+category}}第<span v-text="f_n(selected2.start,3)"></span>号</i>
                                     </td>
                                     <td>
                                         <select name="" id="" v-model="selected2.v">
@@ -541,7 +561,7 @@
                         </thead>
                         <tbody class="text-center">
                             <tr v-for="(item, index) in selected2.st" :key="index">
-                                <td>YXCDC2018水第<span v-text="f_n(item.id, 3)"></span>号</td>
+                                <td>{{numbering+(new Date()).getFullYear()+category}}第<span v-text="f_n(item.id, 3)"></span>号</td>
                                 <td v-text="item.v"></td>
                                 <td v-text="item.a"></td>
                                 <td v-text="item.m"></td>
