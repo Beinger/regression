@@ -71,18 +71,24 @@
                                 </div>
                                 <div class="modal-body form-group">
                                     <label for="" class="form-label">单位名称
-                                    <input class="form-control" type="text" v-model="company"></label>
+                                        <input class="form-control" type="text" v-model="company"></label>
                                     <label class="form-label">机构代号
-                                    <input type="text" class="form-control" v-model="numbering"></label>
-                                    <label class="btn-group checkbox">检测项目
-                                    <ul class="list-group" v-for="(item, index) in projects" :key="index">
-                                        <li v-text="index">
-                                        <li class="list-group-item" v-for="(value, key) in item" :key="key">
-                                            <input class="btn" type="checkbox" value="value" v-model="selected_opt">
-                                            <label v-text="value"></label>
-                                        </li>
-                                    </ul>
-                                </label>
+                                        <input type="text" class="form-control" v-model="numbering"></label>
+                                    <!-- <label class="btn-group checkbox">检测项目
+                                        <ul class="list-group" v-for="(item, index) in projects" :key="index">
+                                            <li @click="first_opt = true" v-text="index"></li>
+                                            <li @click="second_opt=true" v-show="first_opt" class="list-group-item" v-for="(v, k) in item" :key="k">
+                                                <input class="animated fadeIn" v-show="second_opt" class="btn" type="checkbox" :value="v" v-model="selected_opt">
+                                                <label v-show="second_opt" v-text="v"></label>
+                                            </li>
+                                        </ul>
+                                    </label>
+                                    <div>
+                                        所选项目共<span v-text="selected_opt.length"></span>项，为
+                                        <ul v-for="(v,k) in selected_opt">
+                                            <li v-text="v"></li>
+                                        </ul>
+                                    </div> -->
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -95,11 +101,42 @@
             </div>
 
             <div class="row form-group">
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
+                    <a class="btn btn-default btn-lg" data-toggle="madel" data-target="#normal">感官性状等</a>
+                    <div class="modal fade" id="normal" tabindex="-1" role="dialog" aria-labelledby="myNormal" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class='modal-content'>
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="myNormal">感官性状</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- <div v-for="(item, index) in get_key(selected)" :key="index"> -->
+                                        <label class="form-label">pH值</label>
+                                        <input type="text" class="form-control" v-model="sample.ph">
+                                        <label class="form-label">色度</label>
+                                        <input type="text" class="form-control" v-model="sample.color">
+                                        <label class="form-label">浑浊度</label>
+                                        <input type="text" class="form-control" v-model="sample.turbidity">
+                                        <label class="form-label">臭和味</label>
+                                        <input type="text" class="form-control" v-model="sample.sniff">
+                                        <label class="form-label">肉眼可见物</label>
+                                        <input type="text" class="form-control" v-model="sample.solid">
+                                    <!-- </div> -->
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                    <button type="button" class="btn btn-primary" @click="save_normal">提交更改</button>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal -->
+                    </div>
+                </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                     <label calss="form-label"><i class="fa fa-hand-o-down"></i>比色法测定项目选择框 <i class="fa fa-hand-o-down"></i>
-                    <a class="btn btn-default" data-toggle="modal" data-target="#opt">
-                        <i class="fa fa-plus">增加项目</i>
-                    </a>
+                        <a class="btn btn-default" data-toggle="modal" data-target="#opt">
+                            <i class="fa fa-plus">增加项目</i>
+                        </a>
                     </label>
                     <select tabindex="-1" class="form-control input-lg" v-model="selected">
                         <option style="font-size: 80%" disabled>---请选择---</option>
@@ -108,7 +145,7 @@
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                     <label class="form-label">
-                        <span><i class="fa fa-hand-o-down"></i>非比色法测定项目选择框<i class="fa fa-hand-o-down"></i></span>
+                        <span><i class="fa fa-hand-o-down"></i>滴定法测定项目选择框<i class="fa fa-hand-o-down"></i></span>
                         <a class="btn btn-default" data-toggle="modal" data-target="#opt2">
                             <i class="fa fa-plus">增加项目</i>
                         </a>
@@ -118,7 +155,7 @@
                         <option v-bind:id="'select2'+index" v-bind:value="item" v-for="(item,index) in names2" v-text="item.name"></option>
                     </select>
                 </div>
-                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
                     <div class="modal fade" id="opt2" tabindex="-1" role="dialog" aria-labelledby="myOpt" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class='modal-content'>
@@ -143,14 +180,14 @@
                                     <label class="form-label">最高限值：</label>
                                     <input type="text" class="form-control" v-model="new_opt2.range_large">
                                     <label class="form-label">加样量：</label>
-                                        <select id="v2" class="form-control" v-model="new_opt2.v">
-                                            <option value="50">50ml</option>
-                                            <option value="100">100ml</option>
-                                            <option value="250">250ml</option>
-                                            <option value="1">1ml</option>
-                                            <option value="10">10ml</option>
-                                            <option value="25">25ml</option>
-                                        </select>
+                                    <select id="v2" class="form-control" v-model="new_opt2.v">
+                                        <option value="50">50ml</option>
+                                        <option value="100">100ml</option>
+                                        <option value="250">250ml</option>
+                                        <option value="1">1ml</option>
+                                        <option value="10">10ml</option>
+                                        <option value="25">25ml</option>
+                                    </select>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -183,14 +220,14 @@
                                     <label class="form-label">最高限值：</label>
                                     <input type="text" class="form-control" v-model="new_opt.range_large">
                                     <label class="form-label">加样量：</label>
-                                        <select id="v" class="form-control" v-model="new_opt.v">
-                                            <option value="50">50ml</option>
-                                            <option value="100">100ml</option>
-                                            <option value="250">250ml</option>
-                                            <option value="1">1ml</option>
-                                            <option value="10">10ml</option>
-                                            <option value="25">25ml</option>
-                                        </select>
+                                    <select id="v" class="form-control" v-model="new_opt.v">
+                                        <option value="50">50ml</option>
+                                        <option value="100">100ml</option>
+                                        <option value="250">250ml</option>
+                                        <option value="1">1ml</option>
+                                        <option value="10">10ml</option>
+                                        <option value="25">25ml</option>
+                                    </select>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -254,7 +291,8 @@
                                         <input v-if="selected.judge==true" tabindex="11" type="number" v-model="selected.start">
                                         <input v-else-if="selected2.judge==true" type="number" v-model="selected2.end">
                                         <input v-else-if="selected2.judge==false" type="number" v-model="selected2.start">
-                                        <input v-else-if="selected.judge==false" type="number" v-model="selected.end"> 号
+                                        <input v-else-if="selected.judge==false" type="number" v-model="selected.end">
+                                        号
                                     </i>
                                 </a>
                             </div>
@@ -445,10 +483,12 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <input class="form-control animated bounceInRight" type="number" tabindex="1" v-model="selected2.new_results.a0">
+                                        <input class="form-control animated bounceInRight" type="number" tabindex="1"
+                                            v-model="selected2.new_results.a0">
                                     </td>
                                     <td>
-                                        <input class="form-control animated bounceInRight" type="number" tabindex="0" v-model="selected2.new_results.a1">
+                                        <input class="form-control animated bounceInRight" type="number" tabindex="0"
+                                            v-model="selected2.new_results.a1">
                                     </td>
                                     <td>
                                         <button class="btn" tabindex="0" @click="submit_result(selected2)">提交</button>

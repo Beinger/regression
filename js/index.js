@@ -1,6 +1,8 @@
 var app = new Vue({
     el: "#root",
     data: {
+        first_opt: false,
+        second_opt: false,
         selected_opt: [],
         projects: {
             微生物指标microbe:[
@@ -63,7 +65,6 @@ var app = new Vue({
         }, 
         pend_project: [],
         numbering: '',
-        category: '',
         company: '',
         username: '',
         login_f: true,
@@ -144,13 +145,268 @@ var app = new Vue({
                 date: ''
             },
         },
+        samples: [],
         sample: {
             id: '',
             v: 3,
-            temprature: 20,
-            rh: 70,
+            temprature: '',
+            rh: '',
+            ph: '',
+            color: '<5',
+            turbidity: '',
+            sniff: '无异臭和异味',
+            solid: '无',
         },
-        names2: [],
+        names2: [
+         {
+            st: [],
+            judge: false,
+            range_large: 250,
+            assessment: true,
+            unit: 'mg/L',
+            v: 10,
+            start: 1,
+            end: 1,
+            id: 1,
+            name: '氯化物',
+            method: '滴定法',
+            limit: 5,
+            a0: '',
+            a1: '',
+            a: '',
+            c: 0,
+            instrument_model: '滴定管',
+            GB: 'GB/T 5750.5-2006',
+            html: '',
+            items: [],
+            results: [],
+            new_results: {
+                id: 1,
+                v: '',
+                a: '',
+                m: '',
+                date: ''
+            },
+        },
+         {
+            st: [],
+            judge: false,
+            range_large: '',
+            assessment: true,
+            unit: 'mg/L',
+            v: 1,
+            start: 1,
+            end: 1,
+            id: 2,
+            name: '',
+            method: '',
+            limit: '',
+            a0: '',
+            a1: '',
+            a: '',
+            c: 0,
+            formula: '',
+            instrument_model: '',
+            GB: 'GB/T 5750.5-2006',
+            html: '',
+            items: [],
+            results: [],
+            new_results: {
+                id: 1,
+                v: '',
+                a: '',
+                m: '',
+                date: ''
+            },
+        },
+         {
+            st: [],
+            judge: false,
+            range_large: '',
+            assessment: true,
+            unit: 'mg/L',
+            v: 1,
+            start: 1,
+            end: 1,
+            id: 1,
+            name: '',
+            method: '',
+            limit: '',
+            a0: '',
+            a1: '',
+            a: '',
+            c: 0,
+            formula: '',
+            instrument_model: '',
+            GB: 'GB/T 5750.5-2006',
+            html: '',
+            items: [],
+            results: [],
+            new_results: {
+                id: 1,
+                v: '',
+                a: '',
+                m: '',
+                date: ''
+            },
+        },
+         {
+            st: [],
+            judge: false,
+            range_large: '',
+            assessment: true,
+            unit: 'mg/L',
+            v: 1,
+            start: 1,
+            end: 1,
+            id: 1,
+            name: '',
+            method: '',
+            limit: '',
+            a0: '',
+            a1: '',
+            a: '',
+            c: 0,
+            formula: '',
+            instrument_model: '',
+            GB: 'GB/T 5750.5-2006',
+            html: '',
+            items: [],
+            results: [],
+            new_results: {
+                id: 1,
+                v: '',
+                a: '',
+                m: '',
+                date: ''
+            },
+        },
+         {
+            st: [],
+            judge: false,
+            range_large: '',
+            assessment: true,
+            unit: 'mg/L',
+            v: 1,
+            start: 1,
+            end: 1,
+            id: 1,
+            name: '',
+            method: '',
+            limit: '',
+            a0: '',
+            a1: '',
+            a: '',
+            c: 0,
+            formula: '',
+            instrument_model: '',
+            GB: 'GB/T 5750.5-2006',
+            html: '',
+            items: [],
+            results: [],
+            new_results: {
+                id: 1,
+                v: '',
+                a: '',
+                m: '',
+                date: ''
+            },
+        },
+         {
+            st: [],
+            judge: false,
+            range_large: '',
+            assessment: true,
+            unit: 'mg/L',
+            v: 1,
+            start: 1,
+            end: 1,
+            id: 1,
+            name: '',
+            method: '',
+            limit: '',
+            a0: '',
+            a1: '',
+            a: '',
+            c: 0,
+            formula: '',
+            instrument_model: '',
+            GB: 'GB/T 5750.5-2006',
+            html: '',
+            items: [],
+            results: [],
+            new_results: {
+                id: 1,
+                v: '',
+                a: '',
+                m: '',
+                date: ''
+            },
+        },
+         {
+            st: [],
+            judge: false,
+            range_large: '',
+            assessment: true,
+            unit: 'mg/L',
+            v: 1,
+            start: 1,
+            end: 1,
+            id: 1,
+            name: '',
+            method: '',
+            limit: '',
+            a0: '',
+            a1: '',
+            a: '',
+            c: 0,
+            formula: '',
+            instrument_model: '',
+            GB: 'GB/T 5750.5-2006',
+            html: '',
+            items: [],
+            results: [],
+            new_results: {
+                id: 1,
+                v: '',
+                a: '',
+                m: '',
+                date: ''
+            },
+        },
+         {
+            st: [],
+            judge: false,
+            range_large: '',
+            assessment: true,
+            unit: 'mg/L',
+            v: 1,
+            start: 1,
+            end: 1,
+            id: 1,
+            name: '',
+            method: '',
+            limit: '',
+            a0: '',
+            a1: '',
+            a: '',
+            c: 0,
+            formula: '',
+            instrument_model: '',
+            GB: 'GB/T 5750.5-2006',
+            html: '',
+            items: [],
+            results: [],
+            new_results: {
+                id: 1,
+                v: '',
+                a: '',
+                m: '',
+                date: ''
+            },
+        },
+
+        ],
         names: [{
                 st: [],
                 judge: false,
@@ -1486,7 +1742,23 @@ var app = new Vue({
             }
             return this.selected.results[element].c
         },
-        
+        save_normal(){
+            /**
+             * 保存感官性状指标
+             */
+            this.samples.push(this.sample)
+        this.sample = {
+            id: '',
+            v: 3,
+            temprature: '',
+            rh: '',
+            ph: '',
+            color: '<5',
+            turbidity: '',
+            sniff: '无异臭和异味',
+            solid: '无',
+        }
+        }, 
         save_results(id,st) {
             /**
              * 从输入吸光度后计算得到的结果表格中获取数据,存入localStorage
@@ -1533,6 +1805,7 @@ var app = new Vue({
                 }
                 somes.start = Number(localStorage.getItem(n));
             }
+            //对结果依据编号从小到大进行排序
             somes.st.sort(function (i, j) {
                 return Number(i.id) > Number(j.id) ? 1 : -1
             });
@@ -1574,35 +1847,43 @@ var app = new Vue({
             return (Array(length).join('0') + num).slice(-length);
         },
         login_s() {
-            localStorage.setItem("username", this.username)
+            /**
+             * 把机构名称和机构代号存入localStorage
+             */
             localStorage.setItem("company", this.company)
             localStorage.setItem("numbering", this.numbering)
-            localStorage.setItem("category", this.category)
             this.login_f = false
         },
         login_env(){
+            /**
+             *把当天的温湿度存入localStorage 
+             */
             let date = new Date()
             date = dateFormat(date)
             let wendu = date + "wendu"
             let shidu = date + "shidu"
-            localStorage.setItem("wendu",this.sample.temprature)
-            localStorage.setItem("shidu",this.sample.rh)
+            localStorage.setItem(wendu,this.sample.temprature)
+            localStorage.setItem(shidu,this.sample.rh)
         },
         get_env(date){
+            /**
+             * 获取特定日期的温度和湿度
+             */
             let wendu = date + "wendu"
             let shidu = date + "shidu"
             let env = new Object
-            env.wendu = localStorage.getItem("wendu")
-            env.shidu = localStorage.getItem("shidu")
+            env.wendu = localStorage.getItem(wendu)
+            env.shidu = localStorage.getItem(shidu)
             return env
         },
         init_login() {
+            /**
+             * 初始化得到单位名称、机构编号
+             */
             if (localStorage.getItem("company")) {
                 this.login_f = false
                 this.company = localStorage.getItem("company")
-                this.username = localStorage.getItem("username")
                 this.numbering = localStorage.getItem("numbering")
-                this.category = localStorage.getItem("category")
             }
         },
         //时间格式化函数，此处仅针对yyyy-MM-dd hh:mm:ss 的格式进行格式化
