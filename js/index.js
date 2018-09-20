@@ -1,19 +1,65 @@
 var app = new Vue({
     el: "#root",
     data: {
+        selected_opt: [],
         projects: {
-            normal: [
+            微生物指标microbe:[
+                //微生物指标
+                '总大肠菌群',
+                '耐热大肠菌群',
+                '大肠埃希氏菌',
+                '菌落总数',
+            ],
+            毒理学指标toxicology:[
+                //毒理学指标
+                '砷',
+                '镉',
+                '铬(六价)',
+                '铅',
+                '汞',
+                '硒',
+                '氟化物',
+                '氰化物',
+                '硝酸盐氮',
+                '四氯化碳',
+                '三氯甲烷',
+                '溴酸盐',
+                '甲醛',
+                '亚氯酸盐',
+                '氯酸盐',
+            ],
+            放射性指标radioactivity:[
+                //放射性指标
+                '总α放射性',
+                '总β放射性'
+            ],
+            感官性状和一般化学指标sensory_chemical: [
+                //感官性状和一般化学指标
                 'pH',
                 '浑浊度',
                 '色度',
                 '肉眼可见物',
-                '余氯'
-            ],
-            toxicology:[
-                '氰化物',
-                '砷'
-            ],
-
+                '臭和味',
+                '总硬度',
+                '溶解性总固体',
+                '挥发酚类',
+                '电导率',
+                '阴离子合成洗涤剂',
+                '铁',
+                '锰',
+                '铜',
+                '锌',
+                '铝',
+                '硫酸盐',
+                '氯化物',
+                '耗氧量',
+           ],
+           消毒剂指标:[
+                '游离余氯',
+                '总氯',
+                '二氧化氯',
+                '臭氧',
+           ]
         }, 
         pend_project: [],
         numbering: '',
@@ -1530,6 +1576,8 @@ var app = new Vue({
         login_s() {
             localStorage.setItem("username", this.username)
             localStorage.setItem("company", this.company)
+            localStorage.setItem("numbering", this.numbering)
+            localStorage.setItem("category", this.category)
             this.login_f = false
         },
         login_env(){
@@ -1553,6 +1601,8 @@ var app = new Vue({
                 this.login_f = false
                 this.company = localStorage.getItem("company")
                 this.username = localStorage.getItem("username")
+                this.numbering = localStorage.getItem("numbering")
+                this.category = localStorage.getItem("category")
             }
         },
         //时间格式化函数，此处仅针对yyyy-MM-dd hh:mm:ss 的格式进行格式化
@@ -1649,7 +1699,7 @@ function show_chart() {
         },
         xAxis: {
             title: {
-                text: "加样量(ml)"
+                text: "加样量(μg)"
             },
         },
         yAxis: {
