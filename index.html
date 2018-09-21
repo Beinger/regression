@@ -50,9 +50,9 @@
                                 </div>
                                 <div class="modal-body form-group">
                                     <label class="form-label">实验室温度(℃)</label>
-                                    <input type="text" v-model="sample.temprature">℃
+                                    <input type="text" v-model="new_opt3.temprature">℃
                                     <label calss="form-label">实验室湿度(%)</label>
-                                    <input type="text" v-model="sample.rh">%
+                                    <input type="text" v-model="new_opt3.rh">%
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -101,39 +101,8 @@
             </div>
 
             <div class="row form-group">
-                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
-                    <a class="btn btn-default btn-lg" data-toggle="madel" data-target="#normal">感官性状等</a>
-                    <div class="modal fade" id="normal" tabindex="-1" role="dialog" aria-labelledby="myNormal" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class='modal-content'>
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    <h4 class="modal-title" id="myNormal">感官性状</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <!-- <div v-for="(item, index) in get_key(selected)" :key="index"> -->
-                                        <label class="form-label">pH值</label>
-                                        <input type="text" class="form-control" v-model="sample.ph">
-                                        <label class="form-label">色度</label>
-                                        <input type="text" class="form-control" v-model="sample.color">
-                                        <label class="form-label">浑浊度</label>
-                                        <input type="text" class="form-control" v-model="sample.turbidity">
-                                        <label class="form-label">臭和味</label>
-                                        <input type="text" class="form-control" v-model="sample.sniff">
-                                        <label class="form-label">肉眼可见物</label>
-                                        <input type="text" class="form-control" v-model="sample.solid">
-                                    <!-- </div> -->
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                    <button type="button" class="btn btn-primary" @click="save_normal">提交更改</button>
-                                </div>
-                            </div><!-- /.modal-content -->
-                        </div><!-- /.modal -->
-                    </div>
-                </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                    <label calss="form-label"><i class="fa fa-hand-o-down"></i>比色法测定项目选择框 <i class="fa fa-hand-o-down"></i>
+                    <label calss="form-label">比色法测定项目选择框
                         <a class="btn btn-default" data-toggle="modal" data-target="#opt">
                             <i class="fa fa-plus">增加项目</i>
                         </a>
@@ -143,9 +112,9 @@
                         <option v-bind:id="'select'+index" v-bind:value="item" v-for="(item,index) in names" v-text="item.name"></option>
                     </select>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
                     <label class="form-label">
-                        <span><i class="fa fa-hand-o-down"></i>滴定法测定项目选择框<i class="fa fa-hand-o-down"></i></span>
+                        <span>滴定法测定项目选择框</span>
                         <a class="btn btn-default" data-toggle="modal" data-target="#opt2">
                             <i class="fa fa-plus">增加项目</i>
                         </a>
@@ -155,89 +124,127 @@
                         <option v-bind:id="'select2'+index" v-bind:value="item" v-for="(item,index) in names2" v-text="item.name"></option>
                     </select>
                 </div>
-                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
-                    <div class="modal fade" id="opt2" tabindex="-1" role="dialog" aria-labelledby="myOpt" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class='modal-content'>
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    <h4 class="modal-title" id="myOpt">新增加项目: <span v-text="new_opt2.name"></span></h4>
-                                </div>
-                                <div class="modal-body form-group">
-
-                                    <label class="form-label">项目名称：</label>
-                                    <input type="text" class="form-control" v-model="new_opt2.name">
-                                    <label class="form-label">单位：</label>
-                                    <input type="text" class="form-control" v-model="new_opt2.unit">
-                                    <label class="form-label">检测仪器：</label>
-                                    <input type="text" class="form-control" v-model="new_opt2.instrument_model">
-                                    <label class="form-label">检验依据：</label>
-                                    <input type="text" class="form-control" v-model="new_opt2.GB">
-                                    <label class="form-label">检验方法：</label>
-                                    <input type="text" class="form-control" v-model="new_opt2.method">
-                                    <label class="form-label">最小检出限</label>:
-                                    <input type="text" class="form-control" v-model="new_opt2.limit">
-                                    <label class="form-label">最高限值：</label>
-                                    <input type="text" class="form-control" v-model="new_opt2.range_large">
-                                    <label class="form-label">加样量：</label>
-                                    <select id="v2" class="form-control" v-model="new_opt2.v">
-                                        <option value="50">50ml</option>
-                                        <option value="100">100ml</option>
-                                        <option value="250">250ml</option>
-                                        <option value="1">1ml</option>
-                                        <option value="10">10ml</option>
-                                        <option value="25">25ml</option>
-                                    </select>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                    <button type="button" class="btn btn-primary" @click="add_opt2" data-dismiss="modal">保存</button>
-                                </div>
-                            </div><!-- /.modal-content -->
-                        </div><!-- /.modal -->
-                    </div>
-                    <div class="modal fade" id="opt" tabindex="-1" role="dialog" aria-labelledby="myOpt" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class='modal-content'>
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    <h4 class="modal-title" id="myOpt">新增加项目: <span v-text="new_opt.name"></span></h4>
-                                </div>
-                                <div class="modal-body form-group">
-
-                                    <label class="form-label">项目名称：</label>
-                                    <input type="text" class="form-control" v-model="new_opt.name">
-                                    <label class="form-label">单位：</label>
-                                    <input type="text" class="form-control" v-model="new_opt.unit">
-                                    <label class="form-label">检测仪器：</label>
-                                    <input type="text" class="form-control" v-model="new_opt.instrument_model">
-                                    <label class="form-label">检验依据：</label>
-                                    <input type="text" class="form-control" v-model="new_opt.GB">
-                                    <label class="form-label">检验方法：</label>
-                                    <input type="text" class="form-control" v-model="new_opt.method">
-                                    <label class="form-label">最小检出限</label>:
-                                    <input type="text" class="form-control" v-model="new_opt.limit">
-                                    <label class="form-label">最高限值：</label>
-                                    <input type="text" class="form-control" v-model="new_opt.range_large">
-                                    <label class="form-label">加样量：</label>
-                                    <select id="v" class="form-control" v-model="new_opt.v">
-                                        <option value="50">50ml</option>
-                                        <option value="100">100ml</option>
-                                        <option value="250">250ml</option>
-                                        <option value="1">1ml</option>
-                                        <option value="10">10ml</option>
-                                        <option value="25">25ml</option>
-                                    </select>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                    <button type="button" class="btn btn-primary" @click="add_opt" data-dismiss="modal">保存</button>
-                                </div>
-                            </div><!-- /.modal-content -->
-                        </div><!-- /.modal -->
-                    </div>
+                <div class="col-lg-4 col-md-3 col-sm-3 col-xs-4">
+                    <label class="form-label">
+                        <span>感官性状和一般化学指标选择框</span>
+                        <a class="btn btn-default" data-toggle="modal" data-target="#normal">
+                            <i class="fa fa-plus">增加项目</i>
+                        </a>
+                    </label>
+                    <select tabindex="-1" class="form-control input-lg" v-model="selected3">
+                        <option style="font-size: 80%" disabled>---请选择---</option>
+                        <option v-bind:id="'select3'+index" v-bind:value="item" v-for="(item,index) in names3" v-text="item.name"></option>
+                    </select>
                 </div>
-                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 text-right">
+                <div class="modal fade" id="normal" tabindex="-1" role="dialog" aria-labelledby="myNormal" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class='modal-content'>
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="myNormal">感官性状</h4>
+                            </div>
+                            <div class="modal-body form-group">
+                                <label class="form-label">样品编号</label>
+                                <input type="text" class="form-control" v-model="new_opt3.id">
+                                <label class="form-label">pH值</label>
+                                <input type="text" class="form-control" v-model="new_opt3.ph">
+                                <label class="form-label">色度</label>
+                                <input type="text" class="form-control" v-model="new_opt3.color">
+                                <label class="form-label">浑浊度</label>
+                                <input type="text" class="form-control" v-model="new_opt3.turbidity">
+                                <label class="form-label">臭和味</label>
+                                <input type="text" class="form-control" v-model="new_opt3.sniff">
+                                <label class="form-label">肉眼可见物</label>
+                                <input type="text" class="form-control" v-model="new_opt3.solid">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                <button type="button" class="btn btn-primary" @click="save_normal">提交更改</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal -->
+                </div>
+                <div class="modal fade" id="opt2" tabindex="-1" role="dialog" aria-labelledby="myOpt" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class='modal-content'>
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="myOpt">新增加项目: <span v-text="new_opt2.name"></span></h4>
+                            </div>
+                            <div class="modal-body form-group">
+
+                                <label class="form-label">项目名称：</label>
+                                <input type="text" class="form-control" v-model="new_opt2.name">
+                                <label class="form-label">单位：</label>
+                                <input type="text" class="form-control" v-model="new_opt2.unit">
+                                <label class="form-label">检测仪器：</label>
+                                <input type="text" class="form-control" v-model="new_opt2.instrument_model">
+                                <label class="form-label">检验依据：</label>
+                                <input type="text" class="form-control" v-model="new_opt2.GB">
+                                <label class="form-label">检验方法：</label>
+                                <input type="text" class="form-control" v-model="new_opt2.method">
+                                <label class="form-label">最小检出限</label>:
+                                <input type="text" class="form-control" v-model="new_opt2.limit">
+                                <label class="form-label">最高限值：</label>
+                                <input type="text" class="form-control" v-model="new_opt2.range_large">
+                                <label class="form-label">加样量：</label>
+                                <select id="v2" class="form-control" v-model="new_opt2.v">
+                                    <option value="50">50ml</option>
+                                    <option value="100">100ml</option>
+                                    <option value="250">250ml</option>
+                                    <option value="1">1ml</option>
+                                    <option value="10">10ml</option>
+                                    <option value="25">25ml</option>
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                <button type="button" class="btn btn-primary" @click="add_opt2" data-dismiss="modal">保存</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal -->
+                </div>
+                <div class="modal fade" id="opt" tabindex="-1" role="dialog" aria-labelledby="myOpt" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class='modal-content'>
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="myOpt">新增加项目: <span v-text="new_opt.name"></span></h4>
+                            </div>
+                            <div class="modal-body form-group">
+
+                                <label class="form-label">项目名称：</label>
+                                <input type="text" class="form-control" v-model="new_opt.name">
+                                <label class="form-label">单位：</label>
+                                <input type="text" class="form-control" v-model="new_opt.unit">
+                                <label class="form-label">检测仪器：</label>
+                                <input type="text" class="form-control" v-model="new_opt.instrument_model">
+                                <label class="form-label">检验依据：</label>
+                                <input type="text" class="form-control" v-model="new_opt.GB">
+                                <label class="form-label">检验方法：</label>
+                                <input type="text" class="form-control" v-model="new_opt.method">
+                                <label class="form-label">最小检出限</label>:
+                                <input type="text" class="form-control" v-model="new_opt.limit">
+                                <label class="form-label">最高限值：</label>
+                                <input type="text" class="form-control" v-model="new_opt.range_large">
+                                <label class="form-label">加样量：</label>
+                                <select id="v" class="form-control" v-model="new_opt.v">
+                                    <option value="50">50ml</option>
+                                    <option value="100">100ml</option>
+                                    <option value="250">250ml</option>
+                                    <option value="1">1ml</option>
+                                    <option value="10">10ml</option>
+                                    <option value="25">25ml</option>
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                <button type="button" class="btn btn-primary" @click="add_opt" data-dismiss="modal">保存</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal -->
+                </div>
+                <div class="col-lg-1 col-md-2 col-sm-2 col-xs-12 text-right">
                     <i class="fa fa-calendar"></i>{{ dateFormat(new Date()) }}
                 </div>
             </div>
@@ -388,11 +395,11 @@
                             <td contenteditable="true">液态</td>
                             <td class="text-center">检测环境：</td>
                             <td contenteditable="true">
-                                温度<span v-text="sample.temprature"></span> ℃
+                                温度<span v-text="new_opt3.temprature"></span> ℃
                             </td>
                             <td contenteditable="true">
                                 湿度
-                                <span v-text="sample.rh"></span>% RH
+                                <span v-text="new_opt3.rh"></span>% RH
                             </td>
                         </tr>
                         <tr>
@@ -477,14 +484,14 @@
                                         <i>{{numbering+(new Date()).getFullYear()}}水第<span v-text="f_n(selected2.start,3)"></span>号</i>
                                     </td>
                                     <td>
-                                        <select name="" id="" v-model="selected2.v">
+                                        <select class="form-control" name="" id="" v-model="selected2.v">
                                             <option v-bind:value="opt" v-for="opt of vol_select" v-text="opt">
                                             </option>
                                         </select>
                                     </td>
                                     <td>
                                         <input class="form-control animated bounceInRight" type="number" tabindex="1"
-                                            v-model="selected2.new_results.a0">
+                                            v-model="selected2.a0">
                                     </td>
                                     <td>
                                         <input class="form-control animated bounceInRight" type="number" tabindex="0"
@@ -554,11 +561,11 @@
                             <td contenteditable="true">液态</td>
                             <td class="text-center">检测环境：</td>
                             <td contenteditable="true">
-                                温度<span v-text="sample.temprature"></span> ℃
+                                温度<span v-text="new_opt3.temprature"></span> ℃
                             </td>
                             <td contenteditable="true">
                                 湿度
-                                <span v-text="sample.rh"></span>% RH
+                                <span v-text="new_opt3.rh"></span>% RH
                             </td>
                         </tr>
                         <tr>
@@ -625,5 +632,4 @@
     </footer>
     <link rel="stylesheet" href="css/css/index.css">
 </body>
-
 </html>
