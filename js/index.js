@@ -1706,7 +1706,7 @@ var app = new Vue({
             this.add = true;
             this.mystorages(item)
             this.set_record(item)
-            this.useCount(item.name);
+            this.useCount(item);
             this.useJudge(item)
         },
         submit_result(somes) {
@@ -1715,16 +1715,36 @@ var app = new Vue({
              */
             somes.new_results.id = somes.start;
             somes.results.push(somes.new_results);
-            somes.new_results = {
-                id: somes.start,
-                v: '',
-                a0: '',
-                a1: '',
-                c: '',
-                a: '', //当为比色类项目时a是吸光度，当为滴定类时a是滴定消耗标准的体积，当为感官性状类时是结果
-                m: '',
-                date: '',
-            };
+            if(somes == this.selected){
+                somes.new_results= {
+                    id: somes.start,
+                    v: somes.v,
+                    a: '',
+                    m: '',
+                    c: '',
+                    date: ''
+                }
+            }
+            else if(somes == this.selected2){
+                somes.new_results = {
+                    id: somes.start,
+                    v: somes.v,
+                    a0: somes.a0,
+                    a1: '',
+                    a: '',
+                    m: '',
+                    c: '',
+                    date: ''
+                }
+            }
+            else{
+                somes.new_results = {
+                    id: somes.start,
+                    a: '',
+                    c: '',
+                    date: ''
+                }
+            }
             somes.start = Number(somes.start) + 1;
         },
         del_sample(index) {
@@ -1819,19 +1839,16 @@ var app = new Vue({
                 res.limit = st.limit
                 res.range_large = st.range_large;
                 res.unit = st.unit
-                if (st == 'selectedc2') {
-                    if (res.m < res.range_large) {
+                if (st == this.selected2) {
+                    if (Number(res.m) < Number(res.range_large)) {
                         res.assessment = "合格"
                     } else {
                         res.assessment = "不合格"
                     }
+                } else if(Number(res.c) < Number(res.range_large)){ 
+                    res.assessment = "合格"
                 } else {
-
-                    if (res.c < res.range_large) {
-                        res.assessment = "合格"
-                    } else {
-                        res.assessment = "不合格"
-                    }
+                    res.assessment = "不合格"
                 }
                 let str = JSON.stringify(res); //格式化后才能存入 
                 localStorage.setItem(p, str);
@@ -1954,7 +1971,7 @@ var app = new Vue({
 
         useCount(item) {
             //计数页面登录次数
-            let pagecount = item + 'pagecount';
+            let pagecount = item.name + 'pagecount';
             if (localStorage.getItem(pagecount)) {
                 localStorage.setItem(pagecount, Number(localStorage.getItem(pagecount)) + 1);
             } else {
@@ -1963,7 +1980,7 @@ var app = new Vue({
         },
         useJudge(item) {
             //判断是否保存过报告结果
-            let judge = item + 'judge';
+            let judge = item.name + 'judge';
             if (localStorage.getItem(judge) !== null) {
                 item.judge = true;
                 localStorage.setItem(judge, true);
