@@ -74,21 +74,6 @@
                                         <input class="form-control" type="text" v-model="company"></label>
                                     <label class="form-label">机构代号
                                         <input type="text" class="form-control" v-model="numbering"></label>
-                                    <!-- <label class="btn-group checkbox">检测项目
-                                        <ul class="list-group" v-for="(item, index) in projects" :key="index">
-                                            <li @click="first_opt = true" v-text="index"></li>
-                                            <li @click="second_opt=true" v-show="first_opt" class="list-group-item" v-for="(v, k) in item" :key="k">
-                                                <input class="animated fadeIn" v-show="second_opt" class="btn" type="checkbox" :value="v" v-model="selected_opt">
-                                                <label v-show="second_opt" v-text="v"></label>
-                                            </li>
-                                        </ul>
-                                    </label>
-                                    <div>
-                                        所选项目共<span v-text="selected_opt.length"></span>项，为
-                                        <ul v-for="(v,k) in selected_opt">
-                                            <li v-text="v"></li>
-                                        </ul>
-                                    </div> -->
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -102,7 +87,7 @@
 
             <div class="row form-group">
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                    <label calss="form-label">比色法测定项目选择框
+                    <label calss="form-label">比色法
                         <a class="btn btn-default" data-toggle="modal" data-target="#opt">
                             <i class="fa fa-plus">增加项目</i>
                         </a>
@@ -114,7 +99,7 @@
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
                     <label class="form-label">
-                        <span>滴定法测定项目选择框</span>
+                        <span>滴定法</span>
                         <a class="btn btn-default" data-toggle="modal" data-target="#opt2">
                             <i class="fa fa-plus">增加项目</i>
                         </a>
@@ -126,7 +111,7 @@
                 </div>
                 <div class="col-lg-4 col-md-3 col-sm-3 col-xs-4">
                     <label class="form-label">
-                        <span>感官性状和一般化学指标选择框</span>
+                        <span>感官性状</span>
                         <a class="btn btn-default" data-toggle="modal" data-target="#normal">
                             <i class="fa fa-plus">增加项目</i>
                         </a>
@@ -155,7 +140,7 @@
                                 <label class="form-label">检验方法：</label>
                                 <input type="text" class="form-control" v-model="new_opt.method">
                                 <label class="form-label">最高限值：</label>
-                                <input type="text" class="form-control" v-model="new_opt.range_large">
+                                <input type="text" class="form-control" v-model="new_opt.range_max">
                                 <label class="form-label">加样量：</label>
                                 <select id="v" class="form-control" v-model="new_opt.v">
                                     <option value="50">50ml</option>
@@ -195,7 +180,7 @@
                                 <label class="form-label">最小检出限</label>:
                                 <input type="text" class="form-control" v-model="new_opt2.limit">
                                 <label class="form-label">最高限值：</label>
-                                <input type="text" class="form-control" v-model="new_opt2.range_large">
+                                <input type="text" class="form-control" v-model="new_opt2.range_max">
                                 <label class="form-label">加样量：</label>
                                 <select id="v2" class="form-control" v-model="new_opt2.v">
                                     <option value="50">50ml</option>
@@ -235,7 +220,7 @@
                                 <label class="form-label">最小检出限</label>:
                                 <input type="text" class="form-control" v-model="new_opt.limit">
                                 <label class="form-label">最高限值：</label>
-                                <input type="text" class="form-control" v-model="new_opt.range_large">
+                                <input type="text" class="form-control" v-model="new_opt.range_max">
                                 <label class="form-label">加样量：</label>
                                 <select id="v" class="form-control" v-model="new_opt.v">
                                     <option value="50">50ml</option>
@@ -336,7 +321,7 @@
                                     </td>
                                     <td>
                                         <input class="form-control animated bounceInRight" id="go" ref="go" type="number"
-                                            tabindex="0" placeholder="输入后直接回车，不用&rarr;提交" v-model="selected.new_results.a">
+                                            tabindex="0" placeholder="输入后直接回车，不用&rarr;提交" v-model="selected.new_results.c">
                                     </td>
                                     <td>
                                         <button class="btn" tabindex="0" @click="submit_result(selected)">提交</button>
@@ -447,7 +432,7 @@
                                 <td v-if="item.c<selected.limit" v-text="'<'+selected.limit"></td>
                                 <td v-else v-text="item.c"></td>
                                 <td v-show="date_show" v-text="item.unit"></td>
-                                <td v-show="date_show" v-text="item.range_large"></td>
+                                <td v-show="date_show" v-text="item.range_max"></td>
                                 <td v-show="date_show" v-text="item.assessment"></td>
                                 <td v-show="date_show" v-text="item.date"></td>
                             </tr>
@@ -617,7 +602,7 @@
                                 <td v-if="item.c<selected2.limit" v-text="'<'+selected2.limit"></td>
                                 <td v-else v-text="item.c"></td>
                                 <td v-show="date_show" v-text="item.unit"></td>
-                                <td v-show="date_show" v-text="item.range_large"></td>
+                                <td v-show="date_show" v-text="item.range_max"></td>
                                 <td v-show="date_show" v-text="item.assessment"></td>
                                 <td v-show="date_show" v-text="item.date"></td>
                             </tr>
@@ -759,18 +744,17 @@
                             <tr v-for="(item, index) in selected3.st" :key="index">
                                 <td>{{numbering+(new Date()).getFullYear()}}水第<span v-text="f_n(item.id, 3)"></span>号</td>
                                 <td v-text="item.c"></td>
-                                <td v-if="item.c<selected3.limit" v-text="'<'+selected3.limit"></td>
-                                <td v-else v-text="item.c"></td>
                                 <td v-show="date_show" v-text="item.unit"></td>
-                                <td v-show="date_show" v-text="item.range_large"></td>
+                                <td v-show="date_show" v-if="selected3.name=='酸碱度'" v-text="item.range_min+'-'+item.range_max"></td>
+                                <td v-else v-show="date_show" v-text="item.range_max"></td>
                                 <td v-show="date_show" v-text="item.assessment"></td>
                                 <td v-show="date_show" v-text="item.date"></td>
                             </tr>
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th colspan="2">检验者:</th>
-                                <th colspan="3">审核者:</th>
+                                <th>检验者:</th>
+                                <th>审核者:</th>
                             </tr>
                         </tfoot>
                     </table>

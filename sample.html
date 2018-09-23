@@ -40,7 +40,8 @@
                             <tr>
                                 <td>{{ item.name }}</td>
                                 <td>{{ item.unit }}</td>
-                                <td>&lt;{{ item.range_large }}</td>
+                                <td v-if="item.name == '酸碱度'" v-text="item.range_min+'-'+item.range_max"></td>
+                                <td v-else>&lt;{{ item.range_max }}</td>
                                 <td v-if="item.c<item.limit" v-text="'<'+item.limit"></td>
                                 <td v-else v-text="item.c"></td>
                                 <td>{{ item.assessment }}</td>

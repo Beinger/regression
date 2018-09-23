@@ -6,28 +6,29 @@ let sample = new Vue({
         reg_s: /报告结果$/g,
         reg_st: /^[\u4e00-\u9fa5]+/g,
         new_list: [],
+        name: '',
         obj: {
             key: [],
             value: []
         }
     },
     computed: {
-        report_number() {
-            /**
-             * 计算出最大的样品编号
-             */
-            let n = 0;
-            for (let i = 0; i < localStorage.length; i++) {
-                let x = localStorage.key(i);
-                if (this.reg_s.test(x)) {
-                    this.reg_s.lastIndex = 0;
-                    if (localStorage.getItem(x) > n) {
-                        n = localStorage.getItem(x);
-                    }
-                }
-            }
-            return n;
-        },
+        // report_number() {
+        //     /**
+        //      * 计算出最大的样品编号
+        //      */
+        //     let n = 0;
+        //     for (let i = 0; i < localStorage.length; i++) {
+        //         let x = localStorage.key(i);
+        //         if (this.reg_s.test(x)) {
+        //             this.reg_s.lastIndex = 0;
+        //             if (localStorage.getItem(x) > n) {
+        //                 n = localStorage.getItem(x);
+        //             }
+        //         }
+        //     }
+        //     return n;
+        // },
         storage() {
             /**
              * 整理数据显示在表格里
