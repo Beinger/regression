@@ -1807,6 +1807,11 @@ var app = new Vue({
             this.selected2.results[element].m = ((a / this.selected2.v).toFixed(3));
             return this.selected2.results[element].m;
         },
+        get_c2(element){
+            this.get_m2(element)
+            this.selected2.results[element].c = this.selected2.results[element].m
+            return this.selected2.results[element].c
+        },
         get_c(element) {
             /**
              * 根据当前项目的加样体积和质量算出样品中物质的浓度
