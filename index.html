@@ -644,11 +644,11 @@
                                         <i>{{numbering+(new Date()).getFullYear()}}水第<span v-text="f_n(selected3.start,3)"></span>号</i>
                                     </td>
                                     <td>
-                                        <input class="form-control animated bounceInRight" v-if="selected3.name=='酸碱度' || selected3.name=='色度'" type="number" tabindex="1" v-model="selected3.new_results.c">
-                                        <input class="form-control animated bounceInRight" v-else tabindex="1" v-model="selected3.new_results.c">
+                                        <input class="form-control animated bounceInRight" v-if="selected3.name=='酸碱度' || selected3.name=='色度' || selected3.name=='浑浊度'" type="number" tabindex="0" v-model="selected3.new_results.c">
+                                        <input class="form-control animated bounceInRight" v-else type="text" tabindex="0" v-model="selected3.new_results.c">
                                     </td>
                                     <td>
-                                        <button class="btn" tabindex="0" @click="submit_result(selected3)">提交</button>
+                                        <button class="btn" @click="submit_result(selected3)">提交</button>
                                     </td>
                                 </tr>
                             </table>

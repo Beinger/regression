@@ -207,6 +207,31 @@ var app = new Vue({
                 start: 1,
                 end: 1,
                 id: 1,
+                name: '色度',
+                method: '',
+                limit: '',
+                instrument_model: '',
+                GB: 'GB/T 5750.4-2006',
+                items: [],
+                results: [],
+                new_results: {
+                    id: '',
+                    v: '',
+                    c: '',
+                    date: '',
+                },
+            },
+            {
+                st: [],
+                judge: false,
+                range_min: '',
+                range_max: '',
+                assessment: true,
+                unit: '度',
+                v: 1,
+                start: 1,
+                end: 1,
+                id: 1,
                 name: '浑浊度',
                 method: '',
                 limit: '',
@@ -268,31 +293,6 @@ var app = new Vue({
                     id: '',
                     v: '',
                     c: '无',
-                    date: '',
-                },
-            },
-            {
-                st: [],
-                judge: false,
-                range_min: '',
-                range_max: '',
-                assessment: true,
-                unit: '度',
-                v: 1,
-                start: 1,
-                end: 1,
-                id: 1,
-                name: '色度',
-                method: '',
-                limit: '',
-                instrument_model: '',
-                GB: 'GB/T 5750.4-2006',
-                items: [],
-                results: [],
-                new_results: {
-                    id: '',
-                    v: '',
-                    c: '',
                     date: '',
                 },
             },
@@ -1657,37 +1657,41 @@ var app = new Vue({
              * 提交数据到结果数组中
              */
             somes.new_results.id = somes.start;
+            if(!isNaN(somes.new_results.c)){
+                somes.new_results.c = parseFloat(somes.new_results.c)
+            }
             somes.results.push(somes.new_results);
-            if(somes == this.selected){
-                somes.new_results= {
-                    id: somes.start,
-                    v: somes.v,
-                    a: '',
-                    m: '',
-                    c: '',
-                    date: ''
-                }
-            }
-            else if(somes == this.selected2){
-                somes.new_results = {
-                    id: somes.start,
-                    v: somes.v,
-                    a0: somes.a0,
-                    a1: '',
-                    a: '',
-                    m: '',
-                    c: '',
-                    date: ''
-                }
-            }
-            else{
-                somes.new_results = {
-                    id: somes.start,
-                    v: somes.v,
-                    c: '',
-                    date: ''
-                }
-            }
+            // if(somes == this.selected){
+            //     somes.new_results= {
+            //         id: somes.start,
+            //         v: somes.v,
+            //         a: '',
+            //         m: '',
+            //         c: '',
+            //         date: ''
+            //     }
+            // }
+            // else if(somes == this.selected2){
+            //     somes.new_results = {
+            //         id: somes.start,
+            //         v: somes.v,
+            //         a0: somes.a0,
+            //         a1: '',
+            //         a: '',
+            //         m: '',
+            //         c: '',
+            //         date: ''
+            //     }
+            // }
+            // else if(somes == this.selected3){
+                
+            //     somes.new_results = {
+            //         id: somes.start,
+            //         v: somes.v,
+            //         c: '',
+            //         date: ''
+            //     }
+            // }
             somes.start = Number(somes.start) + 1;
         },
         del_sample(index) {
