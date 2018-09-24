@@ -290,8 +290,6 @@
                                     开始录入
                                     <i>样品编号{{numbering+(new Date()).getFullYear()}}水第
                                         <input v-if="selected.judge==true" tabindex="11" type="number" v-model="selected.start">
-                                        <input v-else-if="selected2.judge==true" type="number" v-model="selected2.end">
-                                        <input v-else-if="selected2.judge==false" type="number" v-model="selected2.start">
                                         <input v-else-if="selected.judge==false" type="number" v-model="selected.end">
                                         号
                                     </i>
@@ -646,8 +644,8 @@
                                         <i>{{numbering+(new Date()).getFullYear()}}水第<span v-text="f_n(selected3.start,3)"></span>号</i>
                                     </td>
                                     <td>
-                                        <input class="form-control animated bounceInRight" type="number" tabindex="1"
-                                            v-model="selected3.new_results.c">
+                                        <input class="form-control animated bounceInRight" v-if="selected3.name=='酸碱度' || selected3.name=='色度'" type="number" tabindex="1" v-model="selected3.new_results.c">
+                                        <input class="form-control animated bounceInRight" v-else tabindex="1" v-model="selected3.new_results.c">
                                     </td>
                                     <td>
                                         <button class="btn" tabindex="0" @click="submit_result(selected3)">提交</button>

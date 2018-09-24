@@ -13,22 +13,12 @@ let sample = new Vue({
         }
     },
     computed: {
-        // report_number() {
-        //     /**
-        //      * 计算出最大的样品编号
-        //      */
-        //     let n = 0;
-        //     for (let i = 0; i < localStorage.length; i++) {
-        //         let x = localStorage.key(i);
-        //         if (this.reg_s.test(x)) {
-        //             this.reg_s.lastIndex = 0;
-        //             if (localStorage.getItem(x) > n) {
-        //                 n = localStorage.getItem(x);
-        //             }
-        //         }
-        //     }
-        //     return n;
-        // },
+        report_date() {
+            let date = new Date();
+            date = this.addDay(15,date)
+            date = this.dateFormat(date)
+            return date 
+        },
         storage() {
             /**
              * 整理数据显示在表格里
@@ -55,6 +45,28 @@ let sample = new Vue({
         this.get_login_info()
     },
     methods: {
+
+    // 方法 增添dayNumber天（整形），date：如果没传就使用今天（日期型）
+        addDay(dayNumber, date) {
+            date = date ? date : new Date();
+            var ms = dayNumber * (1000 * 60 * 60 * 24)
+            var newDate = new Date(date.getTime() + ms);
+            return newDate;
+        },
+        dateFormat(time) {
+            var date = new Date(time);
+            var year = date.getFullYear();
+            /* 在日期格式中，月份是从0开始的，因此要加0
+             * 使用三元表达式在小于10的前面加0，以达到格式统一  如 09:11:05
+             * */
+            var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+            var day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+            // var hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+            // var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+            // var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+            // 拼接
+            return year + "-" + month + "-" + day;
+        },
         get_login_info(){
             this.company = localStorage.getItem("company")
             this.username = localStorage.getItem("username")
