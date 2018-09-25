@@ -41,6 +41,7 @@
                     <a class="btn btn-defult btn-lg" data-toggle="modal" data-target="#environment" v-else>
                         <i class="fa fa-thermometer-empty"></i>实验环境记录
                     </a>
+                    <a class="btn btn-lg text-warning" href="sample.html"><i class="fa fa-list"></i>查看检验报告</a>
                     <div class="modal fade" id="environment" tabindex="-1" role="dialog" aria-labelledby="myEnv"
                         aria-hidden="true">
                         <div class="modal-dialog">
@@ -57,7 +58,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                    <button type="button" class="btn btn-primary" @click="login_env" data-dismiss="modal">确认</button>
+                                    <button type="button" class="btn btn-primary" @click="login_env()" data-dismiss="modal">确认</button>
                                 </div>
                             </div><!-- /.modal-content -->
                         </div><!-- /.modal -->
@@ -87,7 +88,7 @@
             </div>
 
             <div class="row form-group">
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4">
                     <label calss="form-label">比色法
                         <a class="btn btn-default" data-toggle="modal" data-target="#opt">
                             <i class="fa fa-plus">增加项目</i>
@@ -98,7 +99,7 @@
                         <option v-bind:id="'select'+index" v-bind:value="item" v-for="(item,index) in names" v-text="item.name"></option>
                     </select>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
                     <label class="form-label">
                         <span>滴定法</span>
                         <a class="btn btn-default" data-toggle="modal" data-target="#opt2">
@@ -110,7 +111,7 @@
                         <option v-bind:id="'select2'+index" v-bind:value="item" v-for="(item,index) in names2" v-text="item.name"></option>
                     </select>
                 </div>
-                <div class="col-lg-4 col-md-3 col-sm-3 col-xs-4">
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
                     <label class="form-label">
                         <span>感官性状</span>
                         <a class="btn btn-default" data-toggle="modal" data-target="#normal">
@@ -239,7 +240,7 @@
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal -->
                 </div>
-                <div class="col-lg-1 col-md-2 col-sm-2 col-xs-12 text-right">
+                <div class="col-lg-3 col-md-2 col-sm-12 col-xs-12 text-right">
                     <i class="fa fa-calendar"></i>{{ dateFormat(new Date()) }}
                 </div>
             </div>
@@ -318,8 +319,9 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <input class="form-control animated bounceInRight" type="number" tabindex="0" placeholder="输入后直接回车，不用&rarr;提交" v-model="selected.new_results.a">
-                                    </td v-if="submit_show">
+                                        <input class="form-control animated bounceInRight" type="number" tabindex="0" placeholder="输入后直接回车" v-model="selected.new_results.a">
+                                    </td>
+                                    <td v-show="submit_show">
                                         <button class="btn" tabindex="0" @click="submit_result(selected)">提交</button>
                                     </td>
                                 </tr>
@@ -327,11 +329,60 @@
                         </fieldset>
                     </div>
                 </div>
+                
+                <a class="btn btn-info" @click="printContent('print',selected)"><i class="fa fa-print text-danger"></i>打印<span v-text="selected.name"></span>检验记录</a>
+                <div id="print">
+                    <div class="text-center" colspan="5">
+                        <h1 v-text="company"></h1>
+                        <h3><i>水样中<span v-text="selected.name"></span>检验记录</i></h3>
+                    </div>
                 <table class="table table-bordered table-striped table-hover" id="result_table">
-                    <legend>
-
-                            <a class="btn form-control" @click="work('result_table',selected)">保存</a>
-                    </legend>
+                    <thead>
+                        <tr>
+                            <td class="text-center">样品名称：</td>
+                            <td colspan="2" style="padding: 0px;">
+                                <select style="border:0px; height: 2.4em; width: auto; outline:none; cursor: pointer;">
+                                    <option value="井水">井水</option>
+                                    <option value="泉水">泉水</option>
+                                    <option value="河水">河水</option>
+                                    <option value="溪水">溪水</option>
+                                    <option value="自来水">自来水</option>
+                                </select>
+                            </td>
+                            <td class="text-center">样品量：</td>
+                            <td colspan="2" contenteditable="true">3升</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">收样日期：</td>
+                            <td colspan="2" contenteditable="true" v-text="recived_date"></td>
+                            <td class="text-center">检验日期：</td>
+                            <td colspan="2" contenteditable="true" v-text="test_date"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">样品性状：</td>
+                            <td colspan="2" contenteditable="true">液态</td>
+                            <td class="text-center">检测环境：</td>
+                            <td contenteditable="true">
+                                温度<span v-text="new_opt3.temprature"></span> ℃
+                            </td>
+                            <td contenteditable="true">
+                                湿度
+                                <span v-text="new_opt3.rh"></span>% RH
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">检测仪器：</td>
+                            <td colspan="2" v-text="selected.instrument_model">
+                            </td>
+                            <td class="text-center">检验依据：</td>
+                            <td colspan="2" v-text="selected.GB">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">检测方法：</td>
+                            <td colspan="6" contenteditable="true" v-text="selected.method"></td>
+                        </tr>
+                    </thead>
                     <thead>
                         <tr>
                             <th class="text-center">样品编号</th>
@@ -353,8 +404,8 @@
                         </tr>
                     </tbody>
                 </table>
-                <a class="btn text-danger" @click="printContent()"><i class="fa fa-print"></i>打印检验记录</a>
-                <a class="btn text-warning" 　style="float: right" href="sample.html">查看检验报告</a>
+                </div>
+                <a class="btn text-danger" @click="printContent('subOutputRank-print')"><i class="fa fa-print"></i>打印检验记录</a>
                 <div id="subOutputRank-print">
                     <div @click="date_y()" class="text-center" colspan="5">
                         <h3 title="点击这里可以查看每个样品的检测日期"><i>水样中<span v-text="selected.name"></span>检验记录</i></h3>
@@ -428,7 +479,7 @@
                                 <td v-if="item.c<selected.limit" v-text="'<'+selected.limit"></td>
                                 <td v-else v-text="item.c"></td>
                                 <td v-show="date_show" v-text="item.unit"></td>
-                                <td v-show="date_show" v-text="item.range_max"></td>
+                                <td v-show="date_show" v-text="'&le;'+item.range_max"></td>
                                 <td v-show="date_show" v-text="item.assessment"></td>
                                 <td v-show="date_show" v-text="item.date"></td>
                             </tr>
@@ -498,10 +549,13 @@
                         </fieldset>
                     </div>
                 </div>
+                <a class="btn btn-info" @click="printContent('print2',selected2)"><i class="fa fa-print text-danger"></i>打印<span v-text="selected.name"></span>检验记录</a>
+                <div id="print2">
+                    <div class="text-center" colspan="5">
+                        <h1 v-text="company"></h1>
+                        <h3><i>水样中<span v-text="selected2.name"></span>检验记录</i></h3>
+                    </div>
                 <table class="table table-bordered table-striped table-hover" id="result_table2">
-                    <legend>
-                            <a colspan="5" class="btn form-control" @click="work('result_table2',selected2)">保存</a>
-                    </legend>
                     <thead>
                         <tr>
                             <th class="text-center">样品编号</th>
@@ -523,9 +577,9 @@
                         </tr>
                     </tbody>
                 </table>
-                <a class="btn text-danger" @click="printContent()"><i class="fa fa-print"></i>打印检验记录</a>
-                <a class="btn text-warning" 　style="float: right" href="sample.html">查看检验报告</a>
-                <div id="subOutputRank-print">
+                </div>
+                <a class="btn text-danger" @click="printContent('subOutputRank-print2',selected2)"><i class="fa fa-print"></i>打印全部检验记录</a>
+                <div id="subOutputRank-print2">
                     <div @click="date_y()" class="text-center" colspan="5">
                         <h3 title="点击这里可以查看每个样品的检测日期"><i>水样中<span v-text="selected2.name"></span>检验记录</i></h3>
                     </div>
@@ -657,7 +711,7 @@
                 </div>
                 <table class="table table-bordered table-striped table-hover" id="result_table3">
                     <legend>
-                            <a class="btn form-control" @click="work('result_table3',selected3)">保存</a>
+                            <a class="btn btn-lg btn-success form-control" @click="work('result_table3',selected3)">保存</a>
                     </legend>
                     <thead>
                         <tr>
@@ -743,7 +797,7 @@
                                 <td v-text="item.c"></td>
                                 <td v-show="date_show" v-text="item.unit"></td>
                                 <td v-show="date_show" v-if="selected3.name=='酸碱度'" v-text="item.range_min+'-'+item.range_max"></td>
-                                <td v-else v-show="date_show" v-text="item.range_max"></td>
+                                <td v-else v-show="date_show" v-text="'&le;'+item.range_max"></td>
                                 <td v-show="date_show" v-text="item.assessment"></td>
                                 <td v-show="date_show" v-text="item.date"></td>
                             </tr>

@@ -1517,12 +1517,11 @@ var app = new Vue({
              */
             this.name3.push(this.new_opt3)
         },
-
-        printContent() {
+        printAll(id){
             /**
-             * 打印页面函数，从网上抄的
+             * 打印全部记录
              */
-            let subOutputRankPrint = document.getElementById('subOutputRank-print');
+            let subOutputRankPrint = document.getElementById(id);
             console.log(subOutputRankPrint.innerHTML);
             let newContent = subOutputRankPrint.innerHTML;
             let oldContent = document.body.innerHTML;
@@ -1531,6 +1530,22 @@ var app = new Vue({
             window.location.reload();
             document.body.innerHTML = oldContent;
             return false;
+        },
+        printContent(id,somes) {
+            /**
+             * 打印部分记录，并保存
+             */
+            this.work(id,somes);
+            let subOutputRankPrint = document.getElementById(id);
+            console.log(subOutputRankPrint.innerHTML);
+            let newContent = subOutputRankPrint.innerHTML;
+            let oldContent = document.body.innerHTML;
+            document.body.innerHTML = newContent;
+            window.print();
+            window.location.reload();
+            document.body.innerHTML = oldContent;
+            return false;
+
         },
 
         date_y() {
@@ -1796,8 +1811,8 @@ var app = new Vue({
             let rows = document.getElementById(id).rows; //获取表格
             let start = rows[1].cells[0].innerText; //表格第一个编号
             let end = rows[rows.length - 1].cells[0].innerText; //表格最后一个编号
-            start_item = Number(start.slice(8,9))
-            end_item = Number(end.slice(8,9))
+            start_item = Number(start.slice(-2,-1))
+            end_item = Number(end.slice(-2,-1))
             for (let i = start_item; i <= end_item; i++) {
                 let p = (st.name + i + '报告结果');
                 let date = new Date();
@@ -1896,11 +1911,11 @@ var app = new Vue({
              *把当天的温湿度存入localStorage 
              */
             let date = new Date()
-            date = dateFormat(date)
+            date = this.dateFormat(date)
             let wendu = date + "wendu"
             let shidu = date + "shidu"
-            localStorage.setItem(wendu, this.sample.temprature)
-            localStorage.setItem(shidu, this.sample.rh)
+            localStorage.setItem(wendu, this.temprature)
+            localStorage.setItem(shidu, this.rh)
         },
         get_env(date) {
             /**
@@ -1932,10 +1947,6 @@ var app = new Vue({
              * */
             var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
             var day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
-            // var hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
-            // var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
-            // var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
-            // 拼接
             return year + "-" + month + "-" + day;
         },
 
