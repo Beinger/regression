@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="js/jquery3.3.1.min.js"></script>
-    <script src="js/vue.min.js"></script>
+    <!-- <script src="js/vue.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
     <link rel="stylesheet" href="css/css/bootstrap.css">
     <link rel="stylesheet" href="css/css/animation.min.css">
     <link rel="stylesheet" href="css/css/font-awesome.min.css">
@@ -305,23 +306,20 @@
                                     <th class="text-center">样品编号</th>
                                     <th class="text-center">加样体积(ml)</th>
                                     <th class="text-center">吸光度</th>
-                                    <th class="text-center">操作</th>
                                 </tr>
                                 <tr class="text-center">
                                     <td>
                                         <i>{{numbering+(new Date()).getFullYear()}}水第<span v-text="f_n(selected.start,3)"></span>号</i>
                                     </td>
                                     <td>
-                                        <select name="" id="" v-model="selected.v">
+                                        <select class="form-control" v-model="selected.v">
                                             <option v-bind:value="opt" v-for="opt of vol_select" v-text="opt">
                                             </option>
                                         </select>
                                     </td>
                                     <td>
-                                        <input class="form-control animated bounceInRight" id="go" ref="go" type="number"
-                                            tabindex="0" placeholder="输入后直接回车，不用&rarr;提交" v-model="selected.new_results.c">
-                                    </td>
-                                    <td>
+                                        <input class="form-control animated bounceInRight" type="number" tabindex="0" placeholder="输入后直接回车，不用&rarr;提交" v-model="selected.new_results.a">
+                                    </td v-if="submit_show">
                                         <button class="btn" tabindex="0" @click="submit_result(selected)">提交</button>
                                     </td>
                                 </tr>
@@ -330,28 +328,28 @@
                     </div>
                 </div>
                 <table class="table table-bordered table-striped table-hover" id="result_table">
+                    <legend>
+
+                            <a class="btn form-control" @click="work('result_table',selected)">保存</a>
+                    </legend>
                     <thead>
                         <tr>
-                            <th class="text-center">编号</th>
+                            <th class="text-center">样品编号</th>
                             <th class="text-center">加样量(ml)</th>
                             <th class="text-center">吸光度</th>
-                            <th class="text-center">质量(μg)</th>
+                            <th class="text-center">实测质量(μg)</th>
                             <th class="text-center">结果(mg/L)</th>
-                            <th class="text-center" @click="save_results('result_table',selected)">
-                                <i class="btn btn-default fa fa-save text-success">保存</i>
-                            </th>
+                            <th class="text-center">检测日期</th>
                         </tr>
                     </thead>
                     <tbody class="text-center">
                         <tr v-for="(item, index) in selected.results">
-                            <td v-text="f_n(item.id, 3)"></td>
+                            <td v-text="numbering+(new Date()).getFullYear()+'水第'+f_n(item.id, 3)+'号'"></td>
                             <td v-text="item.v"></td>
                             <td v-text="item.a"></td>
                             <td v-text="get_m(index)"></td>
                             <td class="animated bounceInUp" v-text="get_c(index)"></td>
-                            <td>
-                                <i class="btn fa fa-trash text-danger" @click="del_sample(index)">删除</i>
-                            </td>
+                            <td v-text="item.date"></td>
                         </tr>
                     </tbody>
                 </table>
@@ -467,9 +465,9 @@
                                 <tr>
                                     <th class="text-center">样品编号</th>
                                     <th class="text-center">加样体积(ml)</th>
+                                    <th v-if="selected2.name=='耗氧量'" class="text-center">K值</th>
                                     <th class="text-center">空白消耗标准液(ml)</th>
                                     <th class="text-center">样品消耗标准液(ml)</th>
-                                    <th class="text-center">操作</th>
                                 </tr>
                                 <tr class="text-center">
                                     <td>
@@ -481,15 +479,18 @@
                                             </option>
                                         </select>
                                     </td>
+                                    <td v-if="selected2.name=='耗氧量'">
+                                        <input class="form-control animated bounceInRight" type="number" v-model="selected2.new_results.K">
+                                    </td>
                                     <td>
-                                        <input class="form-control animated bounceInRight" type="number" tabindex="-1"
+                                        <input class="form-control animated bounceInRight" type="number" step="0.01"
                                             v-model="selected2.new_results.a0">
                                     </td>
                                     <td>
                                         <input class="form-control animated bounceInRight" type="number" tabindex="0"
                                             v-model="selected2.new_results.a1">
                                     </td>
-                                    <td>
+                                    <td v-show="submit_show">
                                         <button class="btn" tabindex="0" @click="submit_result(selected2)">提交</button>
                                     </td>
                                 </tr>
@@ -498,28 +499,27 @@
                     </div>
                 </div>
                 <table class="table table-bordered table-striped table-hover" id="result_table2">
+                    <legend>
+                            <a colspan="5" class="btn form-control" @click="work('result_table2',selected2)">保存</a>
+                    </legend>
                     <thead>
                         <tr>
-                            <th class="text-center">编号</th>
+                            <th class="text-center">样品编号</th>
                             <th class="text-center">加样量(ml)</th>
                             <th class="text-center">空白消耗量(ml)</th>
                             <th class="text-center">样品消耗量(ml)</th>
                             <th class="text-center">结果(mg/L)</th>
-                            <th class="text-center" @click="save_results('result_table2',selected2)">
-                                <i class="btn btn-default fa fa-save text-success">保存</i>
-                            </th>
+                            <th class="text-center" v-if="submit_show">检测日期</th>
                         </tr>
                     </thead>
                     <tbody class="text-center">
                         <tr v-for="(item, index) in selected2.results">
-                            <td v-text="f_n(item.id, 3)"></td>
+                            <td v-text="numbering+(new Date()).getFullYear()+'水第'+f_n(item.id, 3)+'号'"></td>
                             <td v-text="selected2.v"></td>
                             <td v-text="item.a0"></td>
                             <td v-text="item.a1"></td>
                             <td class="animated bounceInUp" v-text="get_c2(index)"></td>
-                            <td>
-                                <i class="btn fa fa-trash text-danger" @click="del_sample2(index)">删除</i>
-                            </td>
+                            <td v-if="submit_show" v-text="item.date"></td>
                         </tr>
                     </tbody>
                 </table>
@@ -582,7 +582,7 @@
                                 <th class="text-center">加样量(ml)</th>
                                 <th class="text-center">空白消耗量(ml)</th>
                                 <th class="text-center">标准消耗量(ml)</th>
-                                <th class="text-center">实测质量(μg)</th>
+                                <th class="text-center">测定结果(mg/L)</th>
                                 <th class="text-center">报告结果(mg/L)</th>
                                 <th v-show="date_show" class="text-center">计量单位</th>
                                 <th v-show="date_show" class="text-center">参考范围(mg/L)</th>
@@ -600,7 +600,7 @@
                                 <td v-if="item.c<selected2.limit" v-text="'<'+selected2.limit"></td>
                                 <td v-else v-text="item.c"></td>
                                 <td v-show="date_show" v-text="item.unit"></td>
-                                <td v-show="date_show" v-text="item.range_max"></td>
+                                <td v-show="date_show" v-text="'&le;'+item.range_max"></td>
                                 <td v-show="date_show" v-text="item.assessment"></td>
                                 <td v-show="date_show" v-text="item.date"></td>
                             </tr>
@@ -647,7 +647,7 @@
                                         <input class="form-control animated bounceInRight" v-if="selected3.name=='酸碱度' || selected3.name=='色度' || selected3.name=='浑浊度'" type="number" tabindex="0" v-model="selected3.new_results.c">
                                         <input class="form-control animated bounceInRight" v-else type="text" tabindex="0" v-model="selected3.new_results.c">
                                     </td>
-                                    <td>
+                                    <td v-if="submit_show">
                                         <button class="btn" @click="submit_result(selected3)">提交</button>
                                     </td>
                                 </tr>
@@ -656,22 +656,21 @@
                     </div>
                 </div>
                 <table class="table table-bordered table-striped table-hover" id="result_table3">
+                    <legend>
+                            <a class="btn form-control" @click="work('result_table3',selected3)">保存</a>
+                    </legend>
                     <thead>
                         <tr>
-                            <th class="text-center">编号</th>
+                            <th class="text-center">样品编号</th>
                             <th class="text-center">结果</th>
-                            <th class="text-center" @click="save_results('result_table3',selected3)">
-                                <i class="btn btn-default fa fa-save text-success">保存</i>
-                            </th>
+                            <th class="text-center">检测日期</th>
                         </tr>
                     </thead>
                     <tbody class="text-center">
                         <tr v-for="(item, index) in selected3.results">
-                            <td v-text="f_n(item.id, 3)"></td>
+                            <td v-text="numbering+(new Date()).getFullYear()+'水第'+f_n(item.id, 3)+'号'"></td>
                             <td class="animated bounceInUp" v-text="item.c"></td>
-                            <td>
-                                <i class="btn fa fa-trash text-danger" @click="del_sample2(index)">删除</i>
-                            </td>
+                            <td v-text="item.date"></td>
                         </tr>
                     </tbody>
                 </table>

@@ -1,6 +1,7 @@
 var app = new Vue({
     el: "#root",
     data: {
+        submit_show: false,
         first_opt: false,
         second_opt: false,
         selected_opt: [],
@@ -140,6 +141,8 @@ var app = new Vue({
             new_results: {
                 id: 1,
                 v: '',
+                st_v: '',
+                K: '',
                 a0: '',
                 a1: '',
                 m: '',
@@ -166,6 +169,7 @@ var app = new Vue({
             new_results: {
                 id: '',
                 v: '',
+                st_v: '',
                 c: 7.0,
                 date: ''
             },
@@ -311,6 +315,7 @@ var app = new Vue({
                 name: '氯化物',
                 method: '滴定法',
                 limit: 5,
+                st_v: 500,
                 a0: 0.05,
                 a1: '',
                 a: '',
@@ -322,9 +327,10 @@ var app = new Vue({
                 results: [],
                 new_results: {
                     id: 1,
-                    v: '',
-                    a0: '',
+                    v: 10,
+                    a0: 0.05,
                     a1: '',
+                    st_v: 500,
                     c: '',
                     date: ''
                 },
@@ -342,6 +348,7 @@ var app = new Vue({
                 name: '总硬度',
                 method: '',
                 limit: 1,
+                st_v: 1000.9,
                 a0: 0.05,
                 a1: '',
                 a: '',
@@ -352,9 +359,10 @@ var app = new Vue({
                 results: [],
                 new_results: {
                     id: 1,
-                    v: '',
+                    v: 50,
                     a0: 0.05,
                     a1: '',
+                    st_v: 1000.9,
                     c: '',
                     date: ''
                 },
@@ -372,6 +380,7 @@ var app = new Vue({
                 name: '耗氧量',
                 method: '酸性高锰酸钾滴定法',
                 limit: '0.05',
+                st_v: 80,
                 a0: 0.05,
                 a1: '',
                 a: '',
@@ -382,9 +391,11 @@ var app = new Vue({
                 results: [],
                 new_results: {
                     id: 1,
-                    v: '',
+                    v: 100,
                     a0: 0.05,
                     a1: '',
+                    st_v: 80,
+                    K: 1,
                     c: '',
                     date: ''
                 },
@@ -1652,59 +1663,56 @@ var app = new Vue({
             this.useCount(item);
             this.useJudge(item)
         },
+        work(id,somes){
+            this.save_results(id,somes)
+            this.mystorages(somes)
+        },
         submit_result(somes) {
             /**
              * 提交数据到结果数组中
              */
             somes.new_results.id = somes.start;
-            if(!isNaN(somes.new_results.c)){
-                somes.new_results.c = parseFloat(somes.new_results.c)
-            }
+            somes.new_results.date = this.dateFormat(new Date())
             somes.results.push(somes.new_results);
-            // if(somes == this.selected){
-            //     somes.new_results= {
-            //         id: somes.start,
-            //         v: somes.v,
-            //         a: '',
-            //         m: '',
-            //         c: '',
-            //         date: ''
-            //     }
-            // }
-            // else if(somes == this.selected2){
-            //     somes.new_results = {
-            //         id: somes.start,
-            //         v: somes.v,
-            //         a0: somes.a0,
-            //         a1: '',
-            //         a: '',
-            //         m: '',
-            //         c: '',
-            //         date: ''
-            //     }
-            // }
-            // else if(somes == this.selected3){
+            if(somes == this.selected){
+                somes.new_results= {
+                    id: '',
+                    v: somes.v,
+                    a: '',
+                    m: '',
+                    c: '',
+                    date: ''
+                }
+            }
+            else if(somes == this.selected2){
+                somes.new_results = {
+                    id: somes.start,
+                    v: somes.v,
+                    a0: somes.a0,
+                    a1: '',
+                    st_v: somes.st_v,
+                    K: 1,
+                    m: '',
+                    c: '',
+                    date: ''
+                }
+            }
+            else if(somes == this.selected3){
                 
-            //     somes.new_results = {
-            //         id: somes.start,
-            //         v: somes.v,
-            //         c: '',
-            //         date: ''
-            //     }
-            // }
-            somes.start = Number(somes.start) + 1;
+                somes.new_results = {
+                    id: somes.start,
+                    v: somes.v,
+                    c: '',
+                    date: ''
+                }
+            }
+            somes.start = Number(somes.start)+1
         },
-        del_sample(index) {
+        del_sample(somes,index) {
             /**
              * 删除样品行
              */
-            this.selected.results.splice(index, 1);
-        },
-        del_sample2(index) {
-            /**
-             * 删除样品行
-             */
-            this.selected2.results.splice(index, 1);
+            somes.results.splice(index, 1);
         },
         sum(arr1, arr2) {
             /**
@@ -1746,12 +1754,19 @@ var app = new Vue({
         },
         get_m2(element) {
             /**
-             * 根据出当前项目的吸光度计算出样品所含物质质量
+             * 根据出当前项目的标准消耗量计算出样品所含物质质量
              */
+            let st_v = this.selected2.results[element].st_v;
             let a0 = this.selected2.results[element].a0;
             let a1 = this.selected2.results[element].a1;
+            let K  = this.selected2.results[element].K;
+            let v  = this.selected2.results[element].v;
             let a = a1 - a0;
-            this.selected2.results[element].m = ((a / this.selected2.v).toFixed(3));
+            if(this.selected2.name=='耗氧量'){
+                this.selected2.results[element].m = ((a * st_v * K / v))
+            }else{
+                this.selected2.results[element].m = ((a * st_v / v).toFixed(3));
+            }
             return this.selected2.results[element].m;
         },
         get_c2(element){
@@ -1779,8 +1794,10 @@ var app = new Vue({
 
             this.useJudge(st)
             let rows = document.getElementById(id).rows; //获取表格
-            let start_item = Number(rows[1].cells[0].innerText); //表格第一个编号
-            let end_item = Number(rows[rows.length - 1].cells[0].innerText); //表格最后一个编号
+            let start = rows[1].cells[0].innerText; //表格第一个编号
+            let end = rows[rows.length - 1].cells[0].innerText; //表格最后一个编号
+            start_item = Number(start.slice(8,9))
+            end_item = Number(end.slice(8,9))
             for (let i = start_item; i <= end_item; i++) {
                 let p = (st.name + i + '报告结果');
                 let date = new Date();
