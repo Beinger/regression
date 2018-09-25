@@ -1,6 +1,8 @@
 var app = new Vue({
     el: "#root",
     data: {
+        temprature: '',
+        rh: '',
         submit_show: false,
         first_opt: false,
         second_opt: false,
@@ -132,7 +134,6 @@ var app = new Vue({
             limit: '',
             a0: 0.05,
             a1: '',
-            formula: '',
             instrument_model: '',
             GB: 'GB/T 5750.5-2006',
             html: '',
@@ -170,7 +171,7 @@ var app = new Vue({
                 id: '',
                 v: '',
                 st_v: '',
-                c: 7.0,
+                c: 7.1,
                 date: ''
             },
         },
@@ -1531,11 +1532,11 @@ var app = new Vue({
             document.body.innerHTML = oldContent;
             return false;
         },
-        printContent(id,somes) {
+        printContent(id,somes,id1) {
             /**
              * 打印部分记录，并保存
              */
-            this.work(id,somes);
+            this.work(id1,somes);
             let subOutputRankPrint = document.getElementById(id);
             console.log(subOutputRankPrint.innerHTML);
             let newContent = subOutputRankPrint.innerHTML;
@@ -1811,8 +1812,8 @@ var app = new Vue({
             let rows = document.getElementById(id).rows; //获取表格
             let start = rows[1].cells[0].innerText; //表格第一个编号
             let end = rows[rows.length - 1].cells[0].innerText; //表格最后一个编号
-            start_item = Number(start.slice(-2,-1))
-            end_item = Number(end.slice(-2,-1))
+            start_item = Number(start.slice(-4,-1))
+            end_item = Number(end.slice(-4,-1))
             for (let i = start_item; i <= end_item; i++) {
                 let p = (st.name + i + '报告结果');
                 let date = new Date();
@@ -1912,8 +1913,8 @@ var app = new Vue({
              */
             let date = new Date()
             date = this.dateFormat(date)
-            let wendu = date + "wendu"
-            let shidu = date + "shidu"
+            let wendu = "wendu"+date
+            let shidu = "shidu"+date
             localStorage.setItem(wendu, this.temprature)
             localStorage.setItem(shidu, this.rh)
         },
@@ -1921,22 +1922,26 @@ var app = new Vue({
             /**
              * 获取特定日期的温度和湿度
              */
-            let wendu = date + "wendu"
-            let shidu = date + "shidu"
+            date = this.dateFormat(date)
+            let wendu = "wendu"+date 
+            let shidu = "shidu"+date 
             let env = new Object
             env.wendu = localStorage.getItem(wendu)
             env.shidu = localStorage.getItem(shidu)
+            this.temprature = Number(env.wendu)
+            this.rh = Number(env.shidu)
             return env
         },
         init_login() {
             /**
-             * 初始化得到单位名称、机构编号
+             * 初始化得到单位名称、机构编号、当日温度和湿度
              */
             if (localStorage.getItem("company")) {
                 this.login_f = false
                 this.company = localStorage.getItem("company")
                 this.numbering = localStorage.getItem("numbering")
             }
+            this.get_env(new Date())
         },
         //时间格式化函数，此处仅针对yyyy-MM-dd hh:mm:ss 的格式进行格式化
         dateFormat(time) {
