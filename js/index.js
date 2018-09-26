@@ -107,8 +107,7 @@ var app = new Vue({
             GB: 'GB/T 5750.5-2006',
             html: '',
             items: [],
-            results: [],
-            new_results: {
+            result: {
                 id: 1,
                 v: '',
                 a: '',
@@ -135,11 +134,10 @@ var app = new Vue({
             GB: 'GB/T 5750.5-2006',
             html: '',
             items: [],
-            results: [],
-            new_results: {
+            result: {
                 id: 1,
                 v: '',
-                st_v: '',
+                coefficient: '',
                 K: '',
                 a0: '',
                 a1: '',
@@ -163,11 +161,9 @@ var app = new Vue({
             instrument_model: '',
             GB: 'GB/T 5750.5-2006',
             items: [],
-            results: [],
-            new_results: {
+            result: {
                 id: '',
                 v: '',
-                st_v: '',
                 c: 7.1,
                 date: ''
             },
@@ -188,8 +184,7 @@ var app = new Vue({
                 instrument_model: '',
                 GB: 'GB/T 5750.4-2006',
                 items: [],
-                results: [],
-                new_results: {
+                result: {
                     id: '',
                     v: 50,
                     c: '',
@@ -211,8 +206,7 @@ var app = new Vue({
                 instrument_model: '',
                 GB: 'GB/T 5750.4-2006',
                 items: [],
-                results: [],
-                new_results: {
+                result: {
                     id: '',
                     v: 50,
                     c: '',
@@ -234,8 +228,7 @@ var app = new Vue({
                 instrument_model: '',
                 GB: 'GB/T 5750.4-2006',
                 items: [],
-                results: [],
-                new_results: {
+                result: {
                     id: '',
                     v: 50,
                     c: '',
@@ -257,8 +250,7 @@ var app = new Vue({
                 instrument_model: '',
                 GB: 'GB/T 5750.4-2006',
                 items: [],
-                results: [],
-                new_results: {
+                result: {
                     id: '',
                     v: 50,
                     c: '无异臭和异味',
@@ -282,8 +274,7 @@ var app = new Vue({
                 instrument_model: '',
                 GB: 'GB/T 5750.5-2006',
                 items: [],
-                results: [],
-                new_results: {
+                result: {
                     id: '',
                     v: '',
                     c: '无',
@@ -305,7 +296,7 @@ var app = new Vue({
                 name: '氯化物',
                 method: '滴定法',
                 limit: 5,
-                st_v: 500,
+                coefficient: 500,
                 a0: 0.05,
                 a1: '',
                 a: '',
@@ -314,13 +305,12 @@ var app = new Vue({
                 GB: 'GB/T 5750.4-2006',
                 html: '',
                 items: [],
-                results: [],
-                new_results: {
+                result: {
                     id: 1,
                     v: 10,
                     a0: 0.05,
                     a1: '',
-                    st_v: 500,
+                    coefficient: 500,
                     c: '',
                     date: ''
                 },
@@ -338,7 +328,7 @@ var app = new Vue({
                 name: '总硬度',
                 method: '',
                 limit: 1,
-                st_v: 1000.9,
+                coefficient: 1000.9,
                 a0: 0.05,
                 a1: '',
                 a: '',
@@ -346,13 +336,12 @@ var app = new Vue({
                 instrument_model: '',
                 GB: 'GB/T 5750.4-2006',
                 items: [],
-                results: [],
-                new_results: {
+                result: {
                     id: 1,
                     v: 50,
                     a0: 0.05,
                     a1: '',
-                    st_v: 1000.9,
+                    coefficient: 1000.9,
                     c: '',
                     date: ''
                 },
@@ -370,7 +359,7 @@ var app = new Vue({
                 name: '耗氧量',
                 method: '酸性高锰酸钾滴定法',
                 limit: '0.05',
-                st_v: 80,
+                coefficient: 80,
                 a0: 0.05,
                 a1: '',
                 a: '',
@@ -378,13 +367,12 @@ var app = new Vue({
                 instrument_model: '',
                 GB: 'GB/T 5750.7-2006',
                 items: [],
-                results: [],
-                new_results: {
+                result: {
                     id: 1,
                     v: 100,
                     a0: 0.05,
                     a1: '',
-                    st_v: 80,
+                    coefficient: 80,
                     K: 1,
                     c: '',
                     date: ''
@@ -442,8 +430,7 @@ var app = new Vue({
                         0.055
                     ]
                 ],
-                results: [],
-                new_results: {
+                result: {
                     id: 1,
                     v: 50,
                     a: '',
@@ -501,8 +488,7 @@ var app = new Vue({
                         0.092
                     ]
                 ],
-                results: [],
-                new_results: {
+                result: {
                     id: 1,
                     v: 250,
                     a: '',
@@ -559,8 +545,7 @@ var app = new Vue({
                         0.068
                     ]
                 ],
-                results: [],
-                new_results: {
+                result: {
                     id: 1,
                     v: 50,
                     a: '',
@@ -617,8 +602,7 @@ var app = new Vue({
                         1.053
                     ]
                 ],
-                results: [],
-                new_results: {
+                result: {
                     id: 1,
                     v: 25,
                     a: '',
@@ -679,8 +663,7 @@ var app = new Vue({
                         0.405
                     ]
                 ],
-                results: [],
-                new_results: {
+                result: {
                     id: 1,
                     v: 1,
                     a: '',
@@ -741,8 +724,7 @@ var app = new Vue({
                         0.725
                     ]
                 ],
-                results: [],
-                new_results: {
+                result: {
                     id: 1,
                     v: 100,
                     a: '',
@@ -803,8 +785,7 @@ var app = new Vue({
                         0.234
                     ]
                 ],
-                results: [],
-                new_results: {
+                result: {
                     id: 1,
                     v: 50,
                     a: '',
@@ -865,8 +846,7 @@ var app = new Vue({
                         0.660
                     ]
                 ],
-                results: [],
-                new_results: {
+                result: {
                     id: 1,
                     v: 50,
                     a: '',
@@ -927,8 +907,7 @@ var app = new Vue({
                         0.290
                     ]
                 ],
-                results: [],
-                new_results: {
+                result: {
                     id: 1,
                     v: 50,
                     a: '',
@@ -985,8 +964,7 @@ var app = new Vue({
                         0.110
                     ]
                 ],
-                results: [],
-                new_results: {
+                result: {
                     id: 1,
                     v: 50,
                     a: '',
@@ -1043,8 +1021,7 @@ var app = new Vue({
                         0.336
                     ]
                 ],
-                results: [],
-                new_results: {
+                result: {
                     id: 1,
                     v: 100,
                     a: '',
@@ -1101,8 +1078,7 @@ var app = new Vue({
                         0.630
                     ]
                 ],
-                results: [],
-                new_results: {
+                result: {
                     id: 1,
                     v: 50,
                     a: '',
@@ -1159,8 +1135,7 @@ var app = new Vue({
                         0.103
                     ]
                 ],
-                results: [],
-                new_results: {
+                result: {
                     id: 1,
                     v: 50,
                     a: '',
@@ -1217,8 +1192,7 @@ var app = new Vue({
                         0.238
                     ]
                 ],
-                results: [],
-                new_results: {
+                result: {
                     id: 1,
                     v: 50,
                     a: '',
@@ -1275,8 +1249,7 @@ var app = new Vue({
                         0.068
                     ]
                 ],
-                results: [],
-                new_results: {
+                result: {
                     id: 1,
                     v: 50,
                     a: '',
@@ -1333,8 +1306,7 @@ var app = new Vue({
                         0.290
                     ]
                 ],
-                results: [],
-                new_results: {
+                result: {
                     id: 1,
                     v: 50,
                     a: '',
@@ -1391,8 +1363,7 @@ var app = new Vue({
                         1.602
                     ]
                 ],
-                results: [],
-                new_results: {
+                result: {
                     id: 1,
                     v: 50,
                     a: '',
@@ -1445,8 +1416,7 @@ var app = new Vue({
                         1.137
                     ]
                 ],
-                results: [],
-                new_results: {
+                result: {
                     id: 1,
                     v: 50,
                     a: '',
@@ -1460,22 +1430,22 @@ var app = new Vue({
     },
     directives: {
         numberOnly: {
-            bind: function(el){
-                el.handler = function(){
+            bind: function (el) {
+                el.handler = function () {
                     let formatVal = /^\+?[1-9][0-9]*$/;
                     let val = el.value;
-                    if(!formatVal.test(val)){
+                    if (!formatVal.test(val)) {
                         let reg = new RegExp(val, 'g');
                         el.value = val.replace(reg, 1);
                     }
                 }
                 el.addEventListener('input', el.handler)
-                },
-                unbind:function(el){
-                    el.removeEventListener('input',el.handler)
-                }
+            },
+            unbind: function (el) {
+                el.removeEventListener('input', el.handler)
             }
-        },
+        }
+    },
     watch: {
         selected() {
             /**
@@ -1507,23 +1477,11 @@ var app = new Vue({
         }
     },
     methods: {
-        add_opt() {
+        add_opt(names,opt) {
             /**
-             * 增加比色类项目
+             * 增加项目
              */
-            this.names.push(this.new_opt);
-        },
-        add_opt2() {
-            /**
-             * 增加非比色类项目
-             */
-            this.names2.push(this.new_opt2);
-        },
-        add_opt3() {
-            /**
-             * 保存感官性状指标
-             */
-            this.name3.push(this.new_opt3)
+            names.push(opt);
         },
         printContent(id) {
             /**
@@ -1671,56 +1629,15 @@ var app = new Vue({
             this.useCount(item);
             this.useJudge(item)
         },
-        work(id,somes){
-            this.save_results(id,somes)
-            this.mystorages(somes)
+        work(s) {
+            this.save_result(s)
+            this.mystorages(s)
         },
-        submit_result(somes) {
-            /**
-             * 提交数据到结果数组中
-             */
-            somes.new_results.id = somes.start;
-            somes.new_results.date = this.dateFormat(new Date())
-            somes.results.push(somes.new_results);
-            // if(somes == this.selected){
-            //     somes.new_results= {
-            //         id: '',
-            //         v: 50,
-            //         a: '',
-            //         m: '',
-            //         c: '',
-            //         date: ''
-            //     }
-            // }
-            // else if(somes == this.selected2){
-            //     somes.new_results = {
-            //         id: '',
-            //         v: 50,
-            //         a0: 0.05,
-            //         a1: '',
-            //         st_v: somes.st_v,
-            //         K: 1,
-            //         m: '',
-            //         c: '',
-            //         date: ''
-            //     }
-            // }
-            // else if(somes == this.selected3){
-                
-            //     somes.new_results = {
-            //         id: '',
-            //         v: 50,
-            //         c: '',
-            //         date: ''
-            //     }
-            // }
-            somes.start = Number(somes.start)+1
-        },
-        del_sample(somes,index) {
+        del_sample(s, index) {
             /**
              * 删除样品行
              */
-            somes.results.splice(index, 1);
+            s.results.splice(index, 1);
         },
         sum(arr1, arr2) {
             /**
@@ -1752,116 +1669,116 @@ var app = new Vue({
             let over = this.sum_1(arr);
             return over / arr.length;
         },
-        get_m(element) {
+        get_m(s) {
             /**
              * 根据出当前项目的吸光度计算出样品所含物质质量
              */
-            let a = this.selected.results[element].a;
-            this.selected.results[element].m = (((a - this.selected.a) / this.selected.b).toFixed(3));
-            return this.selected.results[element].m;
+            let st = s.result;
+            st.m = (((st.a - s.a) / s.b).toFixed(3));
+            return st.m;
         },
-        get_m2(element) {
+        get_m2(s) {
             /**
              * 根据出当前项目的标准消耗量计算出样品所含物质质量
              */
-            let st_v = this.selected2.results[element].st_v;
-            let a0 = this.selected2.results[element].a0;
-            let a1 = this.selected2.results[element].a1;
-            a1 = Number(a1);
-            let K  = this.selected2.results[element].K;
-            let v  = this.selected2.results[element].v;
+            let coefficient = s.result.coefficient;
+            let a0 = s.result.a0;
+            let a1 = s.result.a1;
+            let K = s.result.K;
+            let v = s.result.v;
             let a = a1 - a0;
-            if(this.selected2.name=='耗氧量'){
-                this.selected2.results[element].m = (a * st_v * K / v).toFixed(2)
-            }else{
-                this.selected2.results[element].m = (a * st_v / v).toFixed(2);
+            if (s.a == '耗氧量') {
+                s.result.c = (a * coefficient * K / v).toFixed(2)
+            } else {
+                s.result.c = (a * coefficient / v).toFixed(2);
             }
-            return this.selected2.results[element].m;
+            return s.result.c;
         },
-        get_c2(element){
-            this.selected2.results[element].c = this.get_m2(element)
-            return this.selected2.results[element].c
+        get_c2(s) {
+            s.result.c = this.get_m2(s)
+            return s.result.c
         },
-        get_c(element) {
+        get_c(s) {
             /**
              * 根据当前项目的加样体积和质量算出样品中物质的浓度
              */
-            let v = this.selected.results[element].v;
-            let m = this.selected.results[element].m;
-            if (this.selected.name == "硫酸盐") {
-                this.selected.results[element].c = (1000 * m / v).toFixed(1);
+            let v = s.result.v;
+            let m = s.result.m;
+
+            if (s.name == "硫酸盐") {
+                s.result.c = (1000 * m / v).toFixed(1);
             } else {
-                this.selected.results[element].c = (m / v).toFixed(2);
+                s.result.c = (m / v).toFixed(2);
             }
-            return this.selected.results[element].c
+            return s.result.c
         },
-        save_results(id, st) {
+        save_result(s) {
             /**
              * 从输入吸光度后计算得到的结果表格中获取数据,存入localStorage
              */
 
-            this.useJudge(st)
-            let rows = document.getElementById(id).rows; //获取表格
-            let start = rows[1].cells[0].innerText; //表格第一个编号
-            let end = rows[rows.length - 1].cells[0].innerText; //表格最后一个编号
-            start_item = Number(start.slice(-4,-1))
-            end_item = Number(end.slice(-4,-1))
-            for (let i = start_item; i <= end_item; i++) {
-                let p = (st.name + i + '报告结果');
-                let date = new Date();
-                date = this.dateFormat(date);
-                let res = st.results[i - start_item]
-                res.date = date;
-                res.v = st.v
-                res.limit = st.limit
-                res.range_max = st.range_max;
-                res.range_min = st.range_min;
-                res.unit = st.unit
-                if (st == this.selected2) {
-                    if (Number(res.m) < Number(res.range_max)) {
-                        res.assessment = "合格"
-                    } else {
-                        res.assessment = "不合格"
-                    }
-                } else if(Number(res.c) < Number(res.range_max)){ 
+            this.useJudge(s)
+            let res = s.result
+            let p = (s.name + s.start + '报告结果');
+            res.id = s.start;
+            let date = new Date();
+            date = this.dateFormat(date);
+            res.date = date;
+            res.v = s.v
+            res.limit = s.limit
+            res.range_max = s.range_max;
+            res.range_min = s.range_min;
+            res.unit = s.unit
+            res.m = (s == this.selected) ? this.get_m(s) : this.get_m2(s);
+            res.c = (s == this.selected) ? this.get_c(s) : this.get_c2(s);
+            if (s == this.selected2) {
+                if (Number(res.m) < Number(res.range_max)) {
                     res.assessment = "合格"
                 } else {
                     res.assessment = "不合格"
                 }
-                let str = JSON.stringify(res); //格式化后才能存入 
-                localStorage.setItem(p, str);
-            };
-            let n = st.name + 'end';
-            localStorage.setItem(n, end_item + 1);
+            } else if (Number(res.c) < Number(res.range_max)) {
+                res.assessment = "合格"
+            } else {
+                res.assessment = "不合格"
+            }
+            let str = JSON.stringify(res); //格式化后才能存入 
+            localStorage.setItem(p, str);
+            res.a = '';
+
+            let n = s.name + 'end';
+            s.start += 1
+            localStorage.setItem(n, s.start);
         },
-        mystorages(somes) {
+        mystorages(s) {
             /**
              * 从localStorage中获取保存的结果，存入st数组
              */
-            somes.st = [];
-            let n = somes.name + 'end';
+            s.st = [];
+            let n = s.name + 'end';
             if (localStorage.getItem(n) !== null) {
-                let keys = this.get_key(somes);
+                let keys = this.get_key(s);
                 for (let i = 0; i < keys.length; i++) {
-                    let x = (somes.name + keys[i] + '报告结果');
+                    let x = (s.name + keys[i] + '报告结果');
                     let p = localStorage.getItem(x);
                     p = eval(JSON.parse(p));
-                    somes.st.push(p);
+                    s.st.push(p);
                 }
-                somes.start = Number(localStorage.getItem(n));
+                s.start = Number(localStorage.getItem(n));
             }
             //对结果依据编号从小到大进行排序
-            somes.st.sort(function (i, j) {
+            s.st.sort(function (i, j) {
                 return Number(i.id) > Number(j.id) ? 1 : -1
             });
         },
-        set_record(somes) {
+        set_record(s) {
             //最后一次输入记录后的标记
-            if (somes.judge) {
-                somes.end = somes.start;
-            } else {
-                somes.end = 1;
-            }
+            s.end = (s.judge)?s.start:1
+            // if (s.judge) {
+            //     s.end = s.start;
+            // } else {
+            //     s.end = 1;
+            // }
         },
         get_key(item) {
             /**
@@ -1905,8 +1822,8 @@ var app = new Vue({
              */
             let date = new Date()
             date = this.dateFormat(date)
-            let wendu = "wendu"+date
-            let shidu = "shidu"+date
+            let wendu = "wendu" + date
+            let shidu = "shidu" + date
             localStorage.setItem(wendu, this.temprature)
             localStorage.setItem(shidu, this.rh)
         },
@@ -1915,8 +1832,8 @@ var app = new Vue({
              * 获取特定日期的温度和湿度
              */
             date = this.dateFormat(date)
-            let wendu = "wendu"+date 
-            let shidu = "shidu"+date 
+            let wendu = "wendu" + date
+            let shidu = "shidu" + date
             let env = new Object
             env.wendu = localStorage.getItem(wendu)
             env.shidu = localStorage.getItem(shidu)
