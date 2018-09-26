@@ -4,8 +4,6 @@ var app = new Vue({
         temprature: '',
         rh: '',
         submit_show: false,
-        first_opt: false,
-        second_opt: false,
         selected_opt: [],
         projects: {
             微生物指标microbe: [
@@ -73,7 +71,6 @@ var app = new Vue({
         login_f: true,
         index: 0, //这个是表格索引==序号
         new_item: '', //表格新行
-        show_v: true,
         show: false,
         show2: false,
         show3: false,
@@ -183,10 +180,8 @@ var app = new Vue({
                 range_max: 8.5,
                 assessment: true,
                 unit: '度',
-                v: 1,
                 start: 1,
                 end: 1,
-                id: 1,
                 name: '酸碱度',
                 method: '',
                 limit: '',
@@ -196,7 +191,7 @@ var app = new Vue({
                 results: [],
                 new_results: {
                     id: '',
-                    v: '',
+                    v: 50,
                     c: '',
                     date: '',
                 },
@@ -208,10 +203,8 @@ var app = new Vue({
                 range_max: '',
                 assessment: true,
                 unit: '度',
-                v: 1,
                 start: 1,
                 end: 1,
-                id: 1,
                 name: '色度',
                 method: '',
                 limit: '',
@@ -221,7 +214,7 @@ var app = new Vue({
                 results: [],
                 new_results: {
                     id: '',
-                    v: '',
+                    v: 50,
                     c: '',
                     date: '',
                 },
@@ -233,10 +226,8 @@ var app = new Vue({
                 range_max: '',
                 assessment: true,
                 unit: '度',
-                v: 1,
                 start: 1,
                 end: 1,
-                id: 1,
                 name: '浑浊度',
                 method: '',
                 limit: '',
@@ -246,7 +237,7 @@ var app = new Vue({
                 results: [],
                 new_results: {
                     id: '',
-                    v: '',
+                    v: 50,
                     c: '',
                     date: '',
                 },
@@ -258,10 +249,8 @@ var app = new Vue({
                 range_max: '',
                 assessment: true,
                 unit: '无量纲',
-                v: 50,
                 start: 1,
                 end: 1,
-                id: 1,
                 name: '臭和味',
                 method: '',
                 limit: '',
@@ -271,7 +260,7 @@ var app = new Vue({
                 results: [],
                 new_results: {
                     id: '',
-                    v: '',
+                    v: 50,
                     c: '无异臭和异味',
                     date: '',
                 },
@@ -1469,6 +1458,24 @@ var app = new Vue({
     created() {
         this.init_login()
     },
+    directives: {
+        numberOnly: {
+            bind: function(el){
+                el.handler = function(){
+                    let formatVal = /^\+?[1-9][0-9]*$/;
+                    let val = el.value;
+                    if(!formatVal.test(val)){
+                        let reg = new RegExp(val, 'g');
+                        el.value = val.replace(reg, 1);
+                    }
+                }
+                el.addEventListener('input', el.handler)
+                },
+                unbind:function(el){
+                    el.removeEventListener('input',el.handler)
+                }
+            }
+        },
     watch: {
         selected() {
             /**
@@ -1492,7 +1499,7 @@ var app = new Vue({
         },
         selected3() {
             /**
-             * 感官性状和一般化学指标
+             * 感官性状
              */
             this.show = false;
             this.show2 = false;
@@ -1518,25 +1525,10 @@ var app = new Vue({
              */
             this.name3.push(this.new_opt3)
         },
-        printAll(id){
-            /**
-             * 打印全部记录
-             */
-            let subOutputRankPrint = document.getElementById(id);
-            console.log(subOutputRankPrint.innerHTML);
-            let newContent = subOutputRankPrint.innerHTML;
-            let oldContent = document.body.innerHTML;
-            document.body.innerHTML = newContent;
-            window.print();
-            window.location.reload();
-            document.body.innerHTML = oldContent;
-            return false;
-        },
-        printContent(id,somes,id1) {
+        printContent(id) {
             /**
              * 打印部分记录，并保存
              */
-            this.work(id1,somes);
             let subOutputRankPrint = document.getElementById(id);
             console.log(subOutputRankPrint.innerHTML);
             let newContent = subOutputRankPrint.innerHTML;
@@ -1690,38 +1682,38 @@ var app = new Vue({
             somes.new_results.id = somes.start;
             somes.new_results.date = this.dateFormat(new Date())
             somes.results.push(somes.new_results);
-            if(somes == this.selected){
-                somes.new_results= {
-                    id: '',
-                    v: somes.v,
-                    a: '',
-                    m: '',
-                    c: '',
-                    date: ''
-                }
-            }
-            else if(somes == this.selected2){
-                somes.new_results = {
-                    id: somes.start,
-                    v: somes.v,
-                    a0: somes.a0,
-                    a1: '',
-                    st_v: somes.st_v,
-                    K: 1,
-                    m: '',
-                    c: '',
-                    date: ''
-                }
-            }
-            else if(somes == this.selected3){
+            // if(somes == this.selected){
+            //     somes.new_results= {
+            //         id: '',
+            //         v: 50,
+            //         a: '',
+            //         m: '',
+            //         c: '',
+            //         date: ''
+            //     }
+            // }
+            // else if(somes == this.selected2){
+            //     somes.new_results = {
+            //         id: '',
+            //         v: 50,
+            //         a0: 0.05,
+            //         a1: '',
+            //         st_v: somes.st_v,
+            //         K: 1,
+            //         m: '',
+            //         c: '',
+            //         date: ''
+            //     }
+            // }
+            // else if(somes == this.selected3){
                 
-                somes.new_results = {
-                    id: somes.start,
-                    v: somes.v,
-                    c: '',
-                    date: ''
-                }
-            }
+            //     somes.new_results = {
+            //         id: '',
+            //         v: 50,
+            //         c: '',
+            //         date: ''
+            //     }
+            // }
             somes.start = Number(somes.start)+1
         },
         del_sample(somes,index) {
@@ -1775,19 +1767,19 @@ var app = new Vue({
             let st_v = this.selected2.results[element].st_v;
             let a0 = this.selected2.results[element].a0;
             let a1 = this.selected2.results[element].a1;
+            a1 = Number(a1);
             let K  = this.selected2.results[element].K;
             let v  = this.selected2.results[element].v;
             let a = a1 - a0;
             if(this.selected2.name=='耗氧量'){
-                this.selected2.results[element].m = ((a * st_v * K / v))
+                this.selected2.results[element].m = (a * st_v * K / v).toFixed(2)
             }else{
-                this.selected2.results[element].m = ((a * st_v / v).toFixed(3));
+                this.selected2.results[element].m = (a * st_v / v).toFixed(2);
             }
             return this.selected2.results[element].m;
         },
         get_c2(element){
-            this.get_m2(element)
-            this.selected2.results[element].c = this.selected2.results[element].m
+            this.selected2.results[element].c = this.get_m2(element)
             return this.selected2.results[element].c
         },
         get_c(element) {

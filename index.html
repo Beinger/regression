@@ -36,12 +36,12 @@
                 </div>
                 <div class="col-xs-3 col-lg-2 col-md-2 col-sm-2">
                     <a class="btn btn-defult btn-lg" data-toggle="modal" data-target="#login" v-if="login_f">
-                        <i class="fa fa-sign-in"></i>机构注册
+                        <i class="fa fa-sign-in"></i>机构信息登记
                     </a>
                     <a class="btn btn-defult btn-lg" data-toggle="modal" data-target="#environment" v-else>
                         <i class="fa fa-thermometer-empty"></i>实验环境记录
                     </a>
-                    <a class="btn btn-lg text-warning" href="sample.html"><i class="fa fa-list"></i>查看检验报告</a>
+                    <a class="btn btn-lg text-warning" href="sample.html"><i class="fa fa-book"></i>查看检验报告</a>
                     <div class="modal fade" id="environment" tabindex="-1" role="dialog" aria-labelledby="myEnv"
                         aria-hidden="true">
                         <div class="modal-dialog">
@@ -287,7 +287,7 @@
                             <h4 v-html="selected.formula"></h4>
                             <span class="text-danger animated bounceIn infinite" v-if="selected.r<0.999">------注意：相关系数若小于0.999，说明标准曲线不合格，请重新核对数据，分析检测过程，必要时重新测定标准系列。</span>
                             <div>
-                                <a class="btn btn-default" @click="add_sample(selected)" ref="welcome">
+                                <a class="btn btn-default" @click="add_sample(selected)">
                                     <i class="fa fa-hand-o-right fa-2x"></i><i class="fa fa-pencil"></i>
                                     开始录入
                                     <i>样品编号{{numbering+(new Date()).getFullYear()}}水第
@@ -331,7 +331,8 @@
                     </div>
                 </div>
 
-                <a class="btn btn-info" @click="printContent('print',selected,'result_table')"><i class="fa fa-print text-danger"></i>打印<span
+                <a class="btn btn-default" @click="work('result_table',selected)">保存检验记录</a>
+                <a class="btn btn-info" @click="printContent('print')"><i class="fa fa-print text-danger"></i>打印<span
                         v-text="selected.name"></span>检验记录</a>
                 <div id="print">
                     <div class="text-center" colspan="5">
@@ -402,16 +403,13 @@
                                 <td v-text="item.v"></td>
                                 <td v-text="item.a"></td>
                                 <td v-text="get_m(index)"></td>
-                                <td colspan="2" class="animated bounceInUp" v-text="get_c(index)"></td>
+                                <td colspan="2" v-text="get_c(index)"></td>
                                 <td v-show="submit_show" v-text="item.date"></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <a v-show="submit_show" class="btn text-danger" @click="printContent('subOutputRank-print')"><i class="fa fa-print"></i>打印历史记录</a>
-                <a @click="submit_show=!submit_show" class="btn text-danger"><i class="fa fa-show"></i>历史记录</a>
-                <div v-show="submit_show" id="subOutputRank-print">
-                    <div @click="date_y()" class="text-center" colspan="5">
+                <a v-show="submit_show" class="btn text-danger" @click="printContent('subOutputRank-print')"><i class="fa fa-print"></i>打印历史记录</a> <a @click="submit_show=!submit_show" class="btn text-danger"><i class="fa fa-show"></i>历史记录</a> <div v-show="submit_show" id="subOutputRank-print"> <div @click="date_y()" class="text-center" colspan="5">
                         <h3 title="点击这里可以查看每个样品的检测日期"><i>水样中<span v-text="selected.name"></span>检验记录</i></h3>
                     </div>
                     <table class="table table-bordered table-striped table-hover">
@@ -502,7 +500,7 @@
                     <div class="col-lg-5">
                         <fieldset>
                             <div>
-                                <a class="btn btn-default" @click="add_sample(selected2)" ref="welcome">
+                                <a class="btn btn-default" @click="add_sample(selected2)">
                                     <i class="fa fa-hand-o-right fa-2x"></i><i class="fa fa-pencil"></i>
                                     开始录入
                                     <i>样品编号{{numbering+(new Date()).getFullYear()}}水第
@@ -542,8 +540,8 @@
                                             v-model="selected2.new_results.a0">
                                     </td>
                                     <td>
-                                        <input class="form-control animated bounceInRight" type="number" tabindex="0"
-                                            v-model="selected2.new_results.a1">
+                                        <input class="form-control animated bounceInRight"  type="number" tabindex="0"
+                                            v-model.number="selected2.new_results.a1">
                                     </td>
                                     <td v-show="submit_show">
                                         <button class="btn form-control" tabindex="0" @click="submit_result(selected2)">提交</button>
@@ -553,7 +551,8 @@
                         </fieldset>
                     </div>
                 </div>
-                <a class="btn btn-info" @click="printContent('print2',selected2,'result_table2')"><i class="fa fa-print text-danger"></i>打印<span
+                <a class="btn btn-default" @click="work('result_table2',selected2)">保存检验记录</a>
+                <a class="btn btn-info" @click="printContent('print2')"><i class="fa fa-print text-danger"></i>打印<span
                         v-text="selected.name"></span>检验记录</a>
                 <div id="print2">
                     <div class="text-center" colspan="5">
@@ -624,13 +623,13 @@
                                 <td v-text="item.v"></td>
                                 <td v-text="item.a0"></td>
                                 <td v-text="item.a1"></td>
-                                <td class="animated bounceInUp" v-text="get_c2(index)"></td>
+                                <td v-text="get_c2(index)"></td>
                                 <td v-show="submit_show" v-text="item.date"></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <a v-show="submit_show" class="btn text-danger" @click="printAll('subOutputRank-print2')"><i
+                <a v-show="submit_show" class="btn text-danger" @click="printContent('subOutputRank-print2')"><i
                         class="fa fa-print"></i>打印全部历史记录</a>
                 <a class="btn text-danger" @click="submit_show=!submit_show"><i class="fa fa-book"></i>历史记录</a>
                 <div id="subOutputRank-print2" v-show="submit_show">
@@ -728,7 +727,7 @@
                     <div class="col-lg-5">
                         <fieldset>
                             <div>
-                                <a class="btn btn-default" @click="add_sample(selected3)" ref="welcome">
+                                <a class="btn btn-default" @click="add_sample(selected3)">
                                     <i class="fa fa-hand-o-right fa-2x"></i><i class="fa fa-pencil"></i>
                                     开始录入
                                     <i>样品编号{{numbering+(new Date()).getFullYear()}}水第
@@ -766,7 +765,8 @@
                         </fieldset>
                     </div>
                 </div>
-                <a class="btn btn-info" @click="printContent('print3',selected3,'result_table3')">
+                <a class="btn btn-default" @click="work('result_table3',selected3)">保存检验记录</a>
+                <a class="btn btn-info" @click="printContent('print3')">
                     <i class="fa fa-print text-danger">打印</i>
                     <span v-text="selected3.name"></span>检验记录
                 </a>
@@ -833,13 +833,13 @@
                         <tbody class="text-center">
                             <tr v-for="(item, index) in selected3.results">
                                 <td v-text="numbering+(new Date()).getFullYear()+'水第'+f_n(item.id, 3)+'号'"></td>
-                                <td class="animated bounceInUp" v-text="item.c"></td>
+                                <td v-text="item.c"></td>
                                 <td v-text="item.date" v-show="submit_show"></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <a v-show="submit_show" class="btn text-danger" @click="printAll(subOutputRank-print3)"><i class="fa fa-print"></i>打印全部历史记录</a>
+                <a v-show="submit_show" class="btn text-danger" @click="printContent(subOutputRank-print3)"><i class="fa fa-print"></i>打印全部历史记录</a>
                 <a class="btn text-danger" @click="submit_show=!submit_show"><i class="fa fa-print"></i>历史记录</a>
                 <div id="subOutputRank-print3" v-show="submit_show">
                     <div @click="date_y()" class="text-center" colspan="5">
