@@ -14,17 +14,16 @@
 
 <body>
     <div class="container">
-
         <div id="app">
             <a class="btn text-danger" @click="printContent()"><i class="fa fa-print"></i>打印</a>
             <div id="subOutputRank-print">
                 <div v-for="(value, key) in storage">
-                <div class="text-center">
-                    <h3><span v-text="company"></span><br>水质检验报告</h3><br>
-                    <h6 class="text-left">样品编号：YXCDC(水)2018第
-                        <span v-text="f_n(value[0].id,3)"></span>号
-                    </h6>
-                </div>
+                    <div class="text-center">
+                        <h3><span v-text="company"></span><br>水质检验报告</h3><br>
+                        <h6 class="text-left">样品编号：YXCDC(水)2018第
+                            <span v-text="f_n(value[0].id,3)"></span>号
+                        </h6>
+                    </div>
                     <table class="table table-bordered table-striped table-hover">
                         <thead>
                             <tr>
@@ -54,8 +53,8 @@
                             <span v-text="dateFormat(new Date())"></span>
                         </div>
                     </div>
+                    <div style="page-break-after:always"></div>
                 </div>
-                <div style="page-break-after:always"></div>
             </div>
         </div>
     </div>
