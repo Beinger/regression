@@ -27,14 +27,14 @@
                     <table class="table table-bordered table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>检验项目</th>
-                                <th>单位</th>
-                                <th>参考范围</th>
-                                <th>检验结果</th>
-                                <th>单项评价</th>
+                                <th class="text-center">检验项目</th>
+                                <th class="text-center">单位</th>
+                                <th class="text-center">参考范围</th>
+                                <th class="text-center">检验结果</th>
+                                <th class="text-center">单项评价</th>
                             </tr>
                         </thead>
-                        <tbody v-for="(item, index) in value" :key="index">
+                        <tbody class="text-center" v-for="(item, index) in value" :key="index">
                             <tr>
                                 <td>{{ item.name }}</td>
                                 <td>{{ item.unit }}</td>
