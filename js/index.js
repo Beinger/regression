@@ -1704,8 +1704,10 @@ var app = new Vue({
                         case '臭和味':
                         case '肉眼可见物':
                             res.assessment = '合格';
+                            res.limit = '---'
                             break;
                         case '酸碱度':
+                            res.limit = 0;
                             res.assessment = (res.c>s.range_max||res.c<s.range_min)?"不合格":"合格"
                             break
                         default:
@@ -1719,11 +1721,13 @@ var app = new Vue({
                     break;
                 }
                 default:{
+                    res.limit = s.limit
                     res.m = this.get_m(s);
                     res.c = this.get_c(s);
                     res.assessment = (res.c>s.range_max)?"不合格":"合格"
                 }
             }
+            res.unit = s.unit;
             res.range = this.get_range(s);
             let str = JSON.stringify(res); //格式化后才能存入 
             localStorage.setItem(p, str);

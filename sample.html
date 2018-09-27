@@ -23,7 +23,7 @@
                         <thead>
                             <tr>
                                 <th style="border-top-style:none" colspan="5" class="text-center">
-                                    <h3>{{ company }}<br>检验报告</h3><br>
+                                    <h3><span v-text="company"></span><br>水质检验报告</h3><br>
                                     <h6 class="text-left">样品编号：YXCDC(水)2018第
                                         <span v-text="f_n(value[0].id,3)"></span>号
                                 </th>
@@ -40,8 +40,7 @@
                             <tr>
                                 <td>{{ item.name }}</td>
                                 <td>{{ item.unit }}</td>
-                                <td v-if="item.name == '酸碱度'" v-text="item.range_min+'-'+item.range_max"></td>
-                                <td v-else>&lt;{{ item.range_max }}</td>
+                                <td v-text="item.range"></td>
                                 <td v-if="item.c<item.limit" v-text="'<'+item.limit"></td>
                                 <td v-else v-text="item.c"></td>
                                 <td>{{ item.assessment }}</td>
