@@ -52,13 +52,13 @@
                                 </div>
                                 <div class="modal-body form-group">
                                     <label class="form-label">实验室温度(℃)</label>
-                                    <input type="text" v-model="temprature">℃
+                                    <input type="number" v-model.number="T">℃
                                     <label calss="form-label">实验室湿度(%)</label>
-                                    <input type="text" v-model="rh">%
+                                    <input tabindex="0" type="number" v-model.number="H">%
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                    <button type="button" class="btn btn-primary" @click="login_env()" data-dismiss="modal">确认</button>
+                                    <button type="button" class="btn btn-primary" tabindex="0" @click="login_env()"
+                                        data-dismiss="modal">确认</button>
                                 </div>
                             </div><!-- /.modal-content -->
                         </div><!-- /.modal -->
@@ -160,12 +160,12 @@
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal -->
                 </div>
-                <div class="modal fade" id="opt2" tabindex="-1" role="dialog" aria-labelledby="myOpt" aria-hidden="true">
+                <div class="modal fade" id="opt2" tabindex="-1" role="dialog" aria-labelledby="myOpt2" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class='modal-content'>
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title" id="myOpt">新增加项目: <span v-text="new_opt2.name"></span></h4>
+                                <h4 class="modal-title" id="myOpt2">比色类项目: <span v-text="new_opt2.name"></span></h4>
                             </div>
                             <div class="modal-body form-group">
 
@@ -195,7 +195,8 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                <button type="button" class="btn btn-primary" @click="add_opt(names2,new_opt2)" data-dismiss="modal">保存</button>
+                                <button type="button" class="btn btn-primary" @click="add_opt(names2,new_opt2)"
+                                    data-dismiss="modal">保存</button>
                             </div>
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal -->
@@ -205,7 +206,7 @@
                         <div class='modal-content'>
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title" id="myOpt">新增加项目: <span v-text="new_opt.name"></span></h4>
+                                <h4 class="modal-title" id="myOpt">滴定类项目: <span v-text="new_opt.name"></span></h4>
                             </div>
                             <div class="modal-body form-group">
 
@@ -235,7 +236,8 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                <button type="button" class="btn btn-primary" @click="add_opt(names,new_opt)" data-dismiss="modal">保存</button>
+                                <button type="button" class="btn btn-primary" @click="add_opt(names,new_opt)"
+                                    data-dismiss="modal">保存</button>
                             </div>
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal -->
@@ -319,7 +321,8 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <input class="form-control animated bounceInRight" type="number" tabindex="0" placeholder="输入后直接回车" v-model="selected.result.a">
+                                        <input class="form-control animated bounceInRight" type="number" tabindex="0"
+                                            placeholder="输入后直接回车" v-model="selected.result.a">
                                     </td>
                                     <td>
                                         <button class="btn" tabindex="0" @click="work(selected)">提交</button>
@@ -330,9 +333,8 @@
                     </div>
                 </div>
 
-                <a @click="submit_show=!submit_show" class="btn text-danger"><i class="fa fa-show"></i>历史记录</a>
-                <a class="btn text-danger" @click="printContent('subOutputRank-print')"><i class="fa fa-print"></i>打印历史记录</a>
-                <div id="subOutputRank-print">
+                <a class="btn text-danger" @click="printContent('print')"><i class="fa fa-print"></i>打印记录</a>
+                <div id="print">
                     <div @click="date_y()" class="text-center" colspan="5">
                         <h1 v-text="company"></h1>
                         <h3 title="点击这里可以查看每个样品的检测日期"><i>水样中<span v-text="selected.name"></span>检验记录</i></h3>
@@ -363,11 +365,11 @@
                             <td contenteditable="true">液态</td>
                             <td class="text-center">检测环境：</td>
                             <td contenteditable="true">
-                                温度<span v-text="temprature"></span> ℃
+                                温度<span v-text="T"></span> ℃
                             </td>
                             <td contenteditable="true">
                                 湿度
-                                <span v-text="rh"></span>% RH
+                                <span v-text="H"></span>% RH
                             </td>
                         </tr>
                         <tr>
@@ -390,6 +392,7 @@
                                 <th class="text-center">加样量(ml)</th>
                                 <th class="text-center">吸光度</th>
                                 <th class="text-center">实测质量(μg)</th>
+                                <th class="text-center">样品浓度(mg/L)</th>
                                 <th class="text-center">报告结果(mg/L)</th>
                                 <th v-show="date_show" class="text-center">计量单位</th>
                                 <th v-show="date_show" class="text-center">参考范围(mg/L)</th>
@@ -403,10 +406,11 @@
                                 <td v-text="item.v"></td>
                                 <td v-text="item.a"></td>
                                 <td v-text="item.m"></td>
+                                <td v-text="item.c"></td>
                                 <td v-if="item.c<selected.limit" v-text="'<'+selected.limit"></td>
                                 <td v-else v-text="item.c"></td>
                                 <td v-show="date_show" v-text="item.unit"></td>
-                                <td v-show="date_show" v-text="'&le;'+item.range_max"></td>
+                                <td v-show="date_show" v-text="item.range"></td>
                                 <td v-show="date_show" v-text="item.assessment"></td>
                                 <td v-show="date_show" v-text="item.date"></td>
                             </tr>
@@ -429,8 +433,8 @@
                                     <i class="fa fa-hand-o-right fa-2x"></i><i class="fa fa-pencil"></i>
                                     开始录入
                                     <i>样品编号{{numbering+(new Date()).getFullYear()}}水第
-                                        <input v-if="selected2.judge" tabindex="11" type="number" v-model="selected2.start">
-                                        <input v-else tabindex="11" type="number" v-model="selected2.end"> 号
+                                        <input v-if="selected2.judge" tabindex="-1" type="number" v-model.number="selected2.start">
+                                        <input v-else tabindex="-1" type="number" v-model.number="selected2.end"> 号
                                     </i>
                                 </a>
                             </div>
@@ -453,7 +457,7 @@
                                         <i>{{numbering+(new Date()).getFullYear()}}水第<span v-text="f_n(selected2.start,3)"></span>号</i>
                                     </td>
                                     <td>
-                                        <select class="form-control" v-model="selected2.v">
+                                        <select class="form-control" v-model="selected2.result.v">
                                             <option v-bind:value="opt" v-for="opt of vol_select" v-text="opt"></option>
                                         </select>
                                     </td>
@@ -465,7 +469,7 @@
                                             v-model="selected2.result.a0">
                                     </td>
                                     <td>
-                                        <input class="form-control animated bounceInRight"  type="number" tabindex="0"
+                                        <input class="form-control animated bounceInRight" type="number" tabindex="0"
                                             v-model.number="selected2.result.a1">
                                     </td>
                                     <td>
@@ -476,9 +480,8 @@
                         </fieldset>
                     </div>
                 </div>
-                <a class="btn text-danger" @click="submit_show=!submit_show"><i class="fa fa-book"></i>历史记录</a>
-                <a class="btn text-danger" @click="printContent('subOutputRank-print2')"><i class="fa fa-print"></i>打印历史记录</a>
-                <div id="subOutputRank-print2">
+                <a class="btn text-danger" @click="printContent('print2')"><i class="fa fa-print"></i>打印记录</a>
+                <div id="print2">
                     <div @click="date_y()" class="text-center" colspan="5">
                         <h1 v-text="company"></h1>
                         <h3 title="点击这里可以查看每个样品的检测日期"><i>水样中<span v-text="selected2.name"></span>检验记录</i></h3>
@@ -509,11 +512,11 @@
                             <td contenteditable="true">液态</td>
                             <td class="text-center">检测环境：</td>
                             <td contenteditable="true">
-                                温度<span v-text="temprature"></span> ℃
+                                温度<span v-text="T"></span> ℃
                             </td>
                             <td contenteditable="true">
                                 湿度
-                                <span v-text="rh"></span>% RH
+                                <span v-text="H"></span>% RH
                             </td>
                         </tr>
                         <tr>
@@ -550,11 +553,11 @@
                                 <td v-text="item.v"></td>
                                 <td v-text="item.a0"></td>
                                 <td v-text="item.a1"></td>
-                                <td v-text="item.m"></td>
+                                <td v-text="item.c"></td>
                                 <td v-if="item.c<selected2.limit" v-text="'<'+selected2.limit"></td>
                                 <td v-else v-text="item.c"></td>
                                 <td v-show="date_show" v-text="item.unit"></td>
-                                <td v-show="date_show" v-text="'&le;'+item.range_max"></td>
+                                <td v-show="date_show" v-text="item.range"></td>
                                 <td v-show="date_show" v-text="item.assessment"></td>
                                 <td v-show="date_show" v-text="item.date"></td>
                             </tr>
@@ -599,7 +602,7 @@
                                     </td>
                                     <td>
                                         <input class="form-control animated bounceInRight" v-if="selected3.name=='酸碱度' || selected3.name=='色度' || selected3.name=='浑浊度'"
-                                            type="number" tabindex="0" v-model="selected3.result.c">
+                                            type="number" tabindex="0" v-model.number="selected3.result.c">
                                         <input class="form-control animated bounceInRight" v-else type="text" tabindex="0"
                                             v-model="selected3.result.c">
                                     </td>
@@ -611,12 +614,11 @@
                         </fieldset>
                     </div>
                 </div>
-                <a class="btn text-danger" @click="submit_show=!submit_show"><i class="fa fa-book"></i>历史记录</a>
-                <a class="btn text-danger" @click="printContent('subOutputRank-print2')"><i class="fa fa-print"></i>打印历史记录</a>
-                <div id="subOutputRank-print2">
+                <a class="btn text-danger" @click="printContent('print3')"><i class="fa fa-print"></i>打印记录</a>
+                <div id="print3">
                     <div @click="date_y()" class="text-center" colspan="5">
                         <h1 v-text="company"></h1>
-                        <h3 title="点击这里可以查看每个样品的检测日期"><i>水样中<span v-text="selected2.name"></span>检验记录</i></h3>
+                        <h3 title="点击这里可以查看每个样品的检测日期"><i>水样中<span v-text="selected3.name"></span>检验记录</i></h3>
                     </div>
                     <table class="table table-bordered table-striped table-hover">
                         <tr>
@@ -644,11 +646,11 @@
                             <td contenteditable="true">液态</td>
                             <td class="text-center">检测环境：</td>
                             <td contenteditable="true">
-                                温度<span v-text="temprature"></span> ℃
+                                温度<span v-text="T"></span> ℃
                             </td>
                             <td contenteditable="true">
                                 湿度
-                                <span v-text="rh"></span>% RH
+                                <span v-text="H"></span>% RH
                             </td>
                         </tr>
                         <tr>
@@ -680,8 +682,7 @@
                                 <td>{{numbering+(new Date()).getFullYear()}}水第<span v-text="f_n(item.id, 3)"></span>号</td>
                                 <td v-text="item.c"></td>
                                 <td v-show="date_show" v-text="item.unit"></td>
-                                <td v-show="date_show" v-if="selected3.name=='酸碱度'" v-text="item.range_min+'-'+item.range_max"></td>
-                                <td v-else v-show="date_show" v-text="'&le;'+item.range_max"></td>
+                                <td v-show="date_show" v-text="item.range"></td>
                                 <td v-show="date_show" v-text="item.assessment"></td>
                                 <td v-show="date_show" v-text="item.date"></td>
                             </tr>

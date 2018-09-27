@@ -1,8 +1,8 @@
 var app = new Vue({
     el: "#root",
     data: {
-        temprature: '',
-        rh: '',
+        T: '',
+        H: '',
         submit_show: false,
         selected_opt: [],
         projects: {
@@ -88,7 +88,6 @@ var app = new Vue({
             range_max: '',
             assessment: true,
             unit: 'mg/L',
-            v: '',
             start: 1,
             end: 1,
             id: 1,
@@ -98,20 +97,19 @@ var app = new Vue({
             a: 0,
             b: 1,
             r: 1,
-            c: 0,
             formula: '',
             x: [],
             y: [],
             standard_series: [],
             instrument_model: '分光光度计',
             GB: 'GB/T 5750.5-2006',
-            html: '',
             items: [],
             result: {
                 id: 1,
                 v: '',
                 a: '',
                 m: '',
+                c: '',
                 date: ''
             },
         },
@@ -121,18 +119,13 @@ var app = new Vue({
             range_max: '',
             assessment: true,
             unit: 'mg/L',
-            v: 1,
             start: 1,
             end: 1,
-            id: 1,
             name: '',
             method: '',
             limit: '',
-            a0: 0.05,
-            a1: '',
             instrument_model: '',
             GB: 'GB/T 5750.5-2006',
-            html: '',
             items: [],
             result: {
                 id: 1,
@@ -142,6 +135,7 @@ var app = new Vue({
                 a0: '',
                 a1: '',
                 m: '',
+                c: '',
                 date: ''
             },
         },
@@ -151,20 +145,17 @@ var app = new Vue({
             range_max: '',
             assessment: true,
             unit: 'mg/L',
-            v: 1,
             start: 1,
             end: 1,
-            id: 1,
             name: '',
             method: '',
             limit: '',
             instrument_model: '',
             GB: 'GB/T 5750.5-2006',
-            items: [],
             result: {
                 id: '',
                 v: '',
-                c: 7.1,
+                c: '',
                 date: ''
             },
         },
@@ -175,7 +166,7 @@ var app = new Vue({
                 range_min: 6.5,
                 range_max: 8.5,
                 assessment: true,
-                unit: '度',
+                unit: '无量纲',
                 start: 1,
                 end: 1,
                 name: '酸碱度',
@@ -195,14 +186,14 @@ var app = new Vue({
                 st: [],
                 judge: false,
                 range_min: '',
-                range_max: '',
+                range_max: 15,
                 assessment: true,
                 unit: '度',
                 start: 1,
                 end: 1,
                 name: '色度',
                 method: '',
-                limit: '',
+                limit: 5,
                 instrument_model: '',
                 GB: 'GB/T 5750.4-2006',
                 items: [],
@@ -217,14 +208,14 @@ var app = new Vue({
                 st: [],
                 judge: false,
                 range_min: '',
-                range_max: '',
+                range_max: 3,
                 assessment: true,
-                unit: '度',
+                unit: 'NTU',
                 start: 1,
                 end: 1,
                 name: '浑浊度',
                 method: '',
-                limit: '',
+                limit: 0.5,
                 instrument_model: '',
                 GB: 'GB/T 5750.4-2006',
                 items: [],
@@ -287,23 +278,16 @@ var app = new Vue({
                 st: [],
                 judge: false,
                 range_max: 250,
+                range_min: '',
                 assessment: true,
                 unit: 'mg/L',
-                v: 10,
                 start: 1,
                 end: 1,
-                id: 1,
                 name: '氯化物',
                 method: '滴定法',
                 limit: 5,
-                coefficient: 500,
-                a0: 0.05,
-                a1: '',
-                a: '',
-                c: 0,
                 instrument_model: '滴定管',
                 GB: 'GB/T 5750.4-2006',
-                html: '',
                 items: [],
                 result: {
                     id: 1,
@@ -319,20 +303,15 @@ var app = new Vue({
                 st: [],
                 judge: false,
                 range_max: 1000,
+                range_min: '',
                 assessment: true,
                 unit: 'mg/L',
-                v: 50,
                 start: 1,
                 end: 1,
-                id: 2,
                 name: '总硬度',
                 method: '',
                 limit: 1,
                 coefficient: 1000.9,
-                a0: 0.05,
-                a1: '',
-                a: '',
-                c: 0,
                 instrument_model: '',
                 GB: 'GB/T 5750.4-2006',
                 items: [],
@@ -350,20 +329,15 @@ var app = new Vue({
                 st: [],
                 judge: false,
                 range_max: 3,
+                range_min: '',
                 assessment: true,
                 unit: 'mg/L',
-                v: 100,
                 start: 1,
                 end: 1,
-                id: 1,
                 name: '耗氧量',
                 method: '酸性高锰酸钾滴定法',
                 limit: '0.05',
                 coefficient: 80,
-                a0: 0.05,
-                a1: '',
-                a: '',
-                c: 0,
                 instrument_model: '',
                 GB: 'GB/T 5750.7-2006',
                 items: [],
@@ -384,26 +358,23 @@ var app = new Vue({
                 st: [],
                 judge: false,
                 range_max: 0.5,
+                range_min: '',
                 assessment: true,
                 unit: 'mg/L',
-                v: 50,
                 start: 1,
                 end: 1,
-                id: 1,
                 name: '氨氮',
                 method: '',
                 limit: 0.05,
                 a: 0,
                 b: 1,
                 r: 1,
-                c: 0,
                 formula: '',
                 x: [],
                 y: [],
                 standard_series: [],
                 instrument_model: '分光光度计',
                 GB: 'GB/T 5750.5-2006',
-                html: '',
                 items: [
                     [
                         0,
@@ -435,6 +406,7 @@ var app = new Vue({
                     v: 50,
                     a: '',
                     m: '',
+                    c: '',
                     date: ''
                 },
             },
@@ -443,9 +415,9 @@ var app = new Vue({
                 st: [],
                 judge: false,
                 range_max: 0.05,
+                range_min: '',
                 assessment: true,
                 unit: 'mg/L',
-                v: 250,
                 start: 1,
                 end: 1,
                 name: '氰化物',
@@ -453,7 +425,6 @@ var app = new Vue({
                 method: '',
                 b: 1,
                 r: 1,
-                c: 0,
                 formula: '',
                 x: [],
                 y: [],
@@ -461,7 +432,6 @@ var app = new Vue({
                 standard_series: [],
                 instrument_model: '分光光度计',
                 GB: 'GB/T 5750.5-2006',
-                html: '',
                 items: [
                     [
                         0,
@@ -493,16 +463,17 @@ var app = new Vue({
                     v: 250,
                     a: '',
                     m: '',
+                    c: '',
+                    date:'',
                 },
             },
             {
-                id: 3,
                 st: [],
                 judge: false,
                 range_max: 0.1,
+                range_min: '',
                 assessment: true,
                 unit: 'mg/L',
-                v: 50,
                 start: 1,
                 end: 1,
                 name: '锰',
@@ -511,14 +482,12 @@ var app = new Vue({
                 a: 0,
                 b: 1,
                 r: 1,
-                c: 0,
                 formula: '',
                 x: [],
                 y: [],
                 standard_series: [],
                 instrument_model: '分光光度计',
                 GB: 'GB/T 5750.6-2006',
-                html: '',
                 items: [
                     [
                         0,
@@ -550,16 +519,17 @@ var app = new Vue({
                     v: 50,
                     a: '',
                     m: '',
+                    c: '',
+                    date: '',
                 },
             },
             {
-                id: 4,
                 st: [],
                 judge: false,
                 range_max: 1.0,
+                range_min: '',
                 assessment: true,
                 unit: 'mg/L',
-                v: 25,
                 start: 1,
                 end: 1,
                 name: '氟化物',
@@ -568,14 +538,12 @@ var app = new Vue({
                 a: 0,
                 b: 1,
                 r: 1,
-                c: 0,
                 formula: '',
                 x: [],
                 y: [],
                 standard_series: [],
                 instrument_model: '分光光度计',
                 GB: 'GB/T 5750.5-2006',
-                html: '',
                 items: [
                     [
                         0,
@@ -607,16 +575,17 @@ var app = new Vue({
                     v: 25,
                     a: '',
                     m: '',
+                    c: '',
+                    date: '',
                 },
             },
             {
-                id: 5,
                 st: [],
                 judge: false,
                 range_max: 20,
+                range_min: '',
                 assessment: true,
                 unit: 'mg/L',
-                v: 1,
                 start: 1,
                 end: 1,
                 name: '硝酸盐氮',
@@ -625,7 +594,6 @@ var app = new Vue({
                 a: 0,
                 b: 1,
                 r: 1,
-                c: 0,
                 formula: '',
                 x: [],
                 y: [],
@@ -668,16 +636,17 @@ var app = new Vue({
                     v: 1,
                     a: '',
                     m: '',
+                    c: '',
+                    date: '',
                 },
             },
             {
-                id: 6,
                 st: [],
                 judge: false,
                 range_max: 0.2,
+                range_min: '',
                 assessment: true,
                 unit: 'mg/L',
-                v: 100,
                 start: 1,
                 end: 1,
                 name: '铝',
@@ -686,14 +655,12 @@ var app = new Vue({
                 a: 0,
                 b: 1,
                 r: 1,
-                c: 0,
                 formula: '',
                 x: [],
                 y: [],
                 standard_series: [],
                 instrument_model: '分光光度计',
                 GB: 'GB/T 5750.6-2006',
-                html: '',
                 items: [
                     [
                         0,
@@ -729,16 +696,17 @@ var app = new Vue({
                     v: 100,
                     a: '',
                     m: '',
+                    c: '',
+                    date: ''
                 },
             },
             {
-                id: 7,
                 st: [],
                 judge: false,
                 range_max: 0.002,
+                range_min: '',
                 assessment: true,
                 unit: 'mg/L',
-                v: 50,
                 start: 1,
                 end: 1,
                 name: '挥发酚',
@@ -747,14 +715,12 @@ var app = new Vue({
                 a: 0,
                 b: 1,
                 r: 1,
-                c: 0,
                 formula: '',
                 x: [],
                 y: [],
                 standard_series: [],
                 instrument_model: '分光光度计',
                 GB: 'GB/T 5750.4-2006',
-                html: '',
                 items: [
                     [
                         0,
@@ -790,16 +756,17 @@ var app = new Vue({
                     v: 50,
                     a: '',
                     m: '',
+                    c: '',
+                    date: ''
                 },
             },
             {
-                id: 8,
                 st: [],
                 judge: false,
                 range_max: 0.001,
+                range_min: '',
                 assessment: true,
                 unit: 'mg/L',
-                v: 50,
                 start: 1,
                 end: 1,
                 name: '汞',
@@ -808,14 +775,12 @@ var app = new Vue({
                 a: 0,
                 b: 1,
                 r: 1,
-                c: 0,
                 formula: '',
                 x: [],
                 y: [],
                 standard_series: [],
                 instrument_model: '分光光度计',
                 GB: 'GB/T 5750.6-2006',
-                html: '',
                 items: [
                     [
                         0,
@@ -851,16 +816,17 @@ var app = new Vue({
                     v: 50,
                     a: '',
                     m: '',
+                    c: '',
+                    date: ''
                 },
             },
             {
-                id: 9,
                 st: [],
                 judge: false,
                 range_max: 0.3,
+                range_min: '',
                 assessment: true,
                 unit: 'mg/L',
-                v: 50,
                 start: 1,
                 end: 1,
                 name: '阴离子合成洗涤剂',
@@ -869,14 +835,12 @@ var app = new Vue({
                 a: 0,
                 b: 1,
                 r: 1,
-                c: 0,
                 formula: '',
                 x: [],
                 y: [],
                 standard_series: [],
                 instrument_model: '分光光度计',
                 GB: 'GB/T 5750.4-2006',
-                html: '',
                 items: [
                     [
                         0,
@@ -912,16 +876,17 @@ var app = new Vue({
                     v: 50,
                     a: '',
                     m: '',
+                    c: '',
+                    date: ''
                 },
             },
             {
-                id: 10,
                 st: [],
                 judge: false,
                 range_max: 0.01,
+                range_min: '',
                 assessment: true,
                 unit: 'mg/L',
-                v: 50,
                 start: 1,
                 end: 1,
                 name: '硒',
@@ -930,14 +895,12 @@ var app = new Vue({
                 a: 0,
                 b: 1,
                 r: 1,
-                c: 0,
                 formula: '',
                 x: [],
                 y: [],
                 standard_series: [],
                 instrument_model: '分光光度计',
                 GB: 'GB/T 5750.6-2006',
-                html: '',
                 items: [
                     [
                         0,
@@ -969,16 +932,17 @@ var app = new Vue({
                     v: 50,
                     a: '',
                     m: '',
+                    c: '',
+                    date: ''
                 },
             },
             {
-                id: 11,
                 st: [],
                 judge: false,
                 range_max: 0.005,
+                range_min: '',
                 assessment: true,
                 unit: 'mg/L',
-                v: 100,
                 start: 1,
                 end: 1,
                 name: '镉',
@@ -987,14 +951,12 @@ var app = new Vue({
                 a: 0,
                 b: 1,
                 r: 1,
-                c: 0,
                 formula: '',
                 x: [],
                 y: [],
                 standard_series: [],
                 instrument_model: '分光光度计',
                 GB: 'GB/T 5750.6-2006',
-                html: '',
                 items: [
                     [
                         0,
@@ -1026,16 +988,17 @@ var app = new Vue({
                     v: 100,
                     a: '',
                     m: '',
+                    c: '',
+                    date: ''
                 },
             },
             {
-                id: 12,
                 st: [],
                 judge: false,
                 range_max: 0.01,
+                range_min: '',
                 assessment: true,
                 unit: 'mg/L',
-                v: 50,
                 start: 1,
                 end: 1,
                 name: '铅',
@@ -1044,14 +1007,12 @@ var app = new Vue({
                 a: 0,
                 b: 1,
                 r: 1,
-                c: 0,
                 formula: '',
                 x: [],
                 y: [],
                 standard_series: [],
                 instrument_model: '分光光度计',
                 GB: 'GB/T 5750.6-2006',
-                html: '',
                 items: [
                     [
                         0,
@@ -1083,16 +1044,17 @@ var app = new Vue({
                     v: 50,
                     a: '',
                     m: '',
+                    c: '',
+                    date: ''
                 },
             },
             {
-                id: 13,
                 st: [],
                 judge: false,
                 range_max: 0.05,
+                range_min: '',
                 assessment: true,
                 unit: 'mg/L',
-                v: 50,
                 start: 1,
                 end: 1,
                 name: '六价铬',
@@ -1101,14 +1063,12 @@ var app = new Vue({
                 a: 0,
                 b: 1,
                 r: 1,
-                c: 0,
                 formula: '',
                 x: [],
                 y: [],
                 standard_series: [],
                 instrument_model: '分光光度计',
                 GB: 'GB/T 5750.6-2006',
-                html: '',
                 items: [
                     [
                         0,
@@ -1140,16 +1100,17 @@ var app = new Vue({
                     v: 50,
                     a: '',
                     m: '',
+                    c: '',
+                    date: ''
                 }
             },
             {
-                id: 14,
                 st: [],
                 judge: false,
                 range_max: 1.0,
+                range_min: '',
                 assessment: true,
                 unit: 'mg/L',
-                v: 50,
                 start: 1,
                 end: 1,
                 name: '铜',
@@ -1158,14 +1119,12 @@ var app = new Vue({
                 a: 0,
                 b: 1,
                 r: 1,
-                c: 0,
                 formula: '',
                 x: [],
                 y: [],
                 standard_series: [],
                 instrument_model: '分光光度计',
                 GB: 'GB/T 5750.6-2006',
-                html: '',
                 items: [
                     [
                         0,
@@ -1197,16 +1156,17 @@ var app = new Vue({
                     v: 50,
                     a: '',
                     m: '',
+                    c: '',
+                    date: ''
                 },
             },
             {
-                id: 15,
                 st: [],
                 judge: false,
                 range_max: 0.1,
+                range_min: '',
                 assessment: true,
                 unit: 'mg/L',
-                v: 50,
                 start: 1,
                 end: 1,
                 name: '锰',
@@ -1215,14 +1175,12 @@ var app = new Vue({
                 a: 0,
                 b: 1,
                 r: 1,
-                c: 0,
                 formula: '',
                 x: [],
                 y: [],
                 standard_series: [],
                 instrument_model: '分光光度计',
                 GB: 'GB/T 5750.6-2006',
-                html: '',
                 items: [
                     [
                         0,
@@ -1254,16 +1212,17 @@ var app = new Vue({
                     v: 50,
                     a: '',
                     m: '',
+                    c: '',
+                    date: ''
                 },
             },
             {
-                id: 16,
                 st: [],
                 judge: false,
                 range_max: 0.3,
+                range_min: '',
                 assessment: true,
                 unit: 'mg/L',
-                v: 50,
                 start: 1,
                 end: 1,
                 name: '铁',
@@ -1272,14 +1231,12 @@ var app = new Vue({
                 a: 0,
                 b: 1,
                 r: 1,
-                c: 0,
                 formula: '',
                 x: [],
                 y: [],
                 standard_series: [],
                 instrument_model: '分光光度计',
                 GB: 'GB/T 5750.6-2006',
-                html: '',
                 items: [
                     [
                         0,
@@ -1311,16 +1268,17 @@ var app = new Vue({
                     v: 50,
                     a: '',
                     m: '',
+                    c: '',
+                    date: ''
                 },
             },
             {
-                id: 17,
                 st: [],
                 judge: false,
                 range_max: 1.0,
+                range_min: '',
                 assessment: true,
                 unit: 'mg/L',
-                v: 50,
                 start: 1,
                 end: 1,
                 name: '锌',
@@ -1329,14 +1287,12 @@ var app = new Vue({
                 a: 0,
                 b: 1,
                 r: 1,
-                c: 0,
                 formula: '',
                 x: [],
                 y: [],
                 standard_series: [],
                 instrument_model: '分光光度计',
                 GB: 'GB/T 5750.6-2006',
-                html: '',
                 items: [
                     [
                         0,
@@ -1368,16 +1324,17 @@ var app = new Vue({
                     v: 50,
                     a: '',
                     m: '',
+                    c: '',
+                    date: ''
                 },
             },
             {
-                id: 18,
                 st: [],
                 judge: false,
                 range_max: 250,
+                range_min: '',
                 assessment: true,
                 unit: 'mg/L',
-                v: 50,
                 start: 1,
                 end: 1,
                 name: '硫酸盐',
@@ -1386,14 +1343,12 @@ var app = new Vue({
                 a: 0,
                 b: 1,
                 r: 1,
-                c: 0,
                 formula: '',
                 x: [],
                 y: [],
                 standard_series: [],
                 instrument_model: '分光光度计',
                 GB: 'GB/T 5750.5-2006',
-                html: '',
                 items: [
                     [
                         0,
@@ -1421,6 +1376,8 @@ var app = new Vue({
                     v: 50,
                     a: '',
                     m: '',
+                    c: '',
+                    date: ''
                 },
             },
         ],
@@ -1428,24 +1385,24 @@ var app = new Vue({
     created() {
         this.init_login()
     },
-    directives: {
-        numberOnly: {
-            bind: function (el) {
-                el.handler = function () {
-                    let formatVal = /^\+?[1-9][0-9]*$/;
-                    let val = el.value;
-                    if (!formatVal.test(val)) {
-                        let reg = new RegExp(val, 'g');
-                        el.value = val.replace(reg, 1);
-                    }
-                }
-                el.addEventListener('input', el.handler)
-            },
-            unbind: function (el) {
-                el.removeEventListener('input', el.handler)
-            }
-        }
-    },
+    // directives: {
+    //     numberOnly: {
+    //         bind: function (el) {
+    //             el.handler = function () {
+    //                 let formatVal = /^\+?[1-9][0-9]*$/;
+    //                 let val = el.value;
+    //                 if (!formatVal.test(val)) {
+    //                     let reg = new RegExp(val, 'g');
+    //                     el.value = val.replace(reg, 1);
+    //                 }
+    //             }
+    //             el.addEventListener('input', el.handler)
+    //         },
+    //         unbind: function (el) {
+    //             el.removeEventListener('input', el.handler)
+    //         }
+    //     }
+    // },
     watch: {
         selected() {
             /**
@@ -1619,26 +1576,26 @@ var app = new Vue({
              */
             this.selected.standard_series.splice(index, 1);
         },
-        add_sample(item) {
+        add_sample(s) {
             /**
              * 增加样品行
              */
             this.add = true;
-            this.mystorages(item)
-            this.set_record(item)
-            this.useCount(item);
-            this.useJudge(item)
+            this.mystorages(s)
+            this.set_record(s)
+            this.useCount(s);
+            this.useJudge(s)
         },
         work(s) {
             this.save_result(s)
             this.mystorages(s)
         },
-        del_sample(s, index) {
-            /**
-             * 删除样品行
-             */
-            s.results.splice(index, 1);
-        },
+        // del_sample(s, index) {
+        //     /**
+        //      * 删除样品行
+        //      */
+        //     s.results.splice(index, 1);
+        // },
         sum(arr1, arr2) {
             /**
              * 功能函数
@@ -1677,9 +1634,10 @@ var app = new Vue({
             st.m = (((st.a - s.a) / s.b).toFixed(3));
             return st.m;
         },
-        get_m2(s) {
+       
+        get_c2(s) {
             /**
-             * 根据出当前项目的标准消耗量计算出样品所含物质质量
+             * 根据出当前项目的标准消耗量计算出样品所含物质浓度
              */
             let coefficient = s.result.coefficient;
             let a0 = s.result.a0;
@@ -1687,16 +1645,15 @@ var app = new Vue({
             let K = s.result.K;
             let v = s.result.v;
             let a = a1 - a0;
-            if (s.a == '耗氧量') {
+            if( s == this.selected3){
+                s.result.c = s.result.c
+            }
+            else if (s.a == '耗氧量') {
                 s.result.c = (a * coefficient * K / v).toFixed(2)
             } else {
                 s.result.c = (a * coefficient / v).toFixed(2);
             }
             return s.result.c;
-        },
-        get_c2(s) {
-            s.result.c = this.get_m2(s)
-            return s.result.c
         },
         get_c(s) {
             /**
@@ -1712,42 +1669,70 @@ var app = new Vue({
             }
             return s.result.c
         },
+        get_range(s){
+            let max = s.range_max;
+            let min = s.range_min;
+            let range = '';
+            switch(s.name){
+                case '酸碱度':
+                    range = min+'-'+max;
+                    break;
+                case '臭和味':
+                case '肉眼可见物':
+                    range = '---';
+                    break;
+                default:
+                    range = '<'+max;
+            }
+            return range;
+        },
         save_result(s) {
             /**
              * 从输入吸光度后计算得到的结果表格中获取数据,存入localStorage
              */
 
-            this.useJudge(s)
             let res = s.result
             let p = (s.name + s.start + '报告结果');
             res.id = s.start;
             let date = new Date();
             date = this.dateFormat(date);
             res.date = date;
-            res.v = s.v
-            res.limit = s.limit
-            res.range_max = s.range_max;
-            res.range_min = s.range_min;
-            res.unit = s.unit
-            res.m = (s == this.selected) ? this.get_m(s) : this.get_m2(s);
-            res.c = (s == this.selected) ? this.get_c(s) : this.get_c2(s);
-            if (s == this.selected2) {
-                if (Number(res.m) < Number(res.range_max)) {
-                    res.assessment = "合格"
-                } else {
-                    res.assessment = "不合格"
+            switch(s){
+                case this.selected3:{
+                    res.c = s.result.c;
+                    switch(s.name){
+                        case '臭和味':
+                        case '肉眼可见物':
+                            res.assessment = '合格';
+                            break;
+                        case '酸碱度':
+                            res.assessment = (res.c>s.range_max||res.c<s.range_min)?"不合格":"合格"
+                            break
+                        default:
+                            res.assessment = (res.c>s.range_max)?"不合格":"合格"
+                    }
+                    break
                 }
-            } else if (Number(res.c) < Number(res.range_max)) {
-                res.assessment = "合格"
-            } else {
-                res.assessment = "不合格"
+                case this.selected2:{
+                    res.c = this.get_c2(s);
+                    res.assessment = (res.c>s.range_max)?"不合格":"合格";
+                    break;
+                }
+                default:{
+                    res.m = this.get_m(s);
+                    res.c = this.get_c(s);
+                    res.assessment = (res.c>s.range_max)?"不合格":"合格"
+                }
             }
+            res.range = this.get_range(s);
             let str = JSON.stringify(res); //格式化后才能存入 
             localStorage.setItem(p, str);
             res.a = '';
+            res.a1 = '';
+            res.c = '';
 
             let n = s.name + 'end';
-            s.start += 1
+            s.start = Number(s.start)+1
             localStorage.setItem(n, s.start);
         },
         mystorages(s) {
@@ -1762,6 +1747,10 @@ var app = new Vue({
                     let x = (s.name + keys[i] + '报告结果');
                     let p = localStorage.getItem(x);
                     p = eval(JSON.parse(p));
+                    p.limit = s.limit
+                    p.range_max = s.range_max;
+                    p.range_min = s.range_min;
+                    p.unit = s.unit
                     s.st.push(p);
                 }
                 s.start = Number(localStorage.getItem(n));
@@ -1772,15 +1761,10 @@ var app = new Vue({
             });
         },
         set_record(s) {
-            //最后一次输入记录后的标记
+            //最后一次输入记录后的标记,将成为下次打开是的开始编号
             s.end = (s.judge)?s.start:1
-            // if (s.judge) {
-            //     s.end = s.start;
-            // } else {
-            //     s.end = 1;
-            // }
         },
-        get_key(item) {
+        get_key(s) {
             /**
              * 获取localStorage中当前项目的结果记录中的首项id
              */
@@ -1788,7 +1772,7 @@ var app = new Vue({
             var n = localStorage.length;
             for (let i = 0; i < n; i++) {
                 let k = localStorage.key(i);
-                if (k.search(item.name) != -1) {
+                if (k.search(s.name) != -1) {
                     if (k.search('报告结果') != -1) {
                         let number = k.replace(/^[^\d]*(\d+)[^\d]*$/, "$1");
                         //这个正则表达式获取字符串中的数字
@@ -1822,23 +1806,23 @@ var app = new Vue({
              */
             let date = new Date()
             date = this.dateFormat(date)
-            let wendu = "wendu" + date
-            let shidu = "shidu" + date
-            localStorage.setItem(wendu, this.temprature)
-            localStorage.setItem(shidu, this.rh)
+            let temprature = "T" + date
+            let humidity = "H" + date
+            localStorage.setItem(temprature, this.T)
+            localStorage.setItem(humidity, this.H)
         },
         get_env(date) {
             /**
              * 获取特定日期的温度和湿度
              */
             date = this.dateFormat(date)
-            let wendu = "wendu" + date
-            let shidu = "shidu" + date
+            let temprature = "T" + date
+            let humidity = "H" + date
             let env = new Object
-            env.wendu = localStorage.getItem(wendu)
-            env.shidu = localStorage.getItem(shidu)
-            this.temprature = Number(env.wendu)
-            this.rh = Number(env.shidu)
+            env.T = localStorage.getItem(temprature)
+            env.H = localStorage.getItem(humidity)
+            this.T = Number(env.T)
+            this.H = Number(env.H)
             return env
         },
         init_login() {
@@ -1852,7 +1836,7 @@ var app = new Vue({
             }
             this.get_env(new Date())
         },
-        //时间格式化函数，此处仅针对yyyy-MM-dd hh:mm:ss 的格式进行格式化
+        //时间格式化函数，此处仅针对yyyy-MM-dd的格式进行格式化
         dateFormat(time) {
             var date = new Date(time);
             var year = date.getFullYear();
@@ -1864,23 +1848,23 @@ var app = new Vue({
             return year + "-" + month + "-" + day;
         },
 
-        useCount(item) {
+        useCount(s) {
             //计数页面登录次数
-            let pagecount = item.name + 'pagecount';
+            let pagecount = s.name + 'pagecount';
             if (localStorage.getItem(pagecount)) {
                 localStorage.setItem(pagecount, Number(localStorage.getItem(pagecount)) + 1);
             } else {
                 localStorage.setItem(pagecount, 1);
             }
         },
-        useJudge(item) {
+        useJudge(s) {
             //判断是否保存过报告结果
-            let judge = item.name + 'judge';
+            let judge = s.name + 'judge';
             if (localStorage.getItem(judge) !== null) {
-                item.judge = true;
+                s.judge = true;
                 localStorage.setItem(judge, true);
             } else {
-                item.judge = false;
+                s.judge = false;
                 localStorage.setItem(judge, false);
             }
         },
@@ -1896,11 +1880,11 @@ var app = new Vue({
             return this.dateFormat(date)
 
         },
-        report_date() {
-            let date = new Date();
-            data.day += 15;
-            return this.dateFormat(date)
-        },
+        // report_date() {
+        //     let date = new Date();
+        //     date.getDay += 15;
+        //     return this.dateFormat(date)
+        // },
     }
 });
 let series_data = [];
