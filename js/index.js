@@ -5,65 +5,11 @@ var app = new Vue({
         H: "",
         submit_show: false,
         selected_opt: [],
-        projects: {
-            微生物指标microbe: [
-                //微生物指标
-                "总大肠菌群",
-                "耐热大肠菌群",
-                "大肠埃希氏菌",
-                "菌落总数",
-            ],
-            毒理学指标toxicology: [
-                //毒理学指标
-                "砷",
-                "镉",
-                "铬(六价)",
-                "铅",
-                "汞",
-                "硒",
-                "氟化物",
-                "氰化物",
-                "硝酸盐氮",
-                "四氯化碳",
-                "三氯甲烷",
-                "溴酸盐",
-                "甲醛",
-                "亚氯酸盐",
-                "氯酸盐",
-            ],
-            放射性指标radioactivity: [
-                //放射性指标
-                "总α放射性",
-                "总β放射性"
-            ],
-            感官性状和一般化学指标sensory_chemical: [
-                //感官性状和一般化学指标
-                "pH",
-                "浑浊度",
-                "色度",
-                "肉眼可见物",
-                "臭和味",
-                "总硬度",
-                "溶解性总固体",
-                "挥发酚类",
-                "电导率",
-                "阴离子合成洗涤剂",
-                "铁",
-                "锰",
-                "铜",
-                "锌",
-                "铝",
-                "硫酸盐",
-                "氯化物",
-                "耗氧量",
-            ],
-            消毒剂指标: [
-                "游离余氯",
-                "总氯",
-                "二氧化氯",
-                "臭氧",
-            ]
-        },
+        d1: '{"assessment": "合格", "unit": "无量纲", "name": "臭和味", "range": "无异臭和异味", "c": "无异臭和异味"}',
+        d2: '{"assessment": "合格", "unit": "无量纲", "name": "肉眼可见物", "range": "无", "c": "无"}',
+        d3: '{"assessment": "合格", "unit": "MPN/100ml", "name": "总大肠菌群", "range": "不得检出", "c": "未检出"}',
+        d4: '{"assessment": "合格", "unit": "MPN/100ml", "name": "大肠埃希氏菌", "range": "不得检出", "c": "未检出"}',
+        d5: '{"assessment": "合格", "unit": "MPN/100ml", "name": "耐热大肠菌群", "range": "不得检出", "c": "未检出"}',
         pend_project: [],
         numbering: "",
         company: "",
@@ -171,7 +117,7 @@ var app = new Vue({
                 end: 1,
                 name: "酸碱度",
                 method: "",
-                limit: "",
+                limit: 0,
                 instrument_model: "",
                 GB: "GB/T 5750.4-2006",
                 items: [],
@@ -226,52 +172,52 @@ var app = new Vue({
                     date: "",
                 },
             },
-            {
-                st: [],
-                judge: false,
-                range_min: "",
-                range_max: "",
-                assessment: true,
-                unit: "无量纲",
-                start: 1,
-                end: 1,
-                name: "臭和味",
-                method: "",
-                limit: "",
-                instrument_model: "",
-                GB: "GB/T 5750.4-2006",
-                items: [],
-                result: {
-                    id: "",
-                    v: 50,
-                    c: "无异臭和异味",
-                    date: "",
-                },
-            },
-            {
-                st: [],
-                judge: false,
-                range_min: "",
-                range_max: "",
-                assessment: true,
-                unit: "无量纲",
-                v: 1,
-                start: 1,
-                end: 1,
-                id: 1,
-                name: "肉眼可见物",
-                method: "",
-                limit: "",
-                instrument_model: "",
-                GB: "GB/T 5750.5-2006",
-                items: [],
-                result: {
-                    id: "",
-                    v: "",
-                    c: "无",
-                    date: "",
-                },
-            },
+            // {
+            //     st: [],
+            //     judge: false,
+            //     range_min: "",
+            //     range_max: "",
+            //     assessment: true,
+            //     unit: "无量纲",
+            //     start: 1,
+            //     end: 1,
+            //     name: "臭和味",
+            //     method: "",
+            //     limit: "",
+            //     instrument_model: "",
+            //     GB: "GB/T 5750.4-2006",
+            //     items: [],
+            //     result: {
+            //         id: "",
+            //         v: 50,
+            //         c: "无异臭和异味",
+            //         date: "",
+            //     },
+            // },
+            // {
+            //     st: [],
+            //     judge: false,
+            //     range_min: "",
+            //     range_max: "",
+            //     assessment: true,
+            //     unit: "无量纲",
+            //     v: 1,
+            //     start: 1,
+            //     end: 1,
+            //     id: 1,
+            //     name: "肉眼可见物",
+            //     method: "",
+            //     limit: "",
+            //     instrument_model: "",
+            //     GB: "GB/T 5750.5-2006",
+            //     items: [],
+            //     result: {
+            //         id: "",
+            //         v: "",
+            //         c: "无",
+            //         date: "",
+            //     },
+            // },
         ],
         names2: [
             {
@@ -286,7 +232,7 @@ var app = new Vue({
                 name: "氯化物",
                 method: "滴定法",
                 limit: 5,
-                instrument_model: "滴定管",
+                instrument_model: "滴定管、架",
                 GB: "GB/T 5750.4-2006",
                 items: [],
                 result: {
@@ -309,10 +255,10 @@ var app = new Vue({
                 start: 1,
                 end: 1,
                 name: "总硬度",
-                method: "",
+                method: "EDTA-na_2滴定法",
                 limit: 1,
                 coefficient: 1000.9,
-                instrument_model: "",
+                instrument_model: "滴定管、架",
                 GB: "GB/T 5750.4-2006",
                 items: [],
                 result: {
@@ -338,7 +284,7 @@ var app = new Vue({
                 method: "酸性高锰酸钾滴定法",
                 limit: "0.05",
                 coefficient: 80,
-                instrument_model: "",
+                instrument_model: "滴定管、架",
                 GB: "GB/T 5750.7-2006",
                 items: [],
                 result: {
@@ -1704,13 +1650,7 @@ var app = new Vue({
                 case this.selected3:{
                     res.c = s.result.c;
                     switch(s.name){
-                        case "臭和味":
-                        case "肉眼可见物":
-                            res.assessment = "合格";
-                            res.limit = "---"
-                            break;
                         case "酸碱度":
-                            res.limit = 0;
                             res.assessment = (res.c>s.range_max||res.c<s.range_min)?"不合格":"合格"
                             break
                         default:
@@ -1734,6 +1674,11 @@ var app = new Vue({
             res.range = this.get_range(s);
             let str = JSON.stringify(res); //格式化后才能存入 
             localStorage.setItem(p, str);
+            localStorage.setItem("臭和味"+s.start+"报告结果",this.d1)
+            localStorage.setItem("肉眼可见物"+s.start+"报告结果",this.d2)
+            localStorage.setItem("总大肠菌群"+s.start+"报告结果",this.d3)
+            localStorage.setItem("大肠埃希氏菌"+s.start+"报告结果",this.d4)
+            localStorage.setItem("耐热大肠菌群"+s.start+"报告结果",this.d5)
             res.a = "";
             res.a1 = "";
             res.c = "";

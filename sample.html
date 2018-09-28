@@ -40,8 +40,8 @@
                                 <td v-text="item.unit"></td>
                                 <td v-text="item.range"></td>
                                 <td v-if="item.c<item.limit" v-text="'<'+item.limit"></td>
-                                <td v-else v-text="item.c"></td>
-                                <td v-text="item.assessment"></td>
+                                <td contenteditable="true" v-else v-text="item.c"></td>
+                                <td contenteditable="true" v-text="item.assessment"></td>
                             </tr>
                         </tbody>
                     </table>

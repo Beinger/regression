@@ -324,7 +324,7 @@
                                         <input class="form-control animated bounceInRight" type="number" tabindex="0"
                                             placeholder="输入后直接回车" v-model="selected.result.a">
                                     </td>
-                                    <td>
+                                    <td v-show="submit_show">
                                         <button class="btn" tabindex="0" @click="work(selected)">提交</button>
                                     </td>
                                 </tr>
