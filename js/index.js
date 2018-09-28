@@ -5,11 +5,11 @@ var app = new Vue({
         H: "",
         submit_show: false,
         selected_opt: [],
-        d1: '{"assessment": "合格", "unit": "无量纲", "name": "臭和味", "range": "无异臭和异味", "c": "无异臭和异味"}',
-        d2: '{"assessment": "合格", "unit": "无量纲", "name": "肉眼可见物", "range": "无", "c": "无"}',
-        d3: '{"assessment": "合格", "unit": "MPN/100ml", "name": "总大肠菌群", "range": "不得检出", "c": "未检出"}',
-        d4: '{"assessment": "合格", "unit": "MPN/100ml", "name": "大肠埃希氏菌", "range": "不得检出", "c": "未检出"}',
-        d5: '{"assessment": "合格", "unit": "MPN/100ml", "name": "耐热大肠菌群", "range": "不得检出", "c": "未检出"}',
+        d1: {"id": 1, "assessment": "合格", "unit": "无量纲", "name": "臭和味", "range": "无异臭和异味", "c": "无异臭和异味"},
+        d2: {"id": 1, "assessment": "合格", "unit": "无量纲", "name": "肉眼可见物", "range": "无", "c": "无"},
+        d3: {"id": 1, "assessment": "合格", "unit": "MPN/100ml", "name": "总大肠菌群", "range": "不得检出", "c": "未检出"},
+        d4: {"id": 1, "assessment": "合格", "unit": "MPN/100ml", "name": "大肠埃希氏菌", "range": "不得检出", "c": "未检出"},
+        d5: {"id": 1, "assessment": "合格", "unit": "MPN/100ml", "name": "耐热大肠菌群", "range": "不得检出", "c": "未检出"},
         pend_project: [],
         numbering: "",
         company: "",
@@ -1674,11 +1674,21 @@ var app = new Vue({
             res.range = this.get_range(s);
             let str = JSON.stringify(res); //格式化后才能存入 
             localStorage.setItem(p, str);
-            localStorage.setItem("臭和味"+s.start+"报告结果",this.d1)
-            localStorage.setItem("肉眼可见物"+s.start+"报告结果",this.d2)
-            localStorage.setItem("总大肠菌群"+s.start+"报告结果",this.d3)
-            localStorage.setItem("大肠埃希氏菌"+s.start+"报告结果",this.d4)
-            localStorage.setItem("耐热大肠菌群"+s.start+"报告结果",this.d5)
+            this.d1.id = s.start;
+            this.d2.id = s.start;
+            this.d3.id = s.start;
+            this.d4.id = s.start;
+            this.d5.id = s.start;
+            let a1 = JSON.stringify(this.d1);
+            let a2 = JSON.stringify(this.d2);
+            let a3 = JSON.stringify(this.d3);
+            let a4 = JSON.stringify(this.d4);
+            let a5 = JSON.stringify(this.d5);
+            localStorage.setItem("臭和味"+s.start+"报告结果",a1)
+            localStorage.setItem("肉眼可见物"+s.start+"报告结果",a2)
+            localStorage.setItem("总大肠菌群"+s.start+"报告结果",a3)
+            localStorage.setItem("大肠埃希氏菌"+s.start+"报告结果",a4)
+            localStorage.setItem("耐热大肠菌群"+s.start+"报告结果",a5)
             res.a = "";
             res.a1 = "";
             res.c = "";

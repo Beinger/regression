@@ -7,10 +7,11 @@ let sample = new Vue({
         reg_st: /^[\u4e00-\u9fa5]+/g,
         new_list: [],
         name: '',
-        obj: {
-            key: [],
-            value: []
-        },
+        obj: []
+        // obj: {
+        //     key: [],
+        //     value: []
+        // },
     },
     computed: {
         report_date() {
@@ -23,16 +24,16 @@ let sample = new Vue({
             /**
              * 整理数据显示在表格里
              */
-            //先把所有结果存储找出来，存入obj.value
+            //先把所有结果存储找出来，存obj入
             this.local_get()
             //算出结果里面最大的样品编号
-            let max = this.find_max(this.obj.value)
+            let max = this.find_max(this.obj)
             //然后根据id进行分类
             let item = []
             for(let i=1; i<max; i++){
-                for(let n=0; n<this.obj.value.length; n++){
-                    if(Number(this.obj.value[n].id) == i){
-                        item.push(this.obj.value[n])
+                for(let n=0; n<this.obj.length; n++){
+                    if(Number(this.obj[n].id) == i){
+                        item.push(this.obj[n])
                     }
                 }
                 this.new_list.push(item)
@@ -66,7 +67,7 @@ let sample = new Vue({
         },
         get_login_info(){
             this.company = localStorage.getItem("company")
-            this.username = localStorage.getItem("username")
+            // this.username = localStorage.getItem("username")
         },
         printContent() {
             /**
@@ -84,18 +85,18 @@ let sample = new Vue({
         },
         local_get(){
             /**
-             * 把localStorage中的结果报告数据整理出来，存入obj.value中
+             * 把localStorage中的结果报告数据整理出来，存入obj中
              */
             for (let i = 0; i < localStorage.length; i++) {
                 let x = localStorage.key(i);
                 if(this.reg_s.test(x)){
                     this.reg_s.lastIndex = 0
                     let y = localStorage.getItem(x);
+                    y = JSON.parse(y);
                     let name = this.reg_st.exec(x)
                     this.reg_st.lastIndex = 0
-                    y = JSON.parse(y);
                     y.name = name[0]
-                    this.obj.value.push(y)
+                    this.obj.push(y)
                 }
             }
         },
@@ -114,7 +115,7 @@ let sample = new Vue({
              * 根据里面的数字把数组进行归类
              */
             let new_arr = [];
-            for (let n = 1; n < this.report_number; n++) {
+            for (let n = 1; n < this.find_max(arr); n++) {
                 let new_a = [];
                 for (let i = 0; i < arr.length; i++) {
                     let a = arr[i].replace(/^[^\d]*(\d+)[^\d]*$/, "$1");
