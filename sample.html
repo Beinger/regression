@@ -36,12 +36,12 @@
                         </thead>
                         <tbody class="text-center" v-for="(item, index) in value" :key="index">
                             <tr>
-                                <td>{{ item.name }}</td>
-                                <td>{{ item.unit }}</td>
+                                <td v-text="item.name"></td>
+                                <td v-text="item.unit"></td>
                                 <td v-text="item.range"></td>
                                 <td v-if="item.c<item.limit" v-text="'<'+item.limit"></td>
                                 <td v-else v-text="item.c"></td>
-                                <td>{{ item.assessment }}</td>
+                                <td v-text="item.assessment"></td>
                             </tr>
                         </tbody>
                     </table>
