@@ -5,11 +5,46 @@ var app = new Vue({
         H: "",
         submit_show: false,
         selected_opt: [],
-        d1: {"id": 1, "assessment": "合格", "unit": "无量纲", "name": "臭和味", "range": "无异臭和异味", "c": "无异臭和异味"},
-        d2: {"id": 1, "assessment": "合格", "unit": "无量纲", "name": "肉眼可见物", "range": "无", "c": "无"},
-        d3: {"id": 1, "assessment": "合格", "unit": "MPN/100ml", "name": "总大肠菌群", "range": "不得检出", "c": "未检出"},
-        d4: {"id": 1, "assessment": "合格", "unit": "MPN/100ml", "name": "大肠埃希氏菌", "range": "不得检出", "c": "未检出"},
-        d5: {"id": 1, "assessment": "合格", "unit": "MPN/100ml", "name": "耐热大肠菌群", "range": "不得检出", "c": "未检出"},
+        d1: {
+            "id": 1,
+            "assessment": "合格",
+            "unit": "无量纲",
+            "name": "臭和味",
+            "range": "无异臭和异味",
+            "c": "无异臭和异味"
+        },
+        d2: {
+            "id": 1,
+            "assessment": "合格",
+            "unit": "无量纲",
+            "name": "肉眼可见物",
+            "range": "无",
+            "c": "无"
+        },
+        d3: {
+            "id": 1,
+            "assessment": "合格",
+            "unit": "MPN/100ml",
+            "name": "总大肠菌群",
+            "range": "不得检出",
+            "c": "未检出"
+        },
+        d4: {
+            "id": 1,
+            "assessment": "合格",
+            "unit": "MPN/100ml",
+            "name": "大肠埃希氏菌",
+            "range": "不得检出",
+            "c": "未检出"
+        },
+        d5: {
+            "id": 1,
+            "assessment": "合格",
+            "unit": "MPN/100ml",
+            "name": "耐热大肠菌群",
+            "range": "不得检出",
+            "c": "未检出"
+        },
         pend_project: [],
         numbering: "",
         company: "",
@@ -17,6 +52,7 @@ var app = new Vue({
         login_f: true,
         index: 0, //这个是表格索引==序号
         new_item: "", //表格新行
+        add_edit: false,
         show: false,
         show2: false,
         show3: false,
@@ -25,12 +61,13 @@ var app = new Vue({
         vol_select: [
             50, 100, 250, 1, 25, 10
         ],
-        selected: "",
+        selecte: "",
         selected2: "",
         selected3: "",
         new_opt: {
             st: [],
             judge: false,
+            category: 1,
             range_max: "",
             assessment: true,
             unit: "mg/L",
@@ -62,6 +99,7 @@ var app = new Vue({
         new_opt2: {
             st: [],
             judge: false,
+            category: 2,
             range_max: "",
             assessment: true,
             unit: "mg/L",
@@ -88,6 +126,7 @@ var app = new Vue({
         new_opt3: {
             st: [],
             judge: false,
+            category: 3,
             range_max: "",
             assessment: true,
             unit: "mg/L",
@@ -98,6 +137,7 @@ var app = new Vue({
             limit: "",
             instrument_model: "",
             GB: "GB/T 5750.5-2006",
+            items: [],
             result: {
                 id: "",
                 v: "",
@@ -105,10 +145,10 @@ var app = new Vue({
                 date: ""
             },
         },
-        names3: [
-            {
+        names3: [{
                 st: [],
                 judge: false,
+                category: 3,
                 range_min: 6.5,
                 range_max: 8.5,
                 assessment: true,
@@ -116,9 +156,9 @@ var app = new Vue({
                 start: 1,
                 end: 1,
                 name: "酸碱度",
-                method: "",
+                method: "玻璃电极法",
                 limit: 0,
-                instrument_model: "",
+                instrument_model: "精密pH计、pH玻璃电极、饱和甘汞电极、温度计",
                 GB: "GB/T 5750.4-2006",
                 items: [],
                 result: {
@@ -131,6 +171,7 @@ var app = new Vue({
             {
                 st: [],
                 judge: false,
+                category: 3,
                 range_min: "",
                 range_max: 15,
                 assessment: true,
@@ -138,9 +179,9 @@ var app = new Vue({
                 start: 1,
                 end: 1,
                 name: "色度",
-                method: "",
+                method: "铂-钴标准比色法",
                 limit: 5,
-                instrument_model: "",
+                instrument_model: "比色计",
                 GB: "GB/T 5750.4-2006",
                 items: [],
                 result: {
@@ -153,6 +194,7 @@ var app = new Vue({
             {
                 st: [],
                 judge: false,
+                category: 3,
                 range_min: "",
                 range_max: 3,
                 assessment: true,
@@ -160,9 +202,9 @@ var app = new Vue({
                 start: 1,
                 end: 1,
                 name: "浑浊度",
-                method: "",
+                method: "福尔马肼标准",
                 limit: 0.5,
-                instrument_model: "",
+                instrument_model: "散射式浊度仪",
                 GB: "GB/T 5750.4-2006",
                 items: [],
                 result: {
@@ -172,57 +214,11 @@ var app = new Vue({
                     date: "",
                 },
             },
-            // {
-            //     st: [],
-            //     judge: false,
-            //     range_min: "",
-            //     range_max: "",
-            //     assessment: true,
-            //     unit: "无量纲",
-            //     start: 1,
-            //     end: 1,
-            //     name: "臭和味",
-            //     method: "",
-            //     limit: "",
-            //     instrument_model: "",
-            //     GB: "GB/T 5750.4-2006",
-            //     items: [],
-            //     result: {
-            //         id: "",
-            //         v: 50,
-            //         c: "无异臭和异味",
-            //         date: "",
-            //     },
-            // },
-            // {
-            //     st: [],
-            //     judge: false,
-            //     range_min: "",
-            //     range_max: "",
-            //     assessment: true,
-            //     unit: "无量纲",
-            //     v: 1,
-            //     start: 1,
-            //     end: 1,
-            //     id: 1,
-            //     name: "肉眼可见物",
-            //     method: "",
-            //     limit: "",
-            //     instrument_model: "",
-            //     GB: "GB/T 5750.5-2006",
-            //     items: [],
-            //     result: {
-            //         id: "",
-            //         v: "",
-            //         c: "无",
-            //         date: "",
-            //     },
-            // },
         ],
-        names2: [
-            {
+        names2: [{
                 st: [],
                 judge: false,
+                category: 2,
                 range_max: 250,
                 range_min: "",
                 assessment: true,
@@ -230,7 +226,7 @@ var app = new Vue({
                 start: 1,
                 end: 1,
                 name: "氯化物",
-                method: "滴定法",
+                method: "硝酸银容量法",
                 limit: 5,
                 instrument_model: "滴定管、架",
                 GB: "GB/T 5750.4-2006",
@@ -248,6 +244,7 @@ var app = new Vue({
             {
                 st: [],
                 judge: false,
+                category: 2,
                 range_max: 1000,
                 range_min: "",
                 assessment: true,
@@ -274,6 +271,7 @@ var app = new Vue({
             {
                 st: [],
                 judge: false,
+                category: 2,
                 range_max: 3,
                 range_min: "",
                 assessment: true,
@@ -299,10 +297,10 @@ var app = new Vue({
                 },
             },
         ],
-        names: [
-            {
+        names: [{
                 st: [],
                 judge: false,
+                category: 1,
                 range_max: 0.5,
                 range_min: "",
                 assessment: true,
@@ -357,9 +355,9 @@ var app = new Vue({
                 },
             },
             {
-                id: 2,
                 st: [],
                 judge: false,
+                category: 1,
                 range_max: 0.05,
                 range_min: "",
                 assessment: true,
@@ -410,12 +408,13 @@ var app = new Vue({
                     a: "",
                     m: "",
                     c: "",
-                    date:"",
+                    date: "",
                 },
             },
             {
                 st: [],
                 judge: false,
+                category: 1,
                 range_max: 0.1,
                 range_min: "",
                 assessment: true,
@@ -472,6 +471,7 @@ var app = new Vue({
             {
                 st: [],
                 judge: false,
+                category: 1,
                 range_max: 1.0,
                 range_min: "",
                 assessment: true,
@@ -528,6 +528,7 @@ var app = new Vue({
             {
                 st: [],
                 judge: false,
+                category: 1,
                 range_max: 20,
                 range_min: "",
                 assessment: true,
@@ -588,6 +589,7 @@ var app = new Vue({
             {
                 st: [],
                 judge: false,
+                category: 1,
                 range_max: 0.2,
                 range_min: "",
                 assessment: true,
@@ -648,6 +650,7 @@ var app = new Vue({
             {
                 st: [],
                 judge: false,
+                category: 1,
                 range_max: 0.002,
                 range_min: "",
                 assessment: true,
@@ -708,6 +711,7 @@ var app = new Vue({
             {
                 st: [],
                 judge: false,
+                category: 1,
                 range_max: 0.001,
                 range_min: "",
                 assessment: true,
@@ -768,6 +772,7 @@ var app = new Vue({
             {
                 st: [],
                 judge: false,
+                category: 1,
                 range_max: 0.3,
                 range_min: "",
                 assessment: true,
@@ -828,6 +833,7 @@ var app = new Vue({
             {
                 st: [],
                 judge: false,
+                category: 1,
                 range_max: 0.01,
                 range_min: "",
                 assessment: true,
@@ -884,6 +890,7 @@ var app = new Vue({
             {
                 st: [],
                 judge: false,
+                category: 1,
                 range_max: 0.005,
                 range_min: "",
                 assessment: true,
@@ -940,6 +947,7 @@ var app = new Vue({
             {
                 st: [],
                 judge: false,
+                category: 1,
                 range_max: 0.01,
                 range_min: "",
                 assessment: true,
@@ -996,6 +1004,7 @@ var app = new Vue({
             {
                 st: [],
                 judge: false,
+                category: 1,
                 range_max: 0.05,
                 range_min: "",
                 assessment: true,
@@ -1052,6 +1061,7 @@ var app = new Vue({
             {
                 st: [],
                 judge: false,
+                category: 1,
                 range_max: 1.0,
                 range_min: "",
                 assessment: true,
@@ -1108,6 +1118,7 @@ var app = new Vue({
             {
                 st: [],
                 judge: false,
+                category: 1,
                 range_max: 0.1,
                 range_min: "",
                 assessment: true,
@@ -1164,6 +1175,7 @@ var app = new Vue({
             {
                 st: [],
                 judge: false,
+                category: 1,
                 range_max: 0.3,
                 range_min: "",
                 assessment: true,
@@ -1220,6 +1232,7 @@ var app = new Vue({
             {
                 st: [],
                 judge: false,
+                category: 1,
                 range_max: 1.0,
                 range_min: "",
                 assessment: true,
@@ -1276,6 +1289,7 @@ var app = new Vue({
             {
                 st: [],
                 judge: false,
+                category: 1,
                 range_max: 250,
                 range_min: "",
                 assessment: true,
@@ -1329,6 +1343,7 @@ var app = new Vue({
     },
     created() {
         this.init_login()
+        this.get_opt()
     },
     watch: {
         selected() {
@@ -1361,11 +1376,56 @@ var app = new Vue({
         }
     },
     methods: {
-        add_opt(names,opt) {
+        save_opt(s) {
             /**
              * 增加项目
              */
-            names.push(opt);
+            let p = s.name + s.category + 'parameter'
+            let x = JSON.stringify(s)
+            localStorage.setItem(p, x)
+        },
+        search_opt(x, s) {
+            for (let m = 0; m < x.length; m++) {
+                for (let a = 0; a < s.length; a++) {
+                    if (x1[m].name == s[a].name) {
+                        s[a] = x[m]
+                    } else {
+                        s.push(x[m])
+                    }
+                }
+            }
+        },
+        get_opt() {
+            let n = localStorage.length
+            let reg = /parameter$/g
+            let reg_n = /[1-3]/g
+            let s1 = this.names
+            let s2 = this.names2
+            let s3 = this.names3
+            let x1 = []
+            let x2 = []
+            let x3 = []
+            for (let i = 0; i < n; i++) {
+                let key = localStorage.keys(i)
+                let v = localStorage.getItem(key)
+                v = JSON.parse(v)
+                if (reg.test(key)) {
+                    switch (reg_n.exec(key)) {
+                        case 1:
+                            x1.push(v)
+                            break
+                        case 2:
+                            x2.push(v)
+                            break
+                        case 3:
+                            x3.push(v)
+                            break
+                    }
+                }
+            }
+            this.search_opt(x1, s1)
+            this.search_opt(x2, s2)
+            this.search_opt(x3, s3)
         },
         printContent(id) {
             /**
@@ -1416,7 +1476,7 @@ var app = new Vue({
              * 同时，把数据存入所选项目的standard_series中。
              */
             let series_data = localStorage.getItem(this.selected.name);
-            if (series_data) {
+            if (series_data !== null) {
                 series_data = series_data.split(",");
                 series_data = series_data.map(Number);
                 let new_data = [];
@@ -1561,7 +1621,7 @@ var app = new Vue({
             st.m = (((st.a - s.a) / s.b).toFixed(3));
             return st.m;
         },
-       
+
         get_c2(s) {
             /**
              * 根据出当前项目的标准消耗量计算出样品所含物质浓度
@@ -1572,10 +1632,9 @@ var app = new Vue({
             let K = s.result.K;
             let v = s.result.v;
             let a = a1 - a0;
-            if( s == this.selected3){
+            if (s == this.selected3) {
                 s.result.c = s.result.c
-            }
-            else if (s.a == "耗氧量") {
+            } else if (s.a == "耗氧量") {
                 s.result.c = (a * coefficient * K / v).toFixed(2)
             } else {
                 s.result.c = (a * coefficient / v).toFixed(2);
@@ -1596,20 +1655,20 @@ var app = new Vue({
             }
             return s.result.c
         },
-        get_range(s){
+        get_range(s) {
             let max = s.range_max;
             let min = s.range_min;
             let range = "";
-            switch(s.name){
+            switch (s.name) {
                 case "酸碱度":
-                    range = min+"-"+max;
+                    range = min + "-" + max;
                     break;
                 case "臭和味":
                 case "肉眼可见物":
                     range = "---";
                     break;
                 default:
-                    range = "<"+max;
+                    range = "<" + max;
             }
             return range;
         },
@@ -1619,39 +1678,46 @@ var app = new Vue({
              */
 
             let res = s.result
-            let p = (s.name + s.start + "报告结果");
-            res.id = s.start;
-            let date = new Date();
-            date = this.dateFormat(date);
-            res.date = date;
-            switch(s){
-                case this.selected3:{
-                    res.c = s.result.c;
-                    switch(s.name){
-                        case "酸碱度":
-                            res.assessment = (res.c>s.range_max||res.c<s.range_min)?"不合格":"合格"
-                            break
-                        default:
-                            res.assessment = (res.c>s.range_max)?"不合格":"合格"
+            switch (s) {
+                case this.selected3:
+                    {
+                        res.c = s.result.c;
+                        switch (s.name) {
+                            case "酸碱度":
+                                res.assessment = (res.c > s.range_max || res.c < s.range_min) ? "不合格" : "合格"
+                                break
+                            default:
+                                res.assessment = (res.c > s.range_max) ? "不合格" : "合格"
+                        }
+                        break
                     }
-                    break
-                }
-                case this.selected2:{
-                    res.c = this.get_c2(s);
-                    res.assessment = (res.c>s.range_max)?"不合格":"合格";
-                    break;
-                }
-                default:{
-                    res.limit = s.limit
-                    res.m = this.get_m(s);
-                    res.c = this.get_c(s);
-                    res.assessment = (res.c>s.range_max)?"不合格":"合格"
-                }
+                case this.selected2:
+                    {
+                        res.c = this.get_c2(s);
+                        res.assessment = (res.c > s.range_max) ? "不合格" : "合格";
+                        break;
+                    }
+                default:
+                    {
+                        res.limit = s.limit
+                        res.m = this.get_m(s);
+                        res.c = this.get_c(s);
+                        res.assessment = (res.c > s.range_max) ? "不合格" : "合格"
+                    }
             }
+            res.date = this.dateFormat(new Date());
+            res.id = s.start;
             res.unit = s.unit;
             res.range = this.get_range(s);
             let str = JSON.stringify(res); //格式化后才能存入 
+            let p = (s.name + s.start + "报告结果");
             localStorage.setItem(p, str);
+            res.a = "";
+            res.a1 = "";
+            res.c = "";
+            this.save_r(s)
+        },
+        save_r(s) {
             this.d1.id = s.start;
             this.d2.id = s.start;
             this.d3.id = s.start;
@@ -1662,17 +1728,14 @@ var app = new Vue({
             let a3 = JSON.stringify(this.d3);
             let a4 = JSON.stringify(this.d4);
             let a5 = JSON.stringify(this.d5);
-            localStorage.setItem("臭和味"+s.start+"报告结果",a1)
-            localStorage.setItem("肉眼可见物"+s.start+"报告结果",a2)
-            localStorage.setItem("总大肠菌群"+s.start+"报告结果",a3)
-            localStorage.setItem("大肠埃希氏菌"+s.start+"报告结果",a4)
-            localStorage.setItem("耐热大肠菌群"+s.start+"报告结果",a5)
-            res.a = "";
-            res.a1 = "";
-            res.c = "";
+            localStorage.setItem("臭和味" + s.start + "报告结果", a1)
+            localStorage.setItem("肉眼可见物" + s.start + "报告结果", a2)
+            localStorage.setItem("总大肠菌群" + s.start + "报告结果", a3)
+            localStorage.setItem("大肠埃希氏菌" + s.start + "报告结果", a4)
+            localStorage.setItem("耐热大肠菌群" + s.start + "报告结果", a5)
 
             let n = s.name + "end";
-            s.start = Number(s.start)+1
+            s.start = Number(s.start) + 1
             localStorage.setItem(n, s.start);
         },
         mystorages(s) {
@@ -1702,7 +1765,7 @@ var app = new Vue({
         },
         set_record(s) {
             //最后一次输入记录后的标记,将成为下次打开是的开始编号
-            s.end = (s.judge)?s.start:1
+            s.end = (s.judge) ? s.start : 1
         },
         get_key(s) {
             /**
@@ -1820,11 +1883,6 @@ var app = new Vue({
             return this.dateFormat(date)
 
         },
-        // report_date() {
-        //     let date = new Date();
-        //     date.getDay += 15;
-        //     return this.dateFormat(date)
-        // },
     }
 });
 let series_data = [];

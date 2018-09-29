@@ -88,15 +88,16 @@
             </div>
 
             <div class="row form-group">
-                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4">
-                    <label calss="form-label">比色法
-                        <a class="btn btn-default" data-toggle="modal" data-target="#opt">
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
+                    <label class="form-label">
+                        <span>感官性状</span>
+                        <a class="btn btn-default" data-toggle="modal" data-target="#opt3">
                             <i class="fa fa-plus">增加项目</i>
                         </a>
                     </label>
-                    <select tabindex="-1" class="form-control input-lg" v-model="selected">
+                    <select tabindex="-1" class="form-control input-lg" v-model="selected3">
                         <option style="font-size: 80%" disabled>---请选择---</option>
-                        <option v-bind:id="'select'+index" v-bind:value="item" v-for="(item,index) in names" v-text="item.name"></option>
+                        <option v-bind:id="'select3'+index" v-bind:value="item" v-for="(item,index) in names3" v-text="item.name"></option>
                     </select>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
@@ -111,61 +112,265 @@
                         <option v-bind:id="'select2'+index" v-bind:value="item" v-for="(item,index) in names2" v-text="item.name"></option>
                     </select>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
-                    <label class="form-label">
-                        <span>感官性状</span>
-                        <a class="btn btn-default" data-toggle="modal" data-target="#normal">
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4">
+                    <label calss="form-label">比色法
+                        <a class="btn btn-default" data-toggle="modal" data-target="#opt">
                             <i class="fa fa-plus">增加项目</i>
                         </a>
                     </label>
-                    <select tabindex="-1" class="form-control input-lg" v-model="selected3">
+                    <select tabindex="-1" class="form-control input-lg" v-model="selected">
                         <option style="font-size: 80%" disabled>---请选择---</option>
-                        <option v-bind:id="'select3'+index" v-bind:value="item" v-for="(item,index) in names3" v-text="item.name"></option>
+                        <option v-bind:id="'select'+index" v-bind:value="item" v-for="(item,index) in names" v-text="item.name"></option>
                     </select>
                 </div>
-                <div class="modal fade" id="normal" tabindex="-1" role="dialog" aria-labelledby="myNormal" aria-hidden="true">
+                <div class="modal fade" id="opt3" tabindex="-1" role="dialog" aria-labelledby="myOpt3" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class='modal-content'>
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title" id="myNormal">感官性状</h4>
-                            </div>
-                            <div class="modal-body form-group">
-                                <label class="form-label">项目名称：</label>
-                                <input type="text" class="form-control" v-model="new_opt.name">
-                                <label class="form-label">单位：</label>
-                                <input type="text" class="form-control" v-model="new_opt.unit">
-                                <label class="form-label">检测仪器：</label>
-                                <input type="text" class="form-control" v-model="new_opt.instrument_model">
-                                <label class="form-label">检验依据：</label>
-                                <input type="text" class="form-control" v-model="new_opt.GB">
-                                <label class="form-label">检验方法：</label>
-                                <input type="text" class="form-control" v-model="new_opt.method">
-                                <label class="form-label">最高限值：</label>
-                                <input type="text" class="form-control" v-model="new_opt.range_max">
-                                <label class="form-label">加样量：</label>
-                                <select id="v" class="form-control" v-model="new_opt.v">
-                                    <option value="50">50ml</option>
-                                    <option value="100">100ml</option>
-                                    <option value="250">250ml</option>
-                                    <option value="1">1ml</option>
-                                    <option value="10">10ml</option>
-                                    <option value="25">25ml</option>
-                                </select>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                <button type="button" class="btn btn-primary" @click="add_opt(names3,new_opt3)">提交更改</button>
-                            </div>
-                        </div><!-- /.modal-content -->
-                    </div><!-- /.modal -->
-                </div>
+                            <h3 @click="add_edit=!add_edit" class="btn form-control text-info">点击切换</h3>
+                            <ol class="nav">
+                                <li v-if="add_edit">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    </div>
+                                    <div class="modal-body form-group">
+                                        <p class="text-center">
+                                            增加新项目
+                                        </p>
+                                        <label class="form-label">项目名称：</label>
+                                        <input type="text" class="form-control" v-model="new_opt3.name">
+                                        <label class="form-label">单位：</label>
+                                        <input type="text" class="form-control" v-model="new_opt3.unit">
+                                        <label class="form-label">检验依据：</label>
+                                        <input type="text" class="form-control" v-model="new_opt3.GB">
+                                        <label class="form-label">检验方法：</label>
+                                        <input type="text" class="form-control" v-model="new_opt3.method">
+                                        <label class="form-label">检测仪器：</label>
+                                        <input type="text" class="form-control" v-model="new_opt3.instrument_model">
+                                        <label class="form-label">最小检出限：</label>
+                                        <input type="text" class="form-control" v-model="new_opt3.limit">
+                                        <label class="form-label">最高限值：</label>
+                                        <input type="text" class="form-control" v-model="new_opt3.range_max">
+                                        <label class="form-label">最低限值：</label>
+                                        <input type="text" class="form-control" v-model="new_opt3.range_min">
+                                        <label class="form-label">加样量：</label>
+                                        <select id="v" class="form-control" v-model="new_opt3.result.v">
+                                            <option value="50">50ml</option>
+                                            <option value="100">100ml</option>
+                                            <option value="250">250ml</option>
+                                            <option value="1">1ml</option>
+                                            <option value="10">10ml</option>
+                                            <option value="25">25ml</option>
+                                        </select>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" @click="save_opt(new_opt3)">确认增加</button>
+                                    </div>
+                                </li>
+                                <li v-if="!add_edit">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    </div>
+                                    <div class="modal-body form-group">
+                                        <p class="text-center">
+                                            修改项目参数
+                                        </p>
+                                        <label class="form-label">项目名称：</label>
+                                        <select tabindex="-1" class="form-control" v-model="selected3">
+                                            <option style="font-size: 80%" disabled>---请选择---</option>
+                                            <option v-bind:id="'select3'+index" v-bind:value="item" v-for="(item,index) in names3"
+                                                v-text="item.name"></option>
+                                        </select>
+                                        <label class="form-label">单位：</label>
+                                        <input type="text" class="form-control" v-model="selected3.unit">
+                                        <label class="form-label">检验依据：</label>
+                                        <input type="text" class="form-control" v-model="selected3.GB">
+                                        <label class="form-label">检验方法：</label>
+                                        <input type="text" class="form-control" v-model="selected3.method">
+                                        <label class="form-label">检测仪器：</label>
+                                        <input type="text" class="form-control" v-model="selected3.instrument_model">
+                                        <label class="form-label">最小检出限：</label>
+                                        <input type="text" class="form-control" v-model="selected3.limit">
+                                        <label class="form-label">最高限值：</label>
+                                        <input type="text" class="form-control" v-model="selected3.range_max">
+                                        <label class="form-label">最低限值：</label>
+                                        <input placeholder="没有最低限值，请忽略" type="text" class="form-control" v-model="selected3.range_min">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" @click="save_opt(selected3)">提交更改</button>
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
+                <div class="modal fade" id="normal" tabindex="-1" role="dialog" aria-labelledby="myOpt2" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class='modal-content'>
+                            <button @click="add_edit=!add_edit" class="btn form-control">增加或修改项目参数</button>
+                            <ol class="breadcrump">
+                                <li v-if="add_edit">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    </div>
+                                    <div class="modal-body form-group">
+                                        <p class="text-center">
+                                            增加新项目
+                                        </p>
+                                        <label class="form-label">项目名称：</label>
+                                        <input type="text" class="form-control" v-model="new_opt3.name">
+                                        <label class="form-label">单位：</label>
+                                        <input type="text" class="form-control" v-model="new_opt3.unit">
+                                        <label class="form-label">检验依据：</label>
+                                        <input type="text" class="form-control" v-model="new_opt3.GB">
+                                        <label class="form-label">检验方法：</label>
+                                        <input type="text" class="form-control" v-model="new_opt3.method">
+                                        <label class="form-label">检测仪器：</label>
+                                        <input type="text" class="form-control" v-model="new_opt3.instrument_model">
+                                        <label class="form-label">最小检出限：</label>
+                                        <input type="text" class="form-control" v-model="new_opt3.limit">
+                                        <label class="form-label">最高限值：</label>
+                                        <input type="text" class="form-control" v-model="new_opt3.range_max">
+                                        <label class="form-label">最低限值：</label>
+                                        <input type="text" class="form-control" v-model="new_opt3.range_min">
+                                        <label class="form-label">加样量：</label>
+                                        <select id="v" class="form-control" v-model="new_opt3.result.v">
+                                            <option value="50">50ml</option>
+                                            <option value="100">100ml</option>
+                                            <option value="250">250ml</option>
+                                            <option value="1">1ml</option>
+                                            <option value="10">10ml</option>
+                                            <option value="25">25ml</option>
+                                        </select>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" @click="add_opt(names3,selected33)">提交更改</button>
+                                    </div>
+                                </li>
+                                <li v-if="!add_edit">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    </div>
+                                    <div class="modal-body form-group">
+                                        <p class="text-center">
+                                            修改项目参数
+                                        </p>
+                                        <label class="form-label">项目名称：</label>
+                                        <select tabindex="-1" class="form-control" v-model="selected3">
+                                            <option style="font-size: 80%" disabled>---请选择---</option>
+                                            <option v-bind:id="'select3'+index" v-bind:value="item" v-for="(item,index) in names3"
+                                                v-text="item.name"></option>
+                                        </select>
+                                        <label class="form-label">单位：</label>
+                                        <input type="text" class="form-control" v-model="selected3.unit">
+                                        <label class="form-label">检验依据：</label>
+                                        <input type="text" class="form-control" v-model="selected3.GB">
+                                        <label class="form-label">检验方法：</label>
+                                        <input type="text" class="form-control" v-model="selected3.method">
+                                        <label class="form-label">检测仪器：</label>
+                                        <input type="text" class="form-control" v-model="selected3.instrument_model">
+                                        <label class="form-label">最小检出限：</label>
+                                        <input type="text" class="form-control" v-model="selected3.limit">
+                                        <label class="form-label">最高限值：</label>
+                                        <input type="text" class="form-control" v-model="selected3.range_max">
+                                        <label class="form-label">最低限值：</label>
+                                        <input placeholder="没有最低限值，请忽略" type="text" class="form-control" v-model="selected3.range_min">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" @click="add_opt(names3,selected3)">提交更改</button>
+                                    </div>
+                                </li>
+
+                            </ol>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
+                <div class="modal fade" id="normal" tabindex="-1" role="dialog" aria-labelledby="myOpt3" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class='modal-content'>
+                            <button @click="add_edit=!add_edit" class="btn form-control">增加或修改项目参数</button>
+                            <ol class="breadcrump">
+                                <li v-if="add_edit">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    </div>
+                                    <div class="modal-body form-group">
+                                        <p class="text-center">
+                                            增加新项目
+                                        </p>
+                                        <label class="form-label">项目名称：</label>
+                                        <input type="text" class="form-control" v-model="new_opt3.name">
+                                        <label class="form-label">单位：</label>
+                                        <input type="text" class="form-control" v-model="new_opt3.unit">
+                                        <label class="form-label">检验依据：</label>
+                                        <input type="text" class="form-control" v-model="new_opt3.GB">
+                                        <label class="form-label">检验方法：</label>
+                                        <input type="text" class="form-control" v-model="new_opt3.method">
+                                        <label class="form-label">检测仪器：</label>
+                                        <input type="text" class="form-control" v-model="new_opt3.instrument_model">
+                                        <label class="form-label">最小检出限：</label>
+                                        <input type="text" class="form-control" v-model="new_opt3.limit">
+                                        <label class="form-label">最高限值：</label>
+                                        <input type="text" class="form-control" v-model="new_opt3.range_max">
+                                        <label class="form-label">最低限值：</label>
+                                        <input type="text" class="form-control" v-model="new_opt3.range_min">
+                                        <label class="form-label">加样量：</label>
+                                        <select id="v" class="form-control" v-model="new_opt3.result.v">
+                                            <option value="50">50ml</option>
+                                            <option value="100">100ml</option>
+                                            <option value="250">250ml</option>
+                                            <option value="1">1ml</option>
+                                            <option value="10">10ml</option>
+                                            <option value="25">25ml</option>
+                                        </select>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" @click="add_opt(names3,selected33)">提交更改</button>
+                                    </div>
+                                </li>
+                                <li v-if="!add_edit">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    </div>
+                                    <div class="modal-body form-group">
+                                        <p class="text-center">
+                                            修改项目参数
+                                        </p>
+                                        <label class="form-label">项目名称：</label>
+                                        <select tabindex="-1" class="form-control" v-model="selected3">
+                                            <option style="font-size: 80%" disabled>---请选择---</option>
+                                            <option v-bind:id="'select3'+index" v-bind:value="item" v-for="(item,index) in names3"
+                                                v-text="item.name"></option>
+                                        </select>
+                                        <label class="form-label">单位：</label>
+                                        <input type="text" class="form-control" v-model="selected3.unit">
+                                        <label class="form-label">检验依据：</label>
+                                        <input type="text" class="form-control" v-model="selected3.GB">
+                                        <label class="form-label">检验方法：</label>
+                                        <input type="text" class="form-control" v-model="selected3.method">
+                                        <label class="form-label">检测仪器：</label>
+                                        <input type="text" class="form-control" v-model="selected3.instrument_model">
+                                        <label class="form-label">最小检出限：</label>
+                                        <input type="text" class="form-control" v-model="selected3.limit">
+                                        <label class="form-label">最高限值：</label>
+                                        <input type="text" class="form-control" v-model="selected3.range_max">
+                                        <label class="form-label">最低限值：</label>
+                                        <input placeholder="没有最低限值，请忽略" type="text" class="form-control" v-model="selected3.range_min">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" @click="add_opt(names3,selected3)">提交更改</button>
+                                    </div>
+                                </li>
+
+                            </ol>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
                 <div class="modal fade" id="opt2" tabindex="-1" role="dialog" aria-labelledby="myOpt2" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class='modal-content'>
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title" id="myOpt2">滴定类项目: <span v-text="new_opt2.name"></span></h4>
+                                <h4 class="modal-title" id="myOpt2">滴定类项目: <span v-text="selected2.name"></span></h4>
                             </div>
                             <div class="modal-body form-group">
 
@@ -206,26 +411,26 @@
                         <div class='modal-content'>
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title" id="myOpt">滴定类项目: <span v-text="new_opt.name"></span></h4>
+                                <h4 class="modal-title" id="myOpt">滴定类项目: <span v-text="selected3.name"></span></h4>
                             </div>
                             <div class="modal-body form-group">
 
                                 <label class="form-label">项目名称：</label>
-                                <input type="text" class="form-control" v-model="new_opt.name">
+                                <input type="text" class="form-control" v-model="selected3.name">
                                 <label class="form-label">单位：</label>
-                                <input type="text" class="form-control" v-model="new_opt.unit">
+                                <input type="text" class="form-control" v-model="selected3.unit">
                                 <label class="form-label">检测仪器：</label>
-                                <input type="text" class="form-control" v-model="new_opt.instrument_model">
+                                <input type="text" class="form-control" v-model="selected3.instrument_model">
                                 <label class="form-label">检验依据：</label>
-                                <input type="text" class="form-control" v-model="new_opt.GB">
+                                <input type="text" class="form-control" v-model="selected3.GB">
                                 <label class="form-label">检验方法：</label>
-                                <input type="text" class="form-control" v-model="new_opt.method">
+                                <input type="text" class="form-control" v-model="selected3.method">
                                 <label class="form-label">最小检出限</label>:
-                                <input type="text" class="form-control" v-model="new_opt.limit">
+                                <input type="text" class="form-control" v-model="selected3.limit">
                                 <label class="form-label">最高限值：</label>
-                                <input type="text" class="form-control" v-model="new_opt.range_max">
+                                <input type="text" class="form-control" v-model="selected3.range_max">
                                 <label class="form-label">加样量：</label>
-                                <select id="v" class="form-control" v-model="new_opt.v">
+                                <select id="v" class="form-control" v-model="selected3.v">
                                     <option value="50">50ml</option>
                                     <option value="100">100ml</option>
                                     <option value="250">250ml</option>
@@ -236,7 +441,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                <button type="button" class="btn btn-primary" @click="add_opt(names,new_opt)"
+                                <button type="button" class="btn btn-primary" @click="add_opt(names,selected3)"
                                     data-dismiss="modal">保存</button>
                             </div>
                         </div><!-- /.modal-content -->
