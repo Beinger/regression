@@ -64,6 +64,10 @@ var app = new Vue({
         selecte: "",
         selected2: "",
         selected3: "",
+        slt: "",
+        slt2: "",
+        slt3: "",
+
         new_opt: {
             st: [],
             judge: false,
@@ -1386,8 +1390,9 @@ var app = new Vue({
         },
         search_opt(x, s) {
             for (let m = 0; m < x.length; m++) {
+                x[m] = JSON.parse(x)
                 for (let a = 0; a < s.length; a++) {
-                    if (x1[m].name == s[a].name) {
+                    if (x[m].name == s[a].name) {
                         s[a] = x[m]
                     } else {
                         s.push(x[m])
@@ -1406,9 +1411,8 @@ var app = new Vue({
             let x2 = []
             let x3 = []
             for (let i = 0; i < n; i++) {
-                let key = localStorage.keys(i)
+                let key = localStorage.key(i)
                 let v = localStorage.getItem(key)
-                v = JSON.parse(v)
                 if (reg.test(key)) {
                     switch (reg_n.exec(key)) {
                         case 1:
