@@ -368,10 +368,7 @@ var app = new Vue({
                 end: 1,
                 name: "氰化物",
                 a: 0,
-                method: [
-                    "异烟酸-吡唑酮分光光度法",
-                    "异烟酸-巴比妥酸分光光度法"
-                ],
+                method: "异烟酸-吡唑酮分光光度法",
                 b: 1,
                 r: 1,
                 formula: "",
@@ -427,7 +424,7 @@ var app = new Vue({
                 end: 1,
                 name: "锰",
                 limit: 0.05,
-                method: "",
+                method: "过硫酸铵分光光度法",
                 a: 0,
                 b: 1,
                 r: 1,
@@ -483,7 +480,7 @@ var app = new Vue({
                 end: 1,
                 name: "氟化物",
                 limit: 0.2,
-                method: "",
+                method: "离子选择电极法",
                 a: 0,
                 b: 1,
                 r: 1,
@@ -491,7 +488,7 @@ var app = new Vue({
                 x: [],
                 y: [],
                 standard_series: [],
-                instrument_model: "分光光度计",
+                instrument_model: "氟离子选择电极和甘汞电极、精密酸度计、电磁搅拌器",
                 GB: "GB/T 5750.5-2006",
                 items: [
                     [
@@ -539,7 +536,7 @@ var app = new Vue({
                 end: 1,
                 name: "硝酸盐氮",
                 limit: 0.5,
-                method: "",
+                method: "麝香草酚分光光度法",
                 a: 0,
                 b: 1,
                 r: 1,
@@ -549,7 +546,6 @@ var app = new Vue({
                 standard_series: [],
                 instrument_model: "分光光度计",
                 GB: "GB/T 5750.5-2006",
-                html: "",
                 items: [
                     [
                         0,
@@ -600,7 +596,7 @@ var app = new Vue({
                 end: 1,
                 name: "铝",
                 limit: 0.008,
-                method: "",
+                method: "铬天青S分光光度法",
                 a: 0,
                 b: 1,
                 r: 1,
@@ -608,7 +604,7 @@ var app = new Vue({
                 x: [],
                 y: [],
                 standard_series: [],
-                instrument_model: "分光光度计",
+                instrument_model: "酸度计、分光光度计",
                 GB: "GB/T 5750.6-2006",
                 items: [
                     [
@@ -660,7 +656,7 @@ var app = new Vue({
                 end: 1,
                 name: "挥发酚",
                 limit: 0.002,
-                method: "",
+                method: "4-氨基安替吡啉三氯甲烷萃取分光光度法",
                 a: 0,
                 b: 1,
                 r: 1,
@@ -668,7 +664,7 @@ var app = new Vue({
                 x: [],
                 y: [],
                 standard_series: [],
-                instrument_model: "分光光度计",
+                instrument_model: "全玻璃整流器、分液漏斗、分光光度计",
                 GB: "GB/T 5750.4-2006",
                 items: [
                     [
@@ -720,7 +716,7 @@ var app = new Vue({
                 end: 1,
                 name: "汞",
                 limit: 0.001,
-                method: "",
+                method: "双硫腙分光光度法",
                 a: 0,
                 b: 1,
                 r: 1,
@@ -728,7 +724,7 @@ var app = new Vue({
                 x: [],
                 y: [],
                 standard_series: [],
-                instrument_model: "分光光度计",
+                instrument_model: "分液漏斗、分光光度计",
                 GB: "GB/T 5750.6-2006",
                 items: [
                     [
@@ -780,7 +776,7 @@ var app = new Vue({
                 end: 1,
                 name: "阴离子合成洗涤剂",
                 limit: 0.05,
-                method: "",
+                method: "亚甲蓝分光光度法",
                 a: 0,
                 b: 1,
                 r: 1,
@@ -788,7 +784,7 @@ var app = new Vue({
                 x: [],
                 y: [],
                 standard_series: [],
-                instrument_model: "分光光度计",
+                instrument_model: "分液漏斗、分光光度计",
                 GB: "GB/T 5750.4-2006",
                 items: [
                     [
@@ -840,7 +836,7 @@ var app = new Vue({
                 end: 1,
                 name: "硒",
                 limit: 0.001,
-                method: "",
+                method: "二氨基联苯胺分光光度法",
                 a: 0,
                 b: 1,
                 r: 1,
@@ -848,7 +844,7 @@ var app = new Vue({
                 x: [],
                 y: [],
                 standard_series: [],
-                instrument_model: "分光光度计",
+                instrument_model: "分液漏斗、电热板、振荡器、分光光度计",
                 GB: "GB/T 5750.6-2006",
                 items: [
                     [
@@ -896,7 +892,7 @@ var app = new Vue({
                 end: 1,
                 name: "镉",
                 limit: 0.005,
-                method: "",
+                method: "双硫腙分光光度法",
                 a: 0,
                 b: 1,
                 r: 1,
@@ -904,7 +900,7 @@ var app = new Vue({
                 x: [],
                 y: [],
                 standard_series: [],
-                instrument_model: "分光光度计",
+                instrument_model: "分液漏斗、分光光度计",
                 GB: "GB/T 5750.6-2006",
                 items: [
                     [
@@ -952,7 +948,7 @@ var app = new Vue({
                 end: 1,
                 name: "铅",
                 limit: 0.01,
-                method: "",
+                method: "双硫腙分光光度法",
                 a: 0,
                 b: 1,
                 r: 1,
@@ -960,7 +956,7 @@ var app = new Vue({
                 x: [],
                 y: [],
                 standard_series: [],
-                instrument_model: "分光光度计",
+                instrument_model: "分液漏斗、分光光度计",
                 GB: "GB/T 5750.6-2006",
                 items: [
                     [
@@ -1008,7 +1004,7 @@ var app = new Vue({
                 end: 1,
                 name: "六价铬",
                 limit: 0.004,
-                method: "",
+                method: "二苯碳酰二肼分光光度法",
                 a: 0,
                 b: 1,
                 r: 1,
@@ -1064,7 +1060,7 @@ var app = new Vue({
                 end: 1,
                 name: "铜",
                 limit: 0.02,
-                method: "",
+                method: "二乙基二硫代氨基甲酸钠分光光度法",
                 a: 0,
                 b: 1,
                 r: 1,
@@ -1072,7 +1068,7 @@ var app = new Vue({
                 x: [],
                 y: [],
                 standard_series: [],
-                instrument_model: "分光光度计",
+                instrument_model: "分液漏斗、分光光度计",
                 GB: "GB/T 5750.6-2006",
                 items: [
                     [
@@ -1120,7 +1116,7 @@ var app = new Vue({
                 end: 1,
                 name: "锰",
                 limit: 0.05,
-                method: "",
+                method: "过硫酸铵分光光度法",
                 a: 0,
                 b: 1,
                 r: 1,
@@ -1176,7 +1172,7 @@ var app = new Vue({
                 end: 1,
                 name: "铁",
                 limit: 0.05,
-                method: "",
+                method: "二氮杂菲分光光度法",
                 a: 0,
                 b: 1,
                 r: 1,
@@ -1232,7 +1228,7 @@ var app = new Vue({
                 end: 1,
                 name: "锌",
                 limit: 0.05,
-                method: "",
+                method: "双硫腙分光光度法",
                 a: 0,
                 b: 1,
                 r: 1,
@@ -1240,7 +1236,7 @@ var app = new Vue({
                 x: [],
                 y: [],
                 standard_series: [],
-                instrument_model: "分光光度计",
+                instrument_model: "分液漏斗、分光光度计",
                 GB: "GB/T 5750.6-2006",
                 items: [
                     [
@@ -1288,7 +1284,7 @@ var app = new Vue({
                 end: 1,
                 name: "硫酸盐",
                 limit: 5,
-                method: "",
+                method: "铬酸钡分光光度法",
                 a: 0,
                 b: 1,
                 r: 1,
@@ -1296,7 +1292,7 @@ var app = new Vue({
                 x: [],
                 y: [],
                 standard_series: [],
-                instrument_model: "分光光度计",
+                instrument_model: "电磁搅拌器、分光光度计",
                 GB: "GB/T 5750.5-2006",
                 items: [
                     [
@@ -1334,24 +1330,6 @@ var app = new Vue({
     created() {
         this.init_login()
     },
-    // directives: {
-    //     numberOnly: {
-    //         bind: function (el) {
-    //             el.handler = function () {
-    //                 let formatVal = /^\+?[1-9][0-9]*$/;
-    //                 let val = el.value;
-    //                 if (!formatVal.test(val)) {
-    //                     let reg = new RegExp(val, "g");
-    //                     el.value = val.replace(reg, 1);
-    //                 }
-    //             }
-    //             el.addEventListener("input", el.handler)
-    //         },
-    //         unbind: function (el) {
-    //             el.removeEventListener("input", el.handler)
-    //         }
-    //     }
-    // },
     watch: {
         selected() {
             /**
