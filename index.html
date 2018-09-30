@@ -16,7 +16,6 @@
     <script src="js/highcharts_zh.js"></script>
     <script src="js/myStorage.min.js"></script>
     <script src="js/webSQL.js"></script>
-    <script src="https://cdn.bootcss.com/store.js/1.3.20/store.min.js"></script>
     <title>标准回归</title>
 </head>
 
@@ -115,14 +114,17 @@
                 <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4">
                     <label calss="form-label">
                         <span>比色法</span>
-                        <a class="btn btn-default" data-toggle="modal" data-target="#opt">
+                        <a class="btn btn-default" data-toggle="modal" data-target="#opt1">
                             <i class="fa fa-plus">增加或修改</i>
                         </a>
                     </label>
-                    <select tabindex="-1" class="form-control input-lg" v-model="selected">
+                    <select tabindex="-1" class="form-control input-lg" v-model="selected1">
                         <option style="font-size: 80%" disabled>---请选择---</option>
-                        <option v-bind:id="'select'+index" v-bind:value="item" v-for="(item,index) in names" v-text="item.name"></option>
+                        <option v-bind:id="'select'+index" v-bind:value="item" v-for="(item,index) in names1" v-text="item.name"></option>
                     </select>
+                </div>
+                <div class="col-lg-3 col-md-2 col-sm-12 col-xs-12 text-right">
+                    <i class="fa fa-calendar"></i>{{ dateFormat(new Date()) }}
                 </div>
             </div>
             <div>
@@ -136,7 +138,7 @@
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     </div>
                                     <div class="modal-body form-group">
-                                        <p class="text-center">
+                                        <p id="myOpt3" class="text-center">
                                             增加新项目
                                         </p>
                                         <label class="form-label">项目名称：</label>
@@ -209,7 +211,7 @@
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     </div>
                                     <div class="modal-body form-group">
-                                        <p class="text-center">
+                                        <p id="myOpt2" class="text-center">
                                             增加新项目
                                         </p>
                                         <label class="form-label">项目名称：</label>
@@ -272,7 +274,7 @@
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal -->
-                <div class="modal fade" id="opt" tabindex="-1" role="dialog" aria-labelledby="myOpt" aria-hidden="true">
+                <div class="modal fade" id="opt1" tabindex="-1" role="dialog" aria-labelledby="myOpt1" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class='modal-content'>
                             <h3 @click="add_edit=!add_edit" class="btn form-control text-info">点击切换</h3>
@@ -282,29 +284,29 @@
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     </div>
                                     <div class="modal-body form-group">
-                                        <p class="text-center">
+                                        <p id="myOpt1" class="text-center">
                                             增加新项目
                                         </p>
                                         <label class="form-label">项目名称：</label>
-                                        <input type="text" class="form-control" v-model="new_opt.name">
+                                        <input type="text" class="form-control" v-model="new_opt1.name">
                                         <label class="form-label">单位：</label>
-                                        <input type="text" class="form-control" v-model="new_opt.unit">
+                                        <input type="text" class="form-control" v-model="new_opt1.unit">
                                         <label class="form-label">检验依据：</label>
-                                        <input type="text" class="form-control" v-model="new_opt.GB">
+                                        <input type="text" class="form-control" v-model="new_opt1.GB">
                                         <label class="form-label">检验方法：</label>
-                                        <input type="text" class="form-control" v-model="new_opt.method">
+                                        <input type="text" class="form-control" v-model="new_opt1.method">
                                         <label class="form-label">检测仪器：</label>
-                                        <input type="text" class="form-control" v-model="new_opt.instrument_model">
+                                        <input type="text" class="form-control" v-model="new_opt1.instrument_model">
                                         <label class="form-label">最小检出限：</label>
-                                        <input type="text" class="form-control" v-model="new_opt.limit">
+                                        <input type="text" class="form-control" v-model="new_opt1.limit">
                                         <label class="form-label">最高限值：</label>
-                                        <input type="text" class="form-control" v-model="new_opt.range_max">
+                                        <input type="text" class="form-control" v-model="new_opt1.range_max">
                                         <label class="form-label">最低限值：</label>
-                                        <input type="text" placeholder="如果没有最低限值，请忽略" class="form-control" v-model="new_opt.range_min">
+                                        <input type="text" placeholder="如果没有最低限值，请忽略" class="form-control" v-model="new_opt1.range_min">
                                     </div>
                                     <div class="modal-footer">
                                         <button class="btn btn-info" data-dismiss="modal">关闭</button>
-                                        <button type="button" class="btn btn-primary" @click="save_opt(new_opt)"> data-dismiss="modal"确认增加</button>
+                                        <button type="button" class="btn btn-primary" @click="save_opt(new_opt1)"> data-dismiss="modal"确认增加</button>
                                     </div>
                                 </li>
                                 <li v-if="!add_edit">
@@ -316,50 +318,46 @@
                                             修改项目参数
                                         </p>
                                         <label class="form-label">项目名称：</label>
-                                        <select tabindex="-1" class="form-control" v-model="slt">
+                                        <select tabindex="-1" class="form-control" v-model="slt1">
                                             <option style="font-size: 80%" disabled>---请选择---</option>
-                                            <option v-bind:id="'select1'+index" v-bind:value="item" v-for="(item,index) in names"
+                                            <option v-bind:id="'select1'+index" v-bind:value="item" v-for="(item,index) in names1"
                                                 v-text="item.name"></option>
                                         </select>
                                         <label class="form-label">单位：</label>
-                                        <input type="text" class="form-control" v-model="slt.unit">
+                                        <input type="text" class="form-control" v-model="slt1.unit">
                                         <label class="form-label">检验依据：</label>
-                                        <input type="text" class="form-control" v-model="slt.GB">
+                                        <input type="text" class="form-control" v-model="slt1.GB">
                                         <label class="form-label">检验方法：</label>
-                                        <input type="text" class="form-control" v-model="slt.method">
+                                        <input type="text" class="form-control" v-model="slt1.method">
                                         <label class="form-label">检测仪器：</label>
-                                        <input type="text" class="form-control" v-model="slt.instrument_model">
+                                        <input type="text" class="form-control" v-model="slt1.instrument_model">
                                         <label class="form-label">最小检出限：</label>
-                                        <input type="text" class="form-control" v-model="slt.limit">
+                                        <input type="text" class="form-control" v-model="slt1.limit">
                                         <label class="form-label">最高限值：</label>
-                                        <input type="text" class="form-control" v-model="slt.range_max">
+                                        <input type="text" class="form-control" v-model="slt1.range_max">
                                         <label class="form-label">最低限值：</label>
-                                        <input placeholder="没有最低限值，请忽略" type="text" class="form-control" v-model="slt.range_min">
+                                        <input placeholder="没有最低限值，请忽略" type="text" class="form-control" v-model="slt1.range_min">
                                     </div>
                                     <div class="modal-footer">
                                         <button class="btn btn-info" data-dismiss="modal">关闭</button>
-                                        <button type="button" class="btn btn-primary" @click="save_opt(slt)" data-dismiss="modal">提交更改</button>
+                                        <button type="button" class="btn btn-primary" @click="save_opt(slt1)" data-dismiss="modal">提交更改</button>
                                     </div>
                                 </li>
                             </ol>
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal -->
-                <div class="col-lg-3 col-md-2 col-sm-12 col-xs-12 text-right">
-                    <i class="fa fa-calendar"></i>{{ dateFormat(new Date()) }}
-                </div>
             </div>
             <div class="row">
-                <div class="col-lg-6" v-if="show">
-                    <table class="animated fadeInUp table table-hover table-bordered text-center table-striped"
-                        v-bind:id="selected.id">
+                <div class="col-lg-6" v-if="show1">
+                    <table class="animated fadeInUp table table-hover table-bordered text-center table-striped">
                         <thead>
                             <tr>
                                 <th class="text-center">序号</th>
                                 <th class="text-center">标准加入量(μg)</th>
                                 <th class="text-center">吸光度</th>
                                 <th class="btn text-info">
-                                    <i @click="add_item(selected.id)" title="增加序列" class="fa fa-plus">增加</i>
+                                    <i @click="add_item(selected1.id)" title="增加序列" class="fa fa-plus">增加</i>
                                 </th>
                                 <th class="btn text-info">
                                     <i @click="get_list()" title="保存" class="fa fa-save">保存</i>
@@ -367,7 +365,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(item, index) in selected.standard_series" :key="index">
+                            <tr v-for="(item, index) in selected1.standard_series" :key="index">
                                 <td v-text="index+1"></td>
                                 <td contenteditable="true" v-bind:id="'v'+index" v-text="item[0]"></td>
                                 <td contenteditable="true" v-bind:id="'a'+index" v-text="item[1]"></td>
@@ -376,28 +374,28 @@
                             </tr>
                         </tbody>
                         <caption>
-                            <h4>水中<span v-text="selected.name"></span>的标准系列 </h4>
+                            <h4>水中<span v-text="selected1.name"></span>的标准系列 </h4>
                         </caption>
                     </table>
                 </div>
-                <div class="col-lg-6" v-show="show">
+                <div class="col-lg-6" v-show="show1">
                     <div id="line" style="box-shadow:5px 5px 4px"></div>
                 </div>
             </div>
-            <form v-if="show">
+            <form v-if="show1">
                 <div class="row">
                     <div class="col-lg-5">
                         <fieldset>
-                            <legend><span v-text="selected.name"></span>的回归公式</legend>
-                            <h4 v-html="selected.formula"></h4>
-                            <span class="text-danger animated bounceIn infinite" v-if="selected.r<0.999">------注意：相关系数若小于0.999，说明标准曲线不合格，请重新核对数据，分析检测过程，必要时重新测定标准系列。</span>
+                            <legend><span v-text="selected1.name"></span>的回归公式</legend>
+                            <h4 v-html="selected1.formula"></h4>
+                            <span class="text-danger animated bounceIn infinite" v-if="selected1.r<0.999">------注意：相关系数若小于0.999，说明标准曲线不合格，请重新核对数据，分析检测过程，必要时重新测定标准系列。</span>
                             <div>
                                 <a class="btn btn-default" @click="add_sample(selected)">
                                     <i class="fa fa-hand-o-right fa-2x"></i><i class="fa fa-pencil"></i>
                                     开始录入
                                     <i>样品编号{{numbering+(new Date()).getFullYear()}}水第
-                                        <input v-if="selected.judge==true" tabindex="11" type="number" v-model="selected.start">
-                                        <input v-else-if="selected.judge==false" type="number" v-model="selected.end">
+                                        <input v-if="selected1.judge==true" tabindex="11" type="number" v-model="selected1.start">
+                                        <input v-else-if="selected1.judge==false" type="number" v-model="selected1.end">
                                         号
                                     </i>
                                 </a>
@@ -406,7 +404,7 @@
                     </div>
                     <div class="col-lg-7">
                         <fieldset v-if="add" class="animated fadeInRight">
-                            <legend>样品中 <span v-text="selected.name"></span> 浓度计算</legend>
+                            <legend>样品中 <span v-text="selected1.name"></span> 浓度计算</legend>
                             <table class="table table-hover table-bordered table-striped">
                                 <tr>
                                     <th class="text-center">样品编号</th>
@@ -415,17 +413,17 @@
                                 </tr>
                                 <tr class="text-center">
                                     <td>
-                                        <i>{{numbering+(new Date()).getFullYear()}}水第<span v-text="f_n(selected.start,3)"></span>号</i>
+                                        <i>{{numbering+(new Date()).getFullYear()}}水第<span v-text="f_n(selected1.start,3)"></span>号</i>
                                     </td>
                                     <td>
-                                        <select class="form-control" v-model="selected.result.v">
+                                        <select class="form-control" v-model="selected1.result.v">
                                             <option v-bind:value="opt" v-for="opt of vol_select" v-text="opt">
                                             </option>
                                         </select>
                                     </td>
                                     <td>
                                         <input class="form-control animated bounceInRight" type="number" tabindex="0"
-                                            placeholder="输入后直接回车" v-model="selected.result.a">
+                                            placeholder="输入后直接回车" v-model="selected1.result.a">
                                     </td>
                                     <td v-show="submit_show">
                                         <button class="btn" tabindex="0" @click="work(selected)">提交</button>
@@ -440,7 +438,7 @@
                 <div id="print">
                     <div @click="date_y()" class="text-center" colspan="5">
                         <h1 v-text="company"></h1>
-                        <h3 title="点击这里可以查看每个样品的检测日期"><i>水样中<span v-text="selected.name"></span>检验记录</i></h3>
+                        <h3 title="点击这里可以查看每个样品的检测日期"><i>水样中<span v-text="selected1.name"></span>检验记录</i></h3>
                     </div>
                     <table class="table table-bordered table-striped table-hover">
                         <tr>
@@ -477,15 +475,15 @@
                         </tr>
                         <tr>
                             <td class="text-center">检测仪器：</td>
-                            <td v-text="selected.instrument_model">
+                            <td v-text="selected1.instrument_model">
                             </td>
                             <td class="text-center">检验依据：</td>
-                            <td colspan="2" v-text="selected.GB">
+                            <td colspan="2" v-text="selected1.GB">
                             </td>
                         </tr>
                         <tr>
                             <td class="text-center">检测方法：</td>
-                            <td colspan="5" contenteditable="true" v-text="selected.method"></td>
+                            <td colspan="5" contenteditable="true" v-text="selected1.method"></td>
                         </tr>
                     </table>
                     <table @click="mystorages(selected)" class="table table-bordered table-striped table-hover" id="record">
@@ -504,13 +502,13 @@
                             </tr>
                         </thead>
                         <tbody class="text-center">
-                            <tr v-for="(item, index) in selected.st" :key="index">
+                            <tr v-for="(item, index) in selected1.st" :key="index">
                                 <td>{{numbering+(new Date()).getFullYear()}}水第<span v-text="f_n(item.id, 3)"></span>号</td>
                                 <td v-text="item.v"></td>
                                 <td v-text="item.a"></td>
                                 <td v-text="item.m"></td>
                                 <td v-text="item.c"></td>
-                                <td v-if="item.c<selected.limit" v-text="'<'+selected.limit"></td>
+                                <td v-if="item.c<selected1.limit" v-text="'<'+selected1.limit"></td>
                                 <td v-else v-text="item.c"></td>
                                 <td v-show="date_show" v-text="item.unit"></td>
                                 <td v-show="date_show" v-text="item.range"></td>

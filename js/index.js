@@ -53,7 +53,7 @@ var app = new Vue({
         index: 0, //这个是表格索引==序号
         new_item: "", //表格新行
         add_edit: false,
-        show: false,
+        show1: false,
         show2: false,
         show3: false,
         add: false,
@@ -61,14 +61,14 @@ var app = new Vue({
         vol_select: [
             50, 100, 250, 1, 25, 10
         ],
-        selecte: "",
+        selected1: "",
         selected2: "",
         selected3: "",
-        slt: "",
+        slt1: "",
         slt2: "",
         slt3: "",
 
-        new_opt: {
+        new_opt1: {
             st: [],
             judge: false,
             category: 1,
@@ -301,7 +301,7 @@ var app = new Vue({
                 },
             },
         ],
-        names: [{
+        names1: [{
                 st: [],
                 judge: false,
                 category: 1,
@@ -1350,11 +1350,11 @@ var app = new Vue({
         this.get_opt()
     },
     watch: {
-        selected() {
+        selected1() {
             /**
              * 当选择了项目时，显示标准系列的列表
              */
-            this.show = true;
+            this.show1 = true;
             this.show2 = false;
             this.show3 = false;
             this.get_series();
@@ -1368,13 +1368,13 @@ var app = new Vue({
              */
             this.show2 = true;
             this.show3 = false;
-            this.show = false;
+            this.show1 = false;
         },
         selected3() {
             /**
              * 感官性状
              */
-            this.show = false;
+            this.show1 = false;
             this.show2 = false;
             this.show3 = true;
         }
@@ -1385,6 +1385,52 @@ var app = new Vue({
              * 增加项目
              */
             let p = s.name + s.category + 'parameter'
+            let reg = /[1-3]/g
+            s.st = []
+            s.judge = false
+            s.category = 3
+            s.assessment = true
+            s.start = 1
+            s.end = 1
+            s.items = []
+            switch(reg.test(s)){
+                case 2:
+                    s.result = {
+                        id: "",
+                        v: "",
+                        coefficient: "",
+                        K: "",
+                        a0: "",
+                        a1: "",
+                        m: "",
+                        c: "",
+                        date: ""
+                    }
+                    break
+                case 3:
+                    s.result = {
+                    id: "",
+                    v: "",
+                    c: "",
+                    date: ""
+                    }
+                    break
+                default:
+                    s.a = 0,
+                    s.b = 1,
+                    s.r = 1,
+                    s.formula = "",
+                    s.x = []
+                    s.y = []
+                    s.standard_series = []
+                    s.result = {
+                        id: 1,
+                        v: "",
+                        a: "",
+                        m: "",
+                        c: ""
+                    }
+            }
             let x = JSON.stringify(s)
             localStorage.setItem(p, x)
         },
@@ -1394,17 +1440,16 @@ var app = new Vue({
                 for (let a = 0; a < s.length; a++) {
                     if (x[m].name == s[a].name) {
                         s[a] = x[m]
-                    } else {
-                        s.push(x[m])
                     }
                 }
+                s.push(x[m])
             }
         },
         get_opt() {
             let n = localStorage.length
-            let reg = /parameter$/g
-            let reg_n = /[1-3]/g
-            let s1 = this.names
+            let reg = /parameter$/
+            let reg_n = /[1-3]/
+            let s1 = this.names1
             let s2 = this.names2
             let s3 = this.names3
             let x1 = []
@@ -1414,17 +1459,19 @@ var app = new Vue({
                 let key = localStorage.key(i)
                 let v = localStorage.getItem(key)
                 if (reg.test(key)) {
-                    switch (reg_n.exec(key)) {
-                        case 1:
+                    // reg.lastIndex = 0
+                    switch (reg_n.exec(key)[0]) {
+                        case "1":
                             x1.push(v)
                             break
-                        case 2:
+                        case "2":
                             x2.push(v)
                             break
-                        case 3:
+                        case "3":
                             x3.push(v)
                             break
                     }
+                    // reg_n.lastIndex = 0
                 }
             }
             this.search_opt(x1, s1)
@@ -1457,17 +1504,17 @@ var app = new Vue({
             /**
              * 从标准系列表格中获取数据，存入数据组中，同时存入localStorage中。
              */
-            let rows = document.getElementById(this.selected.id).rows;
+            let rows = document.getElementById(this.selected1.id).rows;
             for (let i = 1; i < rows.length; i++) {
                 let value1 = Number(rows[i].cells[1].innerText);
                 let value2 = Number(rows[i].cells[2].innerText);
                 let value = [];
                 value.push(value1, value2);
-                this.selected.x.push(value1);
-                this.selected.y.push(value2);
-                this.selected.standard_series[i - 1] = value;
+                this.selected1.x.push(value1);
+                this.selected1.y.push(value2);
+                this.selected1.standard_series[i - 1] = value;
             }
-            localStorage.setItem(this.selected.name, this.selected.standard_series);
+            localStorage.setItem(this.selected1.name, this.selected1.standard_series);
             this.get_series();
             this.save_series();
             this.math_formula();
@@ -1479,7 +1526,7 @@ var app = new Vue({
              * 会调用默认的标准系列,同时渲染出标准系列表格。
              * 同时，把数据存入所选项目的standard_series中。
              */
-            let series_data = localStorage.getItem(this.selected.name);
+            let series_data = localStorage.getItem(this.selected1.name);
             if (series_data !== null) {
                 series_data = series_data.split(",");
                 series_data = series_data.map(Number);
@@ -1489,53 +1536,53 @@ var app = new Vue({
                     x[i] = series_data.slice(i * 2, i * 2 + 2);
                     new_data.push(x[i]);
                 }
-                this.selected.standard_series = new_data;
+                this.selected1.standard_series = new_data;
             } else {
-                this.selected.standard_series = this.selected.items
+                this.selected1.standard_series = this.selected1.items
             }
         },
         save_series() {
             /**
              * 从页面的标准系列表格中取值，做好回归分析的准备。
              */
-            this.selected.x = []; //标准系列的加样量数据
-            this.selected.y = []; //标准系列的吸光度数据
-            let rows = this.selected.standard_series;
+            this.selected1.x = []; //标准系列的加样量数据
+            this.selected1.y = []; //标准系列的吸光度数据
+            let rows = this.selected1.standard_series;
             for (let i = 0; i < rows.length; i++) {
-                this.selected.x[i] = rows[i][0];
-                this.selected.y[i] = rows[i][1];
+                this.selected1.x[i] = rows[i][0];
+                this.selected1.y[i] = rows[i][1];
             }
         },
         cal_b() {
             /**
              * 根据当前项目的标准系列算出标准回归公式的回归系数
              */
-            this.selected.b = 0;
-            let n = this.selected.x.length;
+            this.selected1.b = 0;
+            let n = this.selected1.x.length;
             let x_ = [];
             for (let i = 0; i < n; i++) {
-                x_.push(this.selected.x[i] * this.selected.x[i]);
+                x_.push(this.selected1.x[i] * this.selected1.x[i]);
             }
-            let over = this.sum(this.selected.y, this.selected.x) - n * this.average(this.selected.x) * this.average(this.selected.y);
-            let under = this.sum_1(x_) - n * (this.average(this.selected.x) * this.average(this.selected.x));
-            this.selected.b = (over / under);
+            let over = this.sum(this.selected1.y, this.selected1.x) - n * this.average(this.selected1.x) * this.average(this.selected1.y);
+            let under = this.sum_1(x_) - n * (this.average(this.selected1.x) * this.average(this.selected1.x));
+            this.selected1.b = (over / under);
         },
         cal_a() {
             /**
              * 根据当前项目的标准系列算出标准回归公式的斜率
              */
-            this.selected.a = 1;
-            this.selected.a = (this.average(this.selected.y) - this.selected.b * this.average(this.selected.x));
+            this.selected1.a = 1;
+            this.selected1.a = (this.average(this.selected1.y) - this.selected1.b * this.average(this.selected1.x));
         },
         cal_r() {
             /*
              * 根据当前项目的标准系列算出标准系列的相关系数
              */
-            this.selected.r = 1;
-            let n = this.selected.x.length;
-            let over = this.sum(this.selected.y, this.selected.x) - n * this.average(this.selected.x) * this.average(this.selected.y);
-            let under = Math.sqrt((this.sum(this.selected.x, this.selected.x) - n * this.average(this.selected.x) * this.average(this.selected.x)) * (this.sum(this.selected.y, this.selected.y) - n * this.average(this.selected.y) * this.average(this.selected.y)));
-            this.selected.r = (over / under);
+            this.selected1.r = 1;
+            let n = this.selected1.x.length;
+            let over = this.sum(this.selected1.y, this.selected1.x) - n * this.average(this.selected1.x) * this.average(this.selected1.y);
+            let under = Math.sqrt((this.sum(this.selected1.x, this.selected1.x) - n * this.average(this.selected1.x) * this.average(this.selected1.x)) * (this.sum(this.selected1.y, this.selected1.y) - n * this.average(this.selected1.y) * this.average(this.selected1.y)));
+            this.selected1.r = (over / under);
         },
         math_formula() {
             /**
@@ -1544,13 +1591,13 @@ var app = new Vue({
             this.cal_b();
             this.cal_a();
             this.cal_r();
-            this.selected.formula = "";
-            if (this.selected.a >= 0) {
-                this.selected.formula = "<p>回归方程为：y = " + this.selected.b.toFixed(4) + "x + " + this.selected.a.toFixed(4) + "</p><p>相关系数为：r = " + this.selected.r.toFixed(4) + "</p>";
+            this.selected1.formula = "";
+            if (this.selected1.a >= 0) {
+                this.selected1.formula = "<p>回归方程为：y = " + this.selected1.b.toFixed(4) + "x + " + this.selected1.a.toFixed(4) + "</p><p>相关系数为：r = " + this.selected1.r.toFixed(4) + "</p>";
 
             } else {
-                let a = -(this.selected.a);
-                this.selected.formula = "<p>回归方程为：y = " + this.selected.b.toFixed(4) + "x - " + a.toFixed(4) + "</p><p>相关系数为：r = " + this.selected.r.toFixed(4) + "</p>";
+                let a = -(this.selected1.a);
+                this.selected1.formula = "<p>回归方程为：y = " + this.selected1.b.toFixed(4) + "x - " + a.toFixed(4) + "</p><p>相关系数为：r = " + this.selected1.r.toFixed(4) + "</p>";
             }
 
         },
@@ -1558,14 +1605,14 @@ var app = new Vue({
             /**
              * 在标准系列列表中增加一行
              */
-            this.selected.standard_series.push(this.new_item);
+            this.selected1.standard_series.push(this.new_item);
         },
 
         del(index) {
             /**
              * 在列表中删除本行
              */
-            this.selected.standard_series.splice(index, 1);
+            this.selected1.standard_series.splice(index, 1);
         },
         add_sample(s) {
             /**
@@ -1896,8 +1943,8 @@ function getTableContent() {
      * 从存入的standard_series的标准系列提取数据，以备绘制出标准曲线
      * 同时把数据存入localStorage
      */
-    series_data = app.selected.standard_series;
-    localStorage.setItem(app.selected.name, series_data)
+    series_data = app.selected1.standard_series;
+    localStorage.setItem(app.selected1.name, series_data)
 };
 
 function focus_move() {
@@ -1917,14 +1964,14 @@ function show_chart() {
     /**
      * 用highcharts绘制标准曲线
      */
-    getTableContent(app.selected.id);
+    getTableContent(app.selected1.id);
     //获取当前项目的标准系列数据
     chart = Highcharts.chart("line", {
         title: {
             text: "标准回归曲线"
         },
         subtitle: {
-            text: app.selected.name
+            text: app.selected1.name
         },
         xAxis: {
             title: {
