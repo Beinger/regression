@@ -6,13 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="js/jquery3.3.1.min.js"></script>
-<<<<<<< HEAD
     <!-- <script src="js/vue.min.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
-=======
-    <script src="js/vue.min.js"></script>
-    <link rel="stylesheet" href="css/css/index.css">
->>>>>>> a00ecef248046da81eb5f58d5b6c2b223db2fd1c
     <link rel="stylesheet" href="css/css/bootstrap.css">
     <link rel="stylesheet" href="css/css/animation.min.css">
     <link rel="stylesheet" href="css/css/font-awesome.min.css">
@@ -34,7 +29,6 @@
 
     <div class="container">
         <div id="root">
-<<<<<<< HEAD
             <div class="jumbotron row">
                 <div onclick="focus_move()" class="col-xs-9 col-lg-10 col-md-10 col-sm-10">
                     <h2 data-toggle="modal" data-target="#login" v-text="company"></h2>
@@ -128,13 +122,6 @@
                     <select tabindex="-1" class="form-control input-lg" v-model="selected">
                         <option style="font-size: 80%" disabled>---请选择---</option>
                         <option v-bind:id="'select'+index" v-bind:value="item" v-for="(item,index) in names" v-text="item.name"></option>
-=======
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-xs-6">
-                    <select tabindex="-1" class="form-control input-lg" value="selected.name" id="xm" v-model="selected">
-                        <option disabled>---请选择---</option>
-                        <option :value="item" v-for="(item,index) in names">{{ item.name }}</option>
->>>>>>> a00ecef248046da81eb5f58d5b6c2b223db2fd1c
                     </select>
                 </div>
             </div>
@@ -401,11 +388,7 @@
                 <div class="row">
                     <div class="col-lg-5">
                         <fieldset>
-<<<<<<< HEAD
                             <legend><span v-text="selected.name"></span>的回归公式</legend>
-=======
-                            <legend>{{ selected.name }}的标准回归公式</legend>
->>>>>>> a00ecef248046da81eb5f58d5b6c2b223db2fd1c
                             <h4 v-html="selected.formula"></h4>
                             <span class="text-danger animated bounceIn infinite" v-if="selected.r<0.999">------注意：相关系数若小于0.999，说明标准曲线不合格，请重新核对数据，分析检测过程，必要时重新测定标准系列。</span>
                             <div>
@@ -422,7 +405,6 @@
                         </fieldset>
                     </div>
                     <div class="col-lg-7">
-<<<<<<< HEAD
                         <fieldset v-if="add" class="animated fadeInRight">
                             <legend>样品中 <span v-text="selected.name"></span> 浓度计算</legend>
                             <table class="table table-hover table-bordered table-striped">
@@ -567,18 +549,6 @@
                         <fieldset v-if="add" class="animated fadeInRight">
                             <legend>样品中 <span v-text="selected2.name"></span> 浓度计算</legend>
                             <table class="table table-hover table-bordered table-striped">
-=======
-                        <fieldset>
-                            <legend>样品中{{ selected.name }}浓度计算</legend>
-                            <div class="text-warning" v-show="cal">
-                                <i>样品编号YXCDC2018水第
-                                    <input v-if="selected.judge" tabindex="11" type="number" v-model="selected.start">
-                                    <input v-else tabindex="11" type="number" v-model="selected.end"> 号
-                                </i>
-                                <a style="float:right; width: 50%" class="btn btn-default" @click="add_sample()"><i class="fa fa-pencil"></i>开始</a>
-                            </div>
-                            <table v-if="add" class="table table-hover table-bordered table-striped">
->>>>>>> a00ecef248046da81eb5f58d5b6c2b223db2fd1c
                                 <tr>
                                     <th class="text-center">样品编号</th>
                                     <th class="text-center">加样体积(ml)</th>
@@ -662,20 +632,12 @@
                             <td colspan="2" v-text="selected2.GB">
                             </td>
                         </tr>
-<<<<<<< HEAD
                         <tr>
                             <td class="text-center">检测方法：</td>
                             <td colspan="5" contenteditable="true" v-text="selected2.method"></td>
                         </tr>
                     </table>
                     <table @click="mystorages(selected2)" class="table table-bordered table-striped table-hover" id="record2">
-=======
-                    </tbody>
-                </table>
-                <button class="btn btn-lg btn-info" @click="printContent(e)"><i class="fa fa-print"></i>打印</button>
-                <div id="subOutputRank-print">
-                    <table class="table table-bordered table-striped table-hover" id="record">
->>>>>>> a00ecef248046da81eb5f58d5b6c2b223db2fd1c
                         <thead>
                             <tr>
                                 <th class="text-center">样品编号</th>
@@ -849,16 +811,10 @@
     <br>
     <br>
     <script src="js/index.js"></script>
-<<<<<<< HEAD
     <footer class="footer">
         <div>使用过程中有任何疑问或想法，欢迎在我的
             <a href="img/myWX.jpg"><i class="fa fa-comments"></i></a>或者<i class="fa fa-qq">478174277</i>
             留言
-=======
-    <footer>
-        <div>使用过程中有任何疑问或想法，欢迎在我的微信留言
-            <a href="img/myWX.jpg"><i class="fa fa-comments"></i></a>
->>>>>>> a00ecef248046da81eb5f58d5b6c2b223db2fd1c
         </div>
     </footer>
     <link rel="stylesheet" href="css/css/index.css">
