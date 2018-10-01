@@ -426,7 +426,7 @@
                                             placeholder="输入后直接回车" v-model="selected1.result.a">
                                     </td>
                                     <td v-show="submit_show">
-                                        <button class="btn" tabindex="0" @click="work(selected)">提交</button>
+                                        <button class="btn" tabindex="0" @click="work(selected1)">提交</button>
                                     </td>
                                 </tr>
                             </table>
@@ -486,7 +486,7 @@
                             <td colspan="5" contenteditable="true" v-text="selected1.method"></td>
                         </tr>
                     </table>
-                    <table @click="mystorages(selected)" class="table table-bordered table-striped table-hover" id="record">
+                    <table @click="mystorages(selected1)" class="table table-bordered table-striped table-hover" id="record">
                         <thead>
                             <tr>
                                 <th class="text-center">样品编号</th>
