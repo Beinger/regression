@@ -1347,13 +1347,16 @@ var app = new Vue({
     },
     created() {
         this.init_login()
-        this.get_opt()
+        this.get_opt(this.names1,1)
+        this.get_opt(this.names2,2)
+        this.get_opt(this.names3,3)
     },
     watch: {
         selected1() {
             /**
              * 当选择了项目时，显示标准系列的列表
              */
+            // this.get_opt(this.names1, 1)
             this.show1 = true;
             this.show2 = false;
             this.show3 = false;
@@ -1366,6 +1369,7 @@ var app = new Vue({
             /**
              * 当选择了滴定类项目时，只需要计算，不需要标准系列和曲线
              */
+            // this.get_opt(this.names2, 2)
             this.show2 = true;
             this.show3 = false;
             this.show1 = false;
@@ -1374,18 +1378,18 @@ var app = new Vue({
             /**
              * 感官性状
              */
+            // this.get_opt(this.names3, 3)
             this.show1 = false;
             this.show2 = false;
             this.show3 = true;
         }
     },
     methods: {
-        save_opt(s) {
+        save_opt(s,index) {
             /**
              * 增加项目
              */
-            let p = s.name + s.category + 'parameter'
-            let reg = /[1-3]/g
+            let p = s.name + s.category + 'par'
             s.st = []
             s.judge = false
             s.category = 3
@@ -1393,7 +1397,7 @@ var app = new Vue({
             s.start = 1
             s.end = 1
             s.items = []
-            switch(reg.test(s)){
+            switch(index){
                 case 2:
                     s.result = {
                         id: "",
@@ -1434,49 +1438,42 @@ var app = new Vue({
             let x = JSON.stringify(s)
             localStorage.setItem(p, x)
         },
-        search_opt(x, s) {
+        search_opt(x, ns) {
             for (let m = 0; m < x.length; m++) {
                 x[m] = JSON.parse(x)
-                for (let a = 0; a < s.length; a++) {
-                    if (x[m].name == s[a].name) {
-                        s[a] = x[m]
+                for (let a = 0; a < ns.length; a++) {
+                    if (x[m].name == ns[a].name) {
+                        ns[a] = x[m]
+                    }else{
+                        ns.push(x[m])
+                        break
                     }
                 }
-                s.push(x[m])
             }
         },
-        get_opt() {
+        get_opt(ns, index) {
+            let x = []
             let n = localStorage.length
-            let reg = /parameter$/
-            let reg_n = /[1-3]/
-            let s1 = this.names1
-            let s2 = this.names2
-            let s3 = this.names3
-            let x1 = []
-            let x2 = []
-            let x3 = []
+            let reg = new RegExp(index+'par$')
             for (let i = 0; i < n; i++) {
                 let key = localStorage.key(i)
                 let v = localStorage.getItem(key)
                 if (reg.test(key)) {
                     // reg.lastIndex = 0
-                    switch (reg_n.exec(key)[0]) {
-                        case "1":
-                            x1.push(v)
-                            break
-                        case "2":
-                            x2.push(v)
-                            break
-                        case "3":
-                            x3.push(v)
-                            break
+                            x.push(v)
+                        // case "2":
+                        //     x2.push(v)
+                        //     break
+                        // case "3":
+                        //     x3.push(v)
+                        //     break
                     }
                     // reg_n.lastIndex = 0
                 }
-            }
-            this.search_opt(x1, s1)
-            this.search_opt(x2, s2)
-            this.search_opt(x3, s3)
+            this.search_opt(x,ns)
+            // this.search_opt(x1, s1)
+            // this.search_opt(x2, s2)
+            // this.search_opt(x3, s3)
         },
         printContent(id) {
             /**

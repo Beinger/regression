@@ -35,12 +35,14 @@
                 </div>
                 <div class="col-xs-3 col-lg-2 col-md-2 col-sm-2">
                     <a class="btn btn-defult btn-lg" data-toggle="modal" data-target="#login" v-if="login_f">
-                        <i class="fa fa-sign-in"></i>机构信息登记
+                        <i class="fa fa-sign-in">机构信息</i>
                     </a>
                     <a class="btn btn-defult btn-lg" data-toggle="modal" data-target="#environment" v-else>
-                        <i class="fa fa-thermometer-empty"></i>实验环境记录
+                        <i class="fa fa-thermometer">    环境记录</i>
                     </a>
-                    <a class="btn btn-lg text-warning" href="sample.html"><i class="fa fa-book"></i>查看检验报告</a>
+                    <a class="btn btn-lg btn-default" href="sample.html">
+                        <i class="fa fa-print">检验报告</i>
+                    </a>
                     <div class="modal fade" id="environment" tabindex="-1" role="dialog" aria-labelledby="myEnv"
                         aria-hidden="true">
                         <div class="modal-dialog">
@@ -160,7 +162,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button class="btn btn-info" data-dismiss="modal">关闭</button>
-                                        <button type="button" class="btn btn-primary" @click="save_opt(new_opt3)" data-dismiss="modal">确认增加</button>
+                                        <button type="button" class="btn btn-primary" @click="save_opt(new_opt3, 3)" data-dismiss="modal">确认增加</button>
                                     </div>
                                 </li>
                                 <li v-if="!add_edit">
@@ -194,7 +196,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button class="btn btn-info" data-dismiss="modal">关闭</button>
-                                        <button type="button" class="btn btn-primary" @click="save_opt(slt3)"　data-dismiss="modal">提交更改</button>
+                                        <button type="button" class="btn btn-primary" @click="save_opt(slt3, 3)"　data-dismiss="modal">提交更改</button>
                                     </div>
                                 </li>
                             </ol>
@@ -233,7 +235,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button class="btn btn-info" data-dismiss="modal">关闭</button>
-                                        <button type="button" class="btn btn-primary" @click="save_opt(new_opt2)" data-dismiss="modal">确认增加</button>
+                                        <button type="button" class="btn btn-primary" @click="save_opt(new_opt2, 2)" data-dismiss="modal">确认增加</button>
                                     </div>
                                 </li>
                                 <li v-if="!add_edit">
@@ -267,7 +269,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button class="btn btn-info" data-dismiss="modal">关闭</button>
-                                        <button type="button" class="btn btn-primary" @click="save_opt(slt2)" data-dismiss="modal">提交更改</button>
+                                        <button type="button" class="btn btn-primary" @click="save_opt(slt2, 2)" data-dismiss="modal">提交更改</button>
                                     </div>
                                 </li>
                             </ol>
@@ -306,7 +308,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button class="btn btn-info" data-dismiss="modal">关闭</button>
-                                        <button type="button" class="btn btn-primary" @click="save_opt(new_opt1)" data-dismiss="modal">确认增加</button>
+                                        <button type="button" class="btn btn-primary" @click="save_opt(new_opt1, 1)" data-dismiss="modal">确认增加</button>
                                     </div>
                                 </li>
                                 <li v-if="!add_edit">
@@ -340,7 +342,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button class="btn btn-info" data-dismiss="modal">关闭</button>
-                                        <button type="button" class="btn btn-primary" @click="save_opt(slt1)" data-dismiss="modal">提交更改</button>
+                                        <button type="button" class="btn btn-primary" @click="save_opt(slt1, 1)" data-dismiss="modal">提交更改</button>
                                     </div>
                                 </li>
                             </ol>
