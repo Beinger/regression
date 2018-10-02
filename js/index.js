@@ -1441,6 +1441,7 @@ var app = new Vue({
             this.get_opt(ns, index)
         },
         search_opt(x, ns) {
+            let new_str = new Object
             for (let m = 0; m < x.length; m++) {
                 // let y = JSON.parse(x[m])
                 for (let a = 0; a < ns.length; a++) {
@@ -1448,6 +1449,7 @@ var app = new Vue({
                         ns[a] = x[m]
                     }
                 }
+                new_str = x[m]
                 ns.push(x[m])
             }
         },
