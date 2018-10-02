@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/css/bootstrap.css">
     <link rel="stylesheet" href="css/css/font-awesome.min.css">
     <script src="js/vue.min.js"></script>
-    <title>样品登记</title>
+    <title>检验报告</title>
 </head>
 
 <body>
@@ -19,8 +19,9 @@
             <div id="subOutputRank-print">
                 <div v-for="(value, key) in storage">
                     <div class="text-center">
-                        <h3><span v-text="company"></span><br>水质检验报告</h3><br>
-                        <h6 class="text-left">样品编号：YXCDC(水)2018第
+                        <h3 v-text="company"></h3>
+                        <h4>水质检验报告</h4><br>
+                        <h6 class="text-left">样品编号：<span v-text="numbering"></span>(水)2018第
                             <span v-text="f_n(value[0].id,3)"></span>号
                         </h6>
                     </div>

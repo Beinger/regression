@@ -45,20 +45,19 @@ var app = new Vue({
             "range": "不得检出",
             "c": "未检出"
         },
-        pend_project: [],
-        numbering: "",
-        company: "",
+        numbering: "", //机构代号
+        company: "", //机构名称
         username: "",
-        login_f: true,
+        login_f: true, //是否已经注册过
         index: 0, //这个是表格索引==序号
         new_item: "", //表格新行
-        add_edit: false,
-        show1: false,
-        show2: false,
-        show3: false,
-        add: false,
-        date_show: false,
-        vol_select: [
+        add_edit: false, //切换新增和修改
+        show1: false, //显示第一项
+        show2: false, //显示第二项
+        show3: false, //显示第三项
+        add: false, //显示计算输入框
+        date_show: false, //显示日期和评价之类
+        vol_select: [  //常用的几种体积选项
             50, 100, 250, 1, 25, 10
         ],
         selected1: "",
@@ -1356,7 +1355,6 @@ var app = new Vue({
             /**
              * 当选择了项目时，显示标准系列的列表
              */
-            // this.get_opt(this.names1, 1)
             this.show1 = true;
             this.show2 = false;
             this.show3 = false;
@@ -1369,7 +1367,6 @@ var app = new Vue({
             /**
              * 当选择了滴定类项目时，只需要计算，不需要标准系列和曲线
              */
-            // this.get_opt(this.names2, 2)
             this.show2 = true;
             this.show3 = false;
             this.show1 = false;
@@ -1378,7 +1375,6 @@ var app = new Vue({
             /**
              * 感官性状
              */
-            // this.get_opt(this.names3, 3)
             this.show1 = false;
             this.show2 = false;
             this.show3 = true;
@@ -1437,8 +1433,22 @@ var app = new Vue({
             }
             let x = JSON.stringify(s)
             localStorage.setItem(p, x)
-            let ns = eval('this.names' + index)
-            this.get_opt(ns, index)
+            this.get_opt(s, index)
+
+            s = this.uniqueUseNotAllEqual(s)
+        },
+        uniqueUseNotAllEqual(arr){
+            let temp = []
+            let mark = true
+            for(let i=0, j=arr.length; i<j; i++){
+                if(arr[i] !== arr[i]){
+                    mark && temp.indexOf(arr[i]) == -1 ? temp.push(arr[i]):''
+                    mark = false
+                }else{
+                    temp.indexOf(arr[i])== -1 ? temp.push(arr[i]): ''
+                }
+            }
+            return temp
         },
         search_opt(x, ns) {
             let new_str = new Object
@@ -1450,7 +1460,7 @@ var app = new Vue({
                     }
                 }
                 new_str = x[m]
-                ns.push(x[m])
+                ns.push(new_str)
             }
         },
         get_opt(ns, index) {
@@ -1471,6 +1481,7 @@ var app = new Vue({
                 }
             }
             this.search_opt(x, ns)
+            // ns = this.uniqueUseNotAllEqual(ns)
         },
         printContent(id) {
             /**

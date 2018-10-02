@@ -113,7 +113,7 @@
                         <option v-bind:id="'select2'+index" v-bind:value="item" v-for="(item,index) in names2" v-text="item.name"></option>
                     </select>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4">
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
                     <label calss="form-label">
                         <span>比色法</span>
                         <a class="btn btn-default" data-toggle="modal" data-target="#opt1">
@@ -125,8 +125,8 @@
                         <option v-bind:id="'select'+index" v-bind:value="item" v-for="(item,index) in names1" v-text="item.name"></option>
                     </select>
                 </div>
-                <div class="col-lg-3 col-md-2 col-sm-12 col-xs-12 text-right">
-                    <i class="fa fa-calendar"></i>{{ dateFormat(new Date()) }}
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 text-right">
+                    <i class="fa fa-calendar" v-text="dateFormat(new Date())"></i>
                 </div>
             </div>
             <div>
@@ -351,7 +351,7 @@
                 </div><!-- /.modal -->
             </div>
             <div class="row">
-                <div class="col-lg-6" v-if="show1">
+                <div class="col-lg-6 animated bounceInLeft" v-if="show1">
                     <table class="animated fadeInUp table table-hover table-bordered text-center table-striped">
                         <thead>
                             <tr>
@@ -384,7 +384,7 @@
                     <div id="line" style="box-shadow:5px 5px 4px"></div>
                 </div>
             </div>
-            <form v-if="show1">
+            <form v-if="show1" class="animated bounceInRight">
                 <div class="row">
                     <div class="col-lg-5">
                         <fieldset>
@@ -415,7 +415,7 @@
                                 </tr>
                                 <tr class="text-center">
                                     <td>
-                                        <i>{{numbering+(new Date()).getFullYear()}}水第<span v-text="f_n(selected1.start,3)"></span>号</i>
+                                        <i><span v-text="numbering+(new Date()).getFullYear()"></span>水第<span v-text="f_n(selected1.start,3)"></span>号</i>
                                     </td>
                                     <td>
                                         <select class="form-control" v-model="selected1.result.v">
@@ -529,7 +529,7 @@
                     </div>
                 </div>
             </form>
-            <form v-if="show2">
+            <form class="animated bounceInDown" v-if="show2">
                 <div class="row">
                     <div class="col-lg-5">
                         <fieldset>
@@ -678,7 +678,7 @@
                     </div>
                 </div>
             </form>
-            <form v-if="show3">
+            <form class="animated bounceInRight" v-if="show3">
                 <div class="row">
                     <div class="col-lg-5">
                         <fieldset>

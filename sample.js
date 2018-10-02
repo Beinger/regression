@@ -3,6 +3,7 @@ let sample = new Vue({
     data: {
         company: '',
         username: '',
+        numbering: '',
         reg_s: /报告结果$/g,
         reg_st: /^[\u4e00-\u9fa5]+/g,
         new_list: [],
@@ -67,6 +68,7 @@ let sample = new Vue({
         },
         get_login_info(){
             this.company = localStorage.getItem("company")
+            this.numbering = localStorage.getItem("numbering")
             // this.username = localStorage.getItem("username")
         },
         printContent() {
