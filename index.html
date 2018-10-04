@@ -141,7 +141,7 @@
                                     </div>
                                     <div class="modal-body form-group">
                                         <p id="myOpt3" class="text-center">
-                                            增加新项目
+                                            增加项目
                                         </p>
                                         <label class="form-label">项目名称：</label>
                                         <input type="text" class="form-control" v-model="new_opt3.name">
@@ -214,7 +214,7 @@
                                     </div>
                                     <div class="modal-body form-group">
                                         <p id="myOpt2" class="text-center">
-                                            增加新项目
+                                            增加项目
                                         </p>
                                         <label class="form-label">项目名称：</label>
                                         <input type="text" class="form-control" v-model="new_opt2.name">
@@ -287,7 +287,7 @@
                                     </div>
                                     <div class="modal-body form-group">
                                         <p id="myOpt1" class="text-center">
-                                            增加新项目
+                                            增加项目
                                         </p>
                                         <label class="form-label">项目名称：</label>
                                         <input type="text" class="form-control" v-model="new_opt1.name">
@@ -392,14 +392,13 @@
                             <h4 v-html="selected1.formula"></h4>
                             <span class="text-danger animated bounceIn infinite" v-if="selected1.r<0.999">------注意：相关系数若小于0.999，说明标准曲线不合格，请重新核对数据，分析检测过程，必要时重新测定标准系列。</span>
                             <div>
-                                <a class="btn btn-default" @click="add_sample(selected)">
+                                <a class="btn btn-default" @click="add_sample(selected1)">
                                     <i class="fa fa-hand-o-right fa-2x"></i><i class="fa fa-pencil"></i>
                                     开始录入
-                                    <i>样品编号{{numbering+(new Date()).getFullYear()}}水第
+                                    样品编号<i v-text="numbering+(new Date()).getFullYear()"></i>水第
                                         <input v-if="selected1.judge==true" tabindex="11" type="number" v-model="selected1.start">
                                         <input v-else-if="selected1.judge==false" type="number" v-model="selected1.end">
                                         号
-                                    </i>
                                 </a>
                             </div>
                         </fieldset>
@@ -419,16 +418,11 @@
                                     </td>
                                     <td>
                                         <select class="form-control" v-model="selected1.result.v">
-                                            <option v-bind:value="opt" v-for="opt of vol_select" v-text="opt">
-                                            </option>
+                                            <option v-bind:value="opt" v-for="opt of vol_select" v-text="opt"></option>
                                         </select>
                                     </td>
                                     <td>
-                                        <input class="form-control animated bounceInRight" type="number" tabindex="0"
-                                            placeholder="输入后直接回车" v-model="selected1.result.a">
-                                    </td>
-                                    <td v-show="submit_show">
-                                        <button class="btn" tabindex="0" @click="work(selected1)">提交</button>
+                                        <input class="form-control animated bounceInRight" type="number" tabindex="0" @keyup.enter="work(selected1)" placeholder="输入后直接回车" v-model="selected1.result.a">
                                     </td>
                                 </tr>
                             </table>
@@ -487,6 +481,10 @@
                             <td class="text-center">检测方法：</td>
                             <td colspan="5" contenteditable="true" v-text="selected1.method"></td>
                         </tr>
+                        <tr>
+                            <td class="text-center">检验步骤：</td>
+                            <td colspan="5" v-html="selected1.step"></td>
+                        </tr>
                     </table>
                     <table @click="mystorages(selected1)" class="table table-bordered table-striped table-hover" id="record">
                         <thead>
@@ -505,7 +503,7 @@
                         </thead>
                         <tbody class="text-center">
                             <tr v-for="(item, index) in selected1.st" :key="index">
-                                <td>{{numbering+(new Date()).getFullYear()}}水第<span v-text="f_n(item.id, 3)"></span>号</td>
+                                <td><i v-text="numbering+(new Date()).getFullYear()"></i>水第<span v-text="f_n(item.id, 3)"></span>号</td>
                                 <td v-text="item.v"></td>
                                 <td v-text="item.a"></td>
                                 <td v-text="item.m"></td>
@@ -537,7 +535,7 @@
                                 <a class="btn btn-default" @click="add_sample(selected2)">
                                     <i class="fa fa-hand-o-right fa-2x"></i><i class="fa fa-pencil"></i>
                                     开始录入
-                                    <i>样品编号{{numbering+(new Date()).getFullYear()}}水第
+                                    样品编号<i v-text="numbering+(new Date()).getFullYear()"></i>水第
                                         <input v-if="selected2.judge" tabindex="-1" type="number" v-model.number="selected2.start">
                                         <input v-else tabindex="-1" type="number" v-model.number="selected2.end"> 号
                                     </i>
@@ -559,7 +557,7 @@
                                 </tr>
                                 <tr class="text-center">
                                     <td>
-                                        <i>{{numbering+(new Date()).getFullYear()}}水第<span v-text="f_n(selected2.start,3)"></span>号</i>
+                                        <i v-text="numbering+(new Date()).getFullYear()"></i>水第<span v-text="f_n(selected2.start,3)"></span>号</i>
                                     </td>
                                     <td>
                                         <select class="form-control" v-model="selected2.result.v">
@@ -574,11 +572,7 @@
                                             v-model="selected2.result.a0">
                                     </td>
                                     <td>
-                                        <input class="form-control animated bounceInRight" type="number" tabindex="0"
-                                            v-model.number="selected2.result.a1">
-                                    </td>
-                                    <td>
-                                        <button class="btn form-control" tabindex="0" @click="work(selected2)">提交</button>
+                                        <input class="form-control animated bounceInRight" type="number" tabindex="0" @keyup.enter="work(selected2)" v-model.number="selected2.result.a1">
                                     </td>
                                 </tr>
                             </table>
@@ -636,6 +630,10 @@
                             <td class="text-center">检测方法：</td>
                             <td colspan="5" contenteditable="true" v-text="selected2.method"></td>
                         </tr>
+                        <tr>
+                            <td class="text-center">检验步骤：</td>
+                            <td colspan="5" v-html="selected2.step"></td>
+                        </tr>
                     </table>
                     <table @click="mystorages(selected2)" class="table table-bordered table-striped table-hover" id="record2">
                         <thead>
@@ -654,7 +652,7 @@
                         </thead>
                         <tbody class="text-center">
                             <tr v-for="(item, index) in selected2.st" :key="index">
-                                <td>{{numbering+(new Date()).getFullYear()}}水第<span v-text="f_n(item.id, 3)"></span>号</td>
+                                <td><i v-text="numbering+(new Date()).getFullYear()"></i>水第<span v-text="f_n(item.id, 3)"></span>号</td>
                                 <td v-text="item.v"></td>
                                 <td v-text="item.a0"></td>
                                 <td v-text="item.a1"></td>
@@ -686,7 +684,7 @@
                                 <a class="btn btn-default" @click="add_sample(selected3)">
                                     <i class="fa fa-hand-o-right fa-2x"></i><i class="fa fa-pencil"></i>
                                     开始录入
-                                    <i>样品编号{{numbering+(new Date()).getFullYear()}}水第
+                                    样品编号<i v-text="numbering+(new Date()).getFullYear()"></i>水第
                                         <input v-if="selected3.judge" tabindex="-1" type="number" v-model="selected3.start">
                                         <input v-else tabindex="-1" type="number" v-model="selected3.end"> 号
                                     </i>
@@ -705,16 +703,12 @@
                                 </tr>
                                 <tr class="text-center">
                                     <td>
-                                        <i>{{numbering+(new Date()).getFullYear()}}水第<span v-text="f_n(selected3.start,3)"></span>号</i>
+                                        <i><i v-text="numbering+(new Date()).getFullYear()"></i>水第<span v-text="f_n(selected3.start,3)"></span>号</i>
                                     </td>
                                     <td>
                                         <input class="form-control animated bounceInRight" v-if="selected3.name=='酸碱度' || selected3.name=='色度' || selected3.name=='浑浊度'"
-                                            type="number" tabindex="0" v-model.number="selected3.result.c">
-                                        <input class="form-control animated bounceInRight" v-else type="text" tabindex="0"
-                                            v-model="selected3.result.c">
-                                    </td>
-                                    <td>
-                                        <button class="btn" @click="work(selected3)" tabindex="0">提交</button>
+                                            type="number" tabindex="0" v-model.number="selected3.result.c" @keyup.enter="work(selected3)">
+                                        <input class="form-control animated bounceInRight" v-else type="text" tabindex="0" @keyup.enter="work(selected3)" v-model="selected3.result.c">
                                     </td>
                                 </tr>
                             </table>
@@ -729,7 +723,7 @@
                     </div>
                     <table class="table table-bordered table-striped table-hover">
                         <tr>
-                            <td class="text-center">样品名称：</td>
+                            <td style="width: 10em" class="text-center">样品名称：</td>
                             <td style="padding: 0px;">
                                 <select style="border:0px; height: 2.4em; width: auto; outline:none; cursor: pointer;">
                                     <option value="井水">井水</option>
@@ -772,6 +766,10 @@
                             <td class="text-center">检测方法：</td>
                             <td colspan="5" contenteditable="true" v-text="selected3.method"></td>
                         </tr>
+                        <tr>
+                            <td class="text-center">检验步骤：</td>
+                            <td colspan="5" v-html="selected3.step"></td>
+                        </tr>
                     </table>
                     <table @click="mystorages(selected3)" class="table table-bordered table-striped table-hover" id="record3">
                         <thead>
@@ -786,7 +784,7 @@
                         </thead>
                         <tbody class="text-center">
                             <tr v-for="(item, index) in selected3.st" :key="index">
-                                <td>{{numbering+(new Date()).getFullYear()}}水第<span v-text="f_n(item.id, 3)"></span>号</td>
+                                <td><i v-text="numbering+(new Date()).getFullYear()"></i>水第<span v-text="f_n(item.id, 3)"></span>号</td>
                                 <td v-show="date_show" v-text="item.unit"></td>
                                 <td v-show="date_show" v-text="item.range"></td>
                                 <td v-text="item.c"></td>

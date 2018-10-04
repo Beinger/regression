@@ -69,6 +69,7 @@ var app = new Vue({
 
         new_opt1: {
             st: [],
+            step: "",
             judge: false,
             category: 1,
             range_max: "",
@@ -101,6 +102,7 @@ var app = new Vue({
         },
         new_opt2: {
             st: [],
+            step: "",
             judge: false,
             category: 2,
             range_max: "",
@@ -128,6 +130,7 @@ var app = new Vue({
         },
         new_opt3: {
             st: [],
+            step: "",
             judge: false,
             category: 3,
             range_max: "",
@@ -150,6 +153,7 @@ var app = new Vue({
         },
         names3: [{
             st: [],
+            step: "",
             judge: false,
             category: 3,
             range_min: 6.5,
@@ -173,6 +177,7 @@ var app = new Vue({
         },
         {
             st: [],
+            step: "<p>1.1.5.1 取50ml透明的水样于比色管中。如水样色度过高，可取少量水样，加纯水稀释后比色，结果乘以稀释倍数。<br>1.1.5.2 另取比色管11支分别加入铂钴标准溶液0ml,0.50ml,1.00ml,1.50ml,2.00ml,2.50ml,3.00ml,3.50ml,4.00ml,4.50ml和5.00ml,加纯水至刻度，摇匀，配制色度为0度，5度，10度，15度，20度，25度，30度，35度，40度，45度和50度的标准色列，可长期使用。</p>",
             judge: false,
             category: 3,
             range_min: "",
@@ -196,6 +201,7 @@ var app = new Vue({
         },
         {
             st: [],
+            step: "",
             judge: false,
             category: 3,
             range_min: "",
@@ -220,6 +226,7 @@ var app = new Vue({
         ],
         names2: [{
             st: [],
+            step: "",
             judge: false,
             category: 2,
             range_max: 250,
@@ -246,6 +253,7 @@ var app = new Vue({
         },
         {
             st: [],
+            step: "",
             judge: false,
             category: 2,
             range_max: 1000,
@@ -273,6 +281,7 @@ var app = new Vue({
         },
         {
             st: [],
+            step: "",
             judge: false,
             category: 2,
             range_max: 3,
@@ -302,6 +311,7 @@ var app = new Vue({
         ],
         names1: [{
             st: [],
+            step: "",
             judge: false,
             category: 1,
             range_max: 0.5,
@@ -359,6 +369,7 @@ var app = new Vue({
         },
         {
             st: [],
+            step: "",
             judge: false,
             category: 1,
             range_max: 0.05,
@@ -416,6 +427,7 @@ var app = new Vue({
         },
         {
             st: [],
+            step: "",
             judge: false,
             category: 1,
             range_max: 0.1,
@@ -473,6 +485,7 @@ var app = new Vue({
         },
         {
             st: [],
+            step: "",
             judge: false,
             category: 1,
             range_max: 1.0,
@@ -530,6 +543,7 @@ var app = new Vue({
         },
         {
             st: [],
+            step: "",
             judge: false,
             category: 1,
             range_max: 20,
@@ -591,6 +605,7 @@ var app = new Vue({
         },
         {
             st: [],
+            step: "",
             judge: false,
             category: 1,
             range_max: 0.2,
@@ -652,6 +667,7 @@ var app = new Vue({
         },
         {
             st: [],
+            step: "",
             judge: false,
             category: 1,
             range_max: 0.002,
@@ -713,6 +729,7 @@ var app = new Vue({
         },
         {
             st: [],
+            step: "",
             judge: false,
             category: 1,
             range_max: 0.001,
@@ -774,6 +791,7 @@ var app = new Vue({
         },
         {
             st: [],
+            step: "",
             judge: false,
             category: 1,
             range_max: 0.3,
@@ -835,6 +853,7 @@ var app = new Vue({
         },
         {
             st: [],
+            step: "",
             judge: false,
             category: 1,
             range_max: 0.01,
@@ -892,6 +911,7 @@ var app = new Vue({
         },
         {
             st: [],
+            step: "",
             judge: false,
             category: 1,
             range_max: 0.005,
@@ -949,6 +969,7 @@ var app = new Vue({
         },
         {
             st: [],
+            step: "",
             judge: false,
             category: 1,
             range_max: 0.01,
@@ -1006,6 +1027,7 @@ var app = new Vue({
         },
         {
             st: [],
+            step: "",
             judge: false,
             category: 1,
             range_max: 0.05,
@@ -1063,6 +1085,7 @@ var app = new Vue({
         },
         {
             st: [],
+            step: "",
             judge: false,
             category: 1,
             range_max: 1.0,
@@ -1120,6 +1143,7 @@ var app = new Vue({
         },
         {
             st: [],
+            step: "",
             judge: false,
             category: 1,
             range_max: 0.1,
@@ -1177,6 +1201,7 @@ var app = new Vue({
         },
         {
             st: [],
+            step: "",
             judge: false,
             category: 1,
             range_max: 0.3,
@@ -1234,6 +1259,7 @@ var app = new Vue({
         },
         {
             st: [],
+            step: "",
             judge: false,
             category: 1,
             range_max: 1.0,
@@ -1291,6 +1317,7 @@ var app = new Vue({
         },
         {
             st: [],
+            step: "",
             judge: false,
             category: 1,
             range_max: 250,
