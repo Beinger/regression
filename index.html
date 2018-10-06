@@ -438,7 +438,9 @@
                     </div>
                     <table class="table table-bordered table-striped table-hover">
                         <tr>
-                            <td style="width:2em" class="text-center">样品数量：</td>
+                            <td class="text-center">检测方法：</td>
+                            <td colspan="1" contenteditable="true" v-text="selected1.method"></td>
+                            <td class="text-center">样品数量：</td>
                             <td colspan="2" contenteditable="true">3升</td>
                         </tr>
                         <tr>
@@ -468,8 +470,6 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="text-center">检测方法：</td>
-                            <td colspan="5" contenteditable="true" v-text="selected1.method"></td>
                         </tr>
                         <tr>
                             <td class="text-center">检验步骤：</td>
@@ -580,7 +580,9 @@
                     </div>
                     <table class="table table-bordered table-striped table-hover">
                         <tr>
-                            <td style="width:2em" class="text-center">样品数量：</td>
+                            <td class="text-center">检测方法：</td>
+                            <td colspan="1" contenteditable="true" v-text="selected2.method"></td>
+                            <td class="text-center">样品数量：</td>
                             <td colspan="2" contenteditable="true">3升</td>
                         </tr>
                         <tr>
@@ -608,10 +610,6 @@
                             <td class="text-center">检验依据：</td>
                             <td colspan="2" v-text="selected2.GB">
                             </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">检测方法：</td>
-                            <td colspan="5" contenteditable="true" v-text="selected2.method"></td>
                         </tr>
                         <tr>
                             <td class="text-center">检验步骤：</td>
@@ -709,16 +707,8 @@
                     </div>
                     <table class="table table-bordered table-striped table-hover">
                         <tr>
-                            <td style="width: 10em" class="text-center">样品名称：</td>
-                            <td style="padding: 0px;">
-                                <select style="border:0px; height: 2.4em; width: auto; outline:none; cursor: pointer;">
-                                    <option value="井水">井水</option>
-                                    <option value="泉水">泉水</option>
-                                    <option value="河水">河水</option>
-                                    <option value="溪水">溪水</option>
-                                    <option value="自来水">自来水</option>
-                                </select>
-                            </td>
+                            <td class="text-center">检测方法：</td>
+                            <td colspan="1" contenteditable="true" v-text="selected3.method"></td>
                             <td class="text-center">样品数量：</td>
                             <td colspan="2" contenteditable="true">3升</td>
                         </tr>
@@ -749,15 +739,11 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="text-center">检测方法：</td>
-                            <td colspan="5" contenteditable="true" v-text="selected3.method"></td>
-                        </tr>
-                        <tr>
                             <td class="text-center">检验步骤：</td>
                             <td colspan="5" v-html="selected3.step"></td>
                         </tr>
                         <tr>
-                            <td class="text-center">结果计算：</td>
+                            <td class="text-center" style="width: 12em">结果计算：</td>
                             <td colspan="5" v-html="selected3.calculation"></td>
                         </tr>
                     </table>
