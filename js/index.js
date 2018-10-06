@@ -14,7 +14,7 @@ var app = new Vue({
             "c": "无异臭和异味"
         },
         d2: {
-            "id": 1,
+            "id": 2,
             "assessment": "合格",
             "unit": "无量纲",
             "name": "肉眼可见物",
@@ -22,7 +22,7 @@ var app = new Vue({
             "c": "无"
         },
         d3: {
-            "id": 1,
+            "id": 4,
             "assessment": "合格",
             "unit": "MPN/100ml",
             "name": "总大肠菌群",
@@ -30,7 +30,7 @@ var app = new Vue({
             "c": "未检出"
         },
         d4: {
-            "id": 1,
+            "id": 5,
             "assessment": "合格",
             "unit": "MPN/100ml",
             "name": "大肠埃希氏菌",
@@ -38,7 +38,7 @@ var app = new Vue({
             "c": "未检出"
         },
         d5: {
-            "id": 1,
+            "id": 6,
             "assessment": "合格",
             "unit": "MPN/100ml",
             "name": "耐热大肠菌群",
@@ -68,6 +68,7 @@ var app = new Vue({
         slt3: "",
 
         new_opt1: {
+            id: '',
             st: [],
             step: "",
             judge: false,
@@ -101,6 +102,7 @@ var app = new Vue({
             },
         },
         new_opt2: {
+            id: '',
             st: [],
             step: "",
             judge: false,
@@ -129,6 +131,7 @@ var app = new Vue({
             },
         },
         new_opt3: {
+            id: '',
             st: [],
             step: "",
             judge: false,
@@ -152,8 +155,9 @@ var app = new Vue({
             },
         },
         names3: [{
+            id: 3,
             st: [],
-            step: "",
+            step: "<p>5.1.5.1 玻璃电极在使用前应放在纯水中侵泡24h以上。<br>5.1.5.2 仪器校正：仪器开启30min后，按仪器使用说明书操作。<br>5.1.5.3 pH定位：选用一种与被测水样pH接近的标准缓冲溶液，重复定位1~2次，当水样pH<7.0时，使用苯二甲酸氢钾标准缓冲溶液（5.1.3.1）定位，以四硼酸钠或混合磷酸盐标准缓冲溶液复定位；如果水样pH>7.0时，则用四硼酸钠标准缓冲溶液定位，以苯二甲酸氢钾或混合磷酸盐标准缓冲溶液复定位。<br><small>注：如发现三种缓冲液的定位值不成线性，应检查玻璃电极的质量。</small><br>5.1.5.4 用洗瓶以纯水缓缓淋洗两个电极数次，再以水样淋洗6~8次，然后插入水样中，1min后直接从仪器上读出pH值。<br><small>注1：甘汞电极内为氯化钾的饱和溶液，当室温升高后，溶液可能由饱和状态变为不饱和状态，故应保持一定量氯化钾晶体。</small><br><small>注2：pH值大于9的溶液，应使用高碱玻璃电极测定pH值。</small></p>",
             judge: false,
             category: 3,
             range_min: 6.5,
@@ -176,6 +180,7 @@ var app = new Vue({
             },
         },
         {
+            id: 4,
             st: [],
             step: "<p>1.1.5.1 取50ml透明的水样于比色管中。如水样色度过高，可取少量水样，加纯水稀释后比色，结果乘以稀释倍数。<br>1.1.5.2 另取比色管11支分别加入铂钴标准溶液0ml,0.50ml,1.00ml,1.50ml,2.00ml,2.50ml,3.00ml,3.50ml,4.00ml,4.50ml和5.00ml,加纯水至刻度，摇匀，配制色度为0度，5度，10度，15度，20度，25度，30度，35度，40度，45度和50度的标准色列，可长期使用。</p>",
             judge: false,
@@ -200,8 +205,9 @@ var app = new Vue({
             },
         },
         {
+            id: 5,
             st: [],
-            step: "",
+            step: "<p>按仪器使用说明书进行操作，浑浊度超过10NTU时，可用纯水稀释后测定。",
             judge: false,
             category: 3,
             range_min: "",
@@ -225,8 +231,9 @@ var app = new Vue({
         },
         ],
         names2: [{
+            id: 6,
             st: [],
-            step: "",
+            step: "<p>5.1 用移液管准确移取100mL水样于250mL锥形瓶中，加入1mL铬酸钾溶液，用硝酸银标准溶液滴定至砖红色沉淀刚刚出现即为滴定终点。<br>5.2 另取一锥形瓶加入100mL蒸馏水和1mL铬酸钾溶液，用硝酸银标准溶液滴定至砖红色沉淀刚刚出现即为滴定终点，作为空白试验。</p><p>氯化物质量浓度C(mg/L)按下式计算：</p><p class=\"text-center\"><mathml><mrow><mrow><mtext selected=\"true\">C</mtext><mo>=</mo><mfrac><mrow><mtext>(</mtext><mtext>&#x1D685;</mtext>&#x2082;</mtext><mo>-</mo><mtext>&#x1D685;</mtext><mtext>&#x2081;</mtext><mtext>)</mtext><mtext>&times;</mtext><mtext>&#x1D67C;</mtext><mtext>&times;</mtext><mtext>&#x1D7F9;&#x1D7FB;</mtext><mo>.</mo><mtext>&#x1D7FA;&#x1D7FB;</mtext><mtext>&times;</mtext><mtext>&#x1D7F7;&#x1D7F6;&#x1D7F6;&#x1D7F6;</mtext></mrow><mtext>V</mtext></mfrac></mrow></mrow></mathml><math><mrow><mi>C</mi><mo>=</mo><(V2-V1)*M*35.45*1000/V</mroot></math></p>",
             judge: false,
             category: 2,
             range_max: 250,
@@ -252,6 +259,7 @@ var app = new Vue({
             },
         },
         {
+            id: 7,
             st: [],
             step: "",
             judge: false,
@@ -280,6 +288,7 @@ var app = new Vue({
             },
         },
         {
+            id: 8,
             st: [],
             step: "",
             judge: false,
@@ -310,6 +319,7 @@ var app = new Vue({
         },
         ],
         names1: [{
+            id: 9,
             st: [],
             step: "",
             judge: false,
@@ -368,6 +378,7 @@ var app = new Vue({
             },
         },
         {
+            id: 10,
             st: [],
             step: "",
             judge: false,
@@ -426,64 +437,7 @@ var app = new Vue({
             },
         },
         {
-            st: [],
-            step: "",
-            judge: false,
-            category: 1,
-            range_max: 0.1,
-            range_min: "",
-            assessment: true,
-            unit: "mg/L",
-            start: 1,
-            end: 1,
-            name: "锰",
-            limit: 0.05,
-            method: "过硫酸铵分光光度法",
-            a: 0,
-            b: 1,
-            r: 1,
-            formula: "",
-            x: [],
-            y: [],
-            standard_series: [],
-            instrument_model: "分光光度计",
-            GB: "GB/T 5750.6-2006",
-            items: [
-                [
-                    0,
-                    0.002
-                ],
-                [
-                    10,
-                    0.008
-                ],
-                [
-                    30,
-                    0.024
-                ],
-                [
-                    50,
-                    0.038
-                ],
-                [
-                    70,
-                    0.053
-                ],
-                [
-                    90,
-                    0.068
-                ]
-            ],
-            result: {
-                id: 1,
-                v: 50,
-                a: "",
-                m: "",
-                c: "",
-                date: "",
-            },
-        },
-        {
+            id: 21,
             st: [],
             step: "",
             judge: false,
@@ -542,6 +496,7 @@ var app = new Vue({
             },
         },
         {
+            id: 23,
             st: [],
             step: "",
             judge: false,
@@ -604,6 +559,7 @@ var app = new Vue({
             },
         },
         {
+            id: 15,
             st: [],
             step: "",
             judge: false,
@@ -666,6 +622,7 @@ var app = new Vue({
             },
         },
         {
+            id: 25,
             st: [],
             step: "",
             judge: false,
@@ -728,6 +685,7 @@ var app = new Vue({
             },
         },
         {
+            id: 16,
             st: [],
             step: "",
             judge: false,
@@ -790,6 +748,7 @@ var app = new Vue({
             },
         },
         {
+            id: 24,
             st: [],
             step: "",
             judge: false,
@@ -852,6 +811,7 @@ var app = new Vue({
             },
         },
         {
+            id: 17,
             st: [],
             step: "",
             judge: false,
@@ -910,6 +870,7 @@ var app = new Vue({
             },
         },
         {
+            id: 18,
             st: [],
             step: "",
             judge: false,
@@ -968,6 +929,7 @@ var app = new Vue({
             },
         },
         {
+            id: 19,
             st: [],
             step: "",
             judge: false,
@@ -1026,6 +988,7 @@ var app = new Vue({
             },
         },
         {
+            id: 20,
             st: [],
             step: "",
             judge: false,
@@ -1084,6 +1047,7 @@ var app = new Vue({
             }
         },
         {
+            id: 13,
             st: [],
             step: "",
             judge: false,
@@ -1142,6 +1106,7 @@ var app = new Vue({
             },
         },
         {
+            id: 12,
             st: [],
             step: "",
             judge: false,
@@ -1200,6 +1165,7 @@ var app = new Vue({
             },
         },
         {
+            id: 11,
             st: [],
             step: "",
             judge: false,
@@ -1258,6 +1224,7 @@ var app = new Vue({
             },
         },
         {
+            id: 14,
             st: [],
             step: "",
             judge: false,
@@ -1316,6 +1283,7 @@ var app = new Vue({
             },
         },
         {
+            id: 22,
             st: [],
             step: "",
             judge: false,

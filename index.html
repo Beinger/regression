@@ -352,25 +352,25 @@
             </div>
             <div class="row">
                 <div class="col-lg-6 animated bounceInLeft" v-if="show1">
-                    <table class="animated fadeInUp table table-hover table-bordered text-center table-striped">
+                    <table class="animated fadeInUp table table-hover table-bordered text-center table-striped" :id="selected1.id">
                         <thead>
                             <tr>
                                 <th class="text-center">序号</th>
                                 <th class="text-center">标准加入量(μg)</th>
                                 <th class="text-center">吸光度</th>
                                 <th class="btn btn-info">
-                                    <i @click="add_item(selected1.id)" title="增加序列" class="fa fa-plus">增加</i>
+                                    <i @click="get_list()" title="保存数据" class="fa fa-save">保存</i>
                                 </th>
                                 <th class="btn btn-info">
-                                    <i @click="get_list()" title="保存" class="fa fa-save">保存</i>
+                                    <i @click="add_item(selected1.id)" title="增加序列" class="fa fa-plus">增加</i>
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="(item, index) in selected1.standard_series" :key="index">
                                 <td v-text="index+1"></td>
-                                <td contenteditable="true" v-bind:id="'v'+index" v-text="item[0]"></td>
-                                <td contenteditable="true" v-bind:id="'a'+index" v-text="item[1]"></td>
+                                <td contenteditable="true" v-text="item[0]"></td>
+                                <td contenteditable="true" v-text="item[1]"></td>
                                 <td colspan="2" @click="del(index)" title="删除" class="btn text-danger text-center"><i
                                         class="fa fa-trash"></i></td>
                             </tr>
