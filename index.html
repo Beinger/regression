@@ -35,12 +35,12 @@
                 </div>
                 <div class="col-xs-3 col-lg-2 col-md-2 col-sm-2">
                     <a class="btn btn-defult btn-lg" data-toggle="modal" data-target="#login" v-if="login_f">
-                        <i class="fa fa-sign-in">机构信息</i>
+                        <i class="fa fa-sign-in">机构名称</i>
                     </a>
-                    <a class="btn btn-defult btn-lg" data-toggle="modal" data-target="#environment" v-else>
+                    <a class="btn btn-success btn-lg" data-toggle="modal" data-target="#environment" v-else>
                         <i class="fa fa-thermometer">    环境记录</i>
                     </a>
-                    <a class="btn btn-lg btn-default" href="sample.html">
+                    <a class="btn btn-lg btn-info" href="sample.html">
                         <i class="fa fa-print">检验报告</i>
                     </a>
                     <div class="modal fade" id="environment" tabindex="-1" role="dialog" aria-labelledby="myEnv"
@@ -438,17 +438,7 @@
                     </div>
                     <table class="table table-bordered table-striped table-hover">
                         <tr>
-                            <td class="text-center">样品名称：</td>
-                            <td style="padding: 0px;">
-                                <select style="border:0px; height: 2.4em; width: auto; outline:none; cursor: pointer;">
-                                    <option value="井水">井水</option>
-                                    <option value="泉水">泉水</option>
-                                    <option value="河水">河水</option>
-                                    <option value="溪水">溪水</option>
-                                    <option value="自来水">自来水</option>
-                                </select>
-                            </td>
-                            <td class="text-center">样品量：</td>
+                            <td class="text-center">样品数量：</td>
                             <td colspan="2" contenteditable="true">3升</td>
                         </tr>
                         <tr>
@@ -484,6 +474,10 @@
                         <tr>
                             <td class="text-center">检验步骤：</td>
                             <td colspan="5" v-html="selected1.step"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">结果计算：</td>
+                            <td colspan="5" v-html="selected1.calculation"></td>
                         </tr>
                     </table>
                     <table @click="mystorages(selected1)" class="table table-bordered table-striped table-hover" id="record">
@@ -586,17 +580,7 @@
                     </div>
                     <table class="table table-bordered table-striped table-hover">
                         <tr>
-                            <td class="text-center">样品名称：</td>
-                            <td style="padding: 0px;">
-                                <select style="border:0px; height: 2.4em; width: auto; outline:none; cursor: pointer;">
-                                    <option value="井水">井水</option>
-                                    <option value="泉水">泉水</option>
-                                    <option value="河水">河水</option>
-                                    <option value="溪水">溪水</option>
-                                    <option value="自来水">自来水</option>
-                                </select>
-                            </td>
-                            <td class="text-center">样品量：</td>
+                            <td class="text-center">样品数量：</td>
                             <td colspan="2" contenteditable="true">3升</td>
                         </tr>
                         <tr>
@@ -632,6 +616,10 @@
                         <tr>
                             <td class="text-center">检验步骤：</td>
                             <td colspan="5" v-html="selected2.step"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">结果计算：</td>
+                            <td colspan="5" v-html="selected2.calculation"></td>
                         </tr>
                     </table>
                     <table @click="mystorages(selected2)" class="table table-bordered table-striped table-hover" id="record2">
@@ -731,7 +719,7 @@
                                     <option value="自来水">自来水</option>
                                 </select>
                             </td>
-                            <td class="text-center">样品量：</td>
+                            <td class="text-center">样品数量：</td>
                             <td colspan="2" contenteditable="true">3升</td>
                         </tr>
                         <tr>
@@ -767,6 +755,10 @@
                         <tr>
                             <td class="text-center">检验步骤：</td>
                             <td colspan="5" v-html="selected3.step"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">结果计算：</td>
+                            <td colspan="5" v-html="selected3.calculation"></td>
                         </tr>
                     </table>
                     <table @click="mystorages(selected3)" class="table table-bordered table-striped table-hover" id="record3">
