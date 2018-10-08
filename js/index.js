@@ -55,6 +55,11 @@ var app = new Vue({
         show1: false, //显示第一项
         show2: false, //显示第二项
         show3: false, //显示第三项
+        s1: false,
+        s2: false,
+        s3: false,
+        s4: false,
+        s5: false,
         add: false, //显示计算输入框
         date_show: false, //显示日期和评价之类
         vol_select: [  //常用的几种体积选项
@@ -229,12 +234,36 @@ var app = new Vue({
                 date: "",
             },
         },
+        {
+            st:[],
+            step: "",
+            judge: false,
+            category: 3,
+            range_min: "",
+            range_max: 3,
+            assessment: true,
+            unit: "NTU",
+            start: 1,
+            end: 1,
+            name: "溶解性总固体",
+            method: "称重法",
+            limit: 0.5,
+            instrument_model: "分析天平",
+            GB: "GB/T 5750.4-2006",
+            items: [],
+            result: {
+                id: "",
+                v: 50,
+                c: "",
+                date: "",
+            },
+
+        }
         ],
         names2: [{
             id: 6,
             st: [],
             step: "<p>5.1 用移液管准确移取100mL水样于250mL锥形瓶中，加入1mL铬酸钾溶液，用硝酸银标准溶液滴定至砖红色沉淀刚刚出现即为滴定终点。<br>5.2 另取一锥形瓶加入100mL蒸馏水和1mL铬酸钾溶液，用硝酸银标准溶液滴定至砖红色沉淀刚刚出现即为滴定终点，作为空白试验。</p><p>氯化物质量浓度C(mg/L)按下式计算：</p><p class=\"text-center\"></p>",
-            // calculation: '<math><mtext>C=</mtext><mfrac><mrow><mtext>(</mtext><mo>V</mo><mo>&#x2082;</mo><mo>-</mo><mo selected="true">V</mo><mo>&#x2081;</mo><mo stretchy="true">)</mo><mo>&times;</mo><mo>M</mo><mo>&times;</mo><mo>35.45</mo><mo>&times;</mo><mo>1000</mo></mrow></mfrac><mtext>V</mtext></math>',
             calculation: '<img src="img/cl.bmp" />',
             judge: false,
             category: 2,

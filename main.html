@@ -1,33 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="js/jquery3.3.1.min.js"></script>
-    <!-- <script src="js/vue.min.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
-    <link rel="stylesheet" href="css/css/bootstrap.css">
     <link rel="stylesheet" href="css/css/animation.min.css">
-    <link rel="stylesheet" href="css/css/font-awesome.min.css">
-    <script src="js/bootstarp.js"></script>
+    <link rel="stylesheet" href="css/css/bootstrap.css">
+    <link rel="stylesheet" href="css/css/font-awesome.css">
+    <script src="js/jquery3.3.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
     <script src="js/highcharts.js"></script>
-    <script src="js/highcharts_zh.js"></script>
-    <script src="js/myStorage.min.js"></script>
-    <script src="js/webSQL.js"></script>
-    <title>标准回归</title>
-</head>
-
-<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <title>直观版</title>
     <style>
         .threed {
             text-shadow: 0px 1px 0px #999, 1px 2px 1px #888, 2px 3px 2px #777, 3px 4px 3px #666, 4px 5px 4px #555, 5px 6px 5px #444, 6px 7px 6px #333, 7px 8px 7px #222, 8px 9px 8px #111
         }
     </style>
-
+</head>
+<body>
     <div class="container">
-        <div id="root">
+        <div id="app">
             <div class="jumbotron row">
                 <div onclick="focus_move()" class="col-xs-9 col-lg-10 col-md-10 col-sm-10">
                     <h2 data-toggle="modal" data-target="#login" v-text="company"></h2>
@@ -90,331 +83,70 @@
             <div class="row">
                 <ul class="pagination">
                     <li><a>&laquo;</a></li>
-                    <li><a @click="s1=true;s2=false;s3=false;s4=false;s5=false">感官性状和一般化学指标</a></li>
-                    <li><a @click="s1=false;s2=true;s3=false;s4=false;s5=false">毒理指标</a></li>
-                    <li><a @click="s1=false;s2=false;s4=false; s5=false;s3=true">消毒剂指标</a></li>
-                    <li><a @click="s1=false;s2=false;s3=false;s5=false;s4=true">微生物指标</a></li>
-                    <li><a @click="s1=false;s2=false;s3=false;s4=false;s5=true">放射性指标</a></li>
+                    <li><a @click="show1=true;show2=false;show3=false;show4=false;show5=false">感官性状和一般化学指标</a></li>
+                    <li><a @click="show1=false;show2=true;show3=false;show4=false;show5=false">毒理指标</a></li>
+                    <li><a @click="show1=false;show2=false;show4=false; show5=false;show3=true">消毒剂指标</a></li>
+                    <li><a @click="show1=false;show2=false;show3=false;show5=false;show4=true">微生物指标</a></li>
+                    <li><a @click="show1=false;show2=false;show3=false;show4=false;show5=true">放射性指标</a></li>
                     <li><a>&raquo;</li>
                 </ul>
             </div>
-            <div class="row btn-group" v-if="s1">
-                <input type="radio" v-model="selected3" :value="names3[1]">色度
-                <input type="radio" v-model="selected3" :value="names3[2]">浑浊度
-                <input type="radio" v-model="selected3" :value="d1">臭和味
-                <input type="radio" v-model="selected3" :value="d2">肉眼可见物
-                <input type="radio" v-model="selected3" :value="names3[0]">酸碱度
-                <input type="radio" v-model="selected1" :value="names1[4]">铝
-                <input type="radio" v-model="selected1" :value="names1[14]">铁
-                <input type="radio" v-model="selected1" :value="names1[13]">锰
-                <input type="radio" v-model="selected1" :value="names1[12]">铜
-                <input type="radio" v-model="selected1" :value="names1[15]">锌
-                <input type="radio" v-model="selected2" :value="names2[1]">总硬度
-                <input type="radio" v-model="selected3" :value="names3[1]">溶解性总固体
-                <input type="radio" v-model="selected1" :value="names1[5]">挥发酚类
-                <input type="radio" v-model="selected1" :value="names1[7]">阴离子合成洗涤剂
-                <input type="radio" v-model="selected2" :value="names2[2]">耗氧量
-                <input type="radio" v-model="selected1" :value="names1[16]">硫酸盐
-                <input type="radio" v-model="selected2" :value="names2[0]">氯化物
+            <div class="row btn-group" v-if="show1">
+                <button @click="">色度</button>
+                <button @click="">浑浊度</button>
+                <button @click="">臭和味</button>
+                <button @click="">肉眼可见物</button>
+                <button @click="">酸碱度</button>
+                <button @click="">铝</button>
+                <button @click="">铁</button>
+                <button @click="">锰</button>
+                <button @click="">铜</button>
+                <button @click="">锌</button>
+                <button @click="">总硬度</button>
+                <button @click="">溶解性总固体</button>
+                <button @click="">挥发酚类</button>
+                <button @click="">阴离子合成洗涤剂</button>
+                <button @click="">耗氧量</button>
+                <button @click="">硫酸盐</button>
+                <button @click="">氯化物</button>
             </div>
-            <div class="btn-group" v-if="s2">
-                <input type="radio" v-model="selected3" :value="names3[1]">砷
-                <input type="radio" v-model="selected1" :value="names1[8]">硒
-                <input type="radio" v-model="selected1" :value="names1[6]">汞
-                <input type="radio" v-model="selected1" :value="names1[9]">镉
-                <input type="radio" v-model="selected1" :value="names3[11]">铬(六价)
-                <input type="radio" v-model="selected1" :value="names1[10]">铅
-                <input type="radio" v-model="selected1" :value="names1[2]">氟化物
-                <input type="radio" v-model="selected1" :value="names1[1]">氰化物
-                <input type="radio" v-model="selected1" :value="names1[3]">硝酸盐氮
-                <input type="radio" v-model="selected3" :value="names3[1]">四氯化碳
-                <input type="radio" v-model="selected3" :value="names3[1]">三氯甲烷
-                <input type="radio" v-model="selected3" :value="names3[1]">亚氯酸盐
-                <input type="radio" v-model="selected3" :value="names3[1]">氯酸盐
-                <input type="radio" v-model="selected3" :value="names3[1]">溴酸盐
-                <input type="radio" v-model="selected3" :value="names3[1]">甲醛
+            <div class="btn-group" v-if="show2">
+                <button @click="">砷</button>
+                <button @click="">硒</button>
+                <button @click="">汞</button>
+                <button @click="">镉</button>
+                <button @click="">铬(六价)</button>
+                <button @click="">铅</button>
+                <button @click="">氟化物</button>
+                <button @click="">氰化物</button>
+                <button @click="">硝酸盐氮</button>
+                <button @click="">四氯化碳</button>
+                <button @click="">三氯甲烷</button>
+                <button @click="">亚氯酸盐</button>
+                <button @click="">氯酸盐</button>
+                <button @click="">溴酸盐</button>
+                <button @click="">甲醛</button>
             </div>
-            <div class="btn-group" v-if="s3">
-                <input type="radio" v-model="selected3" :value="names3[1]">余氯
-                <input type="radio" v-model="selected3" :value="names3[1]">总氯
-                <input type="radio" v-model="selected3" :value="names3[1]">臭氧
-                <input type="radio" v-model="selected3" :value="names3[1]">二氧化氯
+            <div class="btn-group" v-if="show3">
+                <button @click="">余氯</button>
+                <button @click="">总氯</button>
+                <button @click="">臭氧</button>
+                <button @click="">二氧化氯</button> 
             </div>
-            <div class="btn-group" v-if="s4">
-                <input type="radio" v-model="selected3" :value="names3[1]">总大肠菌群
-                <input type="radio" v-model="selected3" :value="names3[1]">耐热大肠菌群
-                <input type="radio" v-model="selected3" :value="names3[1]">大肠埃希氏菌
-                <input type="radio" v-model="selected3" :value="names3[1]">菌落总数
+            <div class="btn-group" v-if="show4">
+                <button @click="">总大肠菌群</button>
+                <button @click="">耐热大肠菌群</button>
+                <button @click="">大肠埃希氏菌</button>
+                <button @click="">菌落总数</button>
             </div>
-            <div class="btn-group" v-if="s5">
-                <input type="radio" v-model="selected3" :value="names3[1]">总α放射性
-                <input type="radio" v-model="selected3" :value="names3[1]">总β放射性
+            <div class="btn-group" v-if="show5">
+                <button @click="">总α放射性</button>
+                <button @click="">总β放射性</button>
             </div>
-
-            <div class="row form-group" v-if="false">
-                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
-                    <label class="form-label">
-                        <span>感官性状</span>
-                        <a title="新增项目或修改项目参数" class="btn btn-default" data-toggle="modal" data-target="#opt3">
-                            <i class="fa fa-plus"></i>/<i class="fa fa-eraser"></i>
-                        </a>
-                    </label>
-                    <select tabindex="-1" class="form-control animated fadeInDown input-lg" v-model="selected3">
-                        <option style="font-size: 80%" disabled>---请选择---</option>
-                        <option v-bind:id="'select3'+index" v-bind:value="item" v-for="(item,index) in names3" v-text="item.name"></option>
-                    </select>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
-                    <label class="form-label">
-                        <span>滴定法</span>
-                        <a title="新增项目或修改项目参数" class="btn btn-default" data-toggle="modal" data-target="#opt2">
-                            <i class="fa fa-plus"></i>/<i class="fa fa-eraser"></i>
-                        </a>
-                    </label>
-                    <select tabindex="-1" class="form-control animated fadeInDown input-lg" v-model="selected2">
-                        <option style="font-size: 80%" disabled>---请选择---</option>
-                        <option v-bind:id="'select2'+index" v-bind:value="item" v-for="(item,index) in names2" v-text="item.name"></option>
-                    </select>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
-                    <label calss="form-label">
-                        <span>比色法</span>
-                        <a title="新增项目或修改项目参数" class="btn btn-default" data-toggle="modal" data-target="#opt1">
-                            <i class="fa fa-plus"></i>/<i class="fa fa-eraser"></i>
-                        </a>
-                    </label>
-                    <select tabindex="-1" class="form-control animated fadeInDown input-lg" v-model="selected1">
-                        <option style="font-size: 80%" disabled>---请选择---</option>
-                        <option v-bind:id="'select'+index" v-bind:value="item" v-for="(item,index) in names1" v-text="item.name"></option>
-                    </select>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 text-right">
-                    <i class="fa fa-calendar" v-text="dateFormat(new Date())"></i>
-                </div>
-            </div>
-            <div>
-                <div class="modal fade" id="opt3" tabindex="-1" role="dialog" aria-labelledby="myOpt3" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class='modal-content'>
-                            <h3 @click="add_edit=!add_edit" class="btn form-control btn-info">新增/修改</h3>
-                            <ol class="nav">
-                                <li v-if="add_edit" class="animated fadeInLeft">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    </div>
-                                    <div class="modal-body form-group">
-                                        <p id="myOpt3" class="text-center">
-                                            增加项目
-                                        </p>
-                                        <label class="form-label">项目名称：</label>
-                                        <input type="text" class="form-control" v-model="new_opt3.name">
-                                        <label class="form-label">单位：</label>
-                                        <input type="text" class="form-control" v-model="new_opt3.unit">
-                                        <label class="form-label">检验依据：</label>
-                                        <input type="text" class="form-control" v-model="new_opt3.GB">
-                                        <label class="form-label">检验方法：</label>
-                                        <input type="text" class="form-control" v-model="new_opt3.method">
-                                        <label class="form-label">检测仪器：</label>
-                                        <input type="text" class="form-control" v-model="new_opt3.instrument_model">
-                                        <label class="form-label">最小检出限：</label>
-                                        <input type="text" class="form-control" v-model="new_opt3.limit">
-                                        <label class="form-label">最高限值：</label>
-                                        <input type="text" class="form-control" v-model="new_opt3.range_max">
-                                        <label class="form-label">最低限值：</label>
-                                        <input type="text" placeholder="如果没有最低限值，请忽略" class="form-control" v-model="new_opt3.range_min">
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button class="btn btn-info" data-dismiss="modal">关闭</button>
-                                        <button type="button" class="btn btn-primary" @click="save_opt(new_opt3, 3)" data-dismiss="modal">确认增加</button>
-                                    </div>
-                                </li>
-                                <li v-if="!add_edit" class="animated fadeInRight">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    </div>
-                                    <div class="modal-body form-group">
-                                        <p class="text-center">
-                                            修正项目
-                                        </p>
-                                        <label class="form-label">项目名称：</label>
-                                        <select tabindex="-1" class="form-control" v-model="slt3">
-                                            <option style="font-size: 80%" disabled>---请选择---</option>
-                                            <option v-bind:id="'select3'+index" v-bind:value="item" v-for="(item,index) in names3"
-                                                v-text="item.name"></option>
-                                        </select>
-                                        <label class="form-label">单位：</label>
-                                        <input type="text" class="form-control" v-model="slt3.unit">
-                                        <label class="form-label">检验依据：</label>
-                                        <input type="text" class="form-control" v-model="slt3.GB">
-                                        <label class="form-label">检验方法：</label>
-                                        <input type="text" class="form-control" v-model="slt3.method">
-                                        <label class="form-label">检测仪器：</label>
-                                        <input type="text" class="form-control" v-model="slt3.instrument_model">
-                                        <label class="form-label">最小检出限：</label>
-                                        <input type="text" class="form-control" v-model="slt3.limit">
-                                        <label class="form-label">最高限值：</label>
-                                        <input type="text" class="form-control" v-model="slt3.range_max">
-                                        <label class="form-label">最低限值：</label>
-                                        <input placeholder="如果没有最低限值，请忽略" type="text" class="form-control" v-model="slt3.range_min">
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button class="btn btn-info" data-dismiss="modal">关闭</button>
-                                        <button type="button" class="btn btn-primary" @click="save_opt(slt3, 3)"　data-dismiss="modal">提交更改</button>
-                                    </div>
-                                </li>
-                            </ol>
-                        </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal -->
-                <div class="modal fade" id="opt2" tabindex="-1" role="dialog" aria-labelledby="myOpt2" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class='modal-content'>
-                            <h3 @click="add_edit=!add_edit" class="btn form-control btn-info">新增/修改</h3>
-                            <ol class="nav">
-                                <li v-if="add_edit" class="animated fadeInLeft">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    </div>
-                                    <div class="modal-body form-group">
-                                        <p id="myOpt2" class="text-center">
-                                            增加项目
-                                        </p>
-                                        <label class="form-label">项目名称：</label>
-                                        <input type="text" class="form-control" v-model="new_opt2.name">
-                                        <label class="form-label">单位：</label>
-                                        <input type="text" class="form-control" v-model="new_opt2.unit">
-                                        <label class="form-label">检验依据：</label>
-                                        <input type="text" class="form-control" v-model="new_opt2.GB">
-                                        <label class="form-label">检验方法：</label>
-                                        <input type="text" class="form-control" v-model="new_opt2.method">
-                                        <label class="form-label">检测仪器：</label>
-                                        <input type="text" class="form-control" v-model="new_opt2.instrument_model">
-                                        <label class="form-label">最小检出限：</label>
-                                        <input type="text" class="form-control" v-model="new_opt2.limit">
-                                        <label class="form-label">最高限值：</label>
-                                        <input type="text" class="form-control" v-model="new_opt2.range_max">
-                                        <label class="form-label">最低限值：</label>
-                                        <input type="text" placeholder="如果没有最低限值，请忽略" class="form-control" v-model="new_opt2.range_min">
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button class="btn btn-info" data-dismiss="modal">关闭</button>
-                                        <button type="button" class="btn btn-primary" @click="save_opt(new_opt2, 2)" data-dismiss="modal">确认增加</button>
-                                    </div>
-                                </li>
-                                <li v-if="!add_edit" class="animated fadeInRight">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    </div>
-                                    <div class="modal-body form-group">
-                                        <p class="text-center">
-                                            修正项目
-                                        </p>
-                                        <label class="form-label">项目名称：</label>
-                                        <select tabindex="-1" class="form-control" v-model="slt2">
-                                            <option style="font-size: 80%" disabled>---请选择---</option>
-                                            <option v-bind:id="'select2'+index" v-bind:value="item" v-for="(item,index) in names2"
-                                                v-text="item.name"></option>
-                                        </select>
-                                        <label class="form-label">单位：</label>
-                                        <input type="text" class="form-control" v-model="slt2.unit">
-                                        <label class="form-label">检验依据：</label>
-                                        <input type="text" class="form-control" v-model="slt2.GB">
-                                        <label class="form-label">检验方法：</label>
-                                        <input type="text" class="form-control" v-model="slt2.method">
-                                        <label class="form-label">检测仪器：</label>
-                                        <input type="text" class="form-control" v-model="slt2.instrument_model">
-                                        <label class="form-label">最小检出限：</label>
-                                        <input type="text" class="form-control" v-model="slt2.limit">
-                                        <label class="form-label">最高限值：</label>
-                                        <input type="text" class="form-control" v-model="slt2.range_max">
-                                        <label class="form-label">最低限值：</label>
-                                        <input placeholder="如果没有最低限值，请忽略" type="text" class="form-control" v-model="slt2.range_min">
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button class="btn btn-info" data-dismiss="modal">关闭</button>
-                                        <button type="button" class="btn btn-primary" @click="save_opt(slt2, 2)" data-dismiss="modal">提交更改</button>
-                                    </div>
-                                </li>
-                            </ol>
-                        </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal -->
-                <div class="modal fade" id="opt1" tabindex="-1" role="dialog" aria-labelledby="myOpt1" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class='modal-content'>
-                            <h3 @click="add_edit=!add_edit" class="btn form-control btn-info">新增/修改</h3>
-                            <ol class="nav">
-                                <li v-if="add_edit" class="animated fadeInLeft">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    </div>
-                                    <div class="modal-body form-group">
-                                        <p id="myOpt1" class="text-center">
-                                            增加项目
-                                        </p>
-                                        <label class="form-label">项目名称：</label>
-                                        <input type="text" class="form-control" v-model="new_opt1.name">
-                                        <label class="form-label">单位：</label>
-                                        <input type="text" class="form-control" v-model="new_opt1.unit">
-                                        <label class="form-label">检验依据：</label>
-                                        <input type="text" class="form-control" v-model="new_opt1.GB">
-                                        <label class="form-label">检验方法：</label>
-                                        <input type="text" class="form-control" v-model="new_opt1.method">
-                                        <label class="form-label">检测仪器：</label>
-                                        <input type="text" class="form-control" v-model="new_opt1.instrument_model">
-                                        <label class="form-label">最小检出限：</label>
-                                        <input type="text" class="form-control" v-model="new_opt1.limit">
-                                        <label class="form-label">最高限值：</label>
-                                        <input type="text" class="form-control" v-model="new_opt1.range_max">
-                                        <label class="form-label">最低限值：</label>
-                                        <input type="text" placeholder="如果没有最低限值，请忽略" class="form-control" v-model="new_opt1.range_min">
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button class="btn btn-info" data-dismiss="modal">关闭</button>
-                                        <button type="button" class="btn btn-primary" @click="save_opt(new_opt1, 1)" data-dismiss="modal">确认增加</button>
-                                    </div>
-                                </li>
-                                <li v-if="!add_edit" class="animated fadeInRight">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    </div>
-                                    <div class="modal-body form-group">
-                                        <p class="text-center">
-                                            修正项目
-                                        </p>
-                                        <label class="form-label">项目名称：</label>
-                                        <select tabindex="-1" class="form-control" v-model="slt1">
-                                            <option style="font-size: 80%" disabled>---请选择---</option>
-                                            <option v-bind:id="'select1'+index" v-bind:value="item" v-for="(item,index) in names1"
-                                                v-text="item.name"></option>
-                                        </select>
-                                        <label class="form-label">单位：</label>
-                                        <input type="text" class="form-control" v-model="slt1.unit">
-                                        <label class="form-label">检验依据：</label>
-                                        <input type="text" class="form-control" v-model="slt1.GB">
-                                        <label class="form-label">检验方法：</label>
-                                        <input type="text" class="form-control" v-model="slt1.method">
-                                        <label class="form-label">检测仪器：</label>
-                                        <input type="text" class="form-control" v-model="slt1.instrument_model">
-                                        <label class="form-label">最小检出限：</label>
-                                        <input type="text" class="form-control" v-model="slt1.limit">
-                                        <label class="form-label">最高限值：</label>
-                                        <input type="text" class="form-control" v-model="slt1.range_max">
-                                        <label class="form-label">最低限值：</label>
-                                        <input placeholder="没有最低限值，请忽略" type="text" class="form-control" v-model="slt1.range_min">
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button class="btn btn-info" data-dismiss="modal">关闭</button>
-                                        <button type="button" class="btn btn-primary" @click="save_opt(slt1, 1)" data-dismiss="modal">提交更改</button>
-                                    </div>
-                                </li>
-                            </ol>
-                        </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal -->
-            </div>
+        </div>
+        <div>
             <div class="row">
-                <div class="col-lg-6 animated bounceInLeft" v-if="show1">
+                <div class="col-lg-6 animated bounceInLeft" v-if="bise">
                     <table class="animated fadeInUp table table-hover table-bordered text-center table-striped" :id="selected1.id">
                         <thead>
                             <tr>
@@ -443,11 +175,11 @@
                         </caption>
                     </table>
                 </div>
-                <div class="col-lg-6" v-show="show1">
+                <div class="col-lg-6" v-show="bise">
                     <div id="line" style="box-shadow:5px 5px 4px"></div>
                 </div>
             </div>
-            <form v-if="show1" class="animated bounceInRight">
+            <form v-if="bise" class="animated bounceInRight">
                 <div class="row">
                     <div class="col-lg-5">
                         <fieldset>
@@ -456,8 +188,7 @@
                             <span class="text-danger animated bounceIn infinite" v-if="selected1.r<0.999">------注意：相关系数若小于0.999，说明标准曲线不合格，请重新核对数据，分析检测过程，必要时重新测定标准系列。</span>
                             <div>
                                 <a class="btn btn-default" @click="add_sample(selected1)">
-                                    <i class="fa fa-hand-o-right fa-2x"></i><i class="fa fa-pencil"></i>
-                                    开始录入
+                                    <i class="fa fa-hand-o-right fa-2x"></i><i class="fa fa-pencil">开始录入</i>
                                     样品编号<i v-text="numbering+(new Date()).getFullYear()"></i>水第
                                         <input v-if="selected1.judge==true" tabindex="11" type="number" v-model="selected1.start">
                                         <input v-else-if="selected1.judge==false" type="number" v-model="selected1.end">
@@ -584,7 +315,7 @@
                     </div>
                 </div>
             </form>
-            <form class="animated bounceInDown" v-if="show2">
+            <form class="animated bounceInDown" v-if="diding">
                 <div class="row">
                     <div class="col-lg-5">
                         <fieldset>
@@ -724,7 +455,7 @@
                     </div>
                 </div>
             </form>
-            <form class="animated bounceInRight" v-if="show3">
+            <form class="animated bounceInRight" v-if="ganguan">
                 <div class="row">
                     <div class="col-lg-5">
                         <fieldset>
@@ -843,17 +574,7 @@
                 </div>
             </form>
         </div>
-    </div>
-    <br>
-    <br>
-    <br>
-    <script src="js/index.js"></script>
-    <footer class="footer">
-        <div>使用过程中有任何疑问或想法，欢迎在我的
-            <a href="img/myWX.jpg"><i class="fa fa-comments"></i></a>或者<i class="fa fa-qq">478174277</i>
-            留言
-        </div>
-    </footer>
-    <link rel="stylesheet" href="css/css/index.css">
+    </div> 
 </body>
+<script src="js/main.js"></script>
 </html>
