@@ -258,7 +258,83 @@ var app = new Vue({
                 date: "",
             },
 
-        }
+        },
+        {
+            st:[],
+            step: "",
+            judge: false,
+            category: 3,
+            range_min: "",
+            range_max: 3,
+            assessment: true,
+            unit: "μg/L",
+            start: 1,
+            end: 1,
+            name: "四氯化碳",
+            method: "毛细管柱气相色谱法",
+            limit: 0.1,
+            instrument_model: "气相色谱仪",
+            GB: "GB/T 5750.8-2006",
+            items: [],
+            result: {
+                id: "",
+                v: 0.01,
+                c: "",
+                date: "",
+            },
+
+        },
+        {
+            st:[],
+            step: "",
+            judge: false,
+            category: 3,
+            range_min: "",
+            range_max: 3,
+            assessment: true,
+            unit: "μg/L",
+            start: 1,
+            end: 1,
+            name: "三氯甲烷",
+            method: "毛细管柱气相色谱法",
+            limit: 0.2,
+            instrument_model: "气相色谱仪",
+            GB: "GB/T 5750.8-2006",
+            items: [],
+            result: {
+                id: "",
+                v: 0.01,
+                c: "",
+                date: "",
+            },
+
+        },
+        {
+            id: 26,
+            st: [],
+            step: "",
+            calculation: "",
+            judge: false,
+            category: 1,
+            range_max: 0.001,
+            range_min: "",
+            assessment: true,
+            unit: "mg/L",
+            start: 1,
+            end: 1,
+            name: "溴酸盐",
+            limit: 0.001,
+            method: "离子色谱法",
+            instrument_model: "离子色谱仪",
+            GB: "GB/T 5750.10-2006",
+            result: {
+                id: 1,
+                v: 50,
+                a: "",
+                c: "",
+                date: ""
+            },
+        },
         ],
         names2: [{
             id: 6,
@@ -345,6 +421,63 @@ var app = new Vue({
                 a0: 0.05,
                 a1: "",
                 coefficient: 80,
+                K: 1,
+                c: "",
+                date: ""
+            },
+        },
+        {
+            id: 24,
+            st: [],
+            step: "",
+            calculation: "C = m/V",
+            judge: false,
+            category: 1,
+            range_max: 0.001,
+            assessment: true,
+            unit: "mg/L",
+            start: 1,
+            end: 1,
+            name: "亚氯酸盐",
+            limit: 0.004,
+            method: "碘量法",
+            instrument_model: "砷化氢发生器、分光光度计",
+            GB: "GB/T 5750.10-2006",
+            result: {
+                id: 1,
+                v: 50,
+                a0: "",
+                a1: "",
+                coefficient: 1,
+                K: 1,
+                c: "",
+                date: ""
+            },
+        },
+        {
+            id: 25,
+            st: [],
+            step: "",
+            calculation: "C = m/V",
+            judge: false,
+            category: 1,
+            range_max: 0.001,
+            range_min: "",
+            assessment: true,
+            unit: "mg/L",
+            start: 1,
+            end: 1,
+            name: "氯酸盐",
+            limit: 0.001,
+            method: "碘量法",
+            instrument_model: "砷化氢发生器、分光光度计",
+            GB: "GB/T 5750.10-2006",
+            result: {
+                id: 1,
+                v: 50,
+                a0: "",
+                a1: "",
+                coefficient: 1,
                 K: 1,
                 c: "",
                 date: ""
@@ -1377,6 +1510,134 @@ var app = new Vue({
                 [
                     10,
                     1.137
+                ]
+            ],
+            result: {
+                id: 1,
+                v: 50,
+                a: "",
+                m: "",
+                c: "",
+                date: ""
+            },
+        },
+        {
+            id: 23,
+            st: [],
+            step: "",
+            calculation: "C = m/V",
+            judge: false,
+            category: 1,
+            range_max: 0.001,
+            range_min: "",
+            assessment: true,
+            unit: "mg/L",
+            start: 1,
+            end: 1,
+            name: "砷",
+            limit: 0.001,
+            method: "二乙氨基二硫代甲酸银分光光度法",
+            a: 0,
+            b: 1,
+            r: 1,
+            formula: "",
+            x: [],
+            y: [],
+            standard_series: [],
+            instrument_model: "砷化氢发生器、分光光度计",
+            GB: "GB/T 5750.6-2006",
+            items: [
+                [
+                    0,
+                    0.406
+                ],
+                [
+                    0.5,
+                    0.423
+                ],
+                [
+                    1,
+                    0.441
+                ],
+                [
+                    2,
+                    0.474
+                ],
+                [
+                    4,
+                    0.531
+                ],
+                [
+                    6,
+                    0.598
+                ],
+                [
+                    8,
+                    0.660
+                ]
+            ],
+            result: {
+                id: 1,
+                v: 50,
+                a: "",
+                m: "",
+                c: "",
+                date: ""
+            },
+        },
+        {
+            id: 27,
+            st: [],
+            step: "",
+            calculation: "C = m/V",
+            judge: false,
+            category: 1,
+            range_max: 0.001,
+            range_min: "",
+            assessment: true,
+            unit: "mg/L",
+            start: 1,
+            end: 1,
+            name: "甲醛",
+            limit: 0.001,
+            method: "4-氨基-3-联氨-5-硫基-1,2,4-三氮杂茂(AHMT)分光光度法",
+            a: 0,
+            b: 1,
+            r: 1,
+            formula: "",
+            x: [],
+            y: [],
+            standard_series: [],
+            instrument_model: "分光光度计",
+            GB: "GB/T 5750.10-2006",
+            items: [
+                [
+                    0,
+                    0.406
+                ],
+                [
+                    0.5,
+                    0.423
+                ],
+                [
+                    1,
+                    0.441
+                ],
+                [
+                    2,
+                    0.474
+                ],
+                [
+                    4,
+                    0.531
+                ],
+                [
+                    6,
+                    0.598
+                ],
+                [
+                    8,
+                    0.660
                 ]
             ],
             result: {

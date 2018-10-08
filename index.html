@@ -110,29 +110,30 @@
                 <input type="radio" v-model="selected1" :value="names1[12]">铜
                 <input type="radio" v-model="selected1" :value="names1[15]">锌
                 <input type="radio" v-model="selected2" :value="names2[1]">总硬度
-                <input type="radio" v-model="selected3" :value="names3[1]">溶解性总固体
+                <input type="radio" v-model="selected3" :value="names3[3]">溶解性总固体
                 <input type="radio" v-model="selected1" :value="names1[5]">挥发酚类
                 <input type="radio" v-model="selected1" :value="names1[7]">阴离子合成洗涤剂
                 <input type="radio" v-model="selected2" :value="names2[2]">耗氧量
                 <input type="radio" v-model="selected1" :value="names1[16]">硫酸盐
                 <input type="radio" v-model="selected2" :value="names2[0]">氯化物
             </div>
-            <div class="btn-group" v-if="s2">
-                <input type="radio" v-model="selected3" :value="names3[1]">砷
+            <div class="col-lg-10" v-if="s2">
+                <input type="radio" v-model="selected1" :value="names1[17]">
+                砷
                 <input type="radio" v-model="selected1" :value="names1[8]">硒
                 <input type="radio" v-model="selected1" :value="names1[6]">汞
                 <input type="radio" v-model="selected1" :value="names1[9]">镉
-                <input type="radio" v-model="selected1" :value="names3[11]">铬(六价)
+                <input type="radio" v-model="selected1" :value="names1[11]">铬(六价)
                 <input type="radio" v-model="selected1" :value="names1[10]">铅
                 <input type="radio" v-model="selected1" :value="names1[2]">氟化物
                 <input type="radio" v-model="selected1" :value="names1[1]">氰化物
                 <input type="radio" v-model="selected1" :value="names1[3]">硝酸盐氮
-                <input type="radio" v-model="selected3" :value="names3[1]">四氯化碳
-                <input type="radio" v-model="selected3" :value="names3[1]">三氯甲烷
-                <input type="radio" v-model="selected3" :value="names3[1]">亚氯酸盐
-                <input type="radio" v-model="selected3" :value="names3[1]">氯酸盐
-                <input type="radio" v-model="selected3" :value="names3[1]">溴酸盐
-                <input type="radio" v-model="selected3" :value="names3[1]">甲醛
+                <input type="radio" v-model="selected3" :value="names3[4]">四氯化碳
+                <input type="radio" v-model="selected3" :value="names3[5]">三氯甲烷
+                <input type="radio" v-model="selected2" :value="names2[3]">亚氯酸盐
+                <input type="radio" v-model="selected2" :value="names2[4]">氯酸盐
+                <input type="radio" v-model="selected3" :value="names3[6]">溴酸盐
+                <input type="radio" v-model="selected1" :value="names1[18]">甲醛
             </div>
             <div class="btn-group" v-if="s3">
                 <input type="radio" v-model="selected3" :value="names3[1]">余氯
