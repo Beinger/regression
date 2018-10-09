@@ -87,7 +87,8 @@
                     </div>
                 </div>
             </div>
-            <div class="">
+            <div class="container row">
+                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 text-left">
                 <ul class="pagination form-group">
                     <li><a>&laquo;</a></li>
                     <li><a @mouseover="s1=true;s2=false;s3=false;s4=false;s5=false">感官性状和一般化学指标</a></li>
@@ -97,255 +98,52 @@
                     <li><a @mouseover="s1=false;s2=false;s3=false;s4=false;s5=true">放射性指标</a></li>
                     <li><a>&raquo;</li>
                 </ul>
-            </div>
-            <div class="input-group row" v-if="s1">
-                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <span class="input-group-addon"><input type="radio" v-model="selected3"
-                            :value="names[6]">色度
-                    </span>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <span class="input-group-addon"><input type="radio" v-model="selected3"
-                            :value="names[7]">浑浊度
-                    </span>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <span class="input-group-addon"><input type="radio" v-model="selected3"
-                            :value="names[0]">臭和味
-                    </span>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <span class="input-group-addon"><input type="radio" v-model="selected3"
-                            :value="names[1]">肉眼可见物
-                    </span>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <span class="input-group-addon"><input type="radio" v-model="selected3"
-                            :value="names[5]">酸碱度
-                    </span>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <span class="input-group-addon"><input type="radio" v-model="selected1"
-                            :value="names[25]">铝
-                    </span>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <span class="input-group-addon"><input type="radio" v-model="selected1"
-                            :value="names[35]">铁
-                    </span>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <span class="input-group-addon"><input type="radio" v-model="selected1"
-                            :value="names[34]">锰
-                    </span>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <span class="input-group-addon"><input type="radio" v-model="selected1"
-                            :value="names[33]">铜
-                    </span>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <span class="input-group-addon"><input type="radio" v-model="selected1"
-                            :value="names[36]">锌
-                    </span>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <span class="input-group-addon"><input type="radio" v-model="selected2"
-                            :value="names[18]">总硬度
-                    </span>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <span class="input-group-addon"><input type="radio" v-model="selected3"
-                            :value="names[8]">溶解性总固体
-                    </span>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <span class="input-group-addon"><input type="radio" v-model="selected1"
-                            :value="names[26]">挥发酚类
-                    </span>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <span class="input-group-addon"><input type="radio" v-model="selected1"
-                            :value="names[28]">阴离子合成洗涤剂
-                    </span>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <span class="input-group-addon"><input type="radio" v-model="selected2"
-                            :value="names[18]">耗氧量
-                    </span>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <span class="input-group-addon"><input type="radio" v-model="selected1"
-                            :value="names[37]">硫酸盐
-                    </span>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <span class="input-group-addon"><input type="radio" v-model="selected2"
-                            :value="names[16]">氯化物
-                    </span>
-                </div>
-            </div>
-            <div class="input-group input-group-lg row" v-if="s2">
-                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <span class="input-group-addon">
-                        <input type="radio" v-model="selected1" :value="names[38]">砷</span>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <span class="input-group-addon">
-                        <input type="radio" v-model="selected1" :value="names[29]">硒</span>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <span class="input-group-addon">
-                        <input type="radio" v-model="selected1" :value="names[27]">汞</span>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <span class="input-group-addon">
-                        <input type="radio" v-model="selected1" :value="names[30]">镉</span>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <span class="input-group-addon">
-                        <input type="radio" v-model="selected1" :value="names[32]">铬(六价)</span>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <span class="input-group-addon">
-                        <input type="radio" v-model="selected1" :value="names[31]">铅</span>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <span class="input-group-addon">
-                        <input type="radio" v-model="selected1" :value="names[23]">氟化物</span>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <span class="input-group-addon">
-                        <input type="radio" v-model="selected1" :value="names[22]">氰化物</span>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <span class="input-group-addon">
-                        <input type="radio" v-model="selected1" :value="names[24]">硝酸盐氮</span>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <span class="input-group-addon">
-                        <input type="radio" v-model="selected3" :value="names[9]">四氯化碳</span>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <span class="input-group-addon">
-                        <input type="radio" v-model="selected3" :value="names[10]">三氯甲烷</span>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <span class="input-group-addon">
-                        <input type="radio" v-model="selected2" :value="names[19]">亚氯酸盐</span>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <span class="input-group-addon">
-                        <input type="radio" v-model="selected2" :value="names[20]">氯酸盐</span>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <span class="input-group-addon">
-                        <input type="radio" v-model="selected3" :value="names[11]">溴酸盐</span>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <span class="input-group-addon">
-                        <input type="radio" v-model="selected1" :value="names[39]">甲醛</span>
-                </div>
-            </div>
-            <div class="input-group input-group-lg row" v-if="s3">
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                    <span class="input-group-addon">
-                        <input type="radio" v-model="selected3" :value="names[12]">余氯</span>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                    <span class="input-group-addon">
-                        <input type="radio" v-model="selected3" :value="names[13]">总氯</span>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                    <span class="input-group-addon">
-                        <input type="radio" v-model="selected3" :value="names[15]">臭氧</span>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                    <span class="input-group-addon">
-                        <input type="radio" v-model="selected3" :value="names[14]">二氧化氯</span>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                    <span class="input-group-addon">
-                        <input type="radio" v-model="selected1" :value="names[21]">氨氮</span>
-                </div>
-            </div>
-            <div class="input-group input-group-lg row" v-if="s4">
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                    <span class="input-group-addon">
-                        <input type="radio" v-model="selected3" :value="names[2]">总大肠菌群</span>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                    <span class="input-group-addon">
-                        <input type="radio" v-model="selected3" :value="names[4]">耐热大肠菌群</span>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                    <span class="input-group-addon">
-                        <input type="radio" v-model="selected3" :value="names[3]">大肠埃希氏菌</span>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                    <span class="input-group-addon">
-                        <input type="radio" v-model="selected3" :value="names[40]">菌落总数</span>
-                </div>
-            </div>
-             <div class="input-group input-group-lg row" v-if="s5">
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                    <span class="input-group-addon">
-                        <input type="radio" v-model="selected3" :value="names[41]">总α放射性</span>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                    <span class="input-group-addon">
-                        <input type="radio" v-model="selected3" :value="names[42]">总β放射性</span>
-                </div>
-            </div>
-
-            <div class="row form-group" v-if="false">
-                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
-                    <label class="form-label">
-                        <span>感官性状</span>
-                        <a title="新增项目或修改项目参数" class="btn btn-default" data-toggle="modal" data-target="#opt3">
-                            <i class="fa fa-plus"></i>/<i class="fa fa-eraser"></i>
-                        </a>
-                    </label>
-                    <select tabindex="-1" class="form-control animated fadeInDown input-lg" v-model="selected3">
-                        <option style="font-size: 80%" disabled>---请选择---</option>
-                        <option v-bind:id="'select3'+index" v-bind:value="item" v-for="(item,index) in names" v-text="item.name"></option>
-                    </select>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
-                    <label class="form-label">
-                        <span>滴定法</span>
-                        <a title="新增项目或修改项目参数" class="btn btn-default" data-toggle="modal" data-target="#opt2">
-                            <i class="fa fa-plus"></i>/<i class="fa fa-eraser"></i>
-                        </a>
-                    </label>
-                    <select tabindex="-1" class="form-control animated fadeInDown input-lg" v-model="selected2">
-                        <option style="font-size: 80%" disabled>---请选择---</option>
-                        <option v-bind:id="'select2'+index" v-bind:value="item" v-for="(item,index) in names" v-text="item.name"></option>
-                    </select>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
-                    <label calss="form-label">
-                        <span>比色法</span>
-                        <a title="新增项目或修改项目参数" class="btn btn-default" data-toggle="modal" data-target="#opt1">
-                            <i class="fa fa-plus"></i>/<i class="fa fa-eraser"></i>
-                        </a>
-                    </label>
-                    <select tabindex="-1" class="form-control animated fadeInDown input-lg" v-model="selected1">
-                        <option style="font-size: 80%" disabled>---请选择---</option>
-                        <option v-bind:id="'select'+index" v-bind:value="item" v-for="(item,index) in names" v-text="item.name"></option>
-                    </select>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 text-right">
                     <i class="fa fa-calendar" v-text="dateFormat(new Date())"></i>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
+                    <label class="form-label">
+                        <span>新增其他项目</span>
+                        <a title="新增项目" class="btn btn-default" data-toggle="modal" data-target="#opt3">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </label>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
+                    <label class="form-label">
+                        <span>新增滴定法测定项目</span>
+                        <a title="新增项目或修改项目参数" class="btn btn-default" data-toggle="modal" data-target="#opt2">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </label>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
+                    <label calss="form-label">
+                        <span>新增比色法测定项目</span>
+                        <a title="新增项目或修改项目参数" class="btn btn-default" data-toggle="modal" data-target="#opt1">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </label>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
+                    <label calss="form-label">
+                        <span>修改项目参数</span>
+                        <a title="修改项目参数" class="btn btn-default" data-toggle="modal" data-target="#opt4">
+                            <i class="fa fa-eraser"></i>
+                        </a>
+                    </label>
                 </div>
             </div>
             <div>
                 <div class="modal fade" id="opt3" tabindex="-1" role="dialog" aria-labelledby="myOpt3" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class='modal-content'>
-                            <h3 @click="add_edit=!add_edit" class="btn form-control btn-info">新增/修改</h3>
+                            <h3 class="btn form-control btn-info">新增其他类型项目</h3>
                             <ol class="nav">
-                                <li v-if="add_edit" class="animated fadeInLeft">
+                                <li class="animated fadeInLeft">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     </div>
@@ -376,7 +174,16 @@
                                             data-dismiss="modal">确认增加</button>
                                     </div>
                                 </li>
-                                <li v-if="!add_edit" class="animated fadeInRight">
+                            </ol>
+                        </div>
+                    </div>
+                </div>               
+                <div class="modal fade" id="opt4" tabindex="-1" role="dialog" aria-labelledby="myOpt4" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class='modal-content'>
+                            <h3 class="btn form-control btn-info">修改项目参数</h3>
+                            <ol class="nav">
+                                <li class="animated fadeInRight">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     </div>
@@ -418,9 +225,9 @@
                 <div class="modal fade" id="opt2" tabindex="-1" role="dialog" aria-labelledby="myOpt2" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class='modal-content'>
-                            <h3 @click="add_edit=!add_edit" class="btn form-control btn-info">新增/修改</h3>
+                            <h3 class="btn form-control btn-info">新增滴定法测定项目</h3>
                             <ol class="nav">
-                                <li v-if="add_edit" class="animated fadeInLeft">
+                                <li class="animated fadeInLeft">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     </div>
@@ -451,41 +258,6 @@
                                             data-dismiss="modal">确认增加</button>
                                     </div>
                                 </li>
-                                <li v-if="!add_edit" class="animated fadeInRight">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    </div>
-                                    <div class="modal-body form-group">
-                                        <p class="text-center">
-                                            修正项目
-                                        </p>
-                                        <label class="form-label">项目名称：</label>
-                                        <select tabindex="-1" class="form-control" v-model="slt2">
-                                            <option style="font-size: 80%" disabled>---请选择---</option>
-                                            <option v-bind:id="'select2'+index" v-bind:value="item" v-for="(item,index) in names"
-                                                v-text="item.name"></option>
-                                        </select>
-                                        <label class="form-label">单位：</label>
-                                        <input type="text" class="form-control" v-model="slt2.unit">
-                                        <label class="form-label">检验依据：</label>
-                                        <input type="text" class="form-control" v-model="slt2.GB">
-                                        <label class="form-label">检验方法：</label>
-                                        <input type="text" class="form-control" v-model="slt2.method">
-                                        <label class="form-label">检测仪器：</label>
-                                        <input type="text" class="form-control" v-model="slt2.instrument_model">
-                                        <label class="form-label">最小检出限：</label>
-                                        <input type="text" class="form-control" v-model="slt2.limit">
-                                        <label class="form-label">最高限值：</label>
-                                        <input type="text" class="form-control" v-model="slt2.range_max">
-                                        <label class="form-label">最低限值：</label>
-                                        <input placeholder="如果没有最低限值，请忽略" type="text" class="form-control" v-model="slt2.range_min">
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button class="btn btn-info" data-dismiss="modal">关闭</button>
-                                        <button type="button" class="btn btn-primary" @click="save_opt(slt2, 2)"
-                                            data-dismiss="modal">提交更改</button>
-                                    </div>
-                                </li>
                             </ol>
                         </div>
                     </div><!-- /.modal-content -->
@@ -493,9 +265,9 @@
                 <div class="modal fade" id="opt1" tabindex="-1" role="dialog" aria-labelledby="myOpt1" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class='modal-content'>
-                            <h3 @click="add_edit=!add_edit" class="btn form-control btn-info">新增/修改</h3>
+                            <h3 class="btn form-control btn-info">新增比色法测定项目</h3>
                             <ol class="nav">
-                                <li v-if="add_edit" class="animated fadeInLeft">
+                                <li class="animated fadeInLeft">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     </div>
@@ -526,46 +298,211 @@
                                             data-dismiss="modal">确认增加</button>
                                     </div>
                                 </li>
-                                <li v-if="!add_edit" class="animated fadeInRight">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    </div>
-                                    <div class="modal-body form-group">
-                                        <p class="text-center">
-                                            修正项目
-                                        </p>
-                                        <label class="form-label">项目名称：</label>
-                                        <select tabindex="-1" class="form-control" v-model="slt1">
-                                            <option style="font-size: 80%" disabled>---请选择---</option>
-                                            <option v-bind:id="'select1'+index" v-bind:value="item" v-for="(item,index) in names"
-                                                v-text="item.name"></option>
-                                        </select>
-                                        <label class="form-label">单位：</label>
-                                        <input type="text" class="form-control" v-model="slt1.unit">
-                                        <label class="form-label">检验依据：</label>
-                                        <input type="text" class="form-control" v-model="slt1.GB">
-                                        <label class="form-label">检验方法：</label>
-                                        <input type="text" class="form-control" v-model="slt1.method">
-                                        <label class="form-label">检测仪器：</label>
-                                        <input type="text" class="form-control" v-model="slt1.instrument_model">
-                                        <label class="form-label">最小检出限：</label>
-                                        <input type="text" class="form-control" v-model="slt1.limit">
-                                        <label class="form-label">最高限值：</label>
-                                        <input type="text" class="form-control" v-model="slt1.range_max">
-                                        <label class="form-label">最低限值：</label>
-                                        <input placeholder="没有最低限值，请忽略" type="text" class="form-control" v-model="slt1.range_min">
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button class="btn btn-info" data-dismiss="modal">关闭</button>
-                                        <button type="button" class="btn btn-primary" @click="save_opt(slt1, 1)"
-                                            data-dismiss="modal">提交更改</button>
-                                    </div>
-                                </li>
                             </ol>
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal -->
             </div>
+            <div class="input-group input-group-lg" v-if="s1">
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected3" :value="names[6]">色度
+                    </span>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected3" :value="names[7]">浑浊度
+                    </span>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected3" :value="names[0]">臭和味
+                    </span>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected3" :value="names[1]">肉眼可见物
+                    </span>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected3" :value="names[5]">酸碱度
+                    </span>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected1" :value="names[25]">铝
+                    </span>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected1" :value="names[35]">铁
+                    </span>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected1" :value="names[34]">锰
+                    </span>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected1" :value="names[33]">铜
+                    </span>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected1" :value="names[36]">锌
+                    </span>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected2" :value="names[18]">总硬度
+                    </span>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected3" :value="names[8]">溶解性总固体
+                    </span>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected1" :value="names[26]">挥发酚类
+                    </span>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected1" :value="names[28]">阴离子合成洗涤剂
+                    </span>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected2" :value="names[18]">耗氧量
+                    </span>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected1" :value="names[37]">硫酸盐
+                    </span>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected2" :value="names[16]">氯化物
+                    </span>
+                </div>
+            </div>
+            <div class="input-group input-group-lg" v-if="s2">
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected1" :value="names[38]">砷</span>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected1" :value="names[29]">硒</span>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected1" :value="names[27]">汞</span>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected1" :value="names[30]">镉</span>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected1" :value="names[32]">铬(六价)</span>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected1" :value="names[31]">铅</span>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected1" :value="names[23]">氟化物</span>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected1" :value="names[22]">氰化物</span>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected1" :value="names[24]">硝酸盐氮</span>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected3" :value="names[9]">四氯化碳</span>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected3" :value="names[10]">三氯甲烷</span>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected2" :value="names[19]">亚氯酸盐</span>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected2" :value="names[20]">氯酸盐</span>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected3" :value="names[11]">溴酸盐</span>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected1" :value="names[39]">甲醛</span>
+                </div>
+            </div>
+            <div class="input-group input-group-lg" v-if="s3">
+                <div class="col-lg-12 col-md-4 col-sm-4 col-xs-4">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected3" :value="names[12]">余氯</span>
+                </div>
+                <div class="col-lg-12 col-md-4 col-sm-4 col-xs-4">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected3" :value="names[13]">总氯</span>
+                </div>
+                <div class="col-lg-12 col-md-4 col-sm-4 col-xs-4">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected3" :value="names[15]">臭氧</span>
+                </div>
+                <div class="col-lg-12 col-md-4 col-sm-4 col-xs-4">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected3" :value="names[14]">二氧化氯</span>
+                </div>
+                <div class="col-lg-12 col-md-4 col-sm-4 col-xs-4">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected1" :value="names[21]">氨氮</span>
+                </div>
+            </div>
+            <div class="input-group input-group-lg row" v-if="s4">
+                <div class="col-lg-6 col-md-4 col-sm-4 col-xs-4">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected3" :value="names[2]">总大肠菌群</span>
+                </div>
+                <div class="col-lg-6 col-md-4 col-sm-4 col-xs-4">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected3" :value="names[4]">耐热大肠菌群</span>
+                </div>
+                <div class="col-lg-6 col-md-4 col-sm-4 col-xs-4">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected3" :value="names[3]">大肠埃希氏菌</span>
+                </div>
+                <div class="col-lg-6 col-md-4 col-sm-4 col-xs-4">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected3" :value="names[40]">菌落总数</span>
+                </div>
+            </div>
+             <div class="input-group input-group-lg row" v-if="s5">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected3" :value="names[41]">总α放射性</span>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <span class="input-group-addon radio">
+                        <input class="radio" type="radio" v-model="selected3" :value="names[42]">总β放射性</span>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-lg-6 animated bounceInLeft" v-if="show1">
                     <table class="animated fadeInUp table table-hover table-bordered text-center table-striped" :id="selected1.id">

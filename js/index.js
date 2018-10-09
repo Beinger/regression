@@ -2217,27 +2217,7 @@ var app = new Vue({
             localStorage.setItem(n, s.start);
             // this.save_r(s)
         },
-        // save_r(s) {
-        //     this.d1.id = s.start;
-        //     this.d2.id = s.start;
-        //     this.d3.id = s.start;
-        //     this.d4.id = s.start;
-        //     this.d5.id = s.start;
-        //     let a1 = JSON.stringify(this.d1);
-        //     let a2 = JSON.stringify(this.d2);
-        //     let a3 = JSON.stringify(this.d3);
-        //     let a4 = JSON.stringify(this.d4);
-        //     let a5 = JSON.stringify(this.d5);
-        //     localStorage.setItem("臭和味" + s.start + "报告结果", a1)
-        //     localStorage.setItem("肉眼可见物" + s.start + "报告结果", a2)
-        //     localStorage.setItem("总大肠菌群" + s.start + "报告结果", a3)
-        //     localStorage.setItem("大肠埃希氏菌" + s.start + "报告结果", a4)
-        //     localStorage.setItem("耐热大肠菌群" + s.start + "报告结果", a5)
-
-        //     let n = s.name + "end";
-        //     s.start = Number(s.start) + 1
-        //     localStorage.setItem(n, s.start);
-        // },
+        
         mystorages(s) {
             /**
              * 从localStorage中获取保存的结果，存入st数组
