@@ -43,7 +43,6 @@ var app = new Vue({
             unit: "mg/L",
             start: 1,
             end: 1,
-            id: 1,
             name: "",
             method: "",
             limit: "",
@@ -122,48 +121,121 @@ var app = new Vue({
         names: [
             {
                 id: 1,
+                st: [],
+                category: 3,
+                judge: false,
                 assessment: "合格",
                 unit: "无量纲",
+                method: "嗅气和尝味法",
+                step: [
+                    "去100ml水样，置于250ML锥形瓶中，振摇后从瓶口嗅水的气味，用适当的文字描述，并按六级记录其强度。",
+                    "与此同时，取少量水样放入口中（此水样应对人体无害），不要咽下，品尝水的味道，予以描述，并按六级记录强度。"
+                ],
+                start: 1,
+                end: 1,
                 name: "臭和味",
                 range: "无异臭和异味",
-                c: "无异臭和异味"
+                items: [],
+                result: {
+                    id: "",
+                    v: "",
+                    c: "无异臭和异味",
+                    date: "",
+                }
             },
             {
                 id: 2,
+                st: [],
+                category: 3,
+                judge: false,
                 assessment: "合格",
                 unit: "无量纲",
+                method: "直接观察法",
+                step: [
+                    "将水样摇匀，在光线明亮处迎光直接观察,记录所观察到的肉眼可见物。"
+                ],
+                start: 1,
+                end: 1,
                 name: "肉眼可见物",
                 range: "无",
-                c: "无"
+                items: [],
+                result: {
+                    id: "",
+                    v: "",
+                    c: "无",
+                    date: "",
+                }
             },
             {
                 id: 3,
+                st: [],
+                category: 3,
+                judge: false,
                 assessment: "合格",
                 unit: "MPN/100ml",
+                step: [""],
+                start: 1,
+                end: 1,
                 name: "总大肠菌群",
                 range: "不得检出",
-                c: "未检出"
+                items: [],
+                result: {
+                    id: "",
+                    v: "",
+                    c: "未检出",
+                    date: "",
+                }
             },
             {
                 id: 4,
+                st: [],
+                category: 3,
+                judge: false,
                 assessment: "合格",
                 unit: "MPN/100ml",
+                step: [""],
+                start: 1,
+                end: 1,
                 name: "大肠埃希氏菌",
                 range: "不得检出",
-                c: "未检出"
+                items: [],
+                result: {
+                    id: "",
+                    v: "",
+                    c: "未检出",
+                    date: "",
+                }
             },
             {
                 id: 5,
+                st: [],
+                category: 3,
+                judge: false,
+                start: 1,
+                end: 1,
                 assessment: "合格",
                 unit: "MPN/100ml",
+                step: [""],
                 name: "耐热大肠菌群",
                 range: "不得检出",
-                c: "未检出"
+                items: [],
+                result: {
+                    id: "",
+                    v: "",
+                    c: "未检出",
+                    date: "",
+                }
             },
             {
                 id: 6,
                 st: [],
-                step: ["<p>5.1.5.1 玻璃电极在使用前应放在纯水中侵泡24h以上。<br>5.1.5.2 仪器校正：仪器开启30min后，按仪器使用说明书操作。<br>5.1.5.3 pH定位：选用一种与被测水样pH接近的标准缓冲溶液，重复定位1~2次，当水样pH<7.0时，使用苯二甲酸氢钾标准缓冲溶液（5.1.3.1）定位，以四硼酸钠或混合磷酸盐标准缓冲溶液复定位；如果水样pH>7.0时，则用四硼酸钠标准缓冲溶液定位，以苯二甲酸氢钾或混合磷酸盐标准缓冲溶液复定位。<br><small>注：如发现三种缓冲液的定位值不成线性，应检查玻璃电极的质量。</small><br>5.1.5.4 用洗瓶以纯水缓缓淋洗两个电极数次，再以水样淋洗6~8次，然后插入水样中，1min后直接从仪器上读出pH值。<br><small>注1：甘汞电极内为氯化钾的饱和溶液，当室温升高后，溶液可能由饱和状态变为不饱和状态，故应保持一定量氯化钾晶体。</small><br><small>注2：pH值大于9的溶液，应使用高碱玻璃电极测定pH值。</small></p>"],
+                step: [
+                    "玻璃电极在使用前应放在纯水中侵泡24h以上。",
+                    "仪器校正：仪器开启30min后，按仪器使用说明书操作。",
+                    "pH定位：选用一种与被测水样pH接近的标准缓冲溶液，重复定位1~2次，当水样pH<7.0时，使用苯二甲酸氢钾标准缓冲溶液（5.1.3.1）定位，以四硼酸钠或混合磷酸盐标准缓冲溶液复定位；如果水样pH>7.0时，则用四硼酸钠标准缓冲溶液定位，以苯二甲酸氢钾或混合磷酸盐标准缓冲溶液复定位。(注：如发现三种缓冲液的定位值不成线性，应检查玻璃电极的质量。)",
+                    "用洗瓶以纯水缓缓淋洗两个电极数次，再以水样淋洗6~8次，然后插入水样中，1min后直接从仪器上读出pH值。(注1：甘汞电极内为氯化钾的饱和溶液，当室温升高后，溶液可能由饱和状态变为不饱和状态，故应保持一定量氯化钾晶体。)(注2：pH值大于9的溶液，应使用高碱玻璃电极测定pH值。)"
+                ],
+                calculation: "直接读数",
                 judge: false,
                 category: 3,
                 range_min: 6.5,
@@ -188,7 +260,11 @@ var app = new Vue({
             {
                 id: 7,
                 st: [],
-                step: ["<p>1.1.5.1 取50ml透明的水样于比色管中。如水样色度过高，可取少量水样，加纯水稀释后比色，结果乘以稀释倍数。<br>1.1.5.2 另取比色管11支分别加入铂钴标准溶液0ml,0.50ml,1.00ml,1.50ml,2.00ml,2.50ml,3.00ml,3.50ml,4.00ml,4.50ml和5.00ml,加纯水至刻度，摇匀，配制色度为0度，5度，10度，15度，20度，25度，30度，35度，40度，45度和50度的标准色列，可长期使用。</p>"],
+                step: [
+                    "取50ml透明的水样于比色管中。如水样色度过高，可取少量水样，加纯水稀释后比色，结果乘以稀释倍数。",
+                "另取比色管11支分别加入铂钴标准溶液0ml,0.50ml,1.00ml,1.50ml,2.00ml,2.50ml,3.00ml,3.50ml,4.00ml,4.50ml和5.00ml,加纯水至刻度，摇匀，配制色度为0度，5度，10度，15度，20度，25度，30度，35度，40度，45度和50度的标准色列，可长期使用。",
+                "将水样与铂钴标准色列进行比较。如水样与标准色列的色调不一致,即为异色，可用文字描述。"
+            ],
                 judge: false,
                 category: 3,
                 range_min: "",
@@ -213,7 +289,7 @@ var app = new Vue({
             {
                 id: 8,
                 st: [],
-                step: ["<p>按仪器使用说明书进行操作，浑浊度超过10NTU时，可用纯水稀释后测定。"],
+                step: ["按仪器使用说明书进行操作，浑浊度超过10NTU时，可用纯水稀释后测定。"],
                 judge: false,
                 category: 3,
                 range_min: "",
@@ -240,11 +316,12 @@ var app = new Vue({
                 st: [],
                 step: [""],
                 judge: false,
-                category: 3,
+                category: 2,
                 range_min: "",
                 range_max: 3,
                 assessment: true,
                 unit: "NTU",
+                calculation: "ρ(TDS)=(m<msup>1</msup>-m<msup>0</msup>)*1000*1000/V",
                 start: 1,
                 end: 1,
                 name: "溶解性总固体",
@@ -1783,7 +1860,64 @@ var app = new Vue({
                     c: "",
                     date: ""
                 },
-            }],
+            },
+            {
+                id: 41,
+                category: 3,
+                judge: false,
+                assessment: "合格",
+                range_max: 100,
+                unit: "MPN/100ml",
+                start: 1,
+                end: 1,
+                name: "菌落总数",
+                range: "100",
+                items: "",
+                result: {
+                    id: "",
+                    v: "",
+                    c: "",
+                    date: "",
+                }
+            },
+            {
+                id: 42,
+                category: 3,
+                assessment: "合格",
+                range_max: 0.5,
+                unit: "Bq/L",
+                start: 1,
+                end: 1,
+                instrument_model: "低本底α、β检测系统",
+                limit: 0.016,
+                GB: "GB/T 5750.13-2006",
+                name: "总α放射性",
+                range: "100",
+                items: "",
+                result: {
+                    id: "",
+                    v: "",
+                    c: "",
+                    date: "",
+                }
+            },
+            {
+                id: 43,
+                category: 3,
+                assessment: "合格",
+                range_max: 1,
+                unit: "Bq/L",
+                start: 1,
+                end: 1,
+                instrument_model: "低本底α、β检测系统",
+                limit: 0.028,
+                GB: "GB/T 5750.13-2006",
+                name: "总β放射性",
+                range: "100",
+                c: "",
+                result: [],
+            },
+        ],
     },
     created() {
         this.init_login()
@@ -1824,12 +1958,12 @@ var app = new Vue({
     methods: {
         save_opt(s, index) {
             /**
-             * 增加项目
+             * 保存新项目
              */
             let p = s.name + s.category + 'par'
             s.st = []
             s.judge = false
-            s.category = 3
+            s.category = index 
             s.assessment = true
             s.start = 1
             s.end = 1
