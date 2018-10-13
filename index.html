@@ -90,18 +90,19 @@
             <div class="row">
                 <div role="navigation" class="navbar navbar-info col-lg-9 col-md-9 col-sm-6 col-xs-6 text-left">
                     <ul class="nav navbar-nav">
-                        <li><a @mouseover="s1=true;s2=false;s3=false;s4=false;s5=false">感官性状和一般化学指标</a></li>
-                        <li><a @mouseover="s1=false;s2=true;s3=false;s4=false;s5=false">毒理指标</a></li>
-                        <li><a @mouseover="s1=false;s2=false;s4=false; s5=false;s3=true">消毒剂指标</a></li>
-                        <li><a @mouseover="s1=false;s2=false;s3=false;s5=false;s4=true">微生物指标</a></li>
-                        <li><a @mouseover="s1=false;s2=false;s3=false;s4=false;s5=true">放射性指标</a></li>
+                        <li><a @mouseover="s1=true;s2=false;s3=false;s4=false;s5=false;add_edit=false">感官性状和一般化学指标</a></li>
+                        <li><a @mouseover="s1=false;s2=true;s3=false;s4=false;s5=false;add_edit=false">毒理指标</a></li>
+                        <li><a @mouseover="s1=false;s2=false;s4=false; s5=false;s3=true;add_edit=false">消毒剂指标</a></li>
+                        <li><a @mouseover="s1=false;s2=false;s3=false;s5=false;s4=true;add_edit=false">微生物指标</a></li>
+                        <li><a @mouseover="s1=false;s2=false;s3=false;s4=false;s5=true;add_edit=false">放射性指标</a></li>
+                        <li><a @mouseover="s1=false;s2=false;s3=false;s4=false;s5=false;add_edit=true">修改项目</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-right">
-                    <div class="row" @click="add_edit=!add_edit">
+                    <!-- <div class="row" @click="add_edit=!add_edit">
                         <i class="fa fa-plus fa-lg"></i><i class="fa fa-select fa-lg"></i><i class="fa fa-eraser"></i>
                         <span>增加修改项目</span>
-                    </div>
+                    </div> -->
                     <div class="row">
                         <i class="fa fa-calendar" v-text="dateFormat(new Date())"></i>
                     </div>
@@ -680,11 +681,11 @@
                         <tr>
                             <td class="text-center">检验步骤：</td>
                             <td colspan="5">
-                                <ul>
+                                <ol>
                                     <div v-for="(sp,index) in selected1.step">
-                                        <li v-text="index+sp"></li>
+                                        <li v-text="sp"></li>
                                     </div>
-                                </ul>
+                                </ol>
                             </td>
                         </tr>
                         <tr>
@@ -760,8 +761,10 @@
                                     <th class="text-center">样品编号</th>
                                     <th class="text-center">加样体积(ml)</th>
                                     <th v-if="selected2.name=='耗氧量'" class="text-center">K值</th>
-                                    <th class="text-center">空白(ml)</th>
-                                    <th class="text-center">样品(ml)</th>
+                                    <th class="text-center" v-if="selected2.name=='溶解性总固体'">空白(g)</th>
+                                    <th class="text-center" v-if="selected2.name=='溶解性总固体'">样品(g)</th>
+                                    <th class="text-center" v-else>空白(ml)</th>
+                                    <th class="text-center" v-else>样品(ml)</th>
                                 </tr>
                                 <tr class="text-center">
                                     <td>
@@ -834,11 +837,11 @@
                         <tr>
                             <td class="text-center">检验步骤：</td>
                             <td colspan="5">
-                                <ul>
+                                <ol>
                                     <div v-for="(sp,index) in selected2.step">
-                                        <li v-text="index+sp"></li>
+                                        <li v-text="sp"></li>
                                     </div>
-                                </ul>
+                                </ol>
                             </td>
                         </tr>
                         <tr>
@@ -853,8 +856,10 @@
                             <tr>
                                 <th class="text-center">样品编号</th>
                                 <th class="text-center">加样量(ml)</th>
-                                <th class="text-center">空白消耗量(ml)</th>
-                                <th class="text-center">标准消耗量(ml)</th>
+                                <th class="text-center" v-if="selected2.name=='溶解性总固体'">m0(g)</th>
+                                <th class="text-center" v-if="selected2.name=='溶解性总固体'">m1(g)</th>
+                                <th class="text-center" v-else>空白消耗量(ml)</th>
+                                <th class="text-center" v-else>标准消耗量(ml)</th>
                                 <th class="text-center">测定结果(mg/L)</th>
                                 <th class="text-center">报告结果(mg/L)</th>
                                 <th v-show="date_show" class="text-center">计量单位</th>

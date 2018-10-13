@@ -318,10 +318,10 @@ var app = new Vue({
                 judge: false,
                 category: 2,
                 range_min: "",
-                range_max: 3,
+                range_max: 1000,
                 assessment: true,
                 unit: "NTU",
-                calculation: "ρ(TDS)=(m<msup>1</msup>-m<msup>0</msup>)*1000*1000/V",
+                calculation: "ρ(TDS)=(m1-m0)*1000*1000/V",
                 start: 1,
                 end: 1,
                 name: "溶解性总固体",
@@ -333,6 +333,9 @@ var app = new Vue({
                 result: {
                     id: "",
                     v: 50,
+                    coefficient: 1000000,
+                    a0: "",
+                    a1: "",
                     c: "",
                     date: "",
                 },
@@ -552,7 +555,9 @@ var app = new Vue({
             {
                 id: 17,
                 st: [],
-                step: ["<p>5.1 用移液管准确移取100mL水样于250mL锥形瓶中，加入1mL铬酸钾溶液，用硝酸银标准溶液滴定至砖红色沉淀刚刚出现即为滴定终点。<br>5.2 另取一锥形瓶加入100mL蒸馏水和1mL铬酸钾溶液，用硝酸银标准溶液滴定至砖红色沉淀刚刚出现即为滴定终点，作为空白试验。</p><p>氯化物质量浓度C(mg/L)按下式计算：</p><p class=\"text-center\"></p>"],
+                step: ["用移液管准确移取100mL水样于250mL锥形瓶中，加入1mL铬酸钾溶液，用硝酸银标准溶液滴定至砖红色沉淀刚刚出现即为滴定终点。",
+                "另取一锥形瓶加入100mL蒸馏水和1mL铬酸钾溶液，用硝酸银标准溶液滴定至砖红色沉淀刚刚出现即为滴定终点，作为空白试验。",
+                "氯化物质量浓度C(mg/L)按下式计算："],
                 calculation: '<img src="img/cl.bmp" />',
                 judge: false,
                 category: 2,
@@ -2345,7 +2350,6 @@ var app = new Vue({
             localStorage.setItem(p, str);
             res.a = "";
             res.a1 = "";
-            res.c = "";
             let n = s.name + "end";
             s.start = Number(s.start) + 1
             localStorage.setItem(n, s.start);
@@ -2367,6 +2371,7 @@ var app = new Vue({
                     p.limit = s.limit
                     p.range_max = s.range_max;
                     p.range_min = s.range_min;
+                    p.range = s.range;
                     p.unit = s.unit
                     s.st.push(p);
                 }
