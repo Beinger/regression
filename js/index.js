@@ -2303,6 +2303,11 @@ var app = new Vue({
                 case "肉眼可见物":
                     range = "---";
                     break;
+                case "总大肠菌群":
+                case "大肠埃希氏菌群":
+                case "耐热大肠菌群":
+                    range = "不得检出";
+                    break;
                 default:
                     range = "<" + max;
             }
