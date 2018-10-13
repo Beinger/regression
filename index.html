@@ -626,7 +626,7 @@
                                     </td>
                                     <td>
                                         <input class="form-control animated bounceInRight" type="number" tabindex="0"
-                                            @keyup.enter="work(selected1)" placeholder="输入后直接回车" v-model="selected1.result.a">
+                                            placeholder="输入完成直接按回车键" @keyup.enter="work(selected1)" placeholder="输入后直接回车" v-model="selected1.result.a">
                                     </td>
                                 </tr>
                             </table>
@@ -784,8 +784,7 @@
                                             v-model="selected2.result.a0">
                                     </td>
                                     <td>
-                                        <input class="form-control animated bounceInRight" type="number" tabindex="0"
-                                            @keyup.enter="work(selected2)" v-model.number="selected2.result.a1">
+                                        <input class="form-control animated bounceInRight" type="number" tabindex="0" placeholder="输入完成直接按回车键" @keyup.enter="work(selected2)" v-model.number="selected2.result.a1">
                                     </td>
                                 </tr>
                             </table>
@@ -928,9 +927,9 @@
                                     </td>
                                     <td>
                                         <input class="form-control animated bounceInRight" v-if="selected3.name=='酸碱度' || selected3.name=='色度' || selected3.name=='浑浊度'"
-                                            type="number" tabindex="0" v-model.number="selected3.result.c" @keyup.enter="work(selected3)">
+                                            type="number" tabindex="0" v-model.number="selected3.result.c" placeholder="输入完成直接按回车键" @keyup.enter="work(selected3)">
                                         <input class="form-control animated bounceInRight" v-else type="text" tabindex="0"
-                                            @keyup.enter="work(selected3)" v-model="selected3.result.c">
+                                            placeholder="输入完成直接按回车键" @keyup.enter="work(selected3)" v-model="selected3.result.c">
                                     </td>
                                 </tr>
                             </table>
