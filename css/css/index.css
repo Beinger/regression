@@ -30,6 +30,7 @@ th {
 
 td {
     color: #4f6b72;
+    min-width: 3em;
 }
 
 footer {
