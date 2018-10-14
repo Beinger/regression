@@ -240,6 +240,7 @@ var app = new Vue({
                 category: 3,
                 range_min: 6.5,
                 range_max: 8.5,
+                range: "",
                 assessment: true,
                 unit: "无量纲",
                 start: 1,
@@ -269,6 +270,7 @@ var app = new Vue({
                 category: 3,
                 range_min: "",
                 range_max: 15,
+                range: "",
                 assessment: true,
                 unit: "度",
                 start: 1,
@@ -294,6 +296,7 @@ var app = new Vue({
                 category: 3,
                 range_min: "",
                 range_max: 3,
+                range: "",
                 assessment: true,
                 unit: "NTU",
                 start: 1,
@@ -319,6 +322,7 @@ var app = new Vue({
                 category: 2,
                 range_min: "",
                 range_max: 1000,
+                range: "",
                 assessment: true,
                 unit: "NTU",
                 calculation: "ρ(TDS)=(m1-m0)*1000*1000/V",
@@ -349,6 +353,7 @@ var app = new Vue({
                 category: 3,
                 range_min: "",
                 range_max: 3,
+                range: "",
                 assessment: true,
                 unit: "μg/L",
                 start: 1,
@@ -374,6 +379,7 @@ var app = new Vue({
                 category: 3,
                 range_min: "",
                 range_max: 3,
+                range: "",
                 assessment: true,
                 unit: "μg/L",
                 start: 1,
@@ -402,6 +408,7 @@ var app = new Vue({
                 range_max: 0.001,
                 range_min: "",
                 assessment: true,
+                range: "",
                 unit: "mg/L",
                 start: 1,
                 end: 1,
@@ -432,6 +439,7 @@ var app = new Vue({
                 range_max: 0.05,
                 range_min: 4.0,
                 assessment: true,
+                range: "",
                 unit: "mg/L",
                 start: 1,
                 end: 1,
@@ -471,6 +479,7 @@ var app = new Vue({
                 range_max: 0.05,
                 range_min: 4.0,
                 assessment: true,
+                range: "",
                 unit: "mg/L",
                 start: 1,
                 end: 1,
@@ -506,6 +515,7 @@ var app = new Vue({
                 range_max: 0.001,
                 range_min: "",
                 assessment: true,
+                range: "",
                 unit: "mg/L",
                 start: 1,
                 end: 1,
@@ -534,6 +544,7 @@ var app = new Vue({
                 range_max: 0.001,
                 range_min: "",
                 assessment: true,
+                range: "",
                 unit: "mg/L",
                 start: 1,
                 end: 1,
@@ -564,6 +575,7 @@ var app = new Vue({
                 range_max: 250,
                 range_min: "",
                 assessment: true,
+                range: "",
                 unit: "mg/L",
                 start: 1,
                 end: 1,
@@ -593,6 +605,7 @@ var app = new Vue({
                 range_max: 1000,
                 range_min: "",
                 assessment: true,
+                range: "",
                 unit: "mg/L",
                 start: 1,
                 end: 1,
@@ -623,6 +636,7 @@ var app = new Vue({
                 range_max: 3,
                 range_min: "",
                 assessment: true,
+                range: "",
                 unit: "mg/L",
                 start: 1,
                 end: 1,
@@ -682,6 +696,7 @@ var app = new Vue({
                 range_max: 0.001,
                 range_min: "",
                 assessment: true,
+                range: "",
                 unit: "mg/L",
                 start: 1,
                 end: 1,
@@ -711,6 +726,7 @@ var app = new Vue({
                 range_max: 0.5,
                 range_min: "",
                 assessment: true,
+                range: "",
                 unit: "mg/L",
                 start: 1,
                 end: 1,
@@ -771,6 +787,7 @@ var app = new Vue({
                 range_max: 0.05,
                 range_min: "",
                 assessment: true,
+                range: "",
                 unit: "mg/L",
                 start: 1,
                 end: 1,
@@ -831,6 +848,7 @@ var app = new Vue({
                 range_max: 1.0,
                 range_min: "",
                 assessment: true,
+                range: "",
                 unit: "mg/L",
                 start: 1,
                 end: 1,
@@ -891,6 +909,7 @@ var app = new Vue({
                 range_max: 20,
                 range_min: "",
                 assessment: true,
+                range: "",
                 unit: "mg/L",
                 start: 1,
                 end: 1,
@@ -956,6 +975,7 @@ var app = new Vue({
                 range_max: 0.2,
                 range_min: "",
                 assessment: true,
+                range: "",
                 unit: "mg/L",
                 start: 1,
                 end: 1,
@@ -1020,6 +1040,7 @@ var app = new Vue({
                 range_max: 0.002,
                 range_min: "",
                 assessment: true,
+                range: "",
                 unit: "mg/L",
                 start: 1,
                 end: 1,
@@ -1084,6 +1105,7 @@ var app = new Vue({
                 range_max: 0.001,
                 range_min: "",
                 assessment: true,
+                range: "",
                 unit: "mg/L",
                 start: 1,
                 end: 1,
@@ -1148,6 +1170,7 @@ var app = new Vue({
                 range_max: 0.3,
                 range_min: "",
                 assessment: true,
+                range: "",
                 unit: "mg/L",
                 start: 1,
                 end: 1,
@@ -1212,6 +1235,7 @@ var app = new Vue({
                 range_max: 0.01,
                 range_min: "",
                 assessment: true,
+                range: "",
                 unit: "mg/L",
                 start: 1,
                 end: 1,
@@ -1272,6 +1296,7 @@ var app = new Vue({
                 range_max: 0.005,
                 range_min: "",
                 assessment: true,
+                range: "",
                 unit: "mg/L",
                 start: 1,
                 end: 1,
@@ -1332,6 +1357,7 @@ var app = new Vue({
                 range_max: 0.01,
                 range_min: "",
                 assessment: true,
+                range: "",
                 unit: "mg/L",
                 start: 1,
                 end: 1,
@@ -1392,6 +1418,7 @@ var app = new Vue({
                 range_max: 0.05,
                 range_min: "",
                 assessment: true,
+                range: "",
                 unit: "mg/L",
                 start: 1,
                 end: 1,
@@ -1452,6 +1479,7 @@ var app = new Vue({
                 range_max: 1.0,
                 range_min: "",
                 assessment: true,
+                range: "",
                 unit: "mg/L",
                 start: 1,
                 end: 1,
@@ -1512,6 +1540,7 @@ var app = new Vue({
                 range_max: 0.1,
                 range_min: "",
                 assessment: true,
+                range: "",
                 unit: "mg/L",
                 start: 1,
                 end: 1,
@@ -1572,6 +1601,7 @@ var app = new Vue({
                 range_max: 0.3,
                 range_min: "",
                 assessment: true,
+                range: "",
                 unit: "mg/L",
                 start: 1,
                 end: 1,
@@ -1632,6 +1662,7 @@ var app = new Vue({
                 range_max: 1.0,
                 range_min: "",
                 assessment: true,
+                range: "",
                 unit: "mg/L",
                 start: 1,
                 end: 1,
@@ -1692,6 +1723,7 @@ var app = new Vue({
                 range_max: 250,
                 range_min: "",
                 assessment: true,
+                range: "",
                 unit: "mg/L",
                 start: 1,
                 end: 1,
@@ -1748,6 +1780,7 @@ var app = new Vue({
                 range_max: 0.001,
                 range_min: "",
                 assessment: true,
+                range: "",
                 unit: "mg/L",
                 start: 1,
                 end: 1,
@@ -1812,6 +1845,7 @@ var app = new Vue({
                 range_max: 0.001,
                 range_min: "",
                 assessment: true,
+                range: "",
                 unit: "mg/L",
                 start: 1,
                 end: 1,
@@ -2294,7 +2328,7 @@ var app = new Vue({
         get_range(s) {
             let max = s.range_max;
             let min = s.range_min;
-            let range = "";
+            let range = s.range;
             switch (s.name) {
                 case "酸碱度":
                     range = min + "-" + max;
@@ -2304,7 +2338,7 @@ var app = new Vue({
                     range = "---";
                     break;
                 case "总大肠菌群":
-                case "大肠埃希氏菌群":
+                case "大肠埃希氏菌":
                 case "耐热大肠菌群":
                     range = "不得检出";
                     break;
@@ -2358,7 +2392,6 @@ var app = new Vue({
             let n = s.name + "end";
             s.start = Number(s.start) + 1
             localStorage.setItem(n, s.start);
-            // this.save_r(s)
         },
         
         mystorages(s) {
@@ -2376,7 +2409,9 @@ var app = new Vue({
                     p.limit = s.limit
                     p.range_max = s.range_max;
                     p.range_min = s.range_min;
-                    p.range = s.range;
+                    if(s==this.selected3){
+                        p.range = s.range
+                    }
                     p.unit = s.unit
                     s.st.push(p);
                 }
