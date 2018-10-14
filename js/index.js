@@ -2409,8 +2409,19 @@ var app = new Vue({
                     p.limit = s.limit
                     p.range_max = s.range_max;
                     p.range_min = s.range_min;
-                    if(s==this.selected3){
-                        p.range = s.range
+                    switch(s){
+                        case this.selected3:
+                            switch(s.name){
+                                case "色度":
+                                case "浑浊度":
+                                    p.range = "<"+s.range_max;
+                                    break; 
+                                default:
+                                    p.range = s.range
+                            }
+                            break;
+                        default:
+                            p.range = "<"+s.range_max;
                     }
                     p.unit = s.unit
                     s.st.push(p);
