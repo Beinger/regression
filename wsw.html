@@ -21,6 +21,9 @@
         .threed {
             text-shadow: 0px 1px 0px #999, 1px 2px 1px #888, 2px 3px 2px #777, 3px 4px 3px #666, 4px 5px 4px #555, 5px 6px 5px #444, 6px 7px 6px #333, 7px 8px 7px #222, 8px 9px 8px #111
         }
+        td{
+            
+        }
     </style>
 </head>
 
@@ -152,12 +155,11 @@
                             <td contenteditable="true"></td>
                         </tr>
                         <tr>
-                            <td class="text-center">检测环境：无菌室</td>
-                            <td contenteditable="true">
+                            <td class="text-center">检测环境：</td>
+                            <td colspan="3">
+                                <span>无菌室</span>
                                 温度<span v-text="T">
-                                </span> ℃
-                            </td>
-                            <td contenteditable="true">
+                                </span>℃
                                 湿度
                                 <span v-text="H">
                                 </span>% RH
@@ -365,14 +367,10 @@
                         </tr>
                         <tr>
                             <td colspan="9">结果判读：
-                                <label for="">无变化
-                                    <input type="radio" name="" id="">
-                                </label>
-                                <label for="">变黄
-                                    <input type="radio" name="" id="">
-                                </label>
-                                <label for="">有荧光
-                                    <input type="radio" name="" id="">
+                                <label type="radio" for="">
+                                    <input type="radio" name="" id="">无变化
+                                    <input type="radio" name="" id="">变黄
+                                    <input type="radio" name="" id="">有荧光
                                 </label>
                             </td>
                             <td colspan="4">报告</td>
