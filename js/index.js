@@ -2000,10 +2000,10 @@ var app = new Vue({
         }
     },
     methods: {
-        // play_video(){
-        //     this.play = !this.play
-        //     document.getElementById("video").playbackRate = 2.0;
-        // },
+        play_video(){
+            this.play = !this.play
+            document.getElementById("video").playbackRate = 2.0;
+        },
         save_opt(s, index) {
             /**
              * 保存新项目
