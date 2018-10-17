@@ -30,6 +30,7 @@
 
     <div class="container">
         <div id="root">
+            <video src="img/tutorial.mkv" controls="controls" v-if="play"></video>
             <div class="jumbotron row">
                 <div onclick="focus_move()" class="col-xs-9 col-lg-10 col-md-10 col-sm-10">
                     <h2 data-toggle="modal" data-target="#login" v-text="company"></h2>
@@ -37,8 +38,11 @@
                 </div>
                 <div class="col-xs-3 col-lg-2 col-md-2 col-sm-2">
                     <a target="_blank" href="https://shang.qq.com/wpa/qunwpa?idkey=0c7a84b3bf0ac2a3564a707e9841a6704564dc55302794760b96bca8bd42480b">
-                        <img src="https://pub.idqqimg.com/wpa/images/group.png" alt="水质检测系统" title="水质检测系统"></a>
-                    <hr>
+                        <img src="https://pub.idqqimg.com/wpa/images/group.png" alt="水质检测系统" title="水质检测系统">
+                    </a>
+                    <a class="btn btn-warning btn-lg" data-toggle="modal" data-target="#tutorial">
+                        <i class="fa fa-show" @click="play=!paly">使用教程</i>
+                    </a> 
                     <a class="btn btn-warning btn-lg" data-toggle="modal" data-target="#login" v-if="login_f">
                         <i class="fa fa-sign-in">机构名称</i>
                     </a>
@@ -48,6 +52,15 @@
                     <a class="btn btn-lg btn-info" href="sample.html">
                         <i class="fa fa-print">检验报告</i>
                     </a>
+                    <!-- <div class="modal fade" id="tutorial" role="dialog" aria-labelledby="myVidoe" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <video src="img/tutorial.mkv" controls="controls"></video>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
                     <div class="modal fade" id="environment" tabindex="-1" role="dialog" aria-labelledby="myEnv"
                         aria-hidden="true">
                         <div class="modal-dialog">

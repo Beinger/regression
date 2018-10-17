@@ -9,6 +9,7 @@ var app = new Vue({
         company: "", //机构名称
         username: "",
         login_f: true, //是否已经注册过
+        play: false,
         index: 0, //这个是表格索引==序号
         new_item: "", //表格新行
         add_edit: false, //切换新增和修改
