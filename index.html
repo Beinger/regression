@@ -30,7 +30,6 @@
 
     <div class="container">
         <div id="root">
-            <video src="img/tutorial.mkv" controls="controls" v-if="play"></video>
             <div class="jumbotron row">
                 <div onclick="focus_move()" class="col-xs-9 col-lg-10 col-md-10 col-sm-10">
                     <h2 data-toggle="modal" data-target="#login" v-text="company"></h2>
@@ -40,7 +39,7 @@
                     <a target="_blank" href="https://shang.qq.com/wpa/qunwpa?idkey=0c7a84b3bf0ac2a3564a707e9841a6704564dc55302794760b96bca8bd42480b">
                         <img src="https://pub.idqqimg.com/wpa/images/group.png" alt="水质检测系统" title="水质检测系统">
                     </a>
-                    <a class="btn btn-warning btn-lg" @click="play=!play">
+                    <a class="btn btn-warning btn-lg" @click="play_video">
                         <i class="fa fa-play">使用教程</i>
                     </a> 
                     <a class="btn btn-warning btn-lg" data-toggle="modal" data-target="#login" v-if="login_f">
@@ -1076,6 +1075,7 @@
                 </div>
             </form>
 
+            <video id="video" src="img/tutorial.mkv" controls="controls" autoplay v-if="play"></video>
         </div>
     </div>
     <br>

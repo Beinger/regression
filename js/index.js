@@ -2000,6 +2000,10 @@ var app = new Vue({
         }
     },
     methods: {
+        // play_video(){
+        //     this.play = !this.play
+        //     document.getElementById("video").playbackRate = 2.0;
+        // },
         save_opt(s, index) {
             /**
              * 保存新项目
@@ -2561,7 +2565,6 @@ var app = new Vue({
     }
 });
 let series_data = [];
-
 function getTableContent() {
     /**
      * 从存入的standard_series的标准系列提取数据，以备绘制出标准曲线
