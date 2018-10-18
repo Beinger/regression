@@ -2552,7 +2552,6 @@ var app = new Vue({
         },
     },
     computed: {
-
         recived_date() {
             let date = new Date();
             return this.dateFormat(date)
@@ -2560,7 +2559,6 @@ var app = new Vue({
         test_date() {
             let date = new Date();
             return this.dateFormat(date)
-
         },
     }
 });

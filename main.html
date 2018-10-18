@@ -20,7 +20,7 @@
 </head>
 <body>
     <div class="container">
-        <div id="app">
+        <div id="root">
             <div class="jumbotron row">
                 <div onclick="focus_move()" class="col-xs-9 col-lg-10 col-md-10 col-sm-10">
                     <h2 data-toggle="modal" data-target="#login" v-text="company"></h2>
@@ -80,69 +80,6 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <ul class="pagination">
-                    <li><a>&laquo;</a></li>
-                    <li><a @click="show1=true;show2=false;show3=false;show4=false;show5=false">感官性状和一般化学指标</a></li>
-                    <li><a @click="show1=false;show2=true;show3=false;show4=false;show5=false">毒理指标</a></li>
-                    <li><a @click="show1=false;show2=false;show4=false; show5=false;show3=true">消毒剂指标</a></li>
-                    <li><a @click="show1=false;show2=false;show3=false;show5=false;show4=true">微生物指标</a></li>
-                    <li><a @click="show1=false;show2=false;show3=false;show4=false;show5=true">放射性指标</a></li>
-                    <li><a>&raquo;</li>
-                </ul>
-            </div>
-            <div class="row btn-group" v-if="show1">
-                <button @click="">色度</button>
-                <button @click="">浑浊度</button>
-                <button @click="">臭和味</button>
-                <button @click="">肉眼可见物</button>
-                <button @click="">酸碱度</button>
-                <button @click="">铝</button>
-                <button @click="">铁</button>
-                <button @click="">锰</button>
-                <button @click="">铜</button>
-                <button @click="">锌</button>
-                <button @click="">总硬度</button>
-                <button @click="">溶解性总固体</button>
-                <button @click="">挥发酚类</button>
-                <button @click="">阴离子合成洗涤剂</button>
-                <button @click="">耗氧量</button>
-                <button @click="">硫酸盐</button>
-                <button @click="">氯化物</button>
-            </div>
-            <div class="btn-group" v-if="show2">
-                <button @click="">砷</button>
-                <button @click="">硒</button>
-                <button @click="">汞</button>
-                <button @click="">镉</button>
-                <button @click="">铬(六价)</button>
-                <button @click="">铅</button>
-                <button @click="">氟化物</button>
-                <button @click="">氰化物</button>
-                <button @click="">硝酸盐氮</button>
-                <button @click="">四氯化碳</button>
-                <button @click="">三氯甲烷</button>
-                <button @click="">亚氯酸盐</button>
-                <button @click="">氯酸盐</button>
-                <button @click="">溴酸盐</button>
-                <button @click="">甲醛</button>
-            </div>
-            <div class="btn-group" v-if="show3">
-                <button @click="">余氯</button>
-                <button @click="">总氯</button>
-                <button @click="">臭氧</button>
-                <button @click="">二氧化氯</button> 
-            </div>
-            <div class="btn-group" v-if="show4">
-                <button @click="">总大肠菌群</button>
-                <button @click="">耐热大肠菌群</button>
-                <button @click="">大肠埃希氏菌</button>
-                <button @click="">菌落总数</button>
-            </div>
-            <div class="btn-group" v-if="show5">
-                <button @click="">总α放射性</button>
-                <button @click="">总β放射性</button>
-            </div>
         </div>
         <div>
             <div class="row">
@@ -179,50 +116,7 @@
                     <div id="line" style="box-shadow:5px 5px 4px"></div>
                 </div>
             </div>
-            <form v-if="bise" class="animated bounceInRight">
-                <div class="row">
-                    <div class="col-lg-5">
-                        <fieldset>
-                            <legend><span v-text="selected1.name"></span>的回归公式</legend>
-                            <h4 v-html="selected1.formula"></h4>
-                            <span class="text-danger animated bounceIn infinite" v-if="selected1.r<0.999">------注意：相关系数若小于0.999，说明标准曲线不合格，请重新核对数据，分析检测过程，必要时重新测定标准系列。</span>
-                            <div>
-                                <a class="btn btn-default" @click="add_sample(selected1)">
-                                    <i class="fa fa-hand-o-right fa-2x"></i><i class="fa fa-pencil">开始录入</i>
-                                    样品编号<i v-text="numbering+(new Date()).getFullYear()"></i>水第
-                                        <input v-if="selected1.judge==true" tabindex="11" type="number" v-model="selected1.start">
-                                        <input v-else-if="selected1.judge==false" type="number" v-model="selected1.end">
-                                        号
-                                </a>
-                            </div>
-                        </fieldset>
-                    </div>
-                    <div class="col-lg-7">
-                        <fieldset v-if="add" class="animated fadeInRight">
-                            <legend>样品中 <span v-text="selected1.name"></span> 浓度计算</legend>
-                            <table class="table table-hover table-bordered table-striped">
-                                <tr>
-                                    <th class="text-center">样品编号</th>
-                                    <th class="text-center">加样体积(ml)</th>
-                                    <th class="text-center">吸光度</th>
-                                </tr>
-                                <tr class="text-center">
-                                    <td>
-                                        <i><span v-text="numbering+(new Date()).getFullYear()"></span>水第<span v-text="f_n(selected1.start,3)"></span>号</i>
-                                    </td>
-                                    <td>
-                                        <select class="form-control" v-model="selected1.result.v">
-                                            <option v-bind:value="opt" v-for="opt of vol_select" v-text="opt"></option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <input class="form-control animated bounceInRight" type="number" tabindex="0" @keyup.enter="work(selected1)" placeholder="输入后直接回车" v-model="selected1.result.a">
-                                    </td>
-                                </tr>
-                            </table>
-                        </fieldset>
-                    </div>
-                </div>
+            <form v-if="show1" class="animated bounceInRight">
 
                 <a class="btn text-danger" @click="printContent('print')"><i class="fa fa-print"></i>打印记录</a>
                 <div id="print">
@@ -315,57 +209,7 @@
                     </div>
                 </div>
             </form>
-            <form class="animated bounceInDown" v-if="diding">
-                <div class="row">
-                    <div class="col-lg-5">
-                        <fieldset>
-                            <div>
-                                <a class="btn btn-default" @click="add_sample(selected2)">
-                                    <i class="fa fa-hand-o-right fa-2x"></i><i class="fa fa-pencil"></i>
-                                    开始录入
-                                    样品编号<i v-text="numbering+(new Date()).getFullYear()"></i>水第
-                                        <input v-if="selected2.judge" tabindex="-1" type="number" v-model.number="selected2.start">
-                                        <input v-else tabindex="-1" type="number" v-model.number="selected2.end"> 号
-                                    </i>
-                                </a>
-                            </div>
-                        </fieldset>
-                    </div>
-                    <div class="col-lg-7">
-                        <fieldset v-if="add" class="animated fadeInRight">
-                            <legend>样品中 <span v-text="selected2.name"></span> 浓度计算</legend>
-                            <table class="table table-hover table-bordered table-striped">
-                                <tr>
-                                    <th class="text-center">样品编号</th>
-                                    <th class="text-center">加样体积(ml)</th>
-                                    <th v-if="selected2.name=='耗氧量'" class="text-center">K值</th>
-                                    <th class="text-center">空白消耗标准液(ml)</th>
-                                    <th class="text-center">样品消耗标准液(ml)</th>
-                                </tr>
-                                <tr class="text-center">
-                                    <td>
-                                        <i v-text="numbering+(new Date()).getFullYear()"></i>水第<span v-text="f_n(selected2.start,3)"></span>号</i>
-                                    </td>
-                                    <td>
-                                        <select class="form-control" v-model="selected2.result.v">
-                                            <option v-bind:value="opt" v-for="opt of vol_select" v-text="opt"></option>
-                                        </select>
-                                    </td>
-                                    <td v-if="selected2.name=='耗氧量'">
-                                        <input class="form-control animated bounceInRight" type="number" v-model="selected2.result.K">
-                                    </td>
-                                    <td>
-                                        <input class="form-control animated bounceInRight" type="number" step="0.01"
-                                            v-model="selected2.result.a0">
-                                    </td>
-                                    <td>
-                                        <input class="form-control animated bounceInRight" type="number" tabindex="0" @keyup.enter="work(selected2)" v-model.number="selected2.result.a1">
-                                    </td>
-                                </tr>
-                            </table>
-                        </fieldset>
-                    </div>
-                </div>
+            <form class="animated bounceInDown" v-if="show2">
                 <a class="btn text-danger" @click="printContent('print2')"><i class="fa fa-print"></i>打印记录</a>
                 <div id="print2">
                     <div @click="date_y()" class="text-center" colspan="5">
@@ -455,44 +299,7 @@
                     </div>
                 </div>
             </form>
-            <form class="animated bounceInRight" v-if="ganguan">
-                <div class="row">
-                    <div class="col-lg-5">
-                        <fieldset>
-                            <div>
-                                <a class="btn btn-default" @click="add_sample(selected3)">
-                                    <i class="fa fa-hand-o-right fa-2x"></i><i class="fa fa-pencil"></i>
-                                    开始录入
-                                    样品编号<i v-text="numbering+(new Date()).getFullYear()"></i>水第
-                                        <input v-if="selected3.judge" tabindex="-1" type="number" v-model="selected3.start">
-                                        <input v-else tabindex="-1" type="number" v-model="selected3.end"> 号
-                                    </i>
-                                </a>
-                            </div>
-                        </fieldset>
-                    </div>
-                    <div class="col-lg-7">
-                        <fieldset v-if="add" class="animated fadeInRight">
-                            <legend>样品中 <span v-text="selected3.name"></span> 浓度计算</legend>
-                            <table class="table table-hover table-bordered table-striped">
-                                <tr>
-                                    <th class="text-center">样品编号</th>
-                                    <th class="text-center">结果</th>
-                                </tr>
-                                <tr class="text-center">
-                                    <td>
-                                        <i><i v-text="numbering+(new Date()).getFullYear()"></i>水第<span v-text="f_n(selected3.start,3)"></span>号</i>
-                                    </td>
-                                    <td>
-                                        <input class="form-control animated bounceInRight" v-if="selected3.name=='酸碱度' || selected3.name=='色度' || selected3.name=='浑浊度'"
-                                            type="number" tabindex="0" v-model.number="selected3.result.c" @keyup.enter="work(selected3)">
-                                        <input class="form-control animated bounceInRight" v-else type="text" tabindex="0" @keyup.enter="work(selected3)" v-model="selected3.result.c">
-                                    </td>
-                                </tr>
-                            </table>
-                        </fieldset>
-                    </div>
-                </div>
+            <form class="animated bounceInRight" v-if="show3">
                 <a class="btn text-danger" @click="printContent('print3')"><i class="fa fa-print"></i>打印记录</a>
                 <div id="print3">
                     <div @click="date_y()" class="text-center" colspan="5">
@@ -576,5 +383,6 @@
         </div>
     </div> 
 </body>
-<script src="js/main.js"></script>
+<script src="js/index.js"></script>
+<!-- <script src="js/main.js"></script> -->
 </html>

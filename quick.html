@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>快速报告</title>
+    <script src="js/jquery3.3.1.min.js"></script>
+    <!-- <script src="js/vue.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <link rel="stylesheet" href="css/css/bootstrap.css">
+    <link rel="stylesheet" href="css/css/animation.min.css">
+    <link rel="stylesheet" href="css/css/font-awesome.min.css">
+    <script src="js/bootstarp.js"></script>
+    <script src="js/highcharts.js"></script>
+    <script src="js/highcharts_zh.js"></script>
+    <script src="js/myStorage.min.js"></script>
+    <script src="js/webSQL.js"></script>
+</head>
+
+<body>
+    <div id="quick">
+        <a class="btn text-danger" @click="printContent('print')"><i class="fa fa-print"></i>打印记录</a>
+        <div id="print">
+            <div v-for="(n, index) in names" :key="index">
+                <div @click="date_y()" class="text-center" colspan="5">
+                    <h1 v-text="company"></h1>
+                    <h3 title="点击这里可以查看每个样品的检测日期"><i>水样中<span v-text="n.name">
+                            </span>检验记录</i></h3>
+                </div>
+                <table class="table table-bordered table-striped table-hover">
+                    <tr>
+                        <td contenteditable="true" class="text-center">检测方法：</td contenteditable="true">
+                        <td contenteditable="true" colspan="1" contenteditable="true" v-text="n.method"></td contenteditable="true">
+                        <td contenteditable="true" class="text-center">样品数量：</td contenteditable="true">
+                        <td contenteditable="true" colspan="2" contenteditable="true">3升</td contenteditable="true">
+                    </tr>
+                    <tr>
+                        <td contenteditable="true" class="text-center">收样日期：</td contenteditable="true">
+                        <td contenteditable="true" contenteditable="true" v-text="recived_date"></td contenteditable="true">
+                        <td contenteditable="true" class="text-center">检验日期：</td contenteditable="true">
+                        <td contenteditable="true" colspan="2" contenteditable="true" v-text="test_date"></td contenteditable="true">
+                    </tr>
+                    <tr>
+                        <td contenteditable="true" class="text-center">样品性状：</td contenteditable="true">
+                        <td contenteditable="true" contenteditable="true">液态</td contenteditable="true">
+                        <td contenteditable="true" class="text-center">检测环境：</td contenteditable="true">
+                        <td contenteditable="true" contenteditable="true">
+                            温度<span v-text="n.T">
+                            </span> ℃
+                        </td contenteditable="true">
+                        <td contenteditable="true" contenteditable="true">
+                            湿度
+                            <span v-text="n.H">
+                            </span>% RH
+                        </td contenteditable="true">
+                    </tr>
+                    <tr>
+                        <td contenteditable="true" class="text-center">检测仪器：</td contenteditable="true">
+                        <td contenteditable="true" v-text="n.instrument_model">
+                        </td contenteditable="true">
+                        <td contenteditable="true" class="text-center">检验依据：</td contenteditable="true">
+                        <td contenteditable="true" colspan="2" v-text="n.GB">
+                        </td contenteditable="true">
+                    </tr>
+                    <tr>
+                        <td contenteditable="true" class="text-center">结果计算：</td contenteditable="true">
+                        <td contenteditable="true" colspan="5" v-text="n.calculation"></td contenteditable="true">
+                    </tr>
+                </table>
+                <!-- <table @click="mystorages(ns)" class="table table-bordered table-striped table-hover" id="record"> -->
+                <table class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th class="text-center">样品编号</th>
+                            <th class="text-center">加样量(ml)</th>
+                            <th class="text-center">吸光度</th>
+                            <th class="text-center">实测质量(μg)</th>
+                            <th class="text-center">样品浓度(mg/L)</th>
+                            <th class="text-center">报告结果(mg/L)</th>
+                            <th v-show="date_show" class="text-center">计量单位</th>
+                            <th v-show="date_show" class="text-center">参考范围(mg/L)</th>
+                            <th v-show="date_show" class="text-center">结果评价</th>
+                            <th v-show="date_show" class="text-center">记录日期</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        <tr>
+                            <td contenteditable="true"><i v-text="numbering+(new Date()).getFullYear()"></i>水第<span v-text="f_n(n.result.id, 3)">
+                                </span>号</td contenteditable="true">
+                            <td contenteditable="true" v-text="n.result.v"></td contenteditable="true">
+                            <td contenteditable="true" v-text="n.result.a"></td contenteditable="true">
+                            <td contenteditable="true" v-text="n.result.m"></td contenteditable="true">
+                            <td contenteditable="true" v-text="n.result.c"></td contenteditable="true">
+                            <!-- <td contenteditable="true" v-if="n.result.c<n.limit" v-text="'<'+n.limit"></td contenteditable="true">
+                        <td contenteditable="true" v-else v-text="n.result.c"></td contenteditable="true"> -->
+                            <td contenteditable="true" v-text="n.result.report"></td contenteditable="true">
+                            <td contenteditable="true" v-show="date_show" v-text="n.unit"></td contenteditable="true">
+                            <td contenteditable="true" v-show="date_show" v-text="n.range"></td contenteditable="true">
+                            <td contenteditable="true" v-show="date_show" v-text="n.assessment"></td contenteditable="true">
+                            <td contenteditable="true" v-show="date_show" v-text="n.result.date"></td contenteditable="true">
+                        </tr>
+                    </tbody>
+                </table>
+                <br><br>
+                <div class="row text-center">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">检验者：</div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">审核者：</div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">日期：
+                        <span v-text="dateFormat(new Date())">
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./quick.js"></script>
+</body>
+</html>
