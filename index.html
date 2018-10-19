@@ -589,11 +589,11 @@
                                 <th class="text-center">序号</th>
                                 <th class="text-center">标准加入量(μg)</th>
                                 <th class="text-center">吸光度</th>
-                                <th class="btn btn-info">
-                                    <i @click="get_list()" title="保存数据" class="fa fa-save">保存</i>
+                                <th class="btn btn-info" @click="get_list()">
+                                    <i title="保存数据" class="fa fa-save">保存</i>
                                 </th>
-                                <th class="btn btn-info">
-                                    <i @click="add_item(selected1.id)" title="增加序列" class="fa fa-plus">增加</i>
+                                <th class="btn btn-info" @click="add_item(selected1.id)">
+                                    <i title="增加序列" class="fa fa-plus">增加</i>
                                 </th>
                             </tr>
                         </thead>

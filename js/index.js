@@ -2002,7 +2002,10 @@ var app = new Vue({
     methods: {
         play_video(){
             this.play = !this.play
-            document.getElementById("video").playbackRate = 2.0;
+            let speed = 2.0
+            let v = document.getElementById("video")
+            v.playbackRate = speed
+            // document.getElementById("video").playbackRate = 2.0;
         },
         save_opt(s, index) {
             /**
