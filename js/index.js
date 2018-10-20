@@ -2224,11 +2224,11 @@ var app = new Vue({
             this.cal_r();
             this.selected1.formula = "";
             if (this.selected1.a >= 0) {
-                this.selected1.formula = "<p>回归方程为：y = " + this.selected1.b.toFixed(4) + "x + " + this.selected1.a.toFixed(4) + "</p><p>相关系数为：r = " + this.selected1.r.toFixed(4) + "</p>";
+                this.selected1.formula = "y = " + this.selected1.b.toFixed(4) + "x + " + this.selected1.a.toFixed(4) + "相关系数 r = " + this.selected1.r.toFixed(4)
 
             } else {
                 let a = -(this.selected1.a);
-                this.selected1.formula = "<p>回归方程为：y = " + this.selected1.b.toFixed(4) + "x - " + a.toFixed(4) + "</p><p>相关系数为：r = " + this.selected1.r.toFixed(4) + "</p>";
+                this.selected1.formula = "y = " + this.selected1.b.toFixed(4) + "x - " + a.toFixed(4) + "相关系数 r = " + this.selected1.r.toFixed(4) 
             }
 
         },
@@ -2254,6 +2254,7 @@ var app = new Vue({
             this.set_record(s)
             this.useCount(s);
             this.useJudge(s)
+            focus_move()
         },
         work(s) {
             this.save_result(s)
@@ -2365,6 +2366,10 @@ var app = new Vue({
              */
 
             let res = s.result
+            res.date = this.dateFormat(new Date());
+            res.id = s.start;
+            res.unit = s.unit;
+            res.range = this.get_range(s);
             switch (s) {
                 case this.selected3:
                     {
@@ -2392,10 +2397,6 @@ var app = new Vue({
                         res.assessment = (res.c > s.range_max) ? "不合格" : "合格"
                     }
             }
-            res.date = this.dateFormat(new Date());
-            res.id = s.start;
-            res.unit = s.unit;
-            res.range = this.get_range(s);
             let str = JSON.stringify(res); //格式化后才能存入 
             let p = (s.name + s.start + "报告结果");
             localStorage.setItem(p, str);
