@@ -35,18 +35,19 @@
                     <h2 data-toggle="modal" data-target="#login" v-text="company"></h2>
                     <h1 style="color:gainsboro" class="threed">水质检验回归分析系统</h1>
                 </div>
-                <div class="col-xs-3 col-lg-2 col-md-2 col-sm-2">
+                <div class="col-xs-3 col-lg-2 col-md-2 col-sm-2">&telrec;
                     <a target="_blank" href="https://shang.qq.com/wpa/qunwpa?idkey=0c7a84b3bf0ac2a3564a707e9841a6704564dc55302794760b96bca8bd42480b">
                         <img src="https://pub.idqqimg.com/wpa/images/group.png" alt="水质检测系统" title="水质检测系统">
                     </a>
                     <a class="btn btn-warning btn-lg" data-toggle="modal" data-target=".bs-example-modal-lg">
+                        <img src="img/tutorial.gif" class="animated fadeInLeft" v-show="git_show">
                         <i class="fa fa-play">使用教程</i>
                     </a>
                     <!-- Large modal -->
                     <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
                         <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
-                                <video src="img/tutorial.mkv" height="500" autoplay controls preload="metadata"></video>
+                                <video src="img/tutorial.ogg" height="500" autoplay controls preload="metadata"></video>
                             </div>
                         </div>
                     </div>
@@ -589,7 +590,7 @@
             <br>
             <br>
             <div class="row">
-                <div class="col-lg-6 animated bounceInLeft" v-if="show1">
+                <div class="col-lg-6 animated fadeIn" v-if="show1">
                     <table class="animated fadeInUp table table-hover table-bordered text-center table-striped" :id="selected1.id">
                         <thead>
                             <tr>
@@ -623,7 +624,7 @@
                     <div id="line" style="box-shadow:5px 5px 4px"></div>
                 </div>
             </div>
-            <form v-if="show1" class="animated bounceInRight">
+            <form v-if="show1" class="animated fadeIn">
 
                 <a class="btn text-danger" @click="printContent('print')"><i class="fa fa-print"></i>打印记录</a>
                 <div id="print">
@@ -634,21 +635,21 @@
                     </div>
                     <table class="table table-bordered table-striped table-hover">
                         <tr>
-                            <td class="text-center">检测方法：</td>
+                            <th class="text-center">检测方法：</th>
                             <td colspan="1" contenteditable="true" v-text="selected1.method"></td>
-                            <td class="text-center">样品数量：</td>
+                            <th class="text-center">样品数量：</th>
                             <td colspan="2" contenteditable="true">3升</td>
                         </tr>
                         <tr>
-                            <td class="text-center">收样日期：</td>
+                            <th class="text-center">收样日期：</th>
                             <td contenteditable="true" v-text="recived_date"></td>
-                            <td class="text-center">检验日期：</td>
+                            <th class="text-center">检验日期：</th>
                             <td colspan="2" contenteditable="true" v-text="test_date"></td>
                         </tr>
                         <tr>
-                            <td class="text-center">样品性状：</td>
+                            <th class="text-center">样品性状：</th>
                             <td contenteditable="true">液态</td>
-                            <td class="text-center">检测环境：</td>
+                            <th class="text-center">检测环境：</th>
                             <td contenteditable="true">
                                 温度<span v-text="T">
                                 </span> ℃
@@ -660,10 +661,10 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="text-center">检测仪器：</td>
+                            <th class="text-center">检测仪器：</th>
                             <td v-text="selected1.instrument_model">
                             </td>
-                            <td class="text-center">检验依据：</td>
+                            <th class="text-center">检验依据：</th>
                             <td colspan="2" v-text="selected1.GB">
                             </td>
                         </tr>
@@ -690,7 +691,7 @@
                             </tr>
                         <tr>
                             <th class="text-center">回归公式：</th>
-                            <td colspan="3" v-text="selected1.formula"></td>
+                            <td colspan="3"><math v-text="selected1.formula"></math>&nbsp;&nbsp;&nbsp;&nbsp;r &nbsp;= &nbsp;<span v-text="selected1.r"></span></td>
                             <th class="text-center">结果计算：</th>
                             <td colspan="4" v-text="selected1.calculation"></td>
                         </tr>
@@ -743,7 +744,7 @@
                         <fieldset>
                             <legend>
                                 样品中
-                                <span v-text="selected2.name"></span>
+                                <span v-text="selected1.name"></span>
                                 编号选择
                             </legend>
                             <div>
@@ -790,7 +791,7 @@
                     </div>
                 </div>
             </form>
-            <form class="animated bounceInDown" v-if="show2">
+            <form class="animated fadeIn" v-if="show2">
                 <a class="btn text-danger" @click="printContent('print2')"><i class="fa fa-print"></i>打印记录</a>
                 <div id="print2">
                     <div @click="date_y()" class="text-center" colspan="5">
@@ -800,38 +801,33 @@
                     </div>
                     <table class="table table-bordered table-striped table-hover">
                         <tr>
-                            <td class="text-center">检测方法：</td>
+                            <th class="text-center">检测方法：</th>
                             <td colspan="1" contenteditable="true" v-text="selected2.method"></td>
-                            <td class="text-center">样品数量：</td>
+                            <th class="text-center">样品数量：</th>
                             <td colspan="2" contenteditable="true">3升</td>
                         </tr>
                         <tr>
-                            <td class="text-center">收样日期：</td>
+                            <th class="text-center">收样日期：</th>
                             <td contenteditable="true" v-text="recived_date"></td>
-                            <td class="text-center">检验日期：</td>
+                            <th class="text-center">检验日期：</th>
                             <td colspan="2" contenteditable="true" v-text="test_date"></td>
                         </tr>
                         <tr>
-                            <td class="text-center">样品性状：</td>
+                            <th class="text-center">样品性状：</th>
                             <td contenteditable="true">液态</td>
-                            <td class="text-center">检测环境：</td>
+                            <th class="text-center">检测环境：</th>
                             <td contenteditable="true">
-                                温度<span v-text="T">
-                                </span> ℃
+                                温度：<span v-text="T"></span> ℃
                             </td>
                             <td contenteditable="true">
-                                湿度
-                                <span v-text="H">
-                                </span>% RH
+                                湿度：<span v-text="H"></span>% RH
                             </td>
                         </tr>
                         <tr>
-                            <td class="text-center">检测仪器：</td>
-                            <td v-text="selected2.instrument_model">
-                            </td>
-                            <td class="text-center">检验依据：</td>
-                            <td colspan="2" v-text="selected2.GB">
-                            </td>
+                            <th class="text-center">检测仪器：</th>
+                            <td v-text="selected2.instrument_model"></td>
+                            <th class="text-center">检验依据：</th>
+                            <td colspan="2" v-text="selected2.GB"></td>
                         </tr>
                         <!-- <tr>
                             <td class="text-center">检验步骤：</td>
@@ -844,7 +840,7 @@
                             </td>
                         </tr> -->
                         <tr>
-                            <td class="text-center">结果计算：</td>
+                            <th class="text-center">结果计算：</th>
                             <td colspan="5">
                                 <math v-html="selected2.calculation"></math>
                             </td>
@@ -955,7 +951,7 @@
                     </div>
                 </div>
             </form>
-            <form class="animated bounceInRight" v-if="show3">
+            <form class="animated fadeIn" v-if="show3">
                 <a class="btn text-danger" @click="printContent('print3')"><i class="fa fa-print"></i>打印记录</a>
                 <div id="print3">
                     <div @click="date_y()" class="text-center" colspan="5">
@@ -965,21 +961,21 @@
                     </div>
                     <table class="table table-bordered table-striped table-hover">
                         <tr>
-                            <td class="text-center">检测方法：</td>
+                            <th class="text-center">检测方法：</th>
                             <td colspan="1" contenteditable="true" v-text="selected3.method"></td>
-                            <td class="text-center">样品数量：</td>
+                            <th class="text-center">样品数量：</th>
                             <td colspan="2" contenteditable="true">3升</td>
                         </tr>
                         <tr>
-                            <td class="text-center">收样日期：</td>
+                            <th class="text-center">收样日期：</th>
                             <td contenteditable="true" v-text="recived_date"></td>
-                            <td class="text-center">检验日期：</td>
+                            <th class="text-center">检验日期：</th>
                             <td colspan="2" contenteditable="true" v-text="test_date"></td>
                         </tr>
                         <tr>
-                            <td class="text-center">样品性状：</td>
+                            <th class="text-center">样品性状：</th>
                             <td contenteditable="true">液态</td>
-                            <td class="text-center">检测环境：</td>
+                            <th class="text-center">检测环境：</th>
                             <td contenteditable="true">
                                 温度<span v-text="T">
                                 </span> ℃
@@ -991,10 +987,10 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="text-center">检测仪器：</td>
+                            <th class="text-center">检测仪器：</th>
                             <td v-text="selected3.instrument_model">
                             </td>
-                            <td class="text-center">检验依据：</td>
+                            <th class="text-center">检验依据：</th>
                             <td colspan="2" v-text="selected3.GB">
                             </td>
                         </tr>
@@ -1009,7 +1005,7 @@
                             </td>
                         </tr> -->
                         <tr>
-                            <td class="text-center" style="width: 12em">结果计算：</td>
+                            <th class="text-center" style="width: 12em">结果计算：</th>
                             <td colspan="5" v-text="selected3.calculation='直接读数'"></td>
                         </tr>
                     </table>

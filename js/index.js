@@ -13,6 +13,7 @@ var app = new Vue({
         index: 0, //这个是表格索引==序号
         new_item: "", //表格新行
         add_edit: false, //切换新增和修改
+        git_show: false,
         show1: false, //显示第一项
         show2: false, //显示第二项
         show3: false, //显示第三项
@@ -2224,13 +2225,12 @@ var app = new Vue({
             this.cal_r();
             this.selected1.formula = "";
             if (this.selected1.a >= 0) {
-                this.selected1.formula = "y = " + this.selected1.b.toFixed(4) + "x + " + this.selected1.a.toFixed(4) + "相关系数 r = " + this.selected1.r.toFixed(4)
-
+                this.selected1.formula = "y = " + this.selected1.b.toFixed(4) + "x + " + this.selected1.a.toFixed(4) 
             } else {
                 let a = -(this.selected1.a);
-                this.selected1.formula = "y = " + this.selected1.b.toFixed(4) + "x - " + a.toFixed(4) + "相关系数 r = " + this.selected1.r.toFixed(4) 
+                this.selected1.formula = "y = " + this.selected1.b.toFixed(4) + "x - " + a.toFixed(4) 
             }
-
+            this.selected1.r = this.selected1.r.toFixed(4)
         },
         add_item() {
             /**
