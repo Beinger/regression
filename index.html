@@ -22,12 +22,18 @@
 </head>
 
 <body>
+    <div class="ie-tips">Sorry. 您使用的浏览器版本过旧，为了更好的访问体验，请使用360浏览器或者<a href="https://chrome.en.softonic.com/" target="_blank">Chrome谷歌浏览器</a><a class="js-tip-close">关闭</a></div>
+
     <style>
+        /*ie浏览器版本提示信息*/
+        .ie-tips { display: none; position: relative; height: 30px; line-height: 30px; background: #f9d272; color: #f00; font-size: 14px; text-align: center; } .ie-tips b { font-weight: bold; } .ie-tips .js-tip-close { position: absolute; top: 0; right: 20px; cursor: pointer; }
         .threed {
             text-shadow: 0px 1px 0px #999, 1px 2px 1px #888, 2px 3px 2px #777, 3px 4px 3px #666, 4px 5px 4px #555, 5px 6px 5px #444, 6px 7px 6px #333, 7px 8px 7px #222, 8px 9px 8px #111
         }
     </style>
-
+    <script>
+        if(navigator.appVersion.indexOf(";")>=0) { var b_version = navigator.appVersion.split(";"); if (b_version != "undefined") { var trim_version = b_version[1].replace(/[ ]/g, ""); if ((navigator.appName == "Microsoft Internet Explorer" && trim_version == "MSIE6.0") || (navigator.appName == "Microsoft Internet Explorer" && trim_version == "MSIE7.0")) { $(".ie-tips").show(); } else { $(".ie-tips").hide(); } } }
+    </script>
     <div id="root">
         <div class="container">
             <div class="jumbotron row">
