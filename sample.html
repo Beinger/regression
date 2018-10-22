@@ -52,7 +52,7 @@
                                 <td contenteditable="true"></td>
                                 <th class="text-center">收样日期</th>
                                 <td contenteditable="true" style="margin:0">
-                                    <input class="form-control" style="border: none" type="date">
+                                    <input style="border: none; width: 10em" type="date">
                                 </td>
                             </tr>
                             <tr>
@@ -60,7 +60,7 @@
                                 <td contenteditable="true"></td>
                                 <th class="text-center">完成日期</th>
                                 <td contenteditable="true">
-                                    <input class="form-control" style="border:none" type="date">
+                                    <input style="border:none; width: 10em" type="date">
                                 </td>
                             </tr>
                             <tr>
@@ -84,7 +84,7 @@
                         </thead>
                         <tbody class="text-center" v-for="(item, index) in value" :key="index">
                             <tr>
-                                <td class="text-left" v-text="item.name"></td>
+                                <td class="text-center" v-text="item.name"></td>
                                 <td v-text="item.GB"></td>
                                 <td v-text="item.unit"></td>
                                 <td v-text="item.range"></td>
