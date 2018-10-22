@@ -13,6 +13,7 @@ var app = new Vue({
         index: 0, //这个是表格索引==序号
         new_item: "", //表格新行
         add_edit: false, //切换新增和修改
+        git_show: false,
         show1: false, //显示第一项
         show2: false, //显示第二项
         show3: false, //显示第三项
@@ -570,7 +571,7 @@ var app = new Vue({
                 step: ["用移液管准确移取100mL水样于250mL锥形瓶中，加入1mL铬酸钾溶液，用硝酸银标准溶液滴定至砖红色沉淀刚刚出现即为滴定终点。",
                 "另取一锥形瓶加入100mL蒸馏水和1mL铬酸钾溶液，用硝酸银标准溶液滴定至砖红色沉淀刚刚出现即为滴定终点，作为空白试验。",
                 "氯化物质量浓度C(mg/L)按下式计算："],
-                calculation: '<img src="img/cl.bmp" />',
+                calculation: '<span>&rho;(Cl)&emsp;=&emsp;(V<sub>1</sub>-V<sub>0</sub>)&times;0.50&times;1000/V</span>',
                 judge: false,
                 category: 2,
                 range_max: 250,
@@ -600,7 +601,7 @@ var app = new Vue({
                 id: 18,
                 st: [],
                 step: [""],
-                calculation: '<img src="img/cl.bmp" />',
+                calculation: '&rho;(CaCO<sub>3</sub>)&emsp;=&emsp;(V<sub>标</sub>-V<sub>空</sub>) &times; c &times; 100.08 &times; 1000 / V<sub>样</sub>',
                 judge: false,
                 category: 2,
                 range_max: 1000,
@@ -631,7 +632,7 @@ var app = new Vue({
                 id: 19,
                 st: [],
                 step: [""],
-                calculation: 'ρ(O2) = [(10+V1) * K - 10] * 0.8',
+                calculation: 'ρ(O2) = [(10+V<sub>1</sub>) &times; K - 10] &times; 0.8',
                 judge: false,
                 category: 2,
                 range_max: 3,
@@ -2224,13 +2225,12 @@ var app = new Vue({
             this.cal_r();
             this.selected1.formula = "";
             if (this.selected1.a >= 0) {
-                this.selected1.formula = "<p>回归方程为：y = " + this.selected1.b.toFixed(4) + "x + " + this.selected1.a.toFixed(4) + "</p><p>相关系数为：r = " + this.selected1.r.toFixed(4) + "</p>";
-
+                this.selected1.formula = "y = " + this.selected1.b.toFixed(4) + "x + " + this.selected1.a.toFixed(4) 
             } else {
                 let a = -(this.selected1.a);
-                this.selected1.formula = "<p>回归方程为：y = " + this.selected1.b.toFixed(4) + "x - " + a.toFixed(4) + "</p><p>相关系数为：r = " + this.selected1.r.toFixed(4) + "</p>";
+                this.selected1.formula = "y = " + this.selected1.b.toFixed(4) + "x - " + a.toFixed(4) 
             }
-
+            this.selected1.r = this.selected1.r.toFixed(4)
         },
         add_item() {
             /**
@@ -2254,6 +2254,7 @@ var app = new Vue({
             this.set_record(s)
             this.useCount(s);
             this.useJudge(s)
+            focus_move()
         },
         work(s) {
             this.save_result(s)
@@ -2365,6 +2366,10 @@ var app = new Vue({
              */
 
             let res = s.result
+            res.date = this.dateFormat(new Date());
+            res.id = s.start;
+            res.unit = s.unit;
+            res.range = this.get_range(s);
             switch (s) {
                 case this.selected3:
                     {
@@ -2392,10 +2397,6 @@ var app = new Vue({
                         res.assessment = (res.c > s.range_max) ? "不合格" : "合格"
                     }
             }
-            res.date = this.dateFormat(new Date());
-            res.id = s.start;
-            res.unit = s.unit;
-            res.range = this.get_range(s);
             let str = JSON.stringify(res); //格式化后才能存入 
             let p = (s.name + s.start + "报告结果");
             localStorage.setItem(p, str);
