@@ -129,6 +129,7 @@ var app = new Vue({
                 assessment: "合格",
                 unit: "无量纲",
                 method: "嗅气和尝味法",
+                GB: "GB/T 5740.4-2006",
                 step: [
                     "去100ml水样，置于250ML锥形瓶中，振摇后从瓶口嗅水的气味，用适当的文字描述，并按六级记录其强度。",
                     "与此同时，取少量水样放入口中（此水样应对人体无害），不要咽下，品尝水的味道，予以描述，并按六级记录强度。"
@@ -153,6 +154,7 @@ var app = new Vue({
                 assessment: "合格",
                 unit: "无量纲",
                 method: "直接观察法",
+                GB: "GB/T 5740.4-2006",
                 step: [
                     "将水样摇匀，在光线明亮处迎光直接观察,记录所观察到的肉眼可见物。"
                 ],
@@ -174,6 +176,7 @@ var app = new Vue({
                 category: 3,
                 judge: false,
                 assessment: "合格",
+                GB: "GB/T 5740.12-2006",
                 unit: "MPN/100ml",
                 step: [""],
                 start: 1,
@@ -194,6 +197,7 @@ var app = new Vue({
                 category: 3,
                 judge: false,
                 assessment: "合格",
+                GB: "GB/T 5740.12-2006",
                 unit: "MPN/100ml",
                 step: [""],
                 start: 1,
@@ -216,6 +220,7 @@ var app = new Vue({
                 start: 1,
                 end: 1,
                 assessment: "合格",
+                GB: "GB/T 5740.12-2006",
                 unit: "MPN/100ml",
                 step: [""],
                 name: "耐热大肠菌群",
@@ -2369,6 +2374,7 @@ var app = new Vue({
             res.date = this.dateFormat(new Date());
             res.id = s.start;
             res.unit = s.unit;
+            res.GB = s.GB;
             res.range = this.get_range(s);
             switch (s) {
                 case this.selected3:

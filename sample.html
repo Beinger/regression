@@ -26,28 +26,56 @@
                     </div>
                     <div>
                         <h6>
-                            <span class="text-left">样品编号：<span v-text="numbering"></span>(水)2018第
+                            <!-- <span class="text-left">样品编号：<span v-text="numbering"></span>(水)2018第
                             <span v-text="f_n(value[0].id,3)"></span>号
-                            </span>
+                            </span> -->
                         <span class="text-right" style="float: right">
                             第 3 页  共 3 页
                         </span>
                         </h6>
                     </div>
-                    <!-- <table class="table table-bordered table-striped table-hover">
+                    <table class="table table-bordered table-striped table-hover">
                         <tbody>
                             <tr>
-                                <th></th>
+                                <th class="text-center">样品编号</th>
+                                <td contenteditable="true">
+                                    <span v-text="numbering"></span>
+                                    (水)2018第
+                                    <span v-text="f_n(value[0].id, 5)"></span>
+                                    号
+                                </td>
+                                <th class="text-center">样品名称</th>
+                                <td contenteditable="true"></td>
                             </tr>
-                            <tr></tr>
-                            <tr></tr>
+                            <tr>
+                                <th class="text-center">受捡单位</th>
+                                <td contenteditable="true"></td>
+                                <th class="text-center">收样日期</th>
+                                <td contenteditable="true" style="margin:0">
+                                    <input class="form-control" style="border: none" type="date">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="text-center">采样地点</th>
+                                <td contenteditable="true"></td>
+                                <th class="text-center">完成日期</th>
+                                <td contenteditable="true">
+                                    <input class="form-control" style="border:none" type="date">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="text-center">检测标准</th>
+                                <td>GB/T 5750-2006</td>
+                                <th class="text-center">卫生标准</th>
+                                <td>GB 5749-2006</td>
+                            </tr>
                         </tbody>
-                    </table> -->
+                    </table>
                     <table class="table table-bordered table-striped table-hover">
                         <thead>
                             <tr>
                                 <th class="text-center">检验项目</th>
-                                <th class="text-center">参考依据</th>
+                                <th class="text-center">检测方法</th>
                                 <th class="text-center">单位</th>
                                 <th class="text-center">参考范围</th>
                                 <th @click="ass=!ass" class="text-center">检验结果</th>
@@ -57,7 +85,7 @@
                         <tbody class="text-center" v-for="(item, index) in value" :key="index">
                             <tr>
                                 <td class="text-left" v-text="item.name"></td>
-                                <td>GB/T 5749 - 2006</td>
+                                <td v-text="item.GB"></td>
                                 <td v-text="item.unit"></td>
                                 <td v-text="item.range"></td>
                                 <td v-if="item.c<item.limit" v-text="'<'+item.limit"></td>

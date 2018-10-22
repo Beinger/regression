@@ -781,7 +781,7 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <input class="form-control animated bounceInRight" type="number" tabindex="0"
+                                        <input class="form-control animated fadeIn" type="number" tabindex="0"
                                             placeholder="输入完成直接按回车键" @keyup.enter="work(selected1)" placeholder="输入后直接回车"
                                             v-model="selected1.result.a">
                                     </td>
@@ -935,14 +935,14 @@
                                         </select>
                                     </td>
                                     <td v-if="selected2.name=='耗氧量'">
-                                        <input class="form-control animated bounceInRight" type="number" v-model="selected2.result.K">
+                                        <input class="form-control animated fadeIn" type="number" v-model="selected2.result.K">
                                     </td>
                                     <td>
-                                        <input class="form-control animated bounceInRight" type="number" step="0.01"
+                                        <input class="form-control animated fadeIn" type="number" step="0.01"
                                             v-model="selected2.result.a0">
                                     </td>
                                     <td>
-                                        <input class="form-control animated bounceInRight" type="number" tabindex="0"
+                                        <input class="form-control animated fadeIn" type="number" tabindex="0"
                                             placeholder="输入完成直接按回车键" @keyup.enter="work(selected2)" v-model.number="selected2.result.a1">
                                     </td>
                                 </tr>
@@ -1077,10 +1077,10 @@
                                             </span>号</i>
                                     </td>
                                     <td>
-                                        <input class="form-control animated bounceInRight" v-if="selected3.name=='酸碱度' || selected3.name=='色度' || selected3.name=='浑浊度'"
+                                        <input class="form-control animated fadeIn" v-if="selected3.name=='酸碱度' || selected3.name=='色度' || selected3.name=='浑浊度'"
                                             type="number" tabindex="0" v-model.number="selected3.result.c" placeholder="输入完成直接按回车键"
                                             @keyup.enter="work(selected3)">
-                                        <input class="form-control animated bounceInRight" v-else type="text" tabindex="0"
+                                        <input class="form-control animated fadeIn" v-else type="text" tabindex="0"
                                             placeholder="输入完成直接按回车键" @keyup.enter="work(selected3)" v-model="selected3.result.c">
                                     </td>
                                 </tr>
