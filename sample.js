@@ -1,6 +1,7 @@
 let sample = new Vue({
     el: "#app",
     data: {
+	ass: false,
         company: '',
         username: '',
         numbering: '',

@@ -48,8 +48,8 @@
                                 <th class="text-center">参考依据</th>
                                 <th class="text-center">单位</th>
                                 <th class="text-center">参考范围</th>
-                                <th class="text-center">检验结果</th>
-                                <!-- <th class="text-center">单项评价</th> -->
+                                <th @click="ass=!ass" class="text-center">检验结果</th>
+                                <th class="text-center" v-show="ass">单项评价</th>
                             </tr>
                         </thead>
                         <tbody class="text-center" v-for="(item, index) in value" :key="index">
@@ -60,7 +60,7 @@
                                 <td v-text="item.range"></td>
                                 <td v-if="item.c<item.limit" v-text="'<'+item.limit"></td>
                                 <td contenteditable="true" v-else v-text="item.c"></td>
-                                <!-- <td contenteditable="true" v-text="item.assessment"></td> -->
+                                <td contenteditable="true" v-show="ass" v-text="item.assessment"></td>
                             </tr>
                         </tbody>
                     </table>
