@@ -15,7 +15,9 @@
 <body>
     <div class="container">
         <div id="app">
-            <a class="btn btn-success text-danger form-control" @click="printContent()"><i class="fa fa-print"></i>打印</a>
+            <a class="btn btn-success text-danger" @click="printContent()"><i class="fa fa-print"></i>打印</a>
+            <a class="btn btn-success text-danger" href="index.html"><i class="fa fa-return"></i>返回</a>
+            
             <div id="subOutputRank-print">
                 <div v-for="(value, key) in storage">
                     <div class="text-center">
