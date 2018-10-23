@@ -45,22 +45,24 @@
                                     号
                                 </td>
                                 <th class="text-center">样品名称</th>
-                                <td contenteditable="true"></td>
+                                <td contenteditable="true">
+                                    <select style="border: none">
+                                        <option v-for="(item, index) in sample_name" :key="index">{{ item }}</option>
+                                    </select>
+                                </td>
                             </tr>
                             <tr>
                                 <th class="text-center">受捡单位</th>
                                 <td contenteditable="true"></td>
                                 <th class="text-center">收样日期</th>
-                                <td contenteditable="true" style="margin:0">
-                                    <input style="border: none; width: 10em" type="date" v-model="shou_date">
+                                <td contenteditable="true" v-text="seive_date">
                                 </td>
                             </tr>
                             <tr>
                                 <th class="text-center">采样地点</th>
                                 <td contenteditable="true"></td>
                                 <th class="text-center">完成日期</th>
-                                <td contenteditable="true">
-                                    <input style="border:none; width: 10em" type="date" v-model="wan_date">
+                                <td contenteditable="true" v-text="dateFormat(new Date())">
                                 </td>
                             </tr>
                             <tr>

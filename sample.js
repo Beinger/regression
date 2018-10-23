@@ -1,12 +1,21 @@
 let sample = new Vue({
     el: "#app",
     data: {
-	ass: false,
+	    ass: false,
         company: '',
         username: '',
         numbering: '',
-        shou_date: "",
-        wan_date: "",
+        sample_name: [
+            "水源水",
+            "出厂水",
+            "末梢水",
+            "湖水",
+            "泉水",
+            "井水",
+            "溪水",
+            "河水",
+            "地表水"
+        ],
         reg_s: /报告结果$/g,
         reg_st: /^[\u4e00-\u9fa5]+/g,
         new_list: [],
@@ -21,6 +30,12 @@ let sample = new Vue({
         report_date() {
             let date = new Date();
             date = this.addDay(15,date)
+            date = this.dateFormat(date)
+            return date 
+        },
+        seive_date(){
+            let date = new Date();
+            date = this.fontDay(15,date)
             date = this.dateFormat(date)
             return date 
         },
@@ -56,6 +71,12 @@ let sample = new Vue({
             date = date ? date : new Date();
             var ms = dayNumber * (1000 * 60 * 60 * 24)
             var newDate = new Date(date.getTime() + ms);
+            return newDate;
+        },
+        fontDay(dayNumber, date) {
+            date = date ? date : new Date();
+            var ms = dayNumber * (1000 * 60 * 60 * 24)
+            var newDate = new Date(date.getTime() - ms);
             return newDate;
         },
         dateFormat(time) {

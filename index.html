@@ -41,13 +41,16 @@
                     <h2 data-toggle="modal" data-target="#login" v-text="company"></h2>
                     <h1 style="color:gainsboro" class="threed">水质检验回归分析系统</h1>
                 </div>
-                <div class="col-xs-3 col-lg-2 col-md-2 col-sm-2">&telrec;
+                <div class="col-xs-3 col-lg-2 col-md-2 col-sm-2">
+                    <i class="fa fa-qq"></i>
                     <a target="_blank" href="https://shang.qq.com/wpa/qunwpa?idkey=0c7a84b3bf0ac2a3564a707e9841a6704564dc55302794760b96bca8bd42480b">
                         <img src="https://pub.idqqimg.com/wpa/images/group.png" alt="水质检测系统" title="水质检测系统">
                     </a>
                     <a class="btn btn-warning btn-lg" data-toggle="modal" data-target=".bs-example-modal-lg">
-                        <img src="img/tutorial.gif" class="animated fadeInLeft" v-show="git_show">
                         <i class="fa fa-play">使用教程</i>
+                    </a>
+                    <a class="btn btn-warning btn-lg" href="https://jingyan.baidu.com/article/851fbc377b58ea3e1f15abe5.html" target="_blank">
+                        <i class="fa fa-book">百度经验</i>
                     </a>
                     <!-- Large modal -->
                     <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
@@ -102,7 +105,7 @@
                             <div class='modal-content'>
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    <h4 class="modal-title" id="myModalLabel">注册</h4>
+                                    <h4 class="modal-title" id="myModalLabel">本地存储</h4>
                                 </div>
                                 <div class="modal-body form-group">
                                     <label for="" class="form-label">单位名称
@@ -129,18 +132,18 @@
                                     <span class="icon-bar"></span>
                                     <span class="icon-bar"></span>
                                 </button>
-                                <button class="btn btn-warning navbar-brand">
-                                    项目类别
-                                </button>
+                                <label class="navbar-brand">
+                                    项   目
+                                </label>
                             </div>
                             <div class="collapse navbar-collapse" id="object_nav">
                                 <ul class="nav navbar-nav">
-                                    <li class="btn btn-lg" @mouseover="s1=true;s2=false;s3=false;s4=false;s5=false;add_edit=false">感官性状和一般化学指标</li>
-                                    <li class="btn btn-lg" @mouseover="s1=false;s2=true;s3=false;s4=false;s5=false;add_edit=false">毒理指标</li>
-                                    <li class="btn btn-lg" @mouseover="s1=false;s2=false;s4=false; s5=false;s3=true;add_edit=false">消毒剂指标</li>
-                                    <li class="btn btn-lg" @mouseover="s1=false;s2=false;s3=false;s5=false;s4=true;add_edit=false">微生物指标</li>
-                                    <li class="btn btn-lg" @mouseover="s1=false;s2=false;s3=false;s4=false;s5=true;add_edit=false">放射性指标</li>
-                                    <li class="btn btn-lg" @mouseover="s1=false;s2=false;s3=false;s4=false;s5=false;add_edit=true">修改项目</li>
+                                    <li class="btn btn-info btn-lg" @mouseover="s1=true;s2=false;s3=false;s4=false;s5=false;add_edit=false">感官性状和一般化学指标</li>
+                                    <li class="btn btn-danger btn-lg" @mouseover="s1=false;s2=true;s3=false;s4=false;s5=false;add_edit=false">毒理指标</li>
+                                    <li class="btn btn-warning btn-lg" @mouseover="s1=false;s2=false;s4=false; s5=false;s3=true;add_edit=false">消毒剂指标</li>
+                                    <li class="btn btn-success btn-lg" @mouseover="s1=false;s2=false;s3=false;s5=false;s4=true;add_edit=false">微生物指标</li>
+                                    <li class="btn btn-danger btn-lg" @mouseover="s1=false;s2=false;s3=false;s4=false;s5=true;add_edit=false">放射性指标</li>
+                                    <li class="btn btn-default btn-lg" @mouseover="s1=false;s2=false;s3=false;s4=false;s5=false;add_edit=true">修改项目</li>
                                 </ul>
                             </div>
                         </div>
@@ -630,7 +633,7 @@
                     <div id="line" style="box-shadow:5px 5px 4px"></div>
                 </div>
             </div>
-            <form v-if="show1" class="animated fadeIn">
+            <form v-if="show1" class="animated fadeInDown">
 
                 <a class="btn text-danger" @click="printContent('print')"><i class="fa fa-print"></i>打印记录</a>
                 <div id="print">
@@ -668,10 +671,10 @@
                         </tr>
                         <tr>
                             <th class="text-center">检测仪器：</th>
-                            <td v-text="selected1.instrument_model">
+                            <td contenteditable="true" v-text="selected1.instrument_model">
                             </td>
                             <th class="text-center">检验依据：</th>
-                            <td colspan="2" v-text="selected1.GB">
+                            <td contenteditable="true" colspan="2" v-text="selected1.GB">
                             </td>
                         </tr>
                         <!-- <tr>
@@ -766,7 +769,7 @@
                         </fieldset>
                     </div>
                     <div class="col-lg-8">
-                        <fieldset v-if="add" class="animated fadeInRight">
+                        <fieldset v-if="add" class="animated bounceInUp">
                             <legend>样品中 <span v-text="selected1.name">
                                 </span> 浓度计算</legend>
                             <table class="table table-hover table-bordered table-striped">
@@ -797,7 +800,7 @@
                     </div>
                 </div>
             </form>
-            <form class="animated fadeIn" v-if="show2">
+            <form class="animated fadeInDown" v-if="show2">
                 <a class="btn text-danger" @click="printContent('print2')"><i class="fa fa-print"></i>打印记录</a>
                 <div id="print2">
                     <div @click="date_y()" class="text-center" colspan="5">
@@ -831,9 +834,9 @@
                         </tr>
                         <tr>
                             <th class="text-center">检测仪器：</th>
-                            <td v-text="selected2.instrument_model"></td>
+                            <td contenteditable="true" v-text="selected2.instrument_model"></td>
                             <th class="text-center">检验依据：</th>
-                            <td colspan="2" v-text="selected2.GB"></td>
+                            <td contenteditable="true" colspan="2" v-text="selected2.GB"></td>
                         </tr>
                         <!-- <tr>
                             <td class="text-center">检验步骤：</td>
@@ -917,7 +920,7 @@
                         </fieldset>
                     </div>
                     <div class="col-lg-8">
-                        <fieldset v-if="add" class="animated fadeInRight">
+                        <fieldset v-if="add" class="animated bounceInUp">
                             <legend>样品中 <span v-text="selected2.name">
                                 </span> 浓度计算</legend>
                             <table class="table table-hover table-bordered table-striped">
@@ -957,7 +960,7 @@
                     </div>
                 </div>
             </form>
-            <form class="animated fadeIn" v-if="show3">
+            <form class="animated fadeInDown" v-if="show3">
                 <a class="btn text-danger" @click="printContent('print3')"><i class="fa fa-print"></i>打印记录</a>
                 <div id="print3">
                     <div @click="date_y()" class="text-center" colspan="5">
@@ -994,10 +997,10 @@
                         </tr>
                         <tr>
                             <th class="text-center">检测仪器：</th>
-                            <td v-text="selected3.instrument_model">
+                            <td contenteditable="true" v-text="selected3.instrument_model">
                             </td>
                             <th class="text-center">检验依据：</th>
-                            <td colspan="2" v-text="selected3.GB">
+                            <td contenteditable="true" colspan="2" v-text="selected3.GB">
                             </td>
                         </tr>
                         <!-- <tr>
@@ -1069,7 +1072,7 @@
                         </fieldset>
                     </div>
                     <div class="col-lg-8">
-                        <fieldset v-if="add" class="animated fadeInRight">
+                        <fieldset v-if="add" class="animated bounceInUp">
                             <legend>样品中 <span v-text="selected3.name">
                                 </span> 浓度计算</legend>
                             <table class="table table-hover table-bordered table-striped">
