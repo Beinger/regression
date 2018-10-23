@@ -5,6 +5,8 @@ let sample = new Vue({
         company: '',
         username: '',
         numbering: '',
+        shou_date: "",
+        wan_date: "",
         reg_s: /报告结果$/g,
         reg_st: /^[\u4e00-\u9fa5]+/g,
         new_list: [],
