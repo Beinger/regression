@@ -32,7 +32,11 @@
         }
     </style>
     <script>
-        if(navigator.appVersion.indexOf(";")>=0) { var b_version = navigator.appVersion.split(";"); if (b_version != "undefined") { var trim_version = b_version[1].replace(/[ ]/g, ""); if ((navigator.appName == "Microsoft Internet Explorer" && trim_version == "MSIE6.0") || (navigator.appName == "Microsoft Internet Explorer" && trim_version == "MSIE7.0")) { $(".ie-tips").show(); } else { $(".ie-tips").hide(); } } }
+    let userAgent = navigator.userAgent;
+    if(userAgent.indexOf("windows") > -1 && userAgent.indexOf("MSIE") > -1 && !userAgent.indexOf("Opera") > -1){
+        $(".ie-tips").show();
+        $("#root").hide();
+    }
     </script>
     <div id="root">
         <div class="container">
@@ -690,8 +694,10 @@
                     </table>
                     <table class="table tabel-bordered table-striped">
                         <thead>
-                            <th class="text-center">标准加样量</th>
-                            <td v-for="(item,index) in selected1.standard_series" :key="index">{{ item[0] }}</td>
+                            <tr>
+                                <th class="text-center">标准加样量</th>
+                                <td v-for="(item,index) in selected1.standard_series" :key="index">{{ item[0] }}</td>
+                            </tr>
                         </thead>
                         <tbody>
                             <tr>
@@ -914,7 +920,6 @@
                                     样品编号<i v-text="numbering+(new Date()).getFullYear()"></i>水第
                                     <input v-if="selected2.judge" tabindex="-1" type="number" v-model.number="selected2.start">
                                     <input v-else tabindex="-1" type="number" v-model.number="selected2.end"> 号
-                                    </i>
                                 </a>
                             </div>
                         </fieldset>
@@ -936,7 +941,7 @@
                                 <tr class="text-center">
                                     <td>
                                         <i v-text="numbering+(new Date()).getFullYear()"></i>水第<span v-text="f_n(selected2.start,3)">
-                                        </span>号</i>
+                                        </span>号
                                     </td>
                                     <td>
                                         <select class="form-control" v-model="selected2.result.v">
@@ -1066,7 +1071,6 @@
                                     样品编号<i v-text="numbering+(new Date()).getFullYear()"></i>水第
                                     <input v-if="selected3.judge" tabindex="-1" type="number" v-model="selected3.start">
                                     <input v-else tabindex="-1" type="number" v-model="selected3.end"> 号
-                                    </i>
                                 </a>
                             </div>
                         </fieldset>
