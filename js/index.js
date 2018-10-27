@@ -1969,7 +1969,7 @@ var app = new Vue({
             },
         ],
     },
-    created() {
+    created: function() {
         this.init_login()
         this.get_opt(this.names1, 1)
         this.get_opt(this.names2, 2)
