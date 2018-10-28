@@ -3,6 +3,8 @@ var app = new Vue({
     data: {
         T: "",
         H: "",
+        QC: true,
+        qc_input: false,
         submit_show: false,
         selected_opt: [],
         numbering: "", //机构代号
@@ -24,7 +26,7 @@ var app = new Vue({
         s5: false,
         add: false, //显示计算输入框
         date_show: false, //显示日期和评价之类
-        vol_select: [  //常用的几种体积选项
+        vol_select: [ //常用的几种体积选项
             50, 100, 250, 1, 25, 10
         ],
         selected1: "",
@@ -37,6 +39,12 @@ var app = new Vue({
         new_opt1: {
             id: '',
             st: [],
+            QC_sample_std: '',
+            QC_sample_id: 0,
+            QC_sample_value: '',
+            QC_store: [],
+            q_num: '',
+            q_val: '',
             step: [""],
             judge: false,
             category: 1,
@@ -70,6 +78,12 @@ var app = new Vue({
         new_opt2: {
             id: '',
             st: [],
+            QC_sample_std: '',
+            QC_sample_id: 0,
+            QC_sample_value: '',
+            QC_store: [],
+            q_num: '',
+            q_val: '',
             step: [""],
             judge: false,
             category: 2,
@@ -99,6 +113,12 @@ var app = new Vue({
         new_opt3: {
             id: '',
             st: [],
+            QC_sample_std: '',
+            QC_sample_id: 0,
+            QC_sample_value: '',
+            QC_store: [],
+            q_num: '',
+            q_val: '',
             step: [""],
             judge: false,
             category: 3,
@@ -120,16 +140,21 @@ var app = new Vue({
                 date: ""
             },
         },
-        names: [
-            {
+        names: [{
                 id: 1,
                 st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+            q_val: '',
                 category: 3,
                 judge: false,
                 assessment: "合格",
                 unit: "无量纲",
-                method: "嗅气和尝味法",
-                GB: "GB/T 5740.4-2006",
+                method: "(3.1)",
+                GB: "GB/T 5750.4-2006",
                 step: [
                     "去100ml水样，置于250ML锥形瓶中，振摇后从瓶口嗅水的气味，用适当的文字描述，并按六级记录其强度。",
                     "与此同时，取少量水样放入口中（此水样应对人体无害），不要咽下，品尝水的味道，予以描述，并按六级记录强度。"
@@ -149,11 +174,17 @@ var app = new Vue({
             {
                 id: 2,
                 st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 category: 3,
                 judge: false,
                 assessment: "合格",
                 unit: "无量纲",
-                method: "直接观察法",
+                method: "(4.1)",
                 GB: "GB/T 5740.4-2006",
                 step: [
                     "将水样摇匀，在光线明亮处迎光直接观察,记录所观察到的肉眼可见物。"
@@ -173,9 +204,16 @@ var app = new Vue({
             {
                 id: 3,
                 st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 category: 3,
                 judge: false,
                 assessment: "合格",
+                method: '(2.1)',
                 GB: "GB/T 5740.12-2006",
                 unit: "MPN/100ml",
                 step: [""],
@@ -194,6 +232,12 @@ var app = new Vue({
             {
                 id: 4,
                 st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 category: 3,
                 judge: false,
                 assessment: "合格",
@@ -215,6 +259,12 @@ var app = new Vue({
             {
                 id: 5,
                 st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 category: 3,
                 judge: false,
                 start: 1,
@@ -236,6 +286,12 @@ var app = new Vue({
             {
                 id: 6,
                 st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 step: [
                     "玻璃电极在使用前应放在纯水中侵泡24h以上。",
                     "仪器校正：仪器开启30min后，按仪器使用说明书操作。",
@@ -253,7 +309,7 @@ var app = new Vue({
                 start: 1,
                 end: 1,
                 name: "酸碱度",
-                method: "玻璃电极法",
+                method: "(5.1)",
                 limit: 0,
                 instrument_model: "精密pH计、pH玻璃电极、饱和甘汞电极、温度计",
                 GB: "GB/T 5750.4-2006",
@@ -268,11 +324,17 @@ var app = new Vue({
             {
                 id: 7,
                 st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 step: [
                     "取50ml透明的水样于比色管中。如水样色度过高，可取少量水样，加纯水稀释后比色，结果乘以稀释倍数。",
-                "另取比色管11支分别加入铂钴标准溶液0ml,0.50ml,1.00ml,1.50ml,2.00ml,2.50ml,3.00ml,3.50ml,4.00ml,4.50ml和5.00ml,加纯水至刻度，摇匀，配制色度为0度，5度，10度，15度，20度，25度，30度，35度，40度，45度和50度的标准色列，可长期使用。",
-                "将水样与铂钴标准色列进行比较。如水样与标准色列的色调不一致,即为异色，可用文字描述。"
-            ],
+                    "另取比色管11支分别加入铂钴标准溶液0ml,0.50ml,1.00ml,1.50ml,2.00ml,2.50ml,3.00ml,3.50ml,4.00ml,4.50ml和5.00ml,加纯水至刻度，摇匀，配制色度为0度，5度，10度，15度，20度，25度，30度，35度，40度，45度和50度的标准色列，可长期使用。",
+                    "将水样与铂钴标准色列进行比较。如水样与标准色列的色调不一致,即为异色，可用文字描述。"
+                ],
                 judge: false,
                 category: 3,
                 range_min: "",
@@ -283,7 +345,7 @@ var app = new Vue({
                 start: 1,
                 end: 1,
                 name: "色度",
-                method: "铂-钴标准比色法",
+                method: "(1.1)",
                 limit: 5,
                 instrument_model: "比色计",
                 GB: "GB/T 5750.4-2006",
@@ -298,6 +360,12 @@ var app = new Vue({
             {
                 id: 8,
                 st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 step: ["按仪器使用说明书进行操作，浑浊度超过10NTU时，可用纯水稀释后测定。"],
                 judge: false,
                 category: 3,
@@ -309,7 +377,7 @@ var app = new Vue({
                 start: 1,
                 end: 1,
                 name: "浑浊度",
-                method: "福尔马肼标准",
+                method: "(2.1)",
                 limit: 0.5,
                 instrument_model: "散射式浊度仪",
                 GB: "GB/T 5750.4-2006",
@@ -324,6 +392,12 @@ var app = new Vue({
             {
                 id: 9,
                 st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 step: [""],
                 judge: false,
                 category: 2,
@@ -336,7 +410,7 @@ var app = new Vue({
                 start: 1,
                 end: 1,
                 name: "溶解性总固体",
-                method: "称重法",
+                method: "(8.1)",
                 limit: 0.5,
                 instrument_model: "分析天平",
                 GB: "GB/T 5750.4-2006",
@@ -355,6 +429,12 @@ var app = new Vue({
             {
                 id: 10,
                 st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 step: [""],
                 judge: false,
                 category: 3,
@@ -366,7 +446,7 @@ var app = new Vue({
                 start: 1,
                 end: 1,
                 name: "四氯化碳",
-                method: "毛细管柱气相色谱法",
+                method: "(1.2)",
                 limit: 0.1,
                 instrument_model: "气相色谱仪",
                 GB: "GB/T 5750.8-2006",
@@ -381,6 +461,12 @@ var app = new Vue({
             {
                 id: 11,
                 st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 step: [""],
                 judge: false,
                 category: 3,
@@ -392,7 +478,7 @@ var app = new Vue({
                 start: 1,
                 end: 1,
                 name: "三氯甲烷",
-                method: "毛细管柱气相色谱法",
+                method: "(1)",
                 limit: 0.2,
                 instrument_model: "气相色谱仪",
                 GB: "GB/T 5750.8-2006",
@@ -408,6 +494,12 @@ var app = new Vue({
             {
                 id: 12,
                 st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 step: [""],
                 calculation: "",
                 judge: false,
@@ -435,6 +527,12 @@ var app = new Vue({
             {
                 id: 13,
                 st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 step: [
                     "标准曲线绘制：吸取0,0.1,0.5,2.0,4.0,8.0ml,氯标准使用溶液(1.1.3.9)置于6支10ml具塞比色管中，用",
                     "",
@@ -475,6 +573,12 @@ var app = new Vue({
             {
                 id: 14,
                 st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 step: [
                     "标准曲线绘制：吸取0,0.1,0.5,2.0,4.0,8.0ml,氯标准使用溶液(1.1.3.9)置于6支10ml具塞比色管中，用",
                     "",
@@ -515,6 +619,12 @@ var app = new Vue({
             {
                 id: 15,
                 st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 step: [""],
                 calculation: "",
                 judge: false,
@@ -544,6 +654,12 @@ var app = new Vue({
             {
                 id: 16,
                 st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 step: [""],
                 calculation: "",
                 judge: false,
@@ -573,9 +689,16 @@ var app = new Vue({
             {
                 id: 17,
                 st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 step: ["用移液管准确移取100mL水样于250mL锥形瓶中，加入1mL铬酸钾溶液，用硝酸银标准溶液滴定至砖红色沉淀刚刚出现即为滴定终点。",
-                "另取一锥形瓶加入100mL蒸馏水和1mL铬酸钾溶液，用硝酸银标准溶液滴定至砖红色沉淀刚刚出现即为滴定终点，作为空白试验。",
-                "氯化物质量浓度C(mg/L)按下式计算："],
+                    "另取一锥形瓶加入100mL蒸馏水和1mL铬酸钾溶液，用硝酸银标准溶液滴定至砖红色沉淀刚刚出现即为滴定终点，作为空白试验。",
+                    "氯化物质量浓度C(mg/L)按下式计算："
+                ],
                 calculation: '<span>&rho;(Cl)&emsp;=&emsp;(V<sub>1</sub>-V<sub>0</sub>)&times;0.50&times;1000/V</span>',
                 judge: false,
                 category: 2,
@@ -605,6 +728,12 @@ var app = new Vue({
             {
                 id: 18,
                 st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 step: [""],
                 calculation: '&rho;(CaCO<sub>3</sub>)&emsp;=&emsp;(V<sub>标</sub>-V<sub>空</sub>) &times; c &times; 100.08 &times; 1000 / V<sub>样</sub>',
                 judge: false,
@@ -616,7 +745,7 @@ var app = new Vue({
                 unit: "mg/L",
                 start: 1,
                 end: 1,
-                name: "总硬度",
+                name: "(7.1)",
                 method: "EDTA-na_2滴定法",
                 limit: 1,
                 coefficient: 1000.9,
@@ -636,6 +765,12 @@ var app = new Vue({
             {
                 id: 19,
                 st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 step: [""],
                 calculation: 'ρ(O2) = [(10+V<sub>1</sub>) &times; K - 10] &times; 0.8',
                 judge: false,
@@ -648,7 +783,7 @@ var app = new Vue({
                 start: 1,
                 end: 1,
                 name: "耗氧量",
-                method: "酸性高锰酸钾滴定法",
+                method: "(1.1)",
                 limit: "0.05",
                 coefficient: 80,
                 instrument_model: "滴定管、架",
@@ -668,6 +803,12 @@ var app = new Vue({
             {
                 id: 20,
                 st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 step: [""],
                 calculation: "C = m/V",
                 judge: false,
@@ -696,6 +837,12 @@ var app = new Vue({
             {
                 id: 21,
                 st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 step: [""],
                 calculation: "C = m/V",
                 judge: false,
@@ -726,6 +873,12 @@ var app = new Vue({
             {
                 id: 22,
                 st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 step: [""],
                 calculation: "C = m/V",
                 judge: false,
@@ -738,7 +891,7 @@ var app = new Vue({
                 start: 1,
                 end: 1,
                 name: "氨氮",
-                method: "纳氏试剂分光光度法",
+                method: "(9.1)",
                 limit: 0.05,
                 a: 0,
                 b: 1,
@@ -787,6 +940,12 @@ var app = new Vue({
             {
                 id: 23,
                 st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 step: [""],
                 calculation: "ρ(CN-)=(m*V1)/(V*V2)",
                 judge: false,
@@ -800,7 +959,7 @@ var app = new Vue({
                 end: 1,
                 name: "氰化物",
                 a: 0,
-                method: "异烟酸-吡唑酮分光光度法",
+                method: "(4.1)",
                 b: 1,
                 r: 1,
                 formula: "",
@@ -848,6 +1007,12 @@ var app = new Vue({
             {
                 id: 24,
                 st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 step: [""],
                 calculation: "ρ（F-)=[(ρ1*V1)/V2]/[log-1(E2-E1)/K]-1]",
                 judge: false,
@@ -861,7 +1026,7 @@ var app = new Vue({
                 end: 1,
                 name: "氟化物",
                 limit: 0.2,
-                method: "离子选择电极法(标准加入法)",
+                method: "(3.1)",
                 a: 0,
                 b: 1,
                 r: 1,
@@ -909,6 +1074,12 @@ var app = new Vue({
             {
                 id: 25,
                 st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 step: [""],
                 calculation: "ρ(NO3-N) = m/V",
                 judge: false,
@@ -922,7 +1093,7 @@ var app = new Vue({
                 end: 1,
                 name: "硝酸盐氮",
                 limit: 0.5,
-                method: "麝香草酚分光光度法",
+                method: "(5.3)",
                 a: 0,
                 b: 1,
                 r: 1,
@@ -974,6 +1145,12 @@ var app = new Vue({
             {
                 id: 26,
                 st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 step: [""],
                 calculation: "ρ(Al) = m/V",
 
@@ -988,7 +1165,7 @@ var app = new Vue({
                 end: 1,
                 name: "铝",
                 limit: 0.008,
-                method: "铬天青S分光光度法",
+                method: "(1.1)",
                 a: 0,
                 b: 1,
                 r: 1,
@@ -1040,6 +1217,12 @@ var app = new Vue({
             {
                 id: 27,
                 st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 step: [""],
                 calculation: "ρ(C6H5OH)= m/V",
                 judge: false,
@@ -1053,7 +1236,7 @@ var app = new Vue({
                 end: 1,
                 name: "挥发酚",
                 limit: 0.002,
-                method: "4-氨基安替吡啉三氯甲烷萃取分光光度法",
+                method: "(9.1)",
                 a: 0,
                 b: 1,
                 r: 1,
@@ -1105,6 +1288,12 @@ var app = new Vue({
             {
                 id: 28,
                 st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 step: [""],
                 calculation: "ρ(Hg)= m/V",
                 judge: false,
@@ -1118,7 +1307,7 @@ var app = new Vue({
                 end: 1,
                 name: "汞",
                 limit: 0.001,
-                method: "双硫腙分光光度法",
+                method: "(8.3)",
                 a: 0,
                 b: 1,
                 r: 1,
@@ -1170,6 +1359,12 @@ var app = new Vue({
             {
                 id: 29,
                 st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 step: ["略"],
                 calculation: "ρ(DBS) = m/V",
                 judge: false,
@@ -1183,7 +1378,7 @@ var app = new Vue({
                 end: 1,
                 name: "阴离子合成洗涤剂",
                 limit: 0.05,
-                method: "亚甲蓝分光光度法",
+                method: "(10.1)",
                 a: 0,
                 b: 1,
                 r: 1,
@@ -1235,6 +1430,12 @@ var app = new Vue({
             {
                 id: 30,
                 st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 step: [""],
                 calculation: "ρ(Se) = m/V",
                 judge: false,
@@ -1248,7 +1449,7 @@ var app = new Vue({
                 end: 1,
                 name: "硒",
                 limit: 0.001,
-                method: "二氨基联苯胺分光光度法",
+                method: "(7.1)",
                 a: 0,
                 b: 1,
                 r: 1,
@@ -1296,6 +1497,12 @@ var app = new Vue({
             {
                 id: 31,
                 st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 step: [""],
                 calculation: "ρ(Cd)= m/V",
                 judge: false,
@@ -1309,7 +1516,7 @@ var app = new Vue({
                 end: 1,
                 name: "镉",
                 limit: 0.005,
-                method: "双硫腙分光光度法",
+                method: "(9.1)",
                 a: 0,
                 b: 1,
                 r: 1,
@@ -1357,6 +1564,12 @@ var app = new Vue({
             {
                 id: 32,
                 st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 step: [""],
                 calculation: "ρ(Pb)= m/V",
                 judge: false,
@@ -1370,7 +1583,7 @@ var app = new Vue({
                 end: 1,
                 name: "铅",
                 limit: 0.01,
-                method: "双硫腙分光光度法",
+                method: "11.1",
                 a: 0,
                 b: 1,
                 r: 1,
@@ -1418,6 +1631,12 @@ var app = new Vue({
             {
                 id: 33,
                 st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 step: [""],
                 calculation: "ρ(Cr6+) = m/V",
                 judge: false,
@@ -1431,7 +1650,7 @@ var app = new Vue({
                 end: 1,
                 name: "六价铬",
                 limit: 0.004,
-                method: "二苯碳酰二肼分光光度法",
+                method: "(10.1)",
                 a: 0,
                 b: 1,
                 r: 1,
@@ -1479,6 +1698,12 @@ var app = new Vue({
             {
                 id: 34,
                 st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 step: [""],
                 calculation: "ρ(Cu) = m/V",
                 judge: false,
@@ -1492,7 +1717,7 @@ var app = new Vue({
                 end: 1,
                 name: "铜",
                 limit: 0.02,
-                method: "二乙基二硫代氨基甲酸钠分光光度法",
+                method: "(4.2)",
                 a: 0,
                 b: 1,
                 r: 1,
@@ -1540,6 +1765,12 @@ var app = new Vue({
             {
                 id: 35,
                 st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 step: [""],
                 calculation: "ρ(Mn) = m/V",
                 judge: false,
@@ -1553,7 +1784,7 @@ var app = new Vue({
                 end: 1,
                 name: "锰",
                 limit: 0.05,
-                method: "过硫酸铵分光光度法",
+                method: "(3.1)",
                 a: 0,
                 b: 1,
                 r: 1,
@@ -1601,6 +1832,12 @@ var app = new Vue({
             {
                 id: 36,
                 st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 step: [""],
                 calculation: "ρ(Fe) = m/V",
                 judge: false,
@@ -1614,7 +1851,7 @@ var app = new Vue({
                 end: 1,
                 name: "铁",
                 limit: 0.05,
-                method: "二氮杂菲分光光度法",
+                method: "(2.1)",
                 a: 0,
                 b: 1,
                 r: 1,
@@ -1662,6 +1899,12 @@ var app = new Vue({
             {
                 id: 37,
                 st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 step: [""],
                 calculation: "ρ(Zn) = m/V",
                 judge: false,
@@ -1675,7 +1918,7 @@ var app = new Vue({
                 end: 1,
                 name: "锌",
                 limit: 0.05,
-                method: "双硫腙分光光度法",
+                method: "(5.1)",
                 a: 0,
                 b: 1,
                 r: 1,
@@ -1723,6 +1966,12 @@ var app = new Vue({
             {
                 id: 38,
                 st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 step: [""],
                 calculation: "ρ(SO4) = m * 1000 / V",
                 judge: false,
@@ -1736,7 +1985,7 @@ var app = new Vue({
                 end: 1,
                 name: "硫酸盐",
                 limit: 5,
-                method: "铬酸钡分光光度法",
+                method: "(1.2)",
                 a: 0,
                 b: 1,
                 r: 1,
@@ -1784,6 +2033,12 @@ var app = new Vue({
             {
                 id: 39,
                 st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 step: [""],
                 calculation: "ρ(As) = m/V",
                 judge: false,
@@ -1797,7 +2052,7 @@ var app = new Vue({
                 end: 1,
                 name: "砷",
                 limit: 0.001,
-                method: "二乙氨基二硫代甲酸银分光光度法",
+                method: "(6.1)",
                 a: 0,
                 b: 1,
                 r: 1,
@@ -1849,6 +2104,12 @@ var app = new Vue({
             {
                 id: 40,
                 st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 step: [""],
                 calculation: "ρ(HCHO) = m/V",
                 judge: false,
@@ -1862,7 +2123,7 @@ var app = new Vue({
                 end: 1,
                 name: "甲醛",
                 limit: 0.001,
-                method: "4-氨基-3-联氨-5-硫基-1,2,4-三氮杂茂(AHMT)分光光度法",
+                method: "(6.1)",
                 a: 0,
                 b: 1,
                 r: 1,
@@ -1914,6 +2175,13 @@ var app = new Vue({
             {
                 id: 41,
                 category: 3,
+                st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 judge: false,
                 assessment: "合格",
                 range_max: 100,
@@ -1921,6 +2189,7 @@ var app = new Vue({
                 start: 1,
                 end: 1,
                 name: "菌落总数",
+                method: "(1.1)",
                 range: "100",
                 items: "",
                 result: {
@@ -1933,6 +2202,13 @@ var app = new Vue({
             {
                 id: 42,
                 category: 3,
+                st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 assessment: "合格",
                 range_max: 0.5,
                 unit: "Bq/L",
@@ -1942,6 +2218,7 @@ var app = new Vue({
                 limit: 0.016,
                 GB: "GB/T 5750.13-2006",
                 name: "总α放射性",
+                method: "(1.1)",
                 range: "100",
                 items: "",
                 result: {
@@ -1954,6 +2231,13 @@ var app = new Vue({
             {
                 id: 43,
                 category: 3,
+                st: [],
+                QC_sample_std: '',
+                QC_sample_id: 0,
+                QC_sample_value: '',
+                QC_store: [],
+                q_num: '',
+                q_val: '',
                 assessment: "合格",
                 range_max: 1,
                 unit: "Bq/L",
@@ -1963,17 +2247,18 @@ var app = new Vue({
                 limit: 0.028,
                 GB: "GB/T 5750.13-2006",
                 name: "总β放射性",
+                method: "(2.1)",
                 range: "100",
                 c: "",
                 result: [],
             },
         ],
     },
-    created: function() {
+    created: function () {
         this.init_login()
-        this.get_opt(this.names1, 1)
-        this.get_opt(this.names2, 2)
-        this.get_opt(this.names3, 3)
+        this.get_opt(this.names, 1)
+        this.get_opt(this.names, 2)
+        this.get_opt(this.names, 3)
     },
     watch: {
         selected1() {
@@ -2006,7 +2291,10 @@ var app = new Vue({
         }
     },
     methods: {
-        play_video(){
+        play_video() {
+            /**
+             * 
+             */
             this.play = !this.play
             let speed = 2.0
             let v = document.getElementById("video")
@@ -2020,7 +2308,7 @@ var app = new Vue({
             let p = s.name + s.category + 'par'
             s.st = []
             s.judge = false
-            s.category = index 
+            s.category = index
             s.assessment = true
             s.start = 1
             s.end = 1
@@ -2096,6 +2384,9 @@ var app = new Vue({
             }
         },
         get_opt(ns, index) {
+            /**
+             * 获取localStorage中的新加项目
+             */
             let x = []
             let n = localStorage.length
             let reg = new RegExp(index + 'par$')
@@ -2230,10 +2521,10 @@ var app = new Vue({
             this.cal_r();
             this.selected1.formula = "";
             if (this.selected1.a >= 0) {
-                this.selected1.formula = "y = " + this.selected1.b.toFixed(4) + "x + " + this.selected1.a.toFixed(4) 
+                this.selected1.formula = "y = " + this.selected1.b.toFixed(4) + "x + " + this.selected1.a.toFixed(4)
             } else {
                 let a = -(this.selected1.a);
-                this.selected1.formula = "y = " + this.selected1.b.toFixed(4) + "x - " + a.toFixed(4) 
+                this.selected1.formula = "y = " + this.selected1.b.toFixed(4) + "x - " + a.toFixed(4)
             }
             this.selected1.r = this.selected1.r.toFixed(4)
         },
@@ -2375,6 +2666,7 @@ var app = new Vue({
             res.id = s.start;
             res.unit = s.unit;
             res.GB = s.GB;
+            res.method = s.method
             res.range = this.get_range(s);
             switch (s) {
                 case this.selected3:
@@ -2412,7 +2704,40 @@ var app = new Vue({
             s.start = Number(s.start) + 1
             localStorage.setItem(n, s.start);
         },
-        
+        get_qc(s){
+            /**
+             * 获取质控数据
+             */
+            this.qc_input = true
+            for (let i = 0; i < localStorage.length; i++) {
+                let qc = (s.name + "质控" + i);
+                if (localStorage.getItem(qc) !== null) {
+                    let qc_r = localStorage.getItem(qc)
+                    qc_r = JSON.parse(qc_r);
+                    s.QC_store.push(qc_r)
+                    s.QC_sample_id = qc_r.id
+                }
+            }
+        },
+        save_qc(s) {
+            /**
+             * 获取质控数据，写入质控数据
+             */
+                let store = {
+                    id: '',
+                    date: '',
+                    result: '',
+                    q_num: s.q_num,
+                    q_val: s.q_val
+                }
+                store.id = s.QC_sample_id + 1
+                let qc = (s.name + "质控" + store.id);
+                store.date = this.dateFormat(new Date());
+                store.result = ((s.QC_sample_value - s.a) / s.b).toFixed(3);
+                store = JSON.stringify(store)
+                localStorage.setItem(qc, store);
+                this.QC = false
+        },
         mystorages(s) {
             /**
              * 从localStorage中获取保存的结果，存入st数组
@@ -2428,19 +2753,19 @@ var app = new Vue({
                     p.limit = s.limit
                     p.range_max = s.range_max;
                     p.range_min = s.range_min;
-                    switch(s){
+                    switch (s) {
                         case this.selected3:
-                            switch(s.name){
+                            switch (s.name) {
                                 case "色度":
                                 case "浑浊度":
-                                    p.range = "<"+s.range_max;
-                                    break; 
+                                    p.range = "<" + s.range_max;
+                                    break;
                                 default:
                                     p.range = s.range
                             }
                             break;
                         default:
-                            p.range = "<"+s.range_max;
+                            p.range = "<" + s.range_max;
                     }
                     p.unit = s.unit
                     s.st.push(p);
@@ -2560,6 +2885,9 @@ var app = new Vue({
                 localStorage.setItem(judge, false);
             }
         },
+        deleteAllData() {
+            localStorage.clear()
+        }
     },
     computed: {
         recived_date() {
@@ -2573,6 +2901,7 @@ var app = new Vue({
     }
 });
 let series_data = [];
+
 function getTableContent() {
     /**
      * 从存入的standard_series的标准系列提取数据，以备绘制出标准曲线

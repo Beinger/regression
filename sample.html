@@ -87,7 +87,7 @@
                         <tbody class="text-center" v-for="(item, index) in value" :key="index">
                             <tr>
                                 <td class="text-center" v-text="item.name"></td>
-                                <td v-text="item.GB"></td>
+                                <td v-text="item.GB+item.method"></td>
                                 <td v-text="item.unit"></td>
                                 <td v-text="item.range"></td>
                                 <td v-if="item.c<item.limit" v-text="'<'+item.limit"></td>
