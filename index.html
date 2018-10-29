@@ -1238,7 +1238,7 @@
                                     <label for="">批号</label>
                                     <input type="number" v-model="selected3.QC_store[0].q_num">
                                     <label for="">定值</label>
-                                    <input type="number" v-model="selected3.QC_store[0].q_val">
+                                    <input v-model="selected3.QC_store[0].q_val">
                                 </a>
                             </div>
                         </fieldset>
@@ -1252,7 +1252,7 @@
                                 <tr>
                                     <th class="text-center">批号</th>
                                     <th class="text-center">加样体积(ml)</th>
-                                    <th class="text-center">吸光度</th>
+                                    <th class="text-center">结果</th>
                                 </tr>
                                 <tr class="text-center">
                                     <td v-text="selected3.QC_store[0].q_num"></td>
