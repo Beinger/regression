@@ -977,7 +977,7 @@ var app = new Vue({
             items: [],
             result: {
                 id: 1,
-                v: 10,
+                v: 50,
                 a0: 0.05,
                 a1: "",
                 coefficient: 500,
