@@ -788,9 +788,9 @@
                                     <i class="fa fa-hand-o-right fa-2x"></i><i class="fa fa-pencil"></i>
                                     开始录入质控样
                                     <label for="">批号</label>
-                                    <input type="number" v-model="selected1.q_num">
+                                    <input type="number" v-model="selected1.QC_store[0].q_num">
                                     <label for="">定值</label>
-                                    <input type="number" v-model="selected1.q_val">
+                                    <input type="number" v-model="selected1.QC_store[0].q_val">
                                 </a>
                             </div>
                         </fieldset>
@@ -807,7 +807,7 @@
                                     <th class="text-center">吸光度</th>
                                 </tr>
                                 <tr class="text-center">
-                                    <td v-text="selected1.q_num"></td>
+                                    <td v-text="selected1.QC_store[0].q_num"></td>
                                     <td>
                                         <select class="form-control" v-model="selected1.result.v">
                                             <option v-bind:value="opt" v-for="opt of vol_select" v-text="opt"></option>
@@ -874,7 +874,7 @@
                         </fieldset>
                     </div>
                 </div>
-                <table class="table table-bordered table-striped">
+                <table class="table table-bordered table-striped" v-if="qc_input">
                     <thead>
                         <tr>
                             <th>序号</th>
