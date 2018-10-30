@@ -163,13 +163,13 @@
                             </div>
                             <div class="collapse navbar-collapse" id="object_nav">
                                 <ul class="nav navbar-nav">
-                                    <li class="btn btn-success btn-lg" @mouseover="s6=true;s1=false;s2=false;s3=false;s4=false;s5=false;add_edit=false">所有项目</li>
-                                    <li class="btn btn-info btn-lg" @mouseover="s6=false;s1=true;s2=false;s3=false;s4=false;s5=false;add_edit=false">感官性状和一般化学指标</li>
-                                    <li class="btn btn-danger btn-lg" @mouseover="s6=false;s1=false;s2=true;s3=false;s4=false;s5=false;add_edit=false">毒理指标</li>
-                                    <li class="btn btn-warning btn-lg" @mouseover="s6=false;s1=false;s2=false;s4=false; s5=false;s3=true;add_edit=false">消毒剂指标</li>
-                                    <li class="btn btn-success btn-lg" @mouseover="s6=false;s1=false;s2=false;s3=false;s5=false;s4=true;add_edit=false">微生物指标</li>
-                                    <li class="btn btn-danger btn-lg" @mouseover="s6=false;s1=false;s2=false;s3=false;s4=false;s5=true;add_edit=false">放射性指标</li>
-                                    <li class="btn btn-default btn-lg" @mouseover="s6=false;s1=false;s2=false;s3=false;s4=false;s5=false;add_edit=true">修改项目</li>
+                                    <li class="btn btn-success btn-lg" @click="s6=true;s1=false;s2=false;s3=false;s4=false;s5=false;add_edit=false">所有项目</li>
+                                    <li class="btn btn-info btn-lg" @click="s6=false;s1=true;s2=false;s3=false;s4=false;s5=false;add_edit=false">感官性状和一般化学指标</li>
+                                    <li class="btn btn-danger btn-lg" @click="s6=false;s1=false;s2=true;s3=false;s4=false;s5=false;add_edit=false">毒理指标</li>
+                                    <li class="btn btn-warning btn-lg" @click="s6=false;s1=false;s2=false;s4=false; s5=false;s3=true;add_edit=false">消毒剂指标</li>
+                                    <li class="btn btn-success btn-lg" @click="s6=false;s1=false;s2=false;s3=false;s5=false;s4=true;add_edit=false">微生物指标</li>
+                                    <li class="btn btn-danger btn-lg" @click="s6=false;s1=false;s2=false;s3=false;s4=false;s5=true;add_edit=false">放射性指标</li>
+                                    <li class="btn btn-default btn-lg" @click="s6=false;s1=false;s2=false;s3=false;s4=false;s5=false;add_edit=true">修改项目</li>
                                 </ul>
                             </div>
                         </div>
@@ -383,7 +383,9 @@
                 <div v-for="(item,index) in names">
                 <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
                     <span class="input-group-addon radio">
-                        <input class="radio" type="radio" v-model="selected2" :value="item">{{item.name}}
+                        <input class="radio" type="radio" v-model="selected1" v-if="item.category==1" :value="item">{{item.name}}
+                        <input class="radio" type="radio" v-model="selected2" v-if="item.category==" :value="item">{{item.name}}
+                        <input class="radio" type="radio" v-model="selected3" v-if="item.category==3" :value="item">{{item.name}}
 
                     </span>
                 </div></div>
