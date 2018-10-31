@@ -216,31 +216,39 @@
             </div>
             <br>
             <div v-if="add_edit" class="row form-group animated fadeIn">
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+
+                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
                     <label calss="form-label">
-                        <a title="修改项目参数" class="btn btn-default" data-toggle="modal" data-target="#opt4">
-                            <i class="fa fa-eraser">修改项目参数</i>
+                        <a title="增加新项目" class="btn btn-default" @click="add_opt=true">
+                            <i class="fa fa-eraser">新增项目</i>
                         </a>
                     </label>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 animated zoomIn" v-if="add_opt">
                     <label calss="form-label">
                         <a title="新增项目或修改项目参数" class="btn btn-default" data-toggle="modal" data-target="#opt1">
                             <i class="fa fa-plus">新增比色法测定项目</i>
                         </a>
                     </label>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 animated zoomIn" v-if="add_opt">
                     <label class="form-label">
                         <a title="新增项目或修改项目参数" class="btn btn-default" data-toggle="modal" data-target="#opt2">
                             <i class="fa fa-plus">新增滴定法测定项目</i>
                         </a>
                     </label>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 animated zoomIn" v-if="add_opt">
                     <label class="form-label">
                         <a title="新增项目" class="btn btn-default" data-toggle="modal" data-target="#opt3">
                             <i class="fa fa-plus">新增其他项目</i>
+                        </a>
+                    </label>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
+                    <label calss="form-label">
+                        <a title="修改项目参数" class="btn btn-default" data-toggle="modal" data-target="#opt4">
+                            <i class="fa fa-eraser">修改项目</i>
                         </a>
                     </label>
                 </div>
@@ -250,16 +258,13 @@
                 <div class="modal fade" id="opt3" tabindex="-1" role="dialog" aria-labelledby="myOpt3" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class='modal-content'>
-                            <h3 class="btn form-control btn-info">新增其他类型项目</h3>
+                            <h3 class="text-info text-center">新增其他类型项目</h3>
                             <ol class="nav">
-                                <li class="animated fadeInLeft">
+                                <li class="animated zoomIn">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     </div>
                                     <div class="modal-body form-group">
-                                        <p id="myOpt3" class="text-center">
-                                            增加项目
-                                        </p>
                                         <label class="form-label">项目名称：</label>
                                         <input type="text" class="form-control" v-model="new_opt3.name">
                                         <label class="form-label">单位：</label>
@@ -289,47 +294,42 @@
                 <div class="modal fade" id="opt4" tabindex="-1" role="dialog" aria-labelledby="myOpt4" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class='modal-content'>
-                            <h3 class="btn form-control btn-info">修改项目参数</h3>
+                            <h3 class="text-info text-center">修改项目参数</h3>
                             <ol class="nav">
-                                <li class="animated fadeInRight">
+                                <li class="animated zoomIn">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     </div>
                                     <div class="modal-body form-group">
-                                        <p class="text-center">
-                                            修正项目
-                                        </p>
                                         <label class="form-label">项目名称：</label>
                                         <div class="row">
-                                            <div class="col-md-9">
-                                        <select tabindex="-1" class="form-control" v-model="slt1">
+                                            <div class="col-md-10">
+                                        <select tabindex="-1" class="form-control" v-model="slt">
                                             <option style="font-size: 80%" disabled>---请选择---</option>
-                                            <option v-bind:id="'select3'+index" v-bind:value="item" v-for="(item,index) in names" v-text="item.name">
-                                            </option>
-                                        <button class="btn btn-danger" @click="del_opt(names)">删除项目</button>
+                                            <option v-bind:id="'select'+index" v-bind:value="item" v-for="(item,index) in names" v-text="item.name"></option>
                                         </select></div>
-                                        <div class="col-md-3">
-                                        <button class="btn btn-danger" @click="del_opt(names)">删除项目</button>
+                                        <div class="col-md-2">
+                                        <button class="btn btn-danger" @click="del_opt(slt)" data-dismiss="modal">删除项目</button>
                                             </div>
                                     </div>
                                         <label class="form-label">单位：</label>
-                                        <input type="text" class="form-control" v-model="slt3.unit">
+                                        <input type="text" class="form-control" v-model="slt.unit">
                                         <label class="form-label">检验依据：</label>
-                                        <input type="text" class="form-control" v-model="slt3.GB">
+                                        <input type="text" class="form-control" v-model="slt.GB">
                                         <label class="form-label">检验方法：</label>
-                                        <input type="text" class="form-control" v-model="slt3.method">
+                                        <input type="text" class="form-control" v-model="slt.method">
                                         <label class="form-label">检测仪器：</label>
-                                        <input type="text" class="form-control" v-model="slt3.instrument_model">
+                                        <input type="text" class="form-control" v-model="slt.instrument_model">
                                         <label class="form-label">最小检出限：</label>
-                                        <input type="text" class="form-control" v-model="slt3.limit">
+                                        <input type="text" class="form-control" v-model="slt.limit">
                                         <label class="form-label">最高限值：</label>
-                                        <input type="text" class="form-control" v-model="slt3.range_max">
+                                        <input type="text" class="form-control" v-model="slt.range_max">
                                         <label class="form-label">最低限值：</label>
-                                        <input placeholder="如果没有最低限值，请忽略" type="text" class="form-control" v-model="slt3.range_min">
+                                        <input placeholder="如果没有最低限值，请忽略" type="text" class="form-control" v-model="slt.range_min">
                                     </div>
                                     <div class="modal-footer">
                                         <button class="btn btn-info"　data-dismiss="modal">关闭</button>
-                                        <button type="button" class="btn btn-primary" @click="save_opt(slt3, 3)" 　data-dismiss="modal">提交更改</button>
+                                        <button type="button" class="btn btn-primary" @click="save_opt(slt)" 　data-dismiss="modal">提交更改</button>
                                     </div>
                                 </li>
                             </ol>
@@ -341,16 +341,13 @@
                 <div class="modal fade" id="opt2" tabindex="-1" role="dialog" aria-labelledby="myOpt2" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class='modal-content'>
-                            <h3 class="btn form-control btn-info">新增滴定法测定项目</h3>
+                            <h3 class="text-info text-center">新增滴定法测定项目</h3>
                             <ol class="nav">
-                                <li class="animated fadeInLeft">
+                                <li class="animated zoomIn">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     </div>
                                     <div class="modal-body form-group">
-                                        <p id="myOpt2" class="text-center">
-                                            增加项目
-                                        </p>
                                         <label class="form-label">项目名称：</label>
                                         <input type="text" class="form-control" v-model="new_opt2.name">
                                         <label class="form-label">单位：</label>
@@ -382,16 +379,13 @@
                 <div class="modal fade" id="opt1" tabindex="-1" role="dialog" aria-labelledby="myOpt1" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class='modal-content'>
-                            <h3 class="btn form-control btn-info">新增比色法测定项目</h3>
+                            <h3 class="text-info text-center">新增比色法测定项目</h3>
                             <ol class="nav">
-                                <li class="animated fadeInLeft">
+                                <li class="animated zoomIn">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     </div>
                                     <div class="modal-body form-group">
-                                        <p id="myOpt1" class="text-center">
-                                            增加项目
-                                        </p>
                                         <label class="form-label">项目名称：</label>
                                         <input type="text" class="form-control" v-model="new_opt1.name">
                                         <label class="form-label">单位：</label>
@@ -858,9 +852,9 @@
                             <div>
                                 <a class="btn btn-default" @click="get_qc(selected1)">
                                     <i class="fa fa-hand-o-right fa-2x"></i>
-                                    <i class="fa fa-pencil"></i>
-                                    开始录入质控样
-                                    <label for="">批号</label>
+                                    <span v-text="selected1.name"></span>
+                                    质控录入
+                                    <label for="">编号</label>
                                     <input type="number" v-model="selected1.QC_store[0].q_num">
                                     <label for="">定值</label>
                                     <input type="number" v-model="selected1.QC_store[0].q_val">
@@ -875,7 +869,7 @@
                             </legend>
                             <table class="table table-hover table-bordered table-striped">
                                 <tr>
-                                    <th class="text-center">批号</th>
+                                    <th class="text-center">编号</th>
                                     <th class="text-center">加样体积(ml)</th>
                                     <th class="text-center">吸光度</th>
                                 </tr>
@@ -952,7 +946,7 @@
                     <thead>
                         <tr>
                             <th>序号</th>
-                            <th>批号</th>
+                            <th>编号</th>
                             <th>定值</th>
                             <th>日期</th>
                             <th>结果</th>
@@ -1088,9 +1082,9 @@
                             <div>
                                 <a class="btn btn-default" @click="get_qc(selected2)">
                                     <i class="fa fa-hand-o-right fa-2x"></i>
-                                    <i class="fa fa-pencil"></i>
-                                    开始录入质控样
-                                    <label for="">批号</label>
+                                    <span v-text="selected2.name"></span>
+                                    质控录入
+                                    <label for="">编号</label>
                                     <input type="number" v-model="selected2.QC_store[0].q_num">
                                     <label for="">定值</label>
                                     <input type="number" v-model="selected2.QC_store[0].q_val">
@@ -1105,7 +1099,7 @@
                             </legend>
                             <table class="table table-hover table-bordered table-striped">
                                 <tr>
-                                    <th class="text-center">批号</th>
+                                    <th class="text-center">编号</th>
                                     <th class="text-center">加样体积(ml)</th>
                                     <th v-if="selected2.name=='耗氧量'" class="text-center">K值</th>
                                     <th class="text-center">空白消耗量(ml)</th>
@@ -1198,7 +1192,7 @@
                     <thead>
                         <tr>
                             <th>序号</th>
-                            <th>批号</th>
+                            <th>编号</th>
                             <th>定值</th>
                             <th>日期</th>
                             <th>结果</th>
@@ -1325,9 +1319,9 @@
                             <div>
                                 <a class="btn btn-default" @click="get_qc(selected3)">
                                     <i class="fa fa-hand-o-right fa-2x"></i>
-                                    <i class="fa fa-pencil"></i>
-                                    开始录入质控样
-                                    <label for="">批号</label>
+                                    <span v-text="selected3.name"></span>
+                                    质控录入
+                                    <label for="">编号</label>
                                     <input type="number" v-model="selected3.QC_store[0].q_num">
                                     <label for="">定值</label>
                                     <input v-model="selected3.QC_store[0].q_val">
@@ -1342,7 +1336,7 @@
                             </legend>
                             <table class="table table-hover table-bordered table-striped">
                                 <tr>
-                                    <th class="text-center">批号</th>
+                                    <th class="text-center">编号</th>
                                     <th class="text-center">加样体积(ml)</th>
                                     <th class="text-center">结果</th>
                                 </tr>
@@ -1415,7 +1409,7 @@
                     <thead>
                         <tr>
                             <th>序号</th>
-                            <th>批号</th>
+                            <th>编号</th>
                             <th>定值</th>
                             <th>日期</th>
                             <th>结果</th>

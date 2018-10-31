@@ -16,6 +16,7 @@ var app = new Vue({
         new_item: "", //表格新行
         add_edit: false, //切换新增和修改
         git_show: false,
+        add_opt: false,
         show1: false, //显示第一项
         show2: false, //显示第二项
         show3: false, //显示第三项
@@ -33,6 +34,7 @@ var app = new Vue({
         selected1: "",
         selected2: "",
         selected3: "",
+        slt: "",
         slt1: "",
         slt2: "",
         slt3: "",
@@ -2855,9 +2857,11 @@ var app = new Vue({
             // document.getElementById("video").playbackRate = 2.0;
         },
         del_opt(s){
-            this.names.splice(s.id,1)
+            this.names.splice(s.id-1,1)
+            let p = s.name + s.category + 'par'
+            localStorage.removeItem(p)
         },
-        save_opt(s, index) {
+        save_opt(s) {
             /**
              * 保存新项目
              */
@@ -2883,12 +2887,11 @@ var app = new Vue({
             }
             s.st = []
             s.judge = false
-            s.category = index
             s.assessment = true
             s.start = 1
             s.end = 1
             s.items = []
-            switch (index) {
+            switch (s.category) {
                 case 2:
                     s.result = {
                         id: "",
@@ -2929,7 +2932,7 @@ var app = new Vue({
             }
             let x = JSON.stringify(s)
             localStorage.setItem(p, x)
-            this.get_opt(this.names, index)
+            this.get_opt(this.names,s.category)
 
             s = this.uniqueUseNotAllEqual(s)
         },
