@@ -23,21 +23,46 @@
 </head>
 
 <body>
-    <div class="ie-tips">Sorry. 您使用的浏览器版本过旧，为了更好的访问体验，请使用360浏览器或者<a href="https://chrome.en.softonic.com/" target="_blank">Chrome谷歌浏览器</a><a class="js-tip-close">关闭</a></div>
+    <div class="ie-tips">Sorry. 您使用的浏览器版本过旧，为了更好的访问体验，请使用360浏览器或者
+        <a href="https://chrome.en.softonic.com/" target="_blank">Chrome谷歌浏览器</a>
+        <a class="js-tip-close">关闭</a>
+    </div>
 
     <style>
         /*ie浏览器版本提示信息*/
-        .ie-tips { display: none; position: relative; height: 30px; line-height: 30px; background: #f9d272; color: #f00; font-size: 14px; text-align: center; } .ie-tips b { font-weight: bold; } .ie-tips .js-tip-close { position: absolute; top: 0; right: 20px; cursor: pointer; }
+
+        .ie-tips {
+            display: none;
+            position: relative;
+            height: 30px;
+            line-height: 30px;
+            background: #f9d272;
+            color: #f00;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .ie-tips b {
+            font-weight: bold;
+        }
+
+        .ie-tips .js-tip-close {
+            position: absolute;
+            top: 0;
+            right: 20px;
+            cursor: pointer;
+        }
+
         .threed {
             text-shadow: 0px 1px 0px #999, 1px 2px 1px #888, 2px 3px 2px #777, 3px 4px 3px #666, 4px 5px 4px #555, 5px 6px 5px #444, 6px 7px 6px #333, 7px 8px 7px #222, 8px 9px 8px #111
         }
     </style>
     <script>
-    let userAgent = navigator.userAgent;
-    if(userAgent.indexOf("windows") > -1 && userAgent.indexOf("MSIE") > -1 && !userAgent.indexOf("Opera") > -1){
-        $(".ie-tips").show();
-        $("#root").hide();
-    }
+        let userAgent = navigator.userAgent;
+        if (userAgent.indexOf("windows") > -1 && userAgent.indexOf("MSIE") > -1 && !userAgent.indexOf("Opera") > -1) {
+            $(".ie-tips").show();
+            $("#root").hide();
+        }
     </script>
     <div id="root">
         <div class="container">
@@ -83,8 +108,7 @@
                             </div>
                         </div>
                     </div> -->
-                    <div class="modal fade" id="environment" tabindex="-1" role="dialog" aria-labelledby="myEnv"
-                        aria-hidden="true">
+                    <div class="modal fade" id="environment" tabindex="-1" role="dialog" aria-labelledby="myEnv" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class='modal-content'>
                                 <div class="modal-header">
@@ -98,14 +122,14 @@
                                     <input tabindex="0" type="number" v-model.number="H">%
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary" tabindex="0" @click="login_env()"
-                                        data-dismiss="modal">确认</button>
+                                    <button type="button" class="btn btn-primary" tabindex="0" @click="login_env()" data-dismiss="modal">确认</button>
                                 </div>
-                            </div><!-- /.modal-content -->
-                        </div><!-- /.modal -->
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal -->
                     </div>
-                    <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                        aria-hidden="true">
+                    <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class='modal-content'>
                                 <div class="modal-header">
@@ -114,36 +138,45 @@
                                 </div>
                                 <div class="modal-body form-group">
                                     <label for="" class="form-label">单位名称
-                                        <input class="form-control" type="text" v-model="company"></label>
+                                        <input class="form-control" type="text" v-model="company">
+                                    </label>
                                     <label class="form-label">机构代号
-                                        <input type="text" class="form-control" v-model="numbering"></label>
+                                        <input type="text" class="form-control" v-model="numbering">
+                                    </label>
                                 </div>
                                 <div class="modal-footer">
                                     <button style="float:left" type="button" class="btn btn-danger" data-toggle="modal" data-target="#delcfmModel">清除所有数据</button>
                                     <button type="button" class="btn btn-primary" @click="login_s" data-dismiss="modal">保存</button>
                                 </div>
-                            </div><!-- /.modal-content -->
-                        </div><!-- /.modal -->
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal -->
                     </div>
-                     <!-- 信息删除确认 -->  
-<div class="modal fade" id="delcfmModel">  
-    <div class="modal-dialog">  
-      <div class="modal-content message_align">  
-        <div class="modal-header">  
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>  
-          <h4 class="modal-title">提示信息</h4>  
-        </div>  
-        <div class="modal-body">  
-          <p>删除后您的所有记录数据都会丢失，无法恢复，您确认要删除吗？</p>  
-        </div>  
-        <div class="modal-footer">  
-           <input type="hidden" id="url"/>  
-           <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>  
-           <a class="btn btn-success" @click="deleteAllData" data-dismiss="modal">确定</a>  
-        </div>  
-      </div><!-- /.modal-content -->  
-    </div><!-- /.modal-dialog -->  
-  </div><!-- /.modal --> 
+                    <!-- 信息删除确认 -->
+                    <div class="modal fade" id="delcfmModel">
+                        <div class="modal-dialog">
+                            <div class="modal-content message_align">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                    <h4 class="modal-title">提示信息</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>删除后您的所有记录数据都会丢失，无法恢复，您确认要删除吗？</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <input type="hidden" id="url" />
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                    <a class="btn btn-success" @click="deleteAllData" data-dismiss="modal">确定</a>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+                    <!-- /.modal -->
                 </div>
             </div>
             <div class="row">
@@ -158,7 +191,7 @@
                                     <span class="icon-bar"></span>
                                 </button>
                                 <label class="navbar-brand">
-                                    项   目
+                                    项 目
                                 </label>
                             </div>
                             <div class="collapse navbar-collapse" id="object_nav">
@@ -246,8 +279,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button class="btn btn-info" data-dismiss="modal">关闭</button>
-                                        <button type="button" class="btn btn-primary" @click="save_opt(new_opt3, 3)"
-                                            data-dismiss="modal">确认增加</button>
+                                        <button type="button" class="btn btn-primary" @click="save_opt(new_opt3, 3)" data-dismiss="modal">确认增加</button>
                                     </div>
                                 </li>
                             </ol>
@@ -270,8 +302,7 @@
                                         <label class="form-label">项目名称：</label>
                                         <select tabindex="-1" class="form-control" v-model="slt3">
                                             <option style="font-size: 80%" disabled>---请选择---</option>
-                                            <option v-bind:id="'select3'+index" v-bind:value="item" v-for="(item,index) in names"
-                                                v-text="item.name"></option>
+                                            <option v-bind:id="'select3'+index" v-bind:value="item" v-for="(item,index) in names" v-text="item.name"></option>
                                         </select>
                                         <label class="form-label">单位：</label>
                                         <input type="text" class="form-control" v-model="slt3.unit">
@@ -290,14 +321,15 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button class="btn btn-info" data-dismiss="modal">关闭</button>
-                                        <button type="button" class="btn btn-primary" @click="save_opt(slt3, 3)"
-                                            　data-dismiss="modal">提交更改</button>
+                                        <button type="button" class="btn btn-primary" @click="save_opt(slt3, 3)" 　data-dismiss="modal">提交更改</button>
                                     </div>
                                 </li>
                             </ol>
                         </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal -->
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal -->
                 <div class="modal fade" id="opt2" tabindex="-1" role="dialog" aria-labelledby="myOpt2" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class='modal-content'>
@@ -330,14 +362,15 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button class="btn btn-info" data-dismiss="modal">关闭</button>
-                                        <button type="button" class="btn btn-primary" @click="save_opt(new_opt2, 2)"
-                                            data-dismiss="modal">确认增加</button>
+                                        <button type="button" class="btn btn-primary" @click="save_opt(new_opt2, 2)" data-dismiss="modal">确认增加</button>
                                     </div>
                                 </li>
                             </ol>
                         </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal -->
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal -->
                 <div class="modal fade" id="opt1" tabindex="-1" role="dialog" aria-labelledby="myOpt1" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class='modal-content'>
@@ -370,25 +403,30 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button class="btn btn-info" data-dismiss="modal">关闭</button>
-                                        <button type="button" class="btn btn-primary" @click="save_opt(new_opt1, 1)"
-                                            data-dismiss="modal">确认增加</button>
+                                        <button type="button" class="btn btn-primary" @click="save_opt(new_opt1, 1)" data-dismiss="modal">确认增加</button>
                                     </div>
                                 </li>
                             </ol>
                         </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal -->
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal -->
             </div>
             <div class="row animated fadeInLeft" v-if="s6">
                 <div v-for="(item,index) in names">
-                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <span class="input-group-addon radio">
-                        <input class="radio" type="radio" v-model="selected1" v-if="item.category==1" :value="item">{{item.name}}
-                        <input class="radio" type="radio" v-model="selected2" v-if="item.category==" :value="item">{{item.name}}
-                        <input class="radio" type="radio" v-model="selected3" v-if="item.category==3" :value="item">{{item.name}}
-
-                    </span>
-                </div></div>
+                    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                        <span class="input-group-addon radio" v-if="item.category==1">
+                            <input class="radio" type="radio" v-model="selected1" :value="item">{{item.name}}
+                        </span>
+                        <span class="input-group-addon radio" v-if="item.category==2">
+                            <input class="radio" type="radio" v-model="selected2" :value="item">{{item.name}}
+                        </span>
+                        <span class="input-group-addon radio" v-if="item.category==3">
+                            <input class="radio" type="radio" v-model="selected3" :value="item">{{item.name}}
+                        </span>
+                    </div>
+                </div>
             </div>
             <div class="row animated fadeInLeft" v-if="s1">
                 <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
@@ -657,12 +695,14 @@
                                 <td v-text="index+1"></td>
                                 <td contenteditable="true" v-text="item[0]"></td>
                                 <td contenteditable="true" v-text="item[1]"></td>
-                                <td colspan="2" @click="del(index)" title="删除" class="btn text-danger text-center"><i
-                                        class="fa fa-trash"></i></td>
+                                <td colspan="2" @click="del(index)" title="删除" class="btn text-danger text-center">
+                                    <i class="fa fa-trash"></i>
+                                </td>
                             </tr>
                         </tbody>
                         <caption>
-                            <h4>水中<span v-text="selected1.name">
+                            <h4>水中
+                                <span v-text="selected1.name">
                                 </span>的标准系列 </h4>
                         </caption>
                     </table>
@@ -673,12 +713,16 @@
             </div>
             <form v-if="show1" class="animated fadeInDown">
 
-                <a class="btn text-danger" @click="printContent('print')"><i class="fa fa-print"></i>打印记录</a>
+                <a class="btn text-danger" @click="printContent('print')">
+                    <i class="fa fa-print"></i>打印记录</a>
                 <div id="print">
                     <div @click="date_y()" class="text-center" colspan="5">
                         <h1 v-text="company"></h1>
-                        <h3 title="点击这里可以查看每个样品的检测日期"><i>水样中<span v-text="selected1.name">
-                                </span>检验记录</i></h3>
+                        <h3 title="点击这里可以查看每个样品的检测日期">
+                            <i>水样中
+                                <span v-text="selected1.name">
+                                </span>检验记录</i>
+                        </h3>
                     </div>
                     <table class="table table-bordered table-striped table-hover">
                         <tr>
@@ -698,7 +742,8 @@
                             <td contenteditable="true">液态</td>
                             <th class="text-center">检测环境：</th>
                             <td contenteditable="true">
-                                温度<span v-text="T">
+                                温度
+                                <span v-text="T">
                                 </span> ℃
                             </td>
                             <td contenteditable="true">
@@ -738,12 +783,15 @@
                                 <th class="text-center">标准吸光度</th>
                                 <td v-for="(item,index) in selected1.standard_series" :key="index" v-text="item[1]"></td>
                             </tr>
-                        <tr>
-                            <th class="text-center">回归公式：</th>
-                            <td colspan="3"><math v-text="selected1.formula"></math>&nbsp;&nbsp;&nbsp;&nbsp;r &nbsp;= &nbsp;<span v-text="selected1.r"></span></td>
-                            <th class="text-center">结果计算：</th>
-                            <td colspan="4" v-text="selected1.calculation"></td>
-                        </tr>
+                            <tr>
+                                <th class="text-center">回归公式：</th>
+                                <td colspan="3">
+                                    <math v-text="selected1.formula"></math>&nbsp;&nbsp;&nbsp;&nbsp;r &nbsp;= &nbsp;
+                                    <span v-text="selected1.r"></span>
+                                </td>
+                                <th class="text-center">结果计算：</th>
+                                <td colspan="4" v-text="selected1.calculation"></td>
+                            </tr>
                         </tbody>
                     </table>
                     <table @click="mystorages(selected1)" class="table table-bordered table-striped table-hover" id="record">
@@ -763,7 +811,9 @@
                         </thead>
                         <tbody class="text-center">
                             <tr v-for="(item, index) in selected1.st" :key="index">
-                                <td><i v-text="numbering+(new Date()).getFullYear()"></i>水第<span v-text="f_n(item.id, 3)">
+                                <td>
+                                    <i v-text="numbering+(new Date()).getFullYear()"></i>水第
+                                    <span v-text="f_n(item.id, 3)">
                                     </span>号</td>
                                 <td v-text="item.v"></td>
                                 <td v-text="item.a"></td>
@@ -778,7 +828,8 @@
                             </tr>
                         </tbody>
                     </table>
-                    <br><br>
+                    <br>
+                    <br>
                     <div class="row text-center">
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">检验者：</div>
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">审核者：</div>
@@ -798,7 +849,8 @@
                             </legend>
                             <div>
                                 <a class="btn btn-default" @click="get_qc(selected1)">
-                                    <i class="fa fa-hand-o-right fa-2x"></i><i class="fa fa-pencil"></i>
+                                    <i class="fa fa-hand-o-right fa-2x"></i>
+                                    <i class="fa fa-pencil"></i>
                                     开始录入质控样
                                     <label for="">批号</label>
                                     <input type="number" v-model="selected1.QC_store[0].q_num">
@@ -827,9 +879,8 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <input class="form-control animated fadeIn" type="number" tabindex="0"
-                                            placeholder="输入完成直接按回车键" @keyup.enter="save_qc(selected1)" placeholder="输入后直接回车"
-                                            v-model="selected1.QC_sample_value">
+                                        <input class="form-control animated fadeIn" type="number" tabindex="0" placeholder="输入完成直接按回车键" @keyup.enter="save_qc(selected1)"
+                                            placeholder="输入后直接回车" v-model="selected1.QC_sample_value">
                                     </td>
                                 </tr>
                             </table>
@@ -846,19 +897,20 @@
                             </legend>
                             <div>
                                 <a class="btn btn-default" @click="add_sample(selected1)">
-                                    <i class="fa fa-hand-o-right fa-2x"></i><i class="fa fa-pencil"></i>
-                                    开始录入
-                                    样品编号<i v-text="numbering+(new Date()).getFullYear()"></i>水第
+                                    <i class="fa fa-hand-o-right fa-2x"></i>
+                                    <i class="fa fa-pencil"></i>
+                                    开始录入 样品编号
+                                    <i v-text="numbering+(new Date()).getFullYear()"></i>水第
                                     <input v-if="selected1.judge==true" tabindex="11" type="number" v-model="selected1.start">
-                                    <input v-else-if="selected1.judge==false" type="number" v-model="selected1.end">
-                                    号
+                                    <input v-else-if="selected1.judge==false" type="number" v-model="selected1.end"> 号
                                 </a>
                             </div>
                         </fieldset>
                     </div>
                     <div class="col-lg-8">
                         <fieldset v-if="add" class="animated pulse">
-                            <legend>样品中 <span v-text="selected1.name">
+                            <legend>样品中
+                                <span v-text="selected1.name">
                                 </span> 浓度计算</legend>
                             <table class="table table-hover table-bordered table-striped">
                                 <tr>
@@ -868,8 +920,10 @@
                                 </tr>
                                 <tr class="text-center">
                                     <td>
-                                        <i><span v-text="numbering+(new Date()).getFullYear()">
-                                            </span>水第<span v-text="f_n(selected1.start,3)">
+                                        <i>
+                                            <span v-text="numbering+(new Date()).getFullYear()">
+                                            </span>水第
+                                            <span v-text="f_n(selected1.start,3)">
                                             </span>号</i>
                                     </td>
                                     <td>
@@ -878,9 +932,8 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <input class="form-control animated fadeIn" type="number" tabindex="0"
-                                            placeholder="输入完成直接按回车键" @keyup.enter="work(selected1)" placeholder="输入后直接回车"
-                                            v-model="selected1.result.a">
+                                        <input class="form-control animated fadeIn" type="number" tabindex="0" placeholder="输入完成直接按回车键" @keyup.enter="work(selected1)"
+                                            placeholder="输入后直接回车" v-model="selected1.result.a">
                                     </td>
                                 </tr>
                             </table>
@@ -909,12 +962,16 @@
                 </table>
             </form>
             <form class="animated fadeInDown" v-if="show2">
-                <a class="btn text-danger" @click="printContent('print2')"><i class="fa fa-print"></i>打印记录</a>
+                <a class="btn text-danger" @click="printContent('print2')">
+                    <i class="fa fa-print"></i>打印记录</a>
                 <div id="print2">
                     <div @click="date_y()" class="text-center" colspan="5">
                         <h1 v-text="company"></h1>
-                        <h3 title="点击这里可以查看每个样品的检测日期"><i>水样中<span v-text="selected2.name">
-                                </span>检验记录</i></h3>
+                        <h3 title="点击这里可以查看每个样品的检测日期">
+                            <i>水样中
+                                <span v-text="selected2.name">
+                                </span>检验记录</i>
+                        </h3>
                     </div>
                     <table class="table table-bordered table-striped table-hover">
                         <tr>
@@ -934,10 +991,12 @@
                             <td contenteditable="true">液态</td>
                             <th class="text-center">检测环境：</th>
                             <td contenteditable="true">
-                                温度：<span v-text="T"></span> ℃
+                                温度：
+                                <span v-text="T"></span> ℃
                             </td>
                             <td contenteditable="true">
-                                湿度：<span v-text="H"></span>% RH
+                                湿度：
+                                <span v-text="H"></span>% RH
                             </td>
                         </tr>
                         <tr>
@@ -982,7 +1041,9 @@
                         </thead>
                         <tbody class="text-center">
                             <tr v-for="(item, index) in selected2.st" :key="index">
-                                <td><i v-text="numbering+(new Date()).getFullYear()"></i>水第<span v-text="f_n(item.id, 3)">
+                                <td>
+                                    <i v-text="numbering+(new Date()).getFullYear()"></i>水第
+                                    <span v-text="f_n(item.id, 3)">
                                     </span>号</td>
                                 <td v-text="item.v"></td>
                                 <td v-text="item.a0"></td>
@@ -997,7 +1058,8 @@
                             </tr>
                         </tbody>
                     </table>
-                    <br><br>
+                    <br>
+                    <br>
                     <div class="row text-center">
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">检验者：</div>
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">审核者：</div>
@@ -1017,7 +1079,8 @@
                             </legend>
                             <div>
                                 <a class="btn btn-default" @click="get_qc(selected2)">
-                                    <i class="fa fa-hand-o-right fa-2x"></i><i class="fa fa-pencil"></i>
+                                    <i class="fa fa-hand-o-right fa-2x"></i>
+                                    <i class="fa fa-pencil"></i>
                                     开始录入质控样
                                     <label for="">批号</label>
                                     <input type="number" v-model="selected2.QC_store[0].q_num">
@@ -1048,17 +1111,14 @@
                                         </select>
                                     </td>
                                     <td v-if="selected2.name=='耗氧量'">
-                                        <input class="form-control animated fadeIn" type="number" tabindex="0"
-                                            v-model="selected2.result.K">
+                                        <input class="form-control animated fadeIn" type="number" tabindex="0" v-model="selected2.result.K">
                                     </td>
                                     <td>
-                                        <input class="form-control animated fadeIn" type="number" tabindex="0"
-                                            v-model="selected2.result.a0">
+                                        <input class="form-control animated fadeIn" type="number" tabindex="0" v-model="selected2.result.a0">
                                     </td>
                                     <td>
-                                        <input class="form-control animated fadeIn" type="number" tabindex="0"
-                                            placeholder="输入完成直接按回车键" @keyup.enter="save_qc(selected2)" placeholder="输入后直接回车"
-                                            v-model="selected2.QC_sample_value">
+                                        <input class="form-control animated fadeIn" type="number" tabindex="0" placeholder="输入完成直接按回车键" @keyup.enter="save_qc(selected2)"
+                                            placeholder="输入后直接回车" v-model="selected2.QC_sample_value">
                                     </td>
                                 </tr>
                             </table>
@@ -1075,9 +1135,10 @@
                             </legend>
                             <div>
                                 <a class="btn btn-default" @click="add_sample(selected2)">
-                                    <i class="fa fa-hand-o-right fa-2x"></i><i class="fa fa-pencil"></i>
-                                    开始录入
-                                    样品编号<i v-text="numbering+(new Date()).getFullYear()"></i>水第
+                                    <i class="fa fa-hand-o-right fa-2x"></i>
+                                    <i class="fa fa-pencil"></i>
+                                    开始录入 样品编号
+                                    <i v-text="numbering+(new Date()).getFullYear()"></i>水第
                                     <input v-if="selected2.judge" tabindex="-1" type="number" v-model.number="selected2.start">
                                     <input v-else tabindex="-1" type="number" v-model.number="selected2.end"> 号
                                 </a>
@@ -1086,7 +1147,8 @@
                     </div>
                     <div class="col-lg-8">
                         <fieldset v-if="add" class="animated pulse">
-                            <legend>样品中 <span v-text="selected2.name">
+                            <legend>样品中
+                                <span v-text="selected2.name">
                                 </span> 浓度计算</legend>
                             <table class="table table-hover table-bordered table-striped">
                                 <tr>
@@ -1100,7 +1162,8 @@
                                 </tr>
                                 <tr class="text-center">
                                     <td>
-                                        <i v-text="numbering+(new Date()).getFullYear()"></i>水第<span v-text="f_n(selected2.start,3)">
+                                        <i v-text="numbering+(new Date()).getFullYear()"></i>水第
+                                        <span v-text="f_n(selected2.start,3)">
                                         </span>号
                                     </td>
                                     <td>
@@ -1112,12 +1175,11 @@
                                         <input class="form-control animated fadeIn" type="number" v-model="selected2.result.K">
                                     </td>
                                     <td>
-                                        <input class="form-control animated fadeIn" type="number" step="0.01"
-                                            v-model="selected2.result.a0">
+                                        <input class="form-control animated fadeIn" type="number" step="0.01" v-model="selected2.result.a0">
                                     </td>
                                     <td>
-                                        <input class="form-control animated fadeIn" type="number" tabindex="0"
-                                            placeholder="输入完成直接按回车键" @keyup.enter="work(selected2)" v-model.number="selected2.result.a1">
+                                        <input class="form-control animated fadeIn" type="number" tabindex="0" placeholder="输入完成直接按回车键" @keyup.enter="work(selected2)"
+                                            v-model.number="selected2.result.a1">
                                     </td>
                                 </tr>
                             </table>
@@ -1146,12 +1208,16 @@
                 </table>
             </form>
             <form class="animated fadeInDown" v-if="show3">
-                <a class="btn text-danger" @click="printContent('print3')"><i class="fa fa-print"></i>打印记录</a>
+                <a class="btn text-danger" @click="printContent('print3')">
+                    <i class="fa fa-print"></i>打印记录</a>
                 <div id="print3">
                     <div @click="date_y()" class="text-center" colspan="5">
                         <h1 v-text="company"></h1>
-                        <h3 title="点击这里可以查看每个样品的检测日期"><i>水样中<span v-text="selected3.name">
-                                </span>检验记录</i></h3>
+                        <h3 title="点击这里可以查看每个样品的检测日期">
+                            <i>水样中
+                                <span v-text="selected3.name">
+                                </span>检验记录</i>
+                        </h3>
                     </div>
                     <table class="table table-bordered table-striped table-hover">
                         <tr>
@@ -1171,7 +1237,8 @@
                             <td contenteditable="true">液态</td>
                             <th class="text-center">检测环境：</th>
                             <td contenteditable="true">
-                                温度<span v-text="T">
+                                温度
+                                <span v-text="T">
                                 </span> ℃
                             </td>
                             <td contenteditable="true">
@@ -1216,7 +1283,9 @@
                         </thead>
                         <tbody class="text-center">
                             <tr v-for="(item, index) in selected3.st" :key="index">
-                                <td><i v-text="numbering+(new Date()).getFullYear()"></i>水第<span v-text="f_n(item.id, 3)">
+                                <td>
+                                    <i v-text="numbering+(new Date()).getFullYear()"></i>水第
+                                    <span v-text="f_n(item.id, 3)">
                                     </span>号</td>
                                 <td v-show="date_show" v-text="item.unit"></td>
                                 <td v-show="date_show" v-text="item.range"></td>
@@ -1226,7 +1295,8 @@
                             </tr>
                         </tbody>
                     </table>
-                    <br><br>
+                    <br>
+                    <br>
                     <div class="row text-center">
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">检验者：</div>
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">审核者：</div>
@@ -1246,7 +1316,8 @@
                             </legend>
                             <div>
                                 <a class="btn btn-default" @click="get_qc(selected3)">
-                                    <i class="fa fa-hand-o-right fa-2x"></i><i class="fa fa-pencil"></i>
+                                    <i class="fa fa-hand-o-right fa-2x"></i>
+                                    <i class="fa fa-pencil"></i>
                                     开始录入质控样
                                     <label for="">批号</label>
                                     <input type="number" v-model="selected3.QC_store[0].q_num">
@@ -1275,9 +1346,8 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <input class="form-control animated fadeIn" type="number" tabindex="0"
-                                            placeholder="输入完成直接按回车键" @keyup.enter="save_qc(selected3)" placeholder="输入后直接回车"
-                                            v-model="selected3.QC_sample_value">
+                                        <input class="form-control animated fadeIn" type="number" tabindex="0" placeholder="输入完成直接按回车键" @keyup.enter="save_qc(selected3)"
+                                            placeholder="输入后直接回车" v-model="selected3.QC_sample_value">
                                     </td>
                                 </tr>
                             </table>
@@ -1294,9 +1364,10 @@
                             </legend>
                             <div>
                                 <a class="btn btn-default" @click="add_sample(selected3)">
-                                    <i class="fa fa-hand-o-right fa-2x"></i><i class="fa fa-pencil"></i>
-                                    开始录入
-                                    样品编号<i v-text="numbering+(new Date()).getFullYear()"></i>水第
+                                    <i class="fa fa-hand-o-right fa-2x"></i>
+                                    <i class="fa fa-pencil"></i>
+                                    开始录入 样品编号
+                                    <i v-text="numbering+(new Date()).getFullYear()"></i>水第
                                     <input v-if="selected3.judge" tabindex="-1" type="number" v-model="selected3.start">
                                     <input v-else tabindex="-1" type="number" v-model="selected3.end"> 号
                                 </a>
@@ -1305,7 +1376,8 @@
                     </div>
                     <div class="col-lg-8">
                         <fieldset v-if="add" class="animated pulse">
-                            <legend>样品中 <span v-text="selected3.name">
+                            <legend>样品中
+                                <span v-text="selected3.name">
                                 </span> 浓度计算</legend>
                             <table class="table table-hover table-bordered table-striped">
                                 <tr>
@@ -1314,15 +1386,17 @@
                                 </tr>
                                 <tr class="text-center">
                                     <td>
-                                        <i><i v-text="numbering+(new Date()).getFullYear()"></i>水第<span v-text="f_n(selected3.start,3)">
+                                        <i>
+                                            <i v-text="numbering+(new Date()).getFullYear()"></i>水第
+                                            <span v-text="f_n(selected3.start,3)">
                                             </span>号</i>
                                     </td>
                                     <td>
                                         <input class="form-control animated fadeIn" v-if="selected3.name=='酸碱度' || selected3.name=='色度' || selected3.name=='浑浊度'"
                                             type="number" tabindex="0" v-model.number="selected3.result.c" placeholder="输入完成直接按回车键"
                                             @keyup.enter="work(selected3)">
-                                        <input class="form-control animated fadeIn" v-else type="text" tabindex="0"
-                                            placeholder="输入完成直接按回车键" @keyup.enter="work(selected3)" v-model="selected3.result.c">
+                                        <input class="form-control animated fadeIn" v-else type="text" tabindex="0" placeholder="输入完成直接按回车键" @keyup.enter="work(selected3)"
+                                            v-model="selected3.result.c">
                                     </td>
                                 </tr>
                             </table>
@@ -1359,7 +1433,9 @@
     <script src="js/index.js"></script>
     <footer class="footer">
         <div>交流和提问请加QQ群
-            <a href="img/myWeixin.jpg"><i class="fa fa-comments"></i></a>
+            <a href="img/myWeixin.jpg">
+                <i class="fa fa-comments"></i>
+            </a>
         </div>
     </footer>
     <link rel="stylesheet" href="css/css/index.css">
