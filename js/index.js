@@ -551,7 +551,7 @@ var app = new Vue({
             range: "",
             assessment: true,
             unit: "NTU",
-            calculation: "ρ(TDS)=(m1-m0)*1000*1000/V",
+            calculation: "ρ(TDS)=(m<sub>1</sub>-m<sub>0</sub>)&times;1000&times;1000/V",
             start: 1,
             end: 1,
             name: "溶解性总固体",
@@ -731,7 +731,7 @@ var app = new Vue({
                 "",
                 "",
             ],
-            calculation: "ρ(Cl2)=m/V",
+            calculation: "ρ(Cl<sub>2</sub>)=m/V",
             judge: false,
             category: 1,
             range_max: 0.05,
@@ -789,7 +789,7 @@ var app = new Vue({
                 "",
                 "",
             ],
-            calculation: "ρ(Cl2)=m/V",
+            calculation: "ρ(Cl<sub>2</sub>)=m/V",
             judge: false,
             category: 1,
             range_max: 0.05,
@@ -998,8 +998,8 @@ var app = new Vue({
             unit: "mg/L",
             start: 1,
             end: 1,
-            name: "(7.1)",
-            method: "EDTA-na_2滴定法",
+            name: "总硬度",
+            method: "(7.1)EDTA-na_2滴定法",
             limit: 1,
             coefficient: 1000.9,
             instrument_model: "滴定管、架",
@@ -1181,7 +1181,7 @@ var app = new Vue({
                 q_val: '',
             },
             step: [""],
-            calculation: "C = m/V",
+            calculation: "ρ(NH<sub>3</sub>-N) = m/V",
             judge: false,
             category: 1,
             range_max: 0.5,
@@ -1260,7 +1260,7 @@ var app = new Vue({
                 q_val: '',
             },
             step: [""],
-            calculation: "ρ(CN-)=(m*V1)/(V*V2)",
+            calculation: "ρ(CN<sup>-</sup>)=(m&times;V1)/(V&times;V2)<br>注：V<sub>1</sub>=溜出液总体积；V<sub>2</sub>=比色所用溜出液体积；V=水样体积",
             judge: false,
             category: 1,
             range_max: 0.05,
@@ -1339,7 +1339,7 @@ var app = new Vue({
                 q_val: '',
             },
             step: [""],
-            calculation: "ρ（F-)=[(ρ1*V1)/V2]/[log-1(E2-E1)/K]-1]",
+            calculation: "ρ（F-)=(ρ1&times;V<sub>1</sub>/V<sub>2</sub>)/{log<sup>-1</sup>[(E<sub>2</sub>-E<sub>1</sub>)/K]-1}",
             judge: false,
             category: 1,
             range_max: 1.0,
@@ -1418,7 +1418,7 @@ var app = new Vue({
                 q_val: '',
             },
             step: [""],
-            calculation: "ρ(NO3-N) = m/V",
+            calculation: "ρ(NO<sub>3</sub>-N) = m/V",
             judge: false,
             category: 1,
             range_max: 20,
@@ -1585,7 +1585,7 @@ var app = new Vue({
                 q_val: '',
             },
             step: [""],
-            calculation: "ρ(C6H5OH)= m/V",
+            calculation: "ρ(C<sub>6</sub>H<sub>5</sub>OH)= m/V",
             judge: false,
             category: 1,
             range_max: 0.002,
@@ -2071,7 +2071,7 @@ var app = new Vue({
                 q_val: '',
             },
             step: [""],
-            calculation: "ρ(Cr6+) = m/V",
+            calculation: "ρ(Cr<sup>6+</sup>) = m/V",
             judge: false,
             category: 1,
             range_max: 0.05,
@@ -2466,7 +2466,7 @@ var app = new Vue({
                 q_val: '',
             },
             step: [""],
-            calculation: "ρ(SO4) = m * 1000 / V",
+            calculation: "ρ(SO<sub>4</sub>) = m &times; 1000 / V",
             judge: false,
             category: 1,
             range_max: 250,
@@ -2854,11 +2854,15 @@ var app = new Vue({
             v.playbackRate = speed
             // document.getElementById("video").playbackRate = 2.0;
         },
+        del_opt(s){
+            this.names.splice(s.id,1)
+        },
         save_opt(s, index) {
             /**
              * 保存新项目
              */
             let p = s.name + s.category + 'par'
+            s.id = this.names.length + 1
             s.QC_sample_id = 0
             s.QC_sample_value = ''
             s.QC_store = [
@@ -2911,6 +2915,7 @@ var app = new Vue({
                         s.b = 1,
                         s.r = 1,
                         s.formula = "",
+                        s.calculation = "ρ(" + s.name + ")=m/V",
                         s.x = [],
                         s.y = [],
                         s.standard_series = [],
@@ -2944,7 +2949,6 @@ var app = new Vue({
         search_opt(x, ns) {
             let new_str = new Object
             for (let m = 0; m < x.length; m++) {
-                // let y = JSON.parse(x[m])
                 for (let a = 0; a < ns.length; a++) {
                     if (x[m].name == ns[a].name) {
                         ns[a] = x[m]
@@ -3302,12 +3306,12 @@ var app = new Vue({
             s.store_i.id = s.QC_sample_id + 1
             let qc = (s.name + "质控" + s.store_i.id);
             s.store_i.date = this.dateFormat(new Date());
-            switch(s){
+            switch (s) {
                 case this.selected1:
                     s.store_i.result = ((s.QC_sample_value - s.a) / s.b).toFixed(3)
                     break
                 case this.selected2:
-                    switch(s.name){
+                    switch (s.name) {
                         case "耗氧量":
                             s.store_i.result = ((s.QC_sample_value - s.result.a0) * coef * K / v).toFixed(2)
                             break
