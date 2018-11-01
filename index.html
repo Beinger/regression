@@ -328,7 +328,7 @@
                                         <input placeholder="如果没有最低限值，请忽略" type="text" class="form-control" v-model="slt.range_min">
                                     </label>
                                     <label v-if="slt.category==2" class="form-label">计算公式：c=
-                                        <input v-model="new_opt2.coefficient">&times;(V<sub>样品</sub>-V<sub>空白</sub>)/V
+                                        <input v-model="slt.result.coefficient">&times;(<span v-if="slt.name=='溶解性总固体'">m<sub>总质量</sub>-m<sub>蒸发皿</sub></span><span v-else>V<sub>样品</sub>-V<sub>空白</sub></span>)/V
                                     </label>
                         </div>
                         <div class="modal-footer">
