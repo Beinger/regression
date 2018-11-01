@@ -3302,7 +3302,6 @@ var app = new Vue({
              * 获取质控数据，写入质控数据
              */
             let coef = s.result.coefficient;
-            let K = s.result.K;
             let v = s.result.v;
             s.store_i.q_num = s.QC_store[s.QC_store.length-1].q_num
             s.store_i.q_val = s.QC_store[s.QC_store.length-1].q_val
@@ -3314,13 +3313,7 @@ var app = new Vue({
                     s.store_i.result = ((s.store_i.a - s.a) / s.b).toFixed(3)
                     break
                 case this.selected2:
-                    switch (s.name) {
-                        case "耗氧量":
-                            s.store_i.result = ((s.store_i.a - s.result.a0) * coef * K / v).toFixed(2)
-                            break
-                        default:
-                            s.store_i.result = ((s.store_i.a - s.result.a0) * coef / v).toFixed(2)
-                    }
+                    s.store_i.result = ((s.store_i.a - s.result.a0) * coef / v).toFixed(2)
                     break
                 case this.selected3:
                     s.store_i.result = s.store_i.a
