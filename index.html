@@ -21,7 +21,8 @@
 </head>
 
 <body>
-    <div class="ie-tips">Sorry. 您使用的浏览器版本过旧，为了更好的访问体验，请使用360浏览器或者
+    <div class="ie-tips">Sorry. IE浏览器无法使用这个系统，为了更好的访问体验，请您使用
+        <a href="http://down.360safe.com/se/360se10.0.1508.0.exe" target="_blank">360浏览器</a>或者
         <a href="https://chrome.en.softonic.com/" target="_blank">Chrome谷歌浏览器</a>
         <a class="js-tip-close">关闭</a>
     </div>
@@ -55,14 +56,7 @@
             text-shadow: 0px 1px 0px #999, 1px 2px 1px #888, 2px 3px 2px #777, 3px 4px 3px #666, 4px 5px 4px #555, 5px 6px 5px #444, 6px 7px 6px #333, 7px 8px 7px #222, 8px 9px 8px #111
         }
     </style>
-    <script>
-        let userAgent = navigator.userAgent;
-        if (userAgent.indexOf("windows") > -1 && userAgent.indexOf("MSIE") > -1 && !userAgent.indexOf("Opera") > -1) {
-            $(".ie-tips").show();
-            $("#root").hide();
-        }
-    </script>
-    <div id="root">
+    <div id="root" class="root">
         <div class="container">
             <div class="jumbotron row">
                 <div onclick="focus_move()" class="col-xs-9 col-lg-10 col-md-10 col-sm-10">
@@ -1491,6 +1485,11 @@
             var s = document.getElementsByTagName("script")[0];
             s.parentNode.insertBefore(hm, s);
         })();
+        let userAgent = navigator.userAgent.toLocaleLowerCase();
+        if (userAgent.match(/msie/) != null || userAgent.match(/trident/) != null) {
+            $(".ie-tips").show();
+            $(".root").hide();
+        }
     </script>
 </body>
 </html>
