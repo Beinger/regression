@@ -1128,8 +1128,10 @@
                                 <th class="text-center">编号</th>
                                 <th class="text-center">加样体积(ml)</th>
                                 <th v-if="selected2.name=='耗氧量'" class="text-center">K值</th>
-                                <th class="text-center">空白消耗量(ml)</th>
-                                <th class="text-center">滴定消耗量(ml)</th>
+                                <th class="text-center" v-if="selected2.name=='溶解性总固体'">蒸发皿质量(g)</th>
+                                <th class="text-center" v-else>空白消耗量(ml)</th>
+                                <th class="text-center" v-if="selected2.name=='溶解性总固体'">蒸发皿和固体样品总质量(g)</th>
+                                <th class="text-center" v-else>滴定消耗量(ml)</th>
                             </tr>
                             <tr class="text-center">
                                 <td v-text="selected2.QC_store[selected2.QC_store.length-1].q_num"></td>
