@@ -873,9 +873,9 @@
                                 <span v-text="selected1.name"></span>
                                 质控录入
                                 <label for="">编号</label>
-                                <input type="text" v-model="selected1.QC_store[0].q_num">
+                                <input type="text" v-model="selected1.QC_store[selected1.QC_store.length-1].q_num">
                                 <label for="">定值</label>
-                                <input type="number" v-model="selected1.QC_store[0].q_val">
+                                <input type="number" v-model="selected1.QC_store[selected1.QC_store.length-1].q_val">
                             </a>
                         </div>
                     </fieldset>
@@ -892,7 +892,7 @@
                                 <th class="text-center">吸光度</th>
                             </tr>
                             <tr class="text-center">
-                                <td v-text="selected1.QC_store[0].q_num"></td>
+                                <td v-text="selected1.QC_store[selected1.QC_store.length-1].q_num"></td>
                                 <td>
                                     <select class="form-control" v-model="selected1.result.v">
                                         <option v-bind:value="opt" v-for="opt of vol_select" v-text="opt"></option>
@@ -900,7 +900,7 @@
                                 </td>
                                 <td>
                                     <input class="form-control animated fadeIn" type="number" tabindex="0" placeholder="输入完成直接按回车键"
-                                        @keyup.enter="save_qc(selected1)" placeholder="输入后直接回车" v-model="selected1.QC_sample_value">
+                                        @keyup.enter="save_qc(selected1)" placeholder="输入后直接回车" v-model="selected1.store_i.a">
                                 </td>
                             </tr>
                         </table>
@@ -1106,9 +1106,9 @@
                                 <span v-text="selected2.name"></span>
                                 质控录入
                                 <label for="">编号</label>
-                                <input type="text" v-model="selected2.QC_store[0].q_num">
+                                <input type="text" v-model="selected2.QC_store[selected2.QC_store.length-1].q_num">
                                 <label for="">定值</label>
-                                <input type="number" v-model="selected2.QC_store[0].q_val">
+                                <input type="number" v-model="selected2.QC_store[selected2.QC_store.length-1].q_val">
                             </a>
                         </div>
                     </fieldset>
@@ -1127,7 +1127,7 @@
                                 <th class="text-center">滴定消耗量(ml)</th>
                             </tr>
                             <tr class="text-center">
-                                <td v-text="selected2.QC_store[0].q_num"></td>
+                                <td v-text="selected2.QC_store[selected2.QC_store.length-1].q_num"></td>
                                 <td>
                                     <select class="form-control" v-model="selected2.result.v">
                                         <option v-bind:value="opt" v-for="opt of vol_select" v-text="opt"></option>
@@ -1141,7 +1141,7 @@
                                 </td>
                                 <td>
                                     <input class="form-control animated fadeIn" type="number" tabindex="0" placeholder="输入完成直接按回车键"
-                                        @keyup.enter="save_qc(selected2)" placeholder="输入后直接回车" v-model="selected2.QC_sample_value">
+                                        @keyup.enter="save_qc(selected2)" placeholder="输入后直接回车" v-model="selected2.store_i.a">
                                 </td>
                             </tr>
                         </table>
@@ -1346,9 +1346,9 @@
                                 <span v-text="selected3.name"></span>
                                 质控录入
                                 <label for="">编号</label>
-                                <input type="text" v-model="selected3.QC_store[0].q_num">
+                                <input type="text" v-model="selected3.QC_store[selected3.QC_store.length-1].q_num">
                                 <label for="">定值</label>
-                                <input v-model="selected3.QC_store[0].q_val">
+                                <input v-model="selected3.QC_store[selected3.QC_store.length-1].q_val">
                             </a>
                         </div>
                     </fieldset>
@@ -1365,15 +1365,15 @@
                                 <th class="text-center">结果</th>
                             </tr>
                             <tr class="text-center">
-                                <td v-text="selected3.QC_store[0].q_num"></td>
+                                <td v-text="selected3.QC_store[selected3.QC_store.length-1].q_num"></td>
                                 <td>
                                     <select class="form-control" v-model="selected3.result.v">
                                         <option v-bind:value="opt" v-for="opt of vol_select" v-text="opt"></option>
                                     </select>
                                 </td>
                                 <td>
-                                    <input class="form-control animated fadeIn" type="number" tabindex="0" placeholder="输入完成直接按回车键"
-                                        @keyup.enter="save_qc(selected3)" placeholder="输入后直接回车" v-model="selected3.QC_sample_value">
+                                    <input class="form-control animated fadeIn" placeholder="输入完成直接按回车键"
+                                        @keyup.enter="save_qc(selected3)" placeholder="输入后直接回车" v-model="selected3.store_i.a">
                                 </td>
                             </tr>
                         </table>

@@ -42,13 +42,12 @@ var app = new Vue({
         new_opt1: {
             id: '',
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -57,6 +56,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -93,13 +93,12 @@ var app = new Vue({
         new_opt2: {
             id: '',
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -108,6 +107,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -140,13 +140,12 @@ var app = new Vue({
         new_opt3: {
             id: '',
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -155,6 +154,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -182,13 +182,12 @@ var app = new Vue({
         names: [{
             id: 1,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -197,6 +196,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -225,13 +225,12 @@ var app = new Vue({
         {
             id: 2,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -240,6 +239,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -267,13 +267,12 @@ var app = new Vue({
         {
             id: 3,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -282,6 +281,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -307,13 +307,12 @@ var app = new Vue({
         {
             id: 4,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -322,6 +321,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -346,13 +346,12 @@ var app = new Vue({
         {
             id: 5,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -361,6 +360,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -385,13 +385,12 @@ var app = new Vue({
         {
             id: 6,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -400,6 +399,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -435,13 +435,12 @@ var app = new Vue({
         {
             id: 7,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -450,6 +449,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -483,13 +483,12 @@ var app = new Vue({
         {
             id: 8,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -498,6 +497,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -527,13 +527,12 @@ var app = new Vue({
         {
             id: 9,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -542,6 +541,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -576,13 +576,12 @@ var app = new Vue({
         {
             id: 10,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -591,6 +590,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -620,13 +620,12 @@ var app = new Vue({
         {
             id: 11,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -635,6 +634,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -665,13 +665,12 @@ var app = new Vue({
         {
             id: 12,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -680,6 +679,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -710,13 +710,12 @@ var app = new Vue({
         {
             id: 13,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -725,6 +724,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -768,13 +768,12 @@ var app = new Vue({
         {
             id: 14,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -783,6 +782,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -826,13 +826,12 @@ var app = new Vue({
         {
             id: 15,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -841,6 +840,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -873,13 +873,12 @@ var app = new Vue({
         {
             id: 16,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -888,6 +887,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -920,13 +920,12 @@ var app = new Vue({
         {
             id: 17,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -935,6 +934,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -971,13 +971,12 @@ var app = new Vue({
         {
             id: 18,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -986,6 +985,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -1020,13 +1020,12 @@ var app = new Vue({
         {
             id: 19,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -1035,6 +1034,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -1070,13 +1070,12 @@ var app = new Vue({
         {
             id: 20,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -1085,6 +1084,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -1116,13 +1116,12 @@ var app = new Vue({
         {
             id: 21,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -1131,6 +1130,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -1164,13 +1164,12 @@ var app = new Vue({
         {
             id: 22,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -1179,6 +1178,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -1243,13 +1243,12 @@ var app = new Vue({
         {
             id: 23,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -1258,6 +1257,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -1322,13 +1322,12 @@ var app = new Vue({
         {
             id: 24,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -1337,6 +1336,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -1401,13 +1401,12 @@ var app = new Vue({
         {
             id: 25,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -1416,6 +1415,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -1484,13 +1484,12 @@ var app = new Vue({
         {
             id: 26,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -1499,6 +1498,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -1568,13 +1568,12 @@ var app = new Vue({
         {
             id: 27,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -1583,6 +1582,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -1651,13 +1651,12 @@ var app = new Vue({
         {
             id: 28,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -1666,6 +1665,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -1734,13 +1734,12 @@ var app = new Vue({
         {
             id: 29,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -1749,6 +1748,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -1817,13 +1817,12 @@ var app = new Vue({
         {
             id: 30,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -1832,6 +1831,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -1896,13 +1896,12 @@ var app = new Vue({
         {
             id: 31,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -1911,6 +1910,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -1975,13 +1975,12 @@ var app = new Vue({
         {
             id: 32,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -1990,6 +1989,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -2054,13 +2054,12 @@ var app = new Vue({
         {
             id: 33,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -2069,6 +2068,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -2133,13 +2133,12 @@ var app = new Vue({
         {
             id: 34,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -2148,6 +2147,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -2212,13 +2212,12 @@ var app = new Vue({
         {
             id: 35,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -2227,6 +2226,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -2291,13 +2291,12 @@ var app = new Vue({
         {
             id: 36,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -2306,6 +2305,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -2370,13 +2370,12 @@ var app = new Vue({
         {
             id: 37,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -2385,6 +2384,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -2449,13 +2449,12 @@ var app = new Vue({
         {
             id: 38,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -2464,6 +2463,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -2528,13 +2528,12 @@ var app = new Vue({
         {
             id: 39,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -2543,6 +2542,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -2611,13 +2611,12 @@ var app = new Vue({
         {
             id: 40,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -2626,6 +2625,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -2695,13 +2695,12 @@ var app = new Vue({
             id: 41,
             category: 3,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -2710,6 +2709,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -2734,13 +2734,12 @@ var app = new Vue({
             id: 42,
             category: 3,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -2749,6 +2748,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -2775,13 +2775,12 @@ var app = new Vue({
             id: 43,
             category: 3,
             st: [],
-            QC_sample_id: 0,
-            QC_sample_value: '',
             QC_store: [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -2790,6 +2789,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             },
@@ -2867,13 +2867,12 @@ var app = new Vue({
              */
             let p = s.name + s.category + 'par'
             s.id = this.names.length + 1
-            s.QC_sample_id = 0
-            s.QC_sample_value = ''
             s.QC_store = [
                 {
                     id: '',
                     date: '',
                     result: '',
+                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
                 },
@@ -2882,6 +2881,7 @@ var app = new Vue({
                 id: '',
                 date: '',
                 result: '',
+                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
             }
@@ -3293,7 +3293,7 @@ var app = new Vue({
                     let qc_r = localStorage.getItem(qc)
                     qc_r = JSON.parse(qc_r);
                     s.QC_store.push(qc_r)
-                    s.QC_sample_id = qc_r.id
+                    s.store_i.id = qc_r.id
                 }
             }
         },
@@ -3304,26 +3304,26 @@ var app = new Vue({
             let coef = s.result.coefficient;
             let K = s.result.K;
             let v = s.result.v;
-            s.store_i.q_num = s.QC_store[0].q_num
-            s.store_i.q_val = s.QC_store[0].q_val
-            s.store_i.id = s.QC_sample_id + 1
+            s.store_i.q_num = s.QC_store[s.QC_store.length-1].q_num
+            s.store_i.q_val = s.QC_store[s.QC_store.length-1].q_val
+            s.store_i.id = Number(s.store_i.id) + 1
             let qc = (s.name + "质控" + s.store_i.id);
             s.store_i.date = this.dateFormat(new Date());
             switch (s) {
                 case this.selected1:
-                    s.store_i.result = ((s.QC_sample_value - s.a) / s.b).toFixed(3)
+                    s.store_i.result = ((s.store_i.a - s.a) / s.b).toFixed(3)
                     break
                 case this.selected2:
                     switch (s.name) {
                         case "耗氧量":
-                            s.store_i.result = ((s.QC_sample_value - s.result.a0) * coef * K / v).toFixed(2)
+                            s.store_i.result = ((s.store_i.a - s.result.a0) * coef * K / v).toFixed(2)
                             break
                         default:
-                            s.store_i.result = ((s.QC_sample_value - s.result.a0) * coef / v).toFixed(2)
+                            s.store_i.result = ((s.store_i.a - s.result.a0) * coef / v).toFixed(2)
                     }
                     break
                 case this.selected3:
-                    s.store_i.result = s.QC_sample_value
+                    s.store_i.result = s.store_i.a
                     break
             }
             let store = JSON.stringify(s.store_i)
