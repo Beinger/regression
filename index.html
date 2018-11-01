@@ -1096,7 +1096,7 @@
                 </div>
             </div>
             <div class="row" v-if="QC">
-                <div class="col-lg-5">
+                <div class="col-lg-6">
                     <fieldset>
                         <legend>
                             样品中
@@ -1118,7 +1118,7 @@
                         </div>
                     </fieldset>
                 </div>
-                <div v-if="qc_input" class="col-lg-7">
+                <div v-if="qc_input" class="col-lg-6">
                     <fieldset class="animated pulse">
                         <legend>
                             <span v-text="selected2.name"></span>标准质控品
@@ -1185,9 +1185,9 @@
                                 <th class="text-center">样品编号</th>
                                 <th class="text-center">加样体积(ml)</th>
                                 <th v-if="selected2.name=='耗氧量'" class="text-center">K值</th>
-                                <th class="text-center" v-if="selected2.name=='溶解性总固体'">空白(g)</th>
+                                <th class="text-center" v-if="selected2.name=='溶解性总固体'">蒸发皿质量(g)</th>
                                 <th class="text-center" v-else>空白(ml)</th>
-                                <th class="text-center" v-if="selected2.name=='溶解性总固体'">样品(g)</th>
+                                <th class="text-center" v-if="selected2.name=='溶解性总固体'">蒸发皿和固体样品总质量(g)</th>
                                 <th class="text-center" v-else>样品(ml)</th>
                             </tr>
                             <tr class="text-center">
