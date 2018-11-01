@@ -45,20 +45,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             step: [""],
             judge: false,
@@ -96,20 +100,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             step: [""],
             judge: false,
@@ -143,20 +151,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             step: [""],
             judge: false,
@@ -185,20 +197,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             category: 3,
             judge: false,
@@ -228,20 +244,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             category: 3,
             judge: false,
@@ -270,20 +290,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             category: 3,
             judge: false,
@@ -310,20 +334,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             category: 3,
             judge: false,
@@ -349,20 +377,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             category: 3,
             judge: false,
@@ -388,20 +420,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             step: [
                 "玻璃电极在使用前应放在纯水中侵泡24h以上。",
@@ -438,20 +474,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             step: [
                 "取50ml透明的水样于比色管中。如水样色度过高，可取少量水样，加纯水稀释后比色，结果乘以稀释倍数。",
@@ -486,20 +526,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             step: ["按仪器使用说明书进行操作，浑浊度超过10NTU时，可用纯水稀释后测定。"],
             judge: false,
@@ -530,20 +574,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             step: [""],
             judge: false,
@@ -579,20 +627,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             step: [""],
             judge: false,
@@ -623,20 +675,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             step: [""],
             judge: false,
@@ -668,20 +724,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             step: [""],
             calculation: "",
@@ -713,20 +773,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             step: [
                 "标准曲线绘制：吸取0,0.1,0.5,2.0,4.0,8.0ml,氯标准使用溶液(1.1.3.9)置于6支10ml具塞比色管中，用",
@@ -771,20 +835,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             step: [
                 "标准曲线绘制：吸取0,0.1,0.5,2.0,4.0,8.0ml,氯标准使用溶液(1.1.3.9)置于6支10ml具塞比色管中，用",
@@ -829,20 +897,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             step: [""],
             calculation: "",
@@ -876,20 +948,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             step: [""],
             calculation: "",
@@ -923,20 +999,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             step: ["用移液管准确移取100mL水样于250mL锥形瓶中，加入1mL铬酸钾溶液，用硝酸银标准溶液滴定至砖红色沉淀刚刚出现即为滴定终点。",
                 "另取一锥形瓶加入100mL蒸馏水和1mL铬酸钾溶液，用硝酸银标准溶液滴定至砖红色沉淀刚刚出现即为滴定终点，作为空白试验。",
@@ -974,20 +1054,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             step: [""],
             calculation: '&rho;(CaCO<sub>3</sub>)&emsp;=&emsp;(V<sub>标</sub>-V<sub>空</sub>) &times; c &times; 100.08 &times; 1000 / V<sub>样</sub>',
@@ -1023,20 +1107,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             step: [""],
             calculation: 'ρ(O2) = [(10+V<sub>1</sub>) &times; K - 10] &times; 0.8',
@@ -1073,20 +1161,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             step: [""],
             calculation: "C = m/V",
@@ -1119,20 +1211,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             step: [""],
             calculation: "C = m/V",
@@ -1167,20 +1263,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             step: [""],
             calculation: "ρ(NH<sub>3</sub>-N) = m/V",
@@ -1246,20 +1346,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             step: [""],
             calculation: "ρ(CN<sup>-</sup>)=(m&times;V1)/(V&times;V2)<br>注：V<sub>1</sub>=溜出液总体积；V<sub>2</sub>=比色所用溜出液体积；V=水样体积",
@@ -1325,20 +1429,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             step: [""],
             calculation: "ρ（F-)=(ρ1&times;V<sub>1</sub>/V<sub>2</sub>)/{log<sup>-1</sup>[(E<sub>2</sub>-E<sub>1</sub>)/K]-1}",
@@ -1404,20 +1512,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             step: [""],
             calculation: "ρ(NO<sub>3</sub>-N) = m/V",
@@ -1487,20 +1599,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             step: [""],
             calculation: "ρ(Al) = m/V",
@@ -1571,20 +1687,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             step: [""],
             calculation: "ρ(C<sub>6</sub>H<sub>5</sub>OH)= m/V",
@@ -1654,20 +1774,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             step: [""],
             calculation: "ρ(Hg)= m/V",
@@ -1737,20 +1861,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             step: ["略"],
             calculation: "ρ(DBS) = m/V",
@@ -1820,20 +1948,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             step: [""],
             calculation: "ρ(Se) = m/V",
@@ -1899,20 +2031,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             step: [""],
             calculation: "ρ(Cd)= m/V",
@@ -1978,20 +2114,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             step: [""],
             calculation: "ρ(Pb)= m/V",
@@ -2057,20 +2197,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             step: [""],
             calculation: "ρ(Cr<sup>6+</sup>) = m/V",
@@ -2136,20 +2280,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             step: [""],
             calculation: "ρ(Cu) = m/V",
@@ -2215,20 +2363,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             step: [""],
             calculation: "ρ(Mn) = m/V",
@@ -2294,20 +2446,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             step: [""],
             calculation: "ρ(Fe) = m/V",
@@ -2373,20 +2529,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             step: [""],
             calculation: "ρ(Zn) = m/V",
@@ -2452,20 +2612,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             step: [""],
             calculation: "ρ(SO<sub>4</sub>) = m &times; 1000 / V",
@@ -2531,20 +2695,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             step: [""],
             calculation: "ρ(As) = m/V",
@@ -2614,20 +2782,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             step: [""],
             calculation: "ρ(HCHO) = m/V",
@@ -2698,20 +2870,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             judge: false,
             assessment: "合格",
@@ -2737,20 +2913,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             assessment: "合格",
             range_max: 0.5,
@@ -2778,20 +2958,24 @@ var app = new Vue({
             QC_store: [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ],
             store_i: {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             },
             assessment: "合格",
             range_max: 1,
@@ -2827,6 +3011,7 @@ var app = new Vue({
             this.save_series();
             this.math_formula();
             show_chart();
+            this.get_qc(this.selected1)
         },
         selected2() {
             /**
@@ -2835,6 +3020,7 @@ var app = new Vue({
             this.show2 = true;
             this.show3 = false;
             this.show1 = false;
+            this.get_qc(this.selected2)
         },
         selected3() {
             /**
@@ -2843,6 +3029,7 @@ var app = new Vue({
             this.show1 = false;
             this.show2 = false;
             this.show3 = true;
+            this.get_qc(this.selected3)
         }
     },
     methods: {
@@ -2870,20 +3057,24 @@ var app = new Vue({
             s.QC_store = [
                 {
                     id: '',
-                    date: '',
-                    result: '',
-                    a: '', //质控测定值
                     q_num: '',
                     q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
                 },
             ]
             s.store_i = {
                 id: '',
-                date: '',
-                result: '',
-                a: '', //质控测定值
                 q_num: '',
                 q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
             }
             s.st = []
             s.judge = false
@@ -3287,15 +3478,27 @@ var app = new Vue({
              * 获取质控数据
              */
             this.qc_input = true
+            let date_exp = s.name+'质控'+/\d{4}-\d{2}-\d{2}$/
             for (let i = 0; i < localStorage.length; i++) {
-                let qc = (s.name + "质控" + i);
-                if (localStorage.getItem(qc) !== null) {
-                    let qc_r = localStorage.getItem(qc)
-                    qc_r = JSON.parse(qc_r);
-                    s.QC_store.push(qc_r)
-                    s.store_i.id = qc_r.id
+                let x = localStorage.key(i)
+                if(date_exp.test(x)){
+                    let y = localStorage.getItem(x)
+                    y = JSON.parse(y)
+                    s.QC_store.push(y)
+                    date_exp.lastIndexOf = 0
+                    s.store_i.id = y.id
                 }
+                date_exp.lastIndexOf = 0
+                // let qc = (s.name + "质控" + date_exp);
+                // if (localStorage.getItem(qc) !== null) {
+                //     let qc_r = localStorage.getItem(qc)
+                //     qc_r = JSON.parse(qc_r);
+                //     qc_r.q_judge = qc_r.q_judge?'在控':'失控'
+                //     s.QC_store.push(qc_r)
+                //     s.store_i.id = qc_r.id
+                // }
             }
+
         },
         save_qc(s) {
             /**
@@ -3305,9 +3508,10 @@ var app = new Vue({
             let v = s.result.v;
             s.store_i.q_num = s.QC_store[s.QC_store.length-1].q_num
             s.store_i.q_val = s.QC_store[s.QC_store.length-1].q_val
+            s.store_i.q_limit = s.QC_store[s.QC_store.length-1].q_limit
             s.store_i.id = Number(s.store_i.id) + 1
-            let qc = (s.name + "质控" + s.store_i.id);
             s.store_i.date = this.dateFormat(new Date());
+            let qc = (s.name + "质控" + s.store_i.date);
             switch (s) {
                 case this.selected1:
                     s.store_i.result = ((s.store_i.a - s.a) / s.b).toFixed(3)
@@ -3318,6 +3522,13 @@ var app = new Vue({
                 case this.selected3:
                     s.store_i.result = s.store_i.a
                     break
+            }
+            let x = Number(s.store_i.q_val) + Number(s.store_i.q_limit)
+            let y = Number(s.store_i.q_val) - Number(s.store_i.q_limit)
+            if((s.store_i.result > x) || (s.store_i.result < y)){
+                s.store_i.q_judge = false
+            }else{
+                s.store_i.q_judge = true
             }
             let store = JSON.stringify(s.store_i)
             localStorage.setItem(qc, store)

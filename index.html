@@ -10,14 +10,12 @@
     <script src="js/jquery3.3.1.min.js"></script>
     <script src="js/vue.min.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script> -->
-    <link rel="stylesheet" href="css/css/bootstrap.css">
+    <link rel="stylesheet" href="css/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/css/animation.min.css">
     <link rel="stylesheet" href="css/css/font-awesome.min.css">
     <script src="js/bootstarp.js"></script>
     <script src="js/highcharts.js"></script>
     <script src="js/highcharts_zh.js"></script>
-    <script src="js/myStorage.min.js"></script>
-    <script src="js/webSQL.js"></script>
     <script src="js/browser-polyfill.js"></script>
     <title>水质检验回归分析系统</title>
 </head>
@@ -868,7 +866,7 @@
                             质量控制
                         </legend>
                         <div>
-                            <a class="btn btn-default" @click="get_qc(selected1)">
+                            <a class="btn btn-default">
                                 <i class="fa fa-hand-o-right fa-2x"></i>
                                 <span v-text="selected1.name"></span>
                                 质控录入
@@ -876,6 +874,8 @@
                                 <input type="text" v-model="selected1.QC_store[selected1.QC_store.length-1].q_num">
                                 <label for="">定值</label>
                                 <input type="number" v-model="selected1.QC_store[selected1.QC_store.length-1].q_val">
+                                <label for="">&plusmn;</label>
+                                <input type="number" v-model="selected1.QC_store[selected1.QC_store.length-1].q_limit">
                             </a>
                         </div>
                     </fieldset>
@@ -971,6 +971,7 @@
                         <th>定值</th>
                         <th>日期</th>
                         <th>结果</th>
+                        <th>判断</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -980,6 +981,8 @@
                         <td v-text="item.q_val"></td>
                         <td v-text="item.date"></td>
                         <td v-text="item.result"></td>
+                        <td v-text="item.q_judge" v-if="item.q_judge=='在控'" class="text-success"></td>
+                        <td v-text="item.q_judge" v-else class="text-danger"></td>
                     </tr>
                 </tbody>
             </table>
@@ -1101,7 +1104,7 @@
                             质量控制
                         </legend>
                         <div>
-                            <a class="btn btn-default" @click="get_qc(selected2)">
+                            <a class="btn btn-default">
                                 <i class="fa fa-hand-o-right fa-2x"></i>
                                 <span v-text="selected2.name"></span>
                                 质控录入
@@ -1109,6 +1112,8 @@
                                 <input type="text" v-model="selected2.QC_store[selected2.QC_store.length-1].q_num">
                                 <label for="">定值</label>
                                 <input type="number" v-model="selected2.QC_store[selected2.QC_store.length-1].q_val">
+                                <label for="">&plusmn;</label>
+                                <input type="number" v-model="selected2.QC_store[selected2.QC_store.length-1].q_limit">
                             </a>
                         </div>
                     </fieldset>
@@ -1220,6 +1225,7 @@
                         <th>定值</th>
                         <th>日期</th>
                         <th>结果</th>
+                        <th>判断</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -1229,6 +1235,8 @@
                         <td v-text="item.q_val"></td>
                         <td v-text="item.date"></td>
                         <td v-text="item.result"></td>
+                        <td v-text="item.q_judge" v-if="item.q_judge=='在控'" class="text-success"></td>
+                        <td v-text="item.q_judge" v-else class="text-danger"></td>
                     </tr>
                 </tbody>
             </table>
@@ -1333,7 +1341,7 @@
                 </div>
             </div>
             <div class="row" v-if="QC">
-                <div class="col-lg-5">
+                <div class="col-lg-6">
                     <fieldset>
                         <legend>
                             样品中
@@ -1341,7 +1349,7 @@
                             质量控制
                         </legend>
                         <div>
-                            <a class="btn btn-default" @click="get_qc(selected3)">
+                            <a class="btn btn-default">
                                 <i class="fa fa-hand-o-right fa-2x"></i>
                                 <span v-text="selected3.name"></span>
                                 质控录入
@@ -1349,11 +1357,13 @@
                                 <input type="text" v-model="selected3.QC_store[selected3.QC_store.length-1].q_num">
                                 <label for="">定值</label>
                                 <input v-model="selected3.QC_store[selected3.QC_store.length-1].q_val">
+                                <label for="">&plusmn;</label>
+                                <input v-model="selected3.QC_store[selected3.QC_store.length-1].q_limit">
                             </a>
                         </div>
                     </fieldset>
                 </div>
-                <div v-if="qc_input" class="col-lg-7">
+                <div v-if="qc_input" class="col-lg-6">
                     <fieldset class="animated pulse">
                         <legend>
                             <span v-text="selected3.name"></span>标准质控品
@@ -1440,6 +1450,7 @@
                         <th>定值</th>
                         <th>日期</th>
                         <th>结果</th>
+                        <th>判断</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -1449,6 +1460,8 @@
                         <td v-text="item.q_val"></td>
                         <td v-text="item.date"></td>
                         <td v-text="item.result"></td>
+                        <td v-text="item.q_judge" v-if="item.q_judge=='在控'" class="text-success"></td>
+                        <td v-text="item.q_judge" v-else class="text-danger"></td>
                     </tr>
                 </tbody>
             </table>
