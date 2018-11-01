@@ -3478,25 +3478,25 @@ var app = new Vue({
              * 获取质控数据
              */
             this.qc_input = true
-            let date_exp = s.name+'质控'+/\d{4}-\d{2}-\d{2}$/
+            // let date_exp = new RegExp(s.name+'质控'+/\d{4}-\d{2}-\d{2}$/)
             for (let i = 0; i < localStorage.length; i++) {
-                let x = localStorage.key(i)
-                if(date_exp.test(x)){
-                    let y = localStorage.getItem(x)
-                    y = JSON.parse(y)
-                    s.QC_store.push(y)
-                    date_exp.lastIndexOf = 0
-                    s.store_i.id = y.id
+            //     let x = localStorage.key(i)
+            //     if(date_exp.test(x)){
+            //         let y = localStorage.getItem(x)
+            //         y = JSON.parse(y)
+            //         s.QC_store.push(y)
+            //         date_exp.lastIndexOf = 0
+            //         s.store_i.id = y.id
+            //     }
+            //     date_exp.lastIndexOf = 0
+                let qc = (s.name + "质控" + i);
+                if (localStorage.getItem(qc) !== null) {
+                    let qc_r = localStorage.getItem(qc)
+                    qc_r = JSON.parse(qc_r);
+                    qc_r.q_judge = qc_r.q_judge?'在控':'失控'
+                    s.QC_store.push(qc_r)
+                    s.store_i.id = qc_r.id
                 }
-                date_exp.lastIndexOf = 0
-                // let qc = (s.name + "质控" + date_exp);
-                // if (localStorage.getItem(qc) !== null) {
-                //     let qc_r = localStorage.getItem(qc)
-                //     qc_r = JSON.parse(qc_r);
-                //     qc_r.q_judge = qc_r.q_judge?'在控':'失控'
-                //     s.QC_store.push(qc_r)
-                //     s.store_i.id = qc_r.id
-                // }
             }
 
         },
@@ -3511,7 +3511,7 @@ var app = new Vue({
             s.store_i.q_limit = s.QC_store[s.QC_store.length-1].q_limit
             s.store_i.id = Number(s.store_i.id) + 1
             s.store_i.date = this.dateFormat(new Date());
-            let qc = (s.name + "质控" + s.store_i.date);
+            let qc = (s.name + "质控" + s.store_i.id);
             switch (s) {
                 case this.selected1:
                     s.store_i.result = ((s.store_i.a - s.a) / s.b).toFixed(3)
