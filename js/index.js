@@ -2856,8 +2856,8 @@ var app = new Vue({
             v.playbackRate = speed
             // document.getElementById("video").playbackRate = 2.0;
         },
-        del_opt(s){
-            this.names.splice(s.id-1,1)
+        del_opt(s) {
+            this.names.splice(s.id - 1, 1)
             let p = s.name + s.category + 'par'
             localStorage.removeItem(p)
         },
@@ -2914,25 +2914,25 @@ var app = new Vue({
                     }
                     break
                 default:
-                    s.a = 0,
-                        s.b = 1,
-                        s.r = 1,
-                        s.formula = "",
-                        s.calculation = "ρ(" + s.name + ")=m/V",
-                        s.x = [],
-                        s.y = [],
-                        s.standard_series = [],
-                        s.result = {
-                            id: 1,
-                            v: "",
-                            a: "",
-                            m: "",
-                            c: ""
-                        }
+                    s.a = 0
+                    s.b = 1
+                    s.r = 1
+                    s.formula = ""
+                    s.calculation = "ρ(" + s.name + ")=m/V"
+                    s.x = []
+                    s.y = []
+                    s.standard_series = []
+                    s.result = {
+                        id: 1,
+                        v: "",
+                        a: "",
+                        m: "",
+                        c: ""
+                    }
             }
             let x = JSON.stringify(s)
             localStorage.setItem(p, x)
-            this.get_opt(this.names,s.category)
+            this.get_opt(this.names, s.category)
 
             s = this.uniqueUseNotAllEqual(s)
         },
