@@ -3519,7 +3519,7 @@ var app = new Vue({
             let qc = (s.name + "质控" + s.store_i.id);
             switch (s) {
                 case this.selected1:
-                    s.store_i.result = ((s.store_i.a - s.a) / s.b).toFixed(3)
+                    s.store_i.result = (((s.store_i.a - s.a) / s.b) / s.result.v).toFixed(3)
                     break
                 case this.selected2:
                     s.store_i.result = ((s.store_i.a - s.result.a0) * coef / v).toFixed(2)
