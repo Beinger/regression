@@ -3000,6 +3000,7 @@ var app = new Vue({
         this.get_opt(this.names, 3)
     },
     watch: {
+        
         selected1() {
             /**
              * 当选择了项目时，显示标准系列的列表
@@ -3033,20 +3034,17 @@ var app = new Vue({
         }
     },
     methods: {
-        play_video() {
-            /**
-             * 
-             */
-            this.play = !this.play
-            let speed = 2.0
-            let v = document.getElementById("video")
-            v.playbackRate = speed
-            // document.getElementById("video").playbackRate = 2.0;
-        },
+      
         del_opt(s) {
-            this.names.splice(s.id - 1, 1)
-            let p = s.name + s.category + 'par'
-            localStorage.removeItem(p)
+            //删除项目
+            let index = this.names.indexOf(s.name)
+            this.names.splice(index, 1)
+            for(let i=0; i<localStorage.length; i++){
+                let key = localStorage.key(i)
+                if(key.search(s.name) == -1){
+                    localStorage.removeItem(key)
+                }
+            }
         },
         save_opt(s) {
             /**
@@ -3128,6 +3126,9 @@ var app = new Vue({
             s = this.uniqueUseNotAllEqual(s)
         },
         uniqueUseNotAllEqual(arr) {
+            /**
+             * 对项目进行排序
+             */
             let temp = []
             let mark = true
             for (let i = 0, j = arr.length; i < j; i++) {
@@ -3141,6 +3142,9 @@ var app = new Vue({
             return temp
         },
         search_opt(x, ns) {
+            /**
+             * 找出重复的项目进行替换
+             */
             let new_str = new Object
             for (let m = 0; m < x.length; m++) {
                 for (let a = 0; a < ns.length; a++) {
@@ -3163,6 +3167,7 @@ var app = new Vue({
                 let key = localStorage.key(i)
                 let v = localStorage.getItem(key)
                 if (reg.test(key)) {
+                    reg.lastIndex = 0
                     let v_o = JSON.parse(v)
                     for (let m = 0; m < ns.length; m++) {
                         if (v_o.name !== ns[m].name) {
@@ -3504,7 +3509,7 @@ var app = new Vue({
             /**
              * 获取质控数据，写入质控数据
              */
-            let coef = s.result.coefficient;
+            let coef = s.coefficient;
             let v = s.result.v;
             s.store_i.q_num = s.QC_store[s.QC_store.length-1].q_num
             s.store_i.q_val = s.QC_store[s.QC_store.length-1].q_val
