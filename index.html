@@ -689,10 +689,15 @@
         <div class="row">
             <div class="col-lg-6 animated fadeIn" v-if="show1">
                 <table class="animated fadeInUp table table-hover table-bordered text-center table-striped" :id="selected1.id">
+                    <legend>
+                        <span v-text="selected1.name"></span>
+                        <label class="form-label">标准使用液浓度(μg/ml)：</label><input type="number" v-model="selected1.QC_c">
+                    </legend>
                     <thead>
                         <tr>
                             <th class="text-center">序号</th>
-                            <th class="text-center">标准加入量(μg)</th>
+                            <th class="text-center">标准加入量(ml)</th>
+                            <!-- <th class="text-center">标准加入量(μg)</th> -->
                             <th class="text-center">吸光度</th>
                             <th class="btn btn-info" @click="get_list()">
                                 <i title="保存数据" class="fa fa-save">保存</i>
@@ -706,6 +711,7 @@
                         <tr v-for="(item, index) in selected1.standard_series" :key="index">
                             <td v-text="index+1"></td>
                             <td contenteditable="true" v-text="item[0]"></td>
+                            <!-- <td contenteditable="true" v-text="selected1.zl[index]"></td> -->
                             <td contenteditable="true" v-text="item[1]"></td>
                             <td colspan="2" @click="del(index)" title="删除" class="btn text-danger text-center">
                                 <i class="fa fa-trash"></i>
@@ -786,7 +792,7 @@
                 <table style="table-layout:fixed" class="table tabel-bordered table-striped">
                     <thead>
                         <tr>
-                            <th class="text-center">标准加样量</th>
+                            <th class="text-center">标准加样量(ml)</th>
                             <td v-for="(item,index) in selected1.standard_series" :key="index" v-text="item[0]"></td>
                         </tr>
                     </thead>
@@ -855,15 +861,13 @@
                 <div class="col-lg-5">
                     <fieldset>
                         <legend>
-                            样品中
                             <span v-text="selected1.name"></span>
-                            质量控制
+                            质控品信息
                         </legend>
                         <div>
                             <a class="btn btn-default">
                                 <i class="fa fa-hand-o-right fa-2x"></i>
                                 <span v-text="selected1.name"></span>
-                                质控录入
                                 <label for="">编号</label>
                                 <input type="text" v-model="selected1.QC_store[selected1.QC_store.length-1].q_num">
                                 <label for="">定值</label>
@@ -877,7 +881,7 @@
                 <div v-if="qc_input" class="col-lg-7">
                     <fieldset class="animated pulse">
                         <legend>
-                            <span v-text="selected1.name"></span>标准质控品
+                            <span v-text="selected1.name"></span>质控计算
                         </legend>
                         <table class="table table-hover table-bordered table-striped">
                             <tr>
@@ -962,8 +966,9 @@
                     <tr>
                         <th>序号</th>
                         <th>编号</th>
-                        <th>定值</th>
                         <th>日期</th>
+                        <th>定值</th>
+                        <th>不确定度</th>
                         <th>结果</th>
                         <th>判断</th>
                     </tr>
@@ -972,8 +977,9 @@
                     <tr v-for="(item, index) in selected1.QC_store" :key="index">
                         <td v-text="item.id"></td>
                         <td v-text="item.q_num"></td>
-                        <td v-text="item.q_val"></td>
                         <td v-text="item.date"></td>
+                        <td v-text="item.q_val"></td>
+                        <td v-text="item.q_limit"></td>
                         <td v-text="item.result"></td>
                         <td v-text="item.q_judge" v-if="item.q_judge=='在控'" class="text-success"></td>
                         <td v-text="item.q_judge" v-else class="text-danger"></td>
@@ -1093,15 +1099,13 @@
                 <div class="col-lg-6">
                     <fieldset>
                         <legend>
-                            样品中
                             <span v-text="selected2.name"></span>
-                            质量控制
+                            质控品信息
                         </legend>
                         <div>
                             <a class="btn btn-default">
                                 <i class="fa fa-hand-o-right fa-2x"></i>
                                 <span v-text="selected2.name"></span>
-                                质控录入
                                 <label for="">编号</label>
                                 <input type="text" v-model="selected2.QC_store[selected2.QC_store.length-1].q_num">
                                 <label for="">定值</label>
@@ -1115,7 +1119,7 @@
                 <div v-if="qc_input" class="col-lg-6">
                     <fieldset class="animated pulse">
                         <legend>
-                            <span v-text="selected2.name"></span>标准质控品
+                            <span v-text="selected2.name"></span>质控计算
                         </legend>
                         <table class="table table-hover table-bordered table-striped">
                             <tr>
@@ -1149,7 +1153,7 @@
                     </fieldset>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" v-if="!QC">
                 <div class="col-lg-5">
                     <fieldset>
                         <legend>
@@ -1218,8 +1222,9 @@
                     <tr>
                         <th>序号</th>
                         <th>编号</th>
-                        <th>定值</th>
                         <th>日期</th>
+                        <th>定值</th>
+                        <th>不确定度</th>
                         <th>结果</th>
                         <th>判断</th>
                     </tr>
@@ -1228,8 +1233,9 @@
                     <tr v-for="(item, index) in selected2.QC_store" :key="index">
                         <td v-text="item.id"></td>
                         <td v-text="item.q_num"></td>
-                        <td v-text="item.q_val"></td>
                         <td v-text="item.date"></td>
+                        <td v-text="item.q_val"></td>
+                        <td v-text="item.q_limit"></td>
                         <td v-text="item.result"></td>
                         <td v-text="item.q_judge" v-if="item.q_judge=='在控'" class="text-success"></td>
                         <td v-text="item.q_judge" v-else class="text-danger"></td>
@@ -1340,15 +1346,13 @@
                 <div class="col-lg-6">
                     <fieldset>
                         <legend>
-                            样品中
                             <span v-text="selected3.name"></span>
-                            质量控制
+                            质控品信息
                         </legend>
                         <div>
                             <a class="btn btn-default">
                                 <i class="fa fa-hand-o-right fa-2x"></i>
                                 <span v-text="selected3.name"></span>
-                                质控录入
                                 <label for="">编号</label>
                                 <input type="text" v-model="selected3.QC_store[selected3.QC_store.length-1].q_num">
                                 <label for="">定值</label>
@@ -1362,7 +1366,7 @@
                 <div v-if="qc_input" class="col-lg-6">
                     <fieldset class="animated pulse">
                         <legend>
-                            <span v-text="selected3.name"></span>标准质控品
+                            <span v-text="selected3.name"></span>质控计算
                         </legend>
                         <table class="table table-hover table-bordered table-striped">
                             <tr>
@@ -1386,7 +1390,7 @@
                     </fieldset>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" v-if="!QC">
                 <div class="col-lg-5">
                     <fieldset>
                         <legend>
@@ -1443,8 +1447,9 @@
                     <tr>
                         <th>序号</th>
                         <th>编号</th>
-                        <th>定值</th>
                         <th>日期</th>
+                        <th>定值</th>
+                        <th>不确定度</th>
                         <th>结果</th>
                         <th>判断</th>
                     </tr>
@@ -1453,8 +1458,9 @@
                     <tr v-for="(item, index) in selected3.QC_store" :key="index">
                         <td v-text="item.id"></td>
                         <td v-text="item.q_num"></td>
-                        <td v-text="item.q_val"></td>
                         <td v-text="item.date"></td>
+                        <td v-text="item.q_val"></td>
+                        <td v-text="item.q_limit"></td>
                         <td v-text="item.result"></td>
                         <td v-text="item.q_judge" v-if="item.q_judge=='在控'" class="text-success"></td>
                         <td v-text="item.q_judge" v-else class="text-danger"></td>

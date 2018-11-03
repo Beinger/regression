@@ -42,18 +42,18 @@ var app = new Vue({
         new_opt1: {
             id: '',
             st: [],
-            QC_store: [
-                {
-                    id: '',
-                    q_num: '',
-                    q_val: '',
-                    q_limit: '',
-                    a: '', //质控测定值
-                    result: '',
-                    q_judge: '',
-                    date: '',
-                },
-            ],
+            QC_c: 10,
+            zl: [],
+            QC_store: [{
+                id: '',
+                q_num: '',
+                q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
+            }, ],
             store_i: {
                 id: '',
                 q_num: '',
@@ -97,18 +97,18 @@ var app = new Vue({
         new_opt2: {
             id: '',
             st: [],
-            QC_store: [
-                {
-                    id: '',
-                    q_num: '',
-                    q_val: '',
-                    q_limit: '',
-                    a: '', //质控测定值
-                    result: '',
-                    q_judge: '',
-                    date: '',
-                },
-            ],
+            QC_c: 10,
+            zl: [],
+            QC_store: [{
+                id: '',
+                q_num: '',
+                q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
+            }, ],
             store_i: {
                 id: '',
                 q_num: '',
@@ -132,11 +132,11 @@ var app = new Vue({
             limit: "",
             instrument_model: "",
             GB: "GB/T 5750.5-2006",
+            coefficient: "",
             items: [],
             result: {
                 id: 1,
                 v: "",
-                coefficient: "",
                 K: "",
                 a0: "",
                 a1: "",
@@ -148,18 +148,18 @@ var app = new Vue({
         new_opt3: {
             id: '',
             st: [],
-            QC_store: [
-                {
-                    id: '',
-                    q_num: '',
-                    q_val: '',
-                    q_limit: '',
-                    a: '', //质控测定值
-                    result: '',
-                    q_judge: '',
-                    date: '',
-                },
-            ],
+            QC_c: 10,
+            zl: [],
+            QC_store: [{
+                id: '',
+                q_num: '',
+                q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
+            }, ],
             store_i: {
                 id: '',
                 q_num: '',
@@ -192,10 +192,21 @@ var app = new Vue({
             },
         },
         names: [{
-            id: 1,
-            st: [],
-            QC_store: [
-                {
+                id: 1,
+                st: [],
+                QC_c: 10,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -205,44 +216,44 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
+                category: 3,
+                judge: false,
+                assessment: "合格",
+                unit: "无量纲",
+                method: "(3.1)",
+                GB: "GB/T 5750.4-2006",
+                step: [
+                    "去100ml水样，置于250ML锥形瓶中，振摇后从瓶口嗅水的气味，用适当的文字描述，并按六级记录其强度。",
+                    "与此同时，取少量水样放入口中（此水样应对人体无害），不要咽下，品尝水的味道，予以描述，并按六级记录强度。"
+                ],
+                start: 1,
+                end: 1,
+                name: "臭和味",
+                range: "无异臭和异味",
+                items: [],
+                result: {
+                    id: "",
+                    v: "",
+                    c: "无异臭和异味",
+                    date: "",
+                }
             },
-            category: 3,
-            judge: false,
-            assessment: "合格",
-            unit: "无量纲",
-            method: "(3.1)",
-            GB: "GB/T 5750.4-2006",
-            step: [
-                "去100ml水样，置于250ML锥形瓶中，振摇后从瓶口嗅水的气味，用适当的文字描述，并按六级记录其强度。",
-                "与此同时，取少量水样放入口中（此水样应对人体无害），不要咽下，品尝水的味道，予以描述，并按六级记录强度。"
-            ],
-            start: 1,
-            end: 1,
-            name: "臭和味",
-            range: "无异臭和异味",
-            items: [],
-            result: {
-                id: "",
-                v: "",
-                c: "无异臭和异味",
-                date: "",
-            }
-        },
-        {
-            id: 2,
-            st: [],
-            QC_store: [
-                {
+            {
+                id: 2,
+                st: [],
+                QC_c: 10,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -252,43 +263,43 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
+                category: 3,
+                judge: false,
+                assessment: "合格",
+                unit: "无量纲",
+                method: "(4.1)",
+                GB: "GB/T 5740.4-2006",
+                step: [
+                    "将水样摇匀，在光线明亮处迎光直接观察,记录所观察到的肉眼可见物。"
+                ],
+                start: 1,
+                end: 1,
+                name: "肉眼可见物",
+                range: "无",
+                items: [],
+                result: {
+                    id: "",
+                    v: "",
+                    c: "无",
+                    date: "",
+                }
             },
-            category: 3,
-            judge: false,
-            assessment: "合格",
-            unit: "无量纲",
-            method: "(4.1)",
-            GB: "GB/T 5740.4-2006",
-            step: [
-                "将水样摇匀，在光线明亮处迎光直接观察,记录所观察到的肉眼可见物。"
-            ],
-            start: 1,
-            end: 1,
-            name: "肉眼可见物",
-            range: "无",
-            items: [],
-            result: {
-                id: "",
-                v: "",
-                c: "无",
-                date: "",
-            }
-        },
-        {
-            id: 3,
-            st: [],
-            QC_store: [
-                {
+            {
+                id: 3,
+                st: [],
+                QC_c: 10,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -298,41 +309,41 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
+                category: 3,
+                judge: false,
+                assessment: "合格",
+                method: '(2.1)',
+                GB: "GB/T 5740.12-2006",
+                unit: "MPN/100ml",
+                step: [""],
+                start: 1,
+                end: 1,
+                name: "总大肠菌群",
+                range: "不得检出",
+                items: [],
+                result: {
+                    id: "",
+                    v: "",
+                    c: "未检出",
+                    date: "",
+                }
             },
-            category: 3,
-            judge: false,
-            assessment: "合格",
-            method: '(2.1)',
-            GB: "GB/T 5740.12-2006",
-            unit: "MPN/100ml",
-            step: [""],
-            start: 1,
-            end: 1,
-            name: "总大肠菌群",
-            range: "不得检出",
-            items: [],
-            result: {
-                id: "",
-                v: "",
-                c: "未检出",
-                date: "",
-            }
-        },
-        {
-            id: 4,
-            st: [],
-            QC_store: [
-                {
+            {
+                id: 4,
+                st: [],
+                QC_c: 10,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -342,40 +353,40 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
+                category: 3,
+                judge: false,
+                assessment: "合格",
+                GB: "GB/T 5740.12-2006",
+                unit: "MPN/100ml",
+                step: [""],
+                start: 1,
+                end: 1,
+                name: "大肠埃希氏菌",
+                range: "不得检出",
+                items: [],
+                result: {
+                    id: "",
+                    v: "",
+                    c: "未检出",
+                    date: "",
+                }
             },
-            category: 3,
-            judge: false,
-            assessment: "合格",
-            GB: "GB/T 5740.12-2006",
-            unit: "MPN/100ml",
-            step: [""],
-            start: 1,
-            end: 1,
-            name: "大肠埃希氏菌",
-            range: "不得检出",
-            items: [],
-            result: {
-                id: "",
-                v: "",
-                c: "未检出",
-                date: "",
-            }
-        },
-        {
-            id: 5,
-            st: [],
-            QC_store: [
-                {
+            {
+                id: 5,
+                st: [],
+                QC_c: 10,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -385,40 +396,40 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
+                category: 3,
+                judge: false,
+                start: 1,
+                end: 1,
+                assessment: "合格",
+                GB: "GB/T 5740.12-2006",
+                unit: "MPN/100ml",
+                step: [""],
+                name: "耐热大肠菌群",
+                range: "不得检出",
+                items: [],
+                result: {
+                    id: "",
+                    v: "",
+                    c: "未检出",
+                    date: "",
+                }
             },
-            category: 3,
-            judge: false,
-            start: 1,
-            end: 1,
-            assessment: "合格",
-            GB: "GB/T 5740.12-2006",
-            unit: "MPN/100ml",
-            step: [""],
-            name: "耐热大肠菌群",
-            range: "不得检出",
-            items: [],
-            result: {
-                id: "",
-                v: "",
-                c: "未检出",
-                date: "",
-            }
-        },
-        {
-            id: 6,
-            st: [],
-            QC_store: [
-                {
+            {
+                id: 6,
+                st: [],
+                QC_c: 10,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -428,51 +439,51 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
+                step: [
+                    "玻璃电极在使用前应放在纯水中侵泡24h以上。",
+                    "仪器校正：仪器开启30min后，按仪器使用说明书操作。",
+                    "pH定位：选用一种与被测水样pH接近的标准缓冲溶液，重复定位1~2次，当水样pH<7.0时，使用苯二甲酸氢钾标准缓冲溶液（5.1.3.1）定位，以四硼酸钠或混合磷酸盐标准缓冲溶液复定位；如果水样pH>7.0时，则用四硼酸钠标准缓冲溶液定位，以苯二甲酸氢钾或混合磷酸盐标准缓冲溶液复定位。(注：如发现三种缓冲液的定位值不成线性，应检查玻璃电极的质量。)",
+                    "用洗瓶以纯水缓缓淋洗两个电极数次，再以水样淋洗6~8次，然后插入水样中，1min后直接从仪器上读出pH值。(注1：甘汞电极内为氯化钾的饱和溶液，当室温升高后，溶液可能由饱和状态变为不饱和状态，故应保持一定量氯化钾晶体。)(注2：pH值大于9的溶液，应使用高碱玻璃电极测定pH值。)"
+                ],
+                calculation: "直接读数",
+                judge: false,
+                category: 3,
+                range_min: 6.5,
+                range_max: 8.5,
+                range: "",
+                assessment: true,
+                unit: "无量纲",
+                start: 1,
+                end: 1,
+                name: "酸碱度",
+                method: "(5.1)",
+                limit: 0,
+                instrument_model: "精密pH计、pH玻璃电极、饱和甘汞电极、温度计",
+                GB: "GB/T 5750.4-2006",
+                items: [],
+                result: {
+                    id: "",
+                    v: 50,
+                    c: "",
+                    date: "",
+                },
             },
-            step: [
-                "玻璃电极在使用前应放在纯水中侵泡24h以上。",
-                "仪器校正：仪器开启30min后，按仪器使用说明书操作。",
-                "pH定位：选用一种与被测水样pH接近的标准缓冲溶液，重复定位1~2次，当水样pH<7.0时，使用苯二甲酸氢钾标准缓冲溶液（5.1.3.1）定位，以四硼酸钠或混合磷酸盐标准缓冲溶液复定位；如果水样pH>7.0时，则用四硼酸钠标准缓冲溶液定位，以苯二甲酸氢钾或混合磷酸盐标准缓冲溶液复定位。(注：如发现三种缓冲液的定位值不成线性，应检查玻璃电极的质量。)",
-                "用洗瓶以纯水缓缓淋洗两个电极数次，再以水样淋洗6~8次，然后插入水样中，1min后直接从仪器上读出pH值。(注1：甘汞电极内为氯化钾的饱和溶液，当室温升高后，溶液可能由饱和状态变为不饱和状态，故应保持一定量氯化钾晶体。)(注2：pH值大于9的溶液，应使用高碱玻璃电极测定pH值。)"
-            ],
-            calculation: "直接读数",
-            judge: false,
-            category: 3,
-            range_min: 6.5,
-            range_max: 8.5,
-            range: "",
-            assessment: true,
-            unit: "无量纲",
-            start: 1,
-            end: 1,
-            name: "酸碱度",
-            method: "(5.1)",
-            limit: 0,
-            instrument_model: "精密pH计、pH玻璃电极、饱和甘汞电极、温度计",
-            GB: "GB/T 5750.4-2006",
-            items: [],
-            result: {
-                id: "",
-                v: 50,
-                c: "",
-                date: "",
-            },
-        },
-        {
-            id: 7,
-            st: [],
-            QC_store: [
-                {
+            {
+                id: 7,
+                st: [],
+                QC_c: 10,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -482,49 +493,49 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
+                step: [
+                    "取50ml透明的水样于比色管中。如水样色度过高，可取少量水样，加纯水稀释后比色，结果乘以稀释倍数。",
+                    "另取比色管11支分别加入铂钴标准溶液0ml,0.50ml,1.00ml,1.50ml,2.00ml,2.50ml,3.00ml,3.50ml,4.00ml,4.50ml和5.00ml,加纯水至刻度，摇匀，配制色度为0度，5度，10度，15度，20度，25度，30度，35度，40度，45度和50度的标准色列，可长期使用。",
+                    "将水样与铂钴标准色列进行比较。如水样与标准色列的色调不一致,即为异色，可用文字描述。"
+                ],
+                judge: false,
+                category: 3,
+                range_min: "",
+                range_max: 15,
+                range: "",
+                assessment: true,
+                unit: "度",
+                start: 1,
+                end: 1,
+                name: "色度",
+                method: "(1.1)",
+                limit: 5,
+                instrument_model: "比色计",
+                GB: "GB/T 5750.4-2006",
+                items: [],
+                result: {
+                    id: "",
+                    v: 50,
+                    c: "",
+                    date: "",
+                },
             },
-            step: [
-                "取50ml透明的水样于比色管中。如水样色度过高，可取少量水样，加纯水稀释后比色，结果乘以稀释倍数。",
-                "另取比色管11支分别加入铂钴标准溶液0ml,0.50ml,1.00ml,1.50ml,2.00ml,2.50ml,3.00ml,3.50ml,4.00ml,4.50ml和5.00ml,加纯水至刻度，摇匀，配制色度为0度，5度，10度，15度，20度，25度，30度，35度，40度，45度和50度的标准色列，可长期使用。",
-                "将水样与铂钴标准色列进行比较。如水样与标准色列的色调不一致,即为异色，可用文字描述。"
-            ],
-            judge: false,
-            category: 3,
-            range_min: "",
-            range_max: 15,
-            range: "",
-            assessment: true,
-            unit: "度",
-            start: 1,
-            end: 1,
-            name: "色度",
-            method: "(1.1)",
-            limit: 5,
-            instrument_model: "比色计",
-            GB: "GB/T 5750.4-2006",
-            items: [],
-            result: {
-                id: "",
-                v: 50,
-                c: "",
-                date: "",
-            },
-        },
-        {
-            id: 8,
-            st: [],
-            QC_store: [
-                {
+            {
+                id: 8,
+                st: [],
+                QC_c: 10,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -534,45 +545,45 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
+                step: ["按仪器使用说明书进行操作，浑浊度超过10NTU时，可用纯水稀释后测定。"],
+                judge: false,
+                category: 3,
+                range_min: "",
+                range_max: 3,
+                range: "",
+                assessment: true,
+                unit: "NTU",
+                start: 1,
+                end: 1,
+                name: "浑浊度",
+                method: "(2.1)",
+                limit: 0.5,
+                instrument_model: "散射式浊度仪",
+                GB: "GB/T 5750.4-2006",
+                items: [],
+                result: {
+                    id: "",
+                    v: 50,
+                    c: "",
+                    date: "",
+                },
             },
-            step: ["按仪器使用说明书进行操作，浑浊度超过10NTU时，可用纯水稀释后测定。"],
-            judge: false,
-            category: 3,
-            range_min: "",
-            range_max: 3,
-            range: "",
-            assessment: true,
-            unit: "NTU",
-            start: 1,
-            end: 1,
-            name: "浑浊度",
-            method: "(2.1)",
-            limit: 0.5,
-            instrument_model: "散射式浊度仪",
-            GB: "GB/T 5750.4-2006",
-            items: [],
-            result: {
-                id: "",
-                v: 50,
-                c: "",
-                date: "",
-            },
-        },
-        {
-            id: 9,
-            st: [],
-            QC_store: [
-                {
+            {
+                id: 9,
+                st: [],
+                QC_c: 10,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -582,50 +593,50 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
-            },
-            step: [""],
-            judge: false,
-            category: 2,
-            range_min: "",
-            range_max: 1000,
-            range: "",
-            assessment: true,
-            unit: "NTU",
-            calculation: "ρ(TDS)=(m<sub>1</sub>-m<sub>0</sub>)&times;1000&times;1000/V",
-            start: 1,
-            end: 1,
-            name: "溶解性总固体",
-            method: "(8.1)",
-            limit: 0.5,
-            instrument_model: "分析天平",
-            GB: "GB/T 5750.4-2006",
-            items: [],
-            result: {
-                id: "",
-                v: 50,
+                step: [""],
+                judge: false,
+                category: 2,
+                range_min: "",
+                range_max: 1000,
+                range: "",
+                assessment: true,
+                unit: "NTU",
+                calculation: "ρ(TDS)=(m<sub>1</sub>-m<sub>0</sub>)&times;1000&times;1000/V",
                 coefficient: 1000000,
-                a0: "",
-                a1: "",
-                c: "",
-                date: "",
-            },
+                start: 1,
+                end: 1,
+                name: "溶解性总固体",
+                method: "(8.1)",
+                limit: 0.5,
+                instrument_model: "分析天平",
+                GB: "GB/T 5750.4-2006",
+                items: [],
+                result: {
+                    id: "",
+                    v: 50,
+                    a0: "",
+                    a1: "",
+                    c: "",
+                    date: "",
+                },
 
-        },
-        {
-            id: 10,
-            st: [],
-            QC_store: [
-                {
+            },
+            {
+                id: 10,
+                st: [],
+                QC_c: 10,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -635,45 +646,45 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
+                step: [""],
+                judge: false,
+                category: 3,
+                range_min: "",
+                range_max: 3,
+                range: "",
+                assessment: true,
+                unit: "μg/L",
+                start: 1,
+                end: 1,
+                name: "四氯化碳",
+                method: "(1.2)",
+                limit: 0.1,
+                instrument_model: "气相色谱仪",
+                GB: "GB/T 5750.8-2006",
+                items: [],
+                result: {
+                    id: "",
+                    v: 0.01,
+                    c: "",
+                    date: "",
+                },
             },
-            step: [""],
-            judge: false,
-            category: 3,
-            range_min: "",
-            range_max: 3,
-            range: "",
-            assessment: true,
-            unit: "μg/L",
-            start: 1,
-            end: 1,
-            name: "四氯化碳",
-            method: "(1.2)",
-            limit: 0.1,
-            instrument_model: "气相色谱仪",
-            GB: "GB/T 5750.8-2006",
-            items: [],
-            result: {
-                id: "",
-                v: 0.01,
-                c: "",
-                date: "",
-            },
-        },
-        {
-            id: 11,
-            st: [],
-            QC_store: [
-                {
+            {
+                id: 11,
+                st: [],
+                QC_c: 10,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -683,46 +694,46 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
-            },
-            step: [""],
-            judge: false,
-            category: 3,
-            range_min: "",
-            range_max: 3,
-            range: "",
-            assessment: true,
-            unit: "μg/L",
-            start: 1,
-            end: 1,
-            name: "三氯甲烷",
-            method: "(1)",
-            limit: 0.2,
-            instrument_model: "气相色谱仪",
-            GB: "GB/T 5750.8-2006",
-            items: [],
-            result: {
-                id: "",
-                v: 0.01,
-                c: "",
-                date: "",
-            },
+                step: [""],
+                judge: false,
+                category: 3,
+                range_min: "",
+                range_max: 3,
+                range: "",
+                assessment: true,
+                unit: "μg/L",
+                start: 1,
+                end: 1,
+                name: "三氯甲烷",
+                method: "(1)",
+                limit: 0.2,
+                instrument_model: "气相色谱仪",
+                GB: "GB/T 5750.8-2006",
+                items: [],
+                result: {
+                    id: "",
+                    v: 0.01,
+                    c: "",
+                    date: "",
+                },
 
-        },
-        {
-            id: 12,
-            st: [],
-            QC_store: [
-                {
+            },
+            {
+                id: 12,
+                st: [],
+                QC_c: 10,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -732,46 +743,54 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
+                step: [""],
+                calculation: "",
+                judge: false,
+                category: 1,
+                range_max: 0.001,
+                range_min: "",
+                assessment: true,
+                range: "",
+                unit: "mg/L",
+                start: 1,
+                end: 1,
+                name: "溴酸盐",
+                a: '',
+                b: '',
+                r: '',
+                formula: '',
+                x: [],
+                y: [],
+                items: [],
+                limit: 0.001,
+                method: "离子色谱法",
+                instrument_model: "离子色谱仪",
+                GB: "GB/T 5750.10-2006",
+                standard_series: '',
+                result: {
+                    id: 1,
+                    v: 50,
+                    a: "",
+                    c: "",
+                    date: ""
+                },
             },
-            step: [""],
-            calculation: "",
-            judge: false,
-            category: 1,
-            range_max: 0.001,
-            range_min: "",
-            assessment: true,
-            range: "",
-            unit: "mg/L",
-            start: 1,
-            end: 1,
-            name: "溴酸盐",
-            limit: 0.001,
-            method: "离子色谱法",
-            instrument_model: "离子色谱仪",
-            GB: "GB/T 5750.10-2006",
-            result: {
-                id: 1,
-                v: 50,
-                a: "",
-                c: "",
-                date: ""
-            },
-        },
-        {
-            id: 13,
-            st: [],
-            QC_store: [
-                {
+            {
+                id: 13,
+                st: [],
+                QC_c: 10,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -781,59 +800,59 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
+                step: [
+                    "标准曲线绘制：吸取0,0.1,0.5,2.0,4.0,8.0ml,氯标准使用溶液(1.1.3.9)置于6支10ml具塞比色管中，用",
+                    "",
+                    "",
+                ],
+                calculation: "ρ(Cl<sub>2</sub>)=m/V",
+                judge: false,
+                category: 1,
+                range_max: 0.05,
+                range_min: 4.0,
+                assessment: true,
+                range: "",
+                unit: "mg/L",
+                start: 1,
+                end: 1,
+                name: "余氯",
+                limit: 0.01,
+                method: "N,N-二乙基对苯二胺(DPD)分光光度法",
+                instrument_model: "分光光度计",
+                GB: "GB/T 5750.11-2006",
+                a: 0,
+                b: 1,
+                r: 1,
+                formula: "",
+                x: [],
+                y: [],
+                standard_series: [],
+                items: [],
+                result: {
+                    id: 1,
+                    v: 10,
+                    a: "",
+                    m: "",
+                    c: "",
+                    date: ""
+                },
             },
-            step: [
-                "标准曲线绘制：吸取0,0.1,0.5,2.0,4.0,8.0ml,氯标准使用溶液(1.1.3.9)置于6支10ml具塞比色管中，用",
-                "",
-                "",
-            ],
-            calculation: "ρ(Cl<sub>2</sub>)=m/V",
-            judge: false,
-            category: 1,
-            range_max: 0.05,
-            range_min: 4.0,
-            assessment: true,
-            range: "",
-            unit: "mg/L",
-            start: 1,
-            end: 1,
-            name: "余氯",
-            limit: 0.01,
-            method: "N,N-二乙基对苯二胺(DPD)分光光度法",
-            instrument_model: "分光光度计",
-            GB: "GB/T 5750.11-2006",
-            a: 0,
-            b: 1,
-            r: 1,
-            formula: "",
-            x: [],
-            y: [],
-            standard_series: [],
-            items: [],
-            result: {
-                id: 1,
-                v: 10,
-                a: "",
-                m: "",
-                c: "",
-                date: ""
-            },
-        },
-        {
-            id: 14,
-            st: [],
-            QC_store: [
-                {
+            {
+                id: 14,
+                st: [],
+                QC_c: 10,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -843,59 +862,59 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
+                step: [
+                    "标准曲线绘制：吸取0,0.1,0.5,2.0,4.0,8.0ml,氯标准使用溶液(1.1.3.9)置于6支10ml具塞比色管中，用",
+                    "",
+                    "",
+                ],
+                calculation: "ρ(Cl<sub>2</sub>)=m/V",
+                judge: false,
+                category: 1,
+                range_max: 0.05,
+                range_min: 4.0,
+                assessment: true,
+                range: "",
+                unit: "mg/L",
+                start: 1,
+                end: 1,
+                name: "总氯",
+                limit: 0.01,
+                method: "N,N-二乙基对苯二胺(DPD)分光光度法",
+                instrument_model: "分光光度计",
+                GB: "GB/T 5750.11-2006",
+                a: 0,
+                b: 1,
+                r: 1,
+                formula: "",
+                x: [],
+                y: [],
+                standard_series: [],
+                items: [],
+                result: {
+                    id: 1,
+                    v: 10,
+                    a: "",
+                    m: "",
+                    c: "",
+                    date: ""
+                },
             },
-            step: [
-                "标准曲线绘制：吸取0,0.1,0.5,2.0,4.0,8.0ml,氯标准使用溶液(1.1.3.9)置于6支10ml具塞比色管中，用",
-                "",
-                "",
-            ],
-            calculation: "ρ(Cl<sub>2</sub>)=m/V",
-            judge: false,
-            category: 1,
-            range_max: 0.05,
-            range_min: 4.0,
-            assessment: true,
-            range: "",
-            unit: "mg/L",
-            start: 1,
-            end: 1,
-            name: "总氯",
-            limit: 0.01,
-            method: "N,N-二乙基对苯二胺(DPD)分光光度法",
-            instrument_model: "分光光度计",
-            GB: "GB/T 5750.11-2006",
-            a: 0,
-            b: 1,
-            r: 1,
-            formula: "",
-            x: [],
-            y: [],
-            standard_series: [],
-            items: [],
-            result: {
-                id: 1,
-                v: 10,
-                a: "",
-                m: "",
-                c: "",
-                date: ""
-            },
-        },
-        {
-            id: 15,
-            st: [],
-            QC_store: [
-                {
+            {
+                id: 15,
+                st: [],
+                QC_c: 10,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -905,48 +924,48 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
+                step: [""],
+                calculation: "",
+                judge: false,
+                category: 1,
+                range_max: 0.001,
+                range_min: "",
+                assessment: true,
+                range: "",
+                unit: "mg/L",
+                start: 1,
+                end: 1,
+                name: "二氧化氯",
+                limit: 0.001,
+                method: "N,N-二乙基对苯二胺硫酸亚铁铵滴定法",
+                instrument_model: "滴定管、架",
+                GB: "GB/T 5750.10-2006",
+                result: {
+                    id: 1,
+                    v: 50,
+                    a0: "",
+                    a1: "",
+                    m: "",
+                    c: "",
+                    date: ""
+                },
             },
-            step: [""],
-            calculation: "",
-            judge: false,
-            category: 1,
-            range_max: 0.001,
-            range_min: "",
-            assessment: true,
-            range: "",
-            unit: "mg/L",
-            start: 1,
-            end: 1,
-            name: "二氧化氯",
-            limit: 0.001,
-            method: "N,N-二乙基对苯二胺硫酸亚铁铵滴定法",
-            instrument_model: "滴定管、架",
-            GB: "GB/T 5750.10-2006",
-            result: {
-                id: 1,
-                v: 50,
-                a0: "",
-                a1: "",
-                m: "",
-                c: "",
-                date: ""
-            },
-        },
-        {
-            id: 16,
-            st: [],
-            QC_store: [
-                {
+            {
+                id: 16,
+                st: [],
+                QC_c: 10,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -956,48 +975,48 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
+                step: [""],
+                calculation: "",
+                judge: false,
+                category: 1,
+                range_max: 0.001,
+                range_min: "",
+                assessment: true,
+                range: "",
+                unit: "mg/L",
+                start: 1,
+                end: 1,
+                name: "臭氧",
+                limit: 0.001,
+                method: "碘量法",
+                instrument_model: "滴定管、架",
+                GB: "GB/T 5750.11-2006",
+                result: {
+                    id: 1,
+                    v: 50,
+                    a0: "",
+                    a1: "",
+                    m: "",
+                    c: "",
+                    date: ""
+                },
             },
-            step: [""],
-            calculation: "",
-            judge: false,
-            category: 1,
-            range_max: 0.001,
-            range_min: "",
-            assessment: true,
-            range: "",
-            unit: "mg/L",
-            start: 1,
-            end: 1,
-            name: "臭氧",
-            limit: 0.001,
-            method: "碘量法",
-            instrument_model: "滴定管、架",
-            GB: "GB/T 5750.11-2006",
-            result: {
-                id: 1,
-                v: 50,
-                a0: "",
-                a1: "",
-                m: "",
-                c: "",
-                date: ""
-            },
-        },
-        {
-            id: 17,
-            st: [],
-            QC_store: [
-                {
+            {
+                id: 17,
+                st: [],
+                QC_c: 10,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -1007,52 +1026,52 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
-            },
-            step: ["用移液管准确移取100mL水样于250mL锥形瓶中，加入1mL铬酸钾溶液，用硝酸银标准溶液滴定至砖红色沉淀刚刚出现即为滴定终点。",
-                "另取一锥形瓶加入100mL蒸馏水和1mL铬酸钾溶液，用硝酸银标准溶液滴定至砖红色沉淀刚刚出现即为滴定终点，作为空白试验。",
-                "氯化物质量浓度C(mg/L)按下式计算："
-            ],
-            calculation: '<span>&rho;(Cl)&emsp;=&emsp;(V<sub>1</sub>-V<sub>0</sub>)&times;0.50&times;1000/V</span>',
-            judge: false,
-            category: 2,
-            range_max: 250,
-            range_min: "",
-            assessment: true,
-            range: "",
-            unit: "mg/L",
-            start: 1,
-            end: 1,
-            name: "氯化物",
-            method: "硝酸银容量法",
-            limit: 5,
-            instrument_model: "滴定管、架",
-            GB: "GB/T 5750.4-2006",
-            items: [],
-            result: {
-                id: 1,
-                v: 50,
-                a0: 0.05,
-                a1: "",
+                step: ["用移液管准确移取100mL水样于250mL锥形瓶中，加入1mL铬酸钾溶液，用硝酸银标准溶液滴定至砖红色沉淀刚刚出现即为滴定终点。",
+                    "另取一锥形瓶加入100mL蒸馏水和1mL铬酸钾溶液，用硝酸银标准溶液滴定至砖红色沉淀刚刚出现即为滴定终点，作为空白试验。",
+                    "氯化物质量浓度C(mg/L)按下式计算："
+                ],
+                calculation: '<span>&rho;(Cl)&emsp;=&emsp;(V<sub>1</sub>-V<sub>0</sub>)&times;0.50&times;1000/V</span>',
+                judge: false,
+                category: 2,
+                range_max: 250,
+                range_min: "",
+                assessment: true,
+                range: "",
+                unit: "mg/L",
+                start: 1,
+                end: 1,
+                name: "氯化物",
+                method: "硝酸银容量法",
+                limit: 5,
+                instrument_model: "滴定管、架",
+                GB: "GB/T 5750.4-2006",
                 coefficient: 500,
-                c: "",
-                date: ""
+                items: [],
+                result: {
+                    id: 1,
+                    v: 50,
+                    a0: 0.05,
+                    a1: "",
+                    c: "",
+                    date: ""
+                },
             },
-        },
-        {
-            id: 18,
-            st: [],
-            QC_store: [
-                {
+            {
+                id: 18,
+                st: [],
+                QC_c: 10,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -1062,50 +1081,49 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
-            },
-            step: [""],
-            calculation: '&rho;(CaCO<sub>3</sub>)&emsp;=&emsp;(V<sub>标</sub>-V<sub>空</sub>) &times; c &times; 100.08 &times; 1000 / V<sub>样</sub>',
-            judge: false,
-            category: 2,
-            range_max: 1000,
-            range_min: "",
-            assessment: true,
-            range: "",
-            unit: "mg/L",
-            start: 1,
-            end: 1,
-            name: "总硬度",
-            method: "(7.1)EDTA-na_2滴定法",
-            limit: 1,
-            coefficient: 1000.9,
-            instrument_model: "滴定管、架",
-            GB: "GB/T 5750.4-2006",
-            items: [],
-            result: {
-                id: 1,
-                v: 50,
-                a0: 0.05,
-                a1: "",
+                step: [""],
+                calculation: '&rho;(CaCO<sub>3</sub>)&emsp;=&emsp;(V<sub>标</sub>-V<sub>空</sub>) &times; c &times; 100.08 &times; 1000 / V<sub>样</sub>',
+                judge: false,
+                category: 2,
+                range_max: 1000,
+                range_min: "",
+                assessment: true,
+                range: "",
+                unit: "mg/L",
+                start: 1,
+                end: 1,
+                name: "总硬度",
+                method: "(7.1)EDTA-na_2滴定法",
+                limit: 1,
                 coefficient: 1000.9,
-                c: "",
-                date: ""
+                instrument_model: "滴定管、架",
+                GB: "GB/T 5750.4-2006",
+                items: [],
+                result: {
+                    id: 1,
+                    v: 50,
+                    a0: 0.05,
+                    a1: "",
+                    c: "",
+                    date: ""
+                },
             },
-        },
-        {
-            id: 19,
-            st: [],
-            QC_store: [
-                {
+            {
+                id: 19,
+                st: [],
+                QC_c: 10,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -1115,51 +1133,50 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
-            },
-            step: [""],
-            calculation: 'ρ(O2) = [(10+V<sub>1</sub>) &times; K - 10] &times; 0.8',
-            judge: false,
-            category: 2,
-            range_max: 3,
-            range_min: "",
-            assessment: true,
-            range: "",
-            unit: "mg/L",
-            start: 1,
-            end: 1,
-            name: "耗氧量",
-            method: "(1.1)",
-            limit: "0.05",
-            coefficient: 80,
-            instrument_model: "滴定管、架",
-            GB: "GB/T 5750.7-2006",
-            items: [],
-            result: {
-                id: 1,
-                v: 100,
-                a0: 0.05,
-                a1: "",
+                step: [""],
+                calculation: 'ρ(O2) = [(10+V<sub>1</sub>) &times; K - 10] &times; 0.8',
+                judge: false,
+                category: 2,
+                range_max: 3,
+                range_min: "",
+                assessment: true,
+                range: "",
+                unit: "mg/L",
+                start: 1,
+                end: 1,
+                name: "耗氧量",
+                method: "(1.1)",
+                limit: "0.05",
                 coefficient: 80,
-                K: 1,
-                c: "",
-                date: ""
+                instrument_model: "滴定管、架",
+                GB: "GB/T 5750.7-2006",
+                items: [],
+                result: {
+                    id: 1,
+                    v: 100,
+                    a0: 0.05,
+                    a1: "",
+                    K: 1,
+                    c: "",
+                    date: ""
+                },
             },
-        },
-        {
-            id: 20,
-            st: [],
-            QC_store: [
-                {
+            {
+                id: 20,
+                st: [],
+                QC_c: 10,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -1169,47 +1186,49 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
-            },
-            step: [""],
-            calculation: "C = m/V",
-            judge: false,
-            category: 1,
-            range_max: 0.001,
-            assessment: true,
-            unit: "mg/L",
-            start: 1,
-            end: 1,
-            name: "亚氯酸盐",
-            limit: 0.004,
-            method: "碘量法",
-            instrument_model: "砷化氢发生器、分光光度计",
-            GB: "GB/T 5750.10-2006",
-            result: {
-                id: 1,
-                v: 50,
-                a0: "",
-                a1: "",
+                step: [""],
+                calculation: "&rho;(ClO<sub>2</sub>) = (m<sub>1</sub>-m<sub>0</sub>)&times;系数/V",
+                judge: false,
+                category: 2,
+                range_max: 0.004,
+                range_min: "",
+                assessment: true,
+                range: "",
+                unit: "mg/L",
+                start: 1,
+                end: 1,
+                name: "亚氯酸盐",
+                limit: 0.001,
+                method: "碘量法",
+                instrument_model: "砷化氢发生器、分光光度计",
+                GB: "GB/T 5750.10-2006",
                 coefficient: 1,
-                K: 1,
-                c: "",
-                date: ""
+                result: {
+                    id: 1,
+                    v: 50,
+                    a0: "",
+                    a1: "",
+                    K: 1,
+                    c: "",
+                    date: ""
+                },
             },
-        },
-        {
-            id: 21,
-            st: [],
-            QC_store: [
-                {
+            {
+                id: 21,
+                st: [],
+                QC_c: 10,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -1219,49 +1238,49 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
-            },
-            step: [""],
-            calculation: "C = m/V",
-            judge: false,
-            category: 1,
-            range_max: 0.001,
-            range_min: "",
-            assessment: true,
-            range: "",
-            unit: "mg/L",
-            start: 1,
-            end: 1,
-            name: "氯酸盐",
-            limit: 0.001,
-            method: "碘量法",
-            instrument_model: "砷化氢发生器、分光光度计",
-            GB: "GB/T 5750.10-2006",
-            result: {
-                id: 1,
-                v: 50,
-                a0: "",
-                a1: "",
+                step: [""],
+                calculation: "&rho;(ClO<sub>4</sub>) = (m<sub>1</sub>-m<sub>0</sub>)&times;系数/V",
+                judge: false,
+                category: 2,
+                range_max: 0.001,
+                range_min: "",
+                assessment: true,
+                range: "",
+                unit: "mg/L",
+                start: 1,
+                end: 1,
+                name: "氯酸盐",
+                limit: 0.001,
+                method: "碘量法",
+                instrument_model: "砷化氢发生器、分光光度计",
+                GB: "GB/T 5750.10-2006",
                 coefficient: 1,
-                K: 1,
-                c: "",
-                date: ""
+                result: {
+                    id: 1,
+                    v: 50,
+                    a0: "",
+                    a1: "",
+                    K: 1,
+                    c: "",
+                    date: ""
+                },
             },
-        },
-        {
-            id: 22,
-            st: [],
-            QC_store: [
-                {
+            {
+                id: 22,
+                st: [],
+                QC_c: 10,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -1271,80 +1290,80 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
+                step: [""],
+                calculation: "ρ(NH<sub>3</sub>-N) = m/V",
+                judge: false,
+                category: 1,
+                range_max: 0.5,
+                range_min: "",
+                assessment: true,
+                range: "",
+                unit: "mg/L",
+                start: 1,
+                end: 1,
+                name: "氨氮",
+                method: "(9.1)",
+                limit: 0.05,
+                a: 0,
+                b: 1,
+                r: 1,
+                formula: "",
+                x: [],
+                y: [],
+                standard_series: [],
+                instrument_model: "分光光度计",
+                GB: "GB/T 5750.5-2006",
+                items: [
+                    [
+                        0,
+                        0.005
+                    ],
+                    [
+                        0.1,
+                        0.010
+                    ],
+                    [
+                        0.3,
+                        0.020
+                    ],
+                    [
+                        0.5,
+                        0.029
+                    ],
+                    [
+                        0.7,
+                        0.039
+                    ],
+                    [
+                        1.0,
+                        0.055
+                    ]
+                ],
+                result: {
+                    id: 1,
+                    v: 50,
+                    a: "",
+                    m: "",
+                    c: "",
+                    date: ""
+                },
             },
-            step: [""],
-            calculation: "ρ(NH<sub>3</sub>-N) = m/V",
-            judge: false,
-            category: 1,
-            range_max: 0.5,
-            range_min: "",
-            assessment: true,
-            range: "",
-            unit: "mg/L",
-            start: 1,
-            end: 1,
-            name: "氨氮",
-            method: "(9.1)",
-            limit: 0.05,
-            a: 0,
-            b: 1,
-            r: 1,
-            formula: "",
-            x: [],
-            y: [],
-            standard_series: [],
-            instrument_model: "分光光度计",
-            GB: "GB/T 5750.5-2006",
-            items: [
-                [
-                    0,
-                    0.005
-                ],
-                [
-                    1,
-                    0.010
-                ],
-                [
-                    3,
-                    0.020
-                ],
-                [
-                    5,
-                    0.029
-                ],
-                [
-                    7,
-                    0.039
-                ],
-                [
-                    10,
-                    0.055
-                ]
-            ],
-            result: {
-                id: 1,
-                v: 50,
-                a: "",
-                m: "",
-                c: "",
-                date: ""
-            },
-        },
-        {
-            id: 23,
-            st: [],
-            QC_store: [
-                {
+            {
+                id: 23,
+                st: [],
+                QC_c: 1,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -1354,80 +1373,92 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
+                step: [""],
+                calculation: "ρ(CN<sup>-</sup>)=(m&times;V1)/(V&times;V2)<br>注：V<sub>1</sub>=溜出液总体积；V<sub>2</sub>=比色所用溜出液体积；V=水样体积",
+                judge: false,
+                category: 1,
+                range_max: 0.05,
+                range_min: "",
+                assessment: true,
+                range: "",
+                unit: "mg/L",
+                start: 1,
+                end: 1,
+                name: "氰化物",
+                a: 0,
+                method: "(4.1)",
+                b: 1,
+                r: 1,
+                formula: "",
+                x: [],
+                y: [],
+                limit: 0.002,
+                standard_series: [],
+                instrument_model: "分光光度计",
+                GB: "GB/T 5750.5-2006",
+                items: [
+                    [
+                        0,
+                        0.004
+                    ],
+                    [
+                        0.1,
+                        0.016
+                    ],
+                    [
+                        0.2,
+                        0.035
+                    ],
+                    [
+                        0.4,
+                        0.053
+                    ],
+                    [
+                        0.5,
+                        0.073
+                    ],
+                    [
+                        0.8,
+                        0.073
+                    ],
+                    [
+                        1.0,
+                        0.073
+                    ],
+                    [
+                        1.5,
+                        0.073
+                    ],
+                    [
+                        2.0,
+                        0.092
+                    ]
+                ],
+                result: {
+                    id: 1,
+                    v: 250,
+                    a: "",
+                    m: "",
+                    c: "",
+                    date: "",
+                },
             },
-            step: [""],
-            calculation: "ρ(CN<sup>-</sup>)=(m&times;V1)/(V&times;V2)<br>注：V<sub>1</sub>=溜出液总体积；V<sub>2</sub>=比色所用溜出液体积；V=水样体积",
-            judge: false,
-            category: 1,
-            range_max: 0.05,
-            range_min: "",
-            assessment: true,
-            range: "",
-            unit: "mg/L",
-            start: 1,
-            end: 1,
-            name: "氰化物",
-            a: 0,
-            method: "(4.1)",
-            b: 1,
-            r: 1,
-            formula: "",
-            x: [],
-            y: [],
-            limit: 0.002,
-            standard_series: [],
-            instrument_model: "分光光度计",
-            GB: "GB/T 5750.5-2006",
-            items: [
-                [
-                    0,
-                    0.004
-                ],
-                [
-                    0.1,
-                    0.016
-                ],
-                [
-                    0.3,
-                    0.035
-                ],
-                [
-                    0.5,
-                    0.053
-                ],
-                [
-                    0.7,
-                    0.073
-                ],
-                [
-                    0.9,
-                    0.092
-                ]
-            ],
-            result: {
-                id: 1,
-                v: 250,
-                a: "",
-                m: "",
-                c: "",
-                date: "",
-            },
-        },
-        {
-            id: 24,
-            st: [],
-            QC_store: [
-                {
+            {
+                id: 24,
+                st: [],
+                QC_c: 10,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -1437,80 +1468,88 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
+                step: [""],
+                calculation: "ρ（F-)=(ρ1&times;V<sub>1</sub>/V<sub>2</sub>)/{log<sup>-1</sup>[(E<sub>2</sub>-E<sub>1</sub>)/K]-1}",
+                judge: false,
+                category: 1,
+                range_max: 1.0,
+                range_min: "",
+                assessment: true,
+                range: "",
+                unit: "mg/L",
+                start: 1,
+                end: 1,
+                name: "氟化物",
+                limit: 0.2,
+                method: "(3.1)",
+                a: 0,
+                b: 1,
+                r: 1,
+                formula: "",
+                x: [],
+                y: [],
+                standard_series: [],
+                instrument_model: "氟离子选择电极和甘汞电极、精密酸度计、电磁搅拌器",
+                GB: "GB/T 5750.5-2006",
+                items: [
+                    [
+                        0,
+                        0.371
+                    ],
+                    [
+                        0.2,
+                        0.432
+                    ],
+                    [
+                        0.4,
+                        0.473
+                    ],
+                    [
+                        0.6,
+                        0.559
+                    ],
+                    [
+                        0.8,
+                        0.724
+                    ],
+                    [
+                        1.0,
+                        1.053
+                    ],
+                    [
+                        2.0,
+                        1.453
+                    ],
+                    [
+                        3.0,
+                        2.053
+                    ]
+                ],
+                result: {
+                    id: 1,
+                    v: 10,
+                    a: "",
+                    m: "",
+                    c: "",
+                    date: "",
+                },
             },
-            step: [""],
-            calculation: "ρ（F-)=(ρ1&times;V<sub>1</sub>/V<sub>2</sub>)/{log<sup>-1</sup>[(E<sub>2</sub>-E<sub>1</sub>)/K]-1}",
-            judge: false,
-            category: 1,
-            range_max: 1.0,
-            range_min: "",
-            assessment: true,
-            range: "",
-            unit: "mg/L",
-            start: 1,
-            end: 1,
-            name: "氟化物",
-            limit: 0.2,
-            method: "(3.1)",
-            a: 0,
-            b: 1,
-            r: 1,
-            formula: "",
-            x: [],
-            y: [],
-            standard_series: [],
-            instrument_model: "氟离子选择电极和甘汞电极、精密酸度计、电磁搅拌器",
-            GB: "GB/T 5750.5-2006",
-            items: [
-                [
-                    0,
-                    0.371
-                ],
-                [
-                    2.5,
-                    0.432
-                ],
-                [
-                    5,
-                    0.473
-                ],
-                [
-                    10,
-                    0.559
-                ],
-                [
-                    20,
-                    0.724
-                ],
-                [
-                    40,
-                    1.053
-                ]
-            ],
-            result: {
-                id: 1,
-                v: 25,
-                a: "",
-                m: "",
-                c: "",
-                date: "",
-            },
-        },
-        {
-            id: 25,
-            st: [],
-            QC_store: [
-                {
+            {
+                id: 25,
+                st: [],
+                QC_c: 10,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -1520,84 +1559,84 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
+                step: [""],
+                calculation: "ρ(NO<sub>3</sub>-N) = m/V",
+                judge: false,
+                category: 1,
+                range_max: 20,
+                range_min: "",
+                assessment: true,
+                range: "",
+                unit: "mg/L",
+                start: 1,
+                end: 1,
+                name: "硝酸盐氮",
+                limit: 0.5,
+                method: "(5.3)",
+                a: 0,
+                b: 1,
+                r: 1,
+                formula: "",
+                x: [],
+                y: [],
+                standard_series: [],
+                instrument_model: "分光光度计",
+                GB: "GB/T 5750.5-2006",
+                items: [
+                    [
+                        0,
+                        0.007
+                    ],
+                    [
+                        0.05,
+                        0.030
+                    ],
+                    [
+                        0.1,
+                        0.047
+                    ],
+                    [
+                        0.3,
+                        0.130
+                    ],
+                    [
+                        0.5,
+                        0.197
+                    ],
+                    [
+                        0.7,
+                        0.278
+                    ],
+                    [
+                        1.0,
+                        0.405
+                    ]
+                ],
+                result: {
+                    id: 1,
+                    v: 1,
+                    a: "",
+                    m: "",
+                    c: "",
+                    date: "",
+                },
             },
-            step: [""],
-            calculation: "ρ(NO<sub>3</sub>-N) = m/V",
-            judge: false,
-            category: 1,
-            range_max: 20,
-            range_min: "",
-            assessment: true,
-            range: "",
-            unit: "mg/L",
-            start: 1,
-            end: 1,
-            name: "硝酸盐氮",
-            limit: 0.5,
-            method: "(5.3)",
-            a: 0,
-            b: 1,
-            r: 1,
-            formula: "",
-            x: [],
-            y: [],
-            standard_series: [],
-            instrument_model: "分光光度计",
-            GB: "GB/T 5750.5-2006",
-            items: [
-                [
-                    0,
-                    0.007
-                ],
-                [
-                    0.5,
-                    0.030
-                ],
-                [
-                    1,
-                    0.047
-                ],
-                [
-                    3,
-                    0.130
-                ],
-                [
-                    5,
-                    0.197
-                ],
-                [
-                    7,
-                    0.278
-                ],
-                [
-                    10,
-                    0.405
-                ]
-            ],
-            result: {
-                id: 1,
-                v: 1,
-                a: "",
-                m: "",
-                c: "",
-                date: "",
-            },
-        },
-        {
-            id: 26,
-            st: [],
-            QC_store: [
-                {
+            {
+                id: 26,
+                st: [],
+                QC_c: 1,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -1607,85 +1646,89 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
-            },
-            step: [""],
-            calculation: "ρ(Al) = m/V",
+                step: [""],
+                calculation: "ρ(Al) = m/V",
 
-            judge: false,
-            category: 1,
-            range_max: 0.2,
-            range_min: "",
-            assessment: true,
-            range: "",
-            unit: "mg/L",
-            start: 1,
-            end: 1,
-            name: "铝",
-            limit: 0.008,
-            method: "(1.1)",
-            a: 0,
-            b: 1,
-            r: 1,
-            formula: "",
-            x: [],
-            y: [],
-            standard_series: [],
-            instrument_model: "酸度计、分光光度计",
-            GB: "GB/T 5750.6-2006",
-            items: [
-                [
-                    0,
-                    0.004
+                judge: false,
+                category: 1,
+                range_max: 0.2,
+                range_min: "",
+                assessment: true,
+                range: "",
+                unit: "mg/L",
+                start: 1,
+                end: 1,
+                name: "铝",
+                limit: 0.008,
+                method: "(1.1)",
+                a: 0,
+                b: 1,
+                r: 1,
+                formula: "",
+                x: [],
+                y: [],
+                standard_series: [],
+                instrument_model: "酸度计、分光光度计",
+                GB: "GB/T 5750.6-2006",
+                items: [
+                    [
+                        0,
+                        0.004
+                    ],
+                    [
+                        0.2,
+                        0.036
+                    ],
+                    [
+                        0.5,
+                        0.066
+                    ],
+                    [
+                        1,
+                        0.143
+                    ],
+                    [
+                        2,
+                        0.300
+                    ],
+                    [
+                        3,
+                        0.446
+                    ],
+                    [
+                        4,
+                        0.585
+                    ],
+                    [
+                        5,
+                        0.725
+                    ]
                 ],
-                [
-                    0.5,
-                    0.066
-                ],
-                [
-                    1,
-                    0.143
-                ],
-                [
-                    2,
-                    0.300
-                ],
-                [
-                    3,
-                    0.446
-                ],
-                [
-                    4,
-                    0.585
-                ],
-                [
-                    5,
-                    0.725
-                ]
-            ],
-            result: {
-                id: 1,
-                v: 100,
-                a: "",
-                m: "",
-                c: "",
-                date: ""
+                result: {
+                    id: 1,
+                    v: 25,
+                    a: "",
+                    m: "",
+                    c: "",
+                    date: ""
+                },
             },
-        },
-        {
-            id: 27,
-            st: [],
-            QC_store: [
-                {
+            {
+                id: 27,
+                st: [],
+                QC_c: 1,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -1695,84 +1738,88 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
+                step: [""],
+                calculation: "ρ(C<sub>6</sub>H<sub>5</sub>OH)= m/V",
+                judge: false,
+                category: 1,
+                range_max: 0.002,
+                range_min: "",
+                assessment: true,
+                range: "",
+                unit: "mg/L",
+                start: 1,
+                end: 1,
+                name: "挥发酚",
+                limit: 0.002,
+                method: "(9.1)",
+                a: 0,
+                b: 1,
+                r: 1,
+                formula: "",
+                x: [],
+                y: [],
+                standard_series: [],
+                instrument_model: "全玻璃整流器、分液漏斗、分光光度计",
+                GB: "GB/T 5750.4-2006",
+                items: [
+                    [
+                        0,
+                        0.006
+                    ],
+                    [
+                        0.5,
+                        0.016
+                    ],
+                    [
+                        1,
+                        0.028
+                    ],
+                    [
+                        2,
+                        0.070
+                    ],
+                    [
+                        4,
+                        0.121
+                    ],
+                    [
+                        6,
+                        0.162
+                    ],
+                    [
+                        8,
+                        0.202
+                    ],
+                    [
+                        10,
+                        0.234
+                    ]
+                ],
+                result: {
+                    id: 1,
+                    v: 250,
+                    a: "",
+                    m: "",
+                    c: "",
+                    date: ""
+                },
             },
-            step: [""],
-            calculation: "ρ(C<sub>6</sub>H<sub>5</sub>OH)= m/V",
-            judge: false,
-            category: 1,
-            range_max: 0.002,
-            range_min: "",
-            assessment: true,
-            range: "",
-            unit: "mg/L",
-            start: 1,
-            end: 1,
-            name: "挥发酚",
-            limit: 0.002,
-            method: "(9.1)",
-            a: 0,
-            b: 1,
-            r: 1,
-            formula: "",
-            x: [],
-            y: [],
-            standard_series: [],
-            instrument_model: "全玻璃整流器、分液漏斗、分光光度计",
-            GB: "GB/T 5750.4-2006",
-            items: [
-                [
-                    0,
-                    0.006
-                ],
-                [
-                    0.5,
-                    0.016
-                ],
-                [
-                    1,
-                    0.028
-                ],
-                [
-                    3,
-                    0.070
-                ],
-                [
-                    5,
-                    0.121
-                ],
-                [
-                    7,
-                    0.162
-                ],
-                [
-                    10,
-                    0.234
-                ]
-            ],
-            result: {
-                id: 1,
-                v: 50,
-                a: "",
-                m: "",
-                c: "",
-                date: ""
-            },
-        },
-        {
-            id: 28,
-            st: [],
-            QC_store: [
-                {
+            {
+                id: 28,
+                st: [],
+                QC_c: 1,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -1782,84 +1829,84 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
+                step: [""],
+                calculation: "ρ(Hg)= m/V",
+                judge: false,
+                category: 1,
+                range_max: 0.001,
+                range_min: "",
+                assessment: true,
+                range: "",
+                unit: "mg/L",
+                start: 1,
+                end: 1,
+                name: "汞",
+                limit: 0.001,
+                method: "(8.3)",
+                a: 0,
+                b: 1,
+                r: 1,
+                formula: "",
+                x: [],
+                y: [],
+                standard_series: [],
+                instrument_model: "分液漏斗、分光光度计",
+                GB: "GB/T 5750.6-2006",
+                items: [
+                    [
+                        0,
+                        0.406
+                    ],
+                    [
+                        0.5,
+                        0.423
+                    ],
+                    [
+                        1,
+                        0.441
+                    ],
+                    [
+                        2,
+                        0.474
+                    ],
+                    [
+                        4,
+                        0.531
+                    ],
+                    [
+                        6,
+                        0.598
+                    ],
+                    [
+                        8,
+                        0.660
+                    ]
+                ],
+                result: {
+                    id: 1,
+                    v: 50,
+                    a: "",
+                    m: "",
+                    c: "",
+                    date: ""
+                },
             },
-            step: [""],
-            calculation: "ρ(Hg)= m/V",
-            judge: false,
-            category: 1,
-            range_max: 0.001,
-            range_min: "",
-            assessment: true,
-            range: "",
-            unit: "mg/L",
-            start: 1,
-            end: 1,
-            name: "汞",
-            limit: 0.001,
-            method: "(8.3)",
-            a: 0,
-            b: 1,
-            r: 1,
-            formula: "",
-            x: [],
-            y: [],
-            standard_series: [],
-            instrument_model: "分液漏斗、分光光度计",
-            GB: "GB/T 5750.6-2006",
-            items: [
-                [
-                    0,
-                    0.406
-                ],
-                [
-                    0.5,
-                    0.423
-                ],
-                [
-                    1,
-                    0.441
-                ],
-                [
-                    2,
-                    0.474
-                ],
-                [
-                    4,
-                    0.531
-                ],
-                [
-                    6,
-                    0.598
-                ],
-                [
-                    8,
-                    0.660
-                ]
-            ],
-            result: {
-                id: 1,
-                v: 50,
-                a: "",
-                m: "",
-                c: "",
-                date: ""
-            },
-        },
-        {
-            id: 29,
-            st: [],
-            QC_store: [
-                {
+            {
+                id: 29,
+                st: [],
+                QC_c: 10,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -1869,84 +1916,84 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
+                step: ["略"],
+                calculation: "ρ(DBS) = m/V",
+                judge: false,
+                category: 1,
+                range_max: 0.3,
+                range_min: "",
+                assessment: true,
+                range: "",
+                unit: "mg/L",
+                start: 1,
+                end: 1,
+                name: "阴离子合成洗涤剂",
+                limit: 0.05,
+                method: "(10.1)",
+                a: 0,
+                b: 1,
+                r: 1,
+                formula: "",
+                x: [],
+                y: [],
+                standard_series: [],
+                instrument_model: "分液漏斗、分光光度计",
+                GB: "GB/T 5750.4-2006",
+                items: [
+                    [
+                        0,
+                        0.019
+                    ],
+                    [
+                        0.5,
+                        0.041
+                    ],
+                    [
+                        1.0,
+                        0.075
+                    ],
+                    [
+                        2.0,
+                        0.128
+                    ],
+                    [
+                        3.0,
+                        0.185
+                    ],
+                    [
+                        4.0,
+                        0.233
+                    ],
+                    [
+                        5.0,
+                        0.290
+                    ]
+                ],
+                result: {
+                    id: 1,
+                    v: 50,
+                    a: "",
+                    m: "",
+                    c: "",
+                    date: ""
+                },
             },
-            step: ["略"],
-            calculation: "ρ(DBS) = m/V",
-            judge: false,
-            category: 1,
-            range_max: 0.3,
-            range_min: "",
-            assessment: true,
-            range: "",
-            unit: "mg/L",
-            start: 1,
-            end: 1,
-            name: "阴离子合成洗涤剂",
-            limit: 0.05,
-            method: "(10.1)",
-            a: 0,
-            b: 1,
-            r: 1,
-            formula: "",
-            x: [],
-            y: [],
-            standard_series: [],
-            instrument_model: "分液漏斗、分光光度计",
-            GB: "GB/T 5750.4-2006",
-            items: [
-                [
-                    0,
-                    0.019
-                ],
-                [
-                    5,
-                    0.041
-                ],
-                [
-                    10,
-                    0.075
-                ],
-                [
-                    20,
-                    0.128
-                ],
-                [
-                    30,
-                    0.185
-                ],
-                [
-                    40,
-                    0.233
-                ],
-                [
-                    50,
-                    0.290
-                ]
-            ],
-            result: {
-                id: 1,
-                v: 50,
-                a: "",
-                m: "",
-                c: "",
-                date: ""
-            },
-        },
-        {
-            id: 30,
-            st: [],
-            QC_store: [
-                {
+            {
+                id: 30,
+                st: [],
+                QC_c: 1,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -1956,80 +2003,80 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
+                step: [""],
+                calculation: "ρ(Se) = m/V",
+                judge: false,
+                category: 1,
+                range_max: 0.01,
+                range_min: "",
+                assessment: true,
+                range: "",
+                unit: "mg/L",
+                start: 1,
+                end: 1,
+                name: "硒",
+                limit: 0.005,
+                method: "(7.5)",
+                a: 0,
+                b: 1,
+                r: 1,
+                formula: "",
+                x: [],
+                y: [],
+                standard_series: [],
+                instrument_model: "分液漏斗、电热板、振荡器、分光光度计",
+                GB: "GB/T 5750.6-2006",
+                items: [
+                    [
+                        0,
+                        0.024
+                    ],
+                    [
+                        1,
+                        0.035
+                    ],
+                    [
+                        2,
+                        0.047
+                    ],
+                    [
+                        4,
+                        0.068
+                    ],
+                    [
+                        6,
+                        0.088
+                    ],
+                    [
+                        8,
+                        0.110
+                    ]
+                ],
+                result: {
+                    id: 1,
+                    v: 200,
+                    a: "",
+                    m: "",
+                    c: "",
+                    date: ""
+                },
             },
-            step: [""],
-            calculation: "ρ(Se) = m/V",
-            judge: false,
-            category: 1,
-            range_max: 0.01,
-            range_min: "",
-            assessment: true,
-            range: "",
-            unit: "mg/L",
-            start: 1,
-            end: 1,
-            name: "硒",
-            limit: 0.001,
-            method: "(7.1)",
-            a: 0,
-            b: 1,
-            r: 1,
-            formula: "",
-            x: [],
-            y: [],
-            standard_series: [],
-            instrument_model: "分液漏斗、电热板、振荡器、分光光度计",
-            GB: "GB/T 5750.6-2006",
-            items: [
-                [
-                    0,
-                    0.024
-                ],
-                [
-                    1,
-                    0.035
-                ],
-                [
-                    2,
-                    0.047
-                ],
-                [
-                    4,
-                    0.068
-                ],
-                [
-                    6,
-                    0.088
-                ],
-                [
-                    8,
-                    0.110
-                ]
-            ],
-            result: {
-                id: 1,
-                v: 50,
-                a: "",
-                m: "",
-                c: "",
-                date: ""
-            },
-        },
-        {
-            id: 31,
-            st: [],
-            QC_store: [
-                {
+            {
+                id: 31,
+                st: [],
+                QC_c: 1,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -2039,80 +2086,88 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
+                step: [""],
+                calculation: "ρ(Cd)= m/V",
+                judge: false,
+                category: 1,
+                range_max: 0.005,
+                range_min: "",
+                assessment: true,
+                range: "",
+                unit: "mg/L",
+                start: 1,
+                end: 1,
+                name: "镉",
+                limit: 0.01,
+                method: "(9.1)",
+                a: 0,
+                b: 1,
+                r: 1,
+                formula: "",
+                x: [],
+                y: [],
+                standard_series: [],
+                instrument_model: "分液漏斗、分光光度计",
+                GB: "GB/T 5750.6-2006",
+                items: [
+                    [
+                        0,
+                        0.207
+                    ],
+                    [
+                        0.25,
+                        0.216
+                    ],
+                    [
+                        1,
+                        0.224
+                    ],
+                    [
+                        2,
+                        0.242
+                    ],
+                    [
+                        4,
+                        0.273
+                    ],
+                    [
+                        6,
+                        0.336
+                    ]
+                    [
+                        8,
+                        0.365
+                    ]
+                    [
+                        10,
+                        0.416
+                    ]
+                ],
+                result: {
+                    id: 1,
+                    v: 25,
+                    a: "",
+                    m: "",
+                    c: "",
+                    date: ""
+                },
             },
-            step: [""],
-            calculation: "ρ(Cd)= m/V",
-            judge: false,
-            category: 1,
-            range_max: 0.005,
-            range_min: "",
-            assessment: true,
-            range: "",
-            unit: "mg/L",
-            start: 1,
-            end: 1,
-            name: "镉",
-            limit: 0.005,
-            method: "(9.1)",
-            a: 0,
-            b: 1,
-            r: 1,
-            formula: "",
-            x: [],
-            y: [],
-            standard_series: [],
-            instrument_model: "分液漏斗、分光光度计",
-            GB: "GB/T 5750.6-2006",
-            items: [
-                [
-                    0,
-                    0.207
-                ],
-                [
-                    0.25,
-                    0.216
-                ],
-                [
-                    0.5,
-                    0.224
-                ],
-                [
-                    1,
-                    0.242
-                ],
-                [
-                    2,
-                    0.273
-                ],
-                [
-                    4,
-                    0.336
-                ]
-            ],
-            result: {
-                id: 1,
-                v: 100,
-                a: "",
-                m: "",
-                c: "",
-                date: ""
-            },
-        },
-        {
-            id: 32,
-            st: [],
-            QC_store: [
-                {
+            {
+                id: 32,
+                st: [],
+                QC_c: 10,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -2122,80 +2177,80 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
+                step: [""],
+                calculation: "ρ(Pb)= m/V",
+                judge: false,
+                category: 1,
+                range_max: 0.01,
+                range_min: "",
+                assessment: true,
+                range: "",
+                unit: "mg/L",
+                start: 1,
+                end: 1,
+                name: "铅",
+                limit: 0.01,
+                method: "11.1",
+                a: 0,
+                b: 1,
+                r: 1,
+                formula: "",
+                x: [],
+                y: [],
+                standard_series: [],
+                instrument_model: "分液漏斗、分光光度计",
+                GB: "GB/T 5750.6-2006",
+                items: [
+                    [
+                        0,
+                        0.434
+                    ],
+                    [
+                        0.5,
+                        0.451
+                    ],
+                    [
+                        1,
+                        0.471
+                    ],
+                    [
+                        2,
+                        0.502
+                    ],
+                    [
+                        4,
+                        0.567
+                    ],
+                    [
+                        6,
+                        0.630
+                    ]
+                ],
+                result: {
+                    id: 1,
+                    v: 50,
+                    a: "",
+                    m: "",
+                    c: "",
+                    date: ""
+                },
             },
-            step: [""],
-            calculation: "ρ(Pb)= m/V",
-            judge: false,
-            category: 1,
-            range_max: 0.01,
-            range_min: "",
-            assessment: true,
-            range: "",
-            unit: "mg/L",
-            start: 1,
-            end: 1,
-            name: "铅",
-            limit: 0.01,
-            method: "11.1",
-            a: 0,
-            b: 1,
-            r: 1,
-            formula: "",
-            x: [],
-            y: [],
-            standard_series: [],
-            instrument_model: "分液漏斗、分光光度计",
-            GB: "GB/T 5750.6-2006",
-            items: [
-                [
-                    0,
-                    0.434
-                ],
-                [
-                    0.5,
-                    0.451
-                ],
-                [
-                    1,
-                    0.471
-                ],
-                [
-                    2,
-                    0.502
-                ],
-                [
-                    4,
-                    0.567
-                ],
-                [
-                    6,
-                    0.630
-                ]
-            ],
-            result: {
-                id: 1,
-                v: 50,
-                a: "",
-                m: "",
-                c: "",
-                date: ""
-            },
-        },
-        {
-            id: 33,
-            st: [],
-            QC_store: [
-                {
+            {
+                id: 33,
+                st: [],
+                QC_c: 10,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -2205,80 +2260,80 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
+                step: [""],
+                calculation: "ρ(Cr<sup>6+</sup>) = m/V",
+                judge: false,
+                category: 1,
+                range_max: 0.05,
+                range_min: "",
+                assessment: true,
+                range: "",
+                unit: "mg/L",
+                start: 1,
+                end: 1,
+                name: "六价铬",
+                limit: 0.004,
+                method: "(10.1)",
+                a: 0,
+                b: 1,
+                r: 1,
+                formula: "",
+                x: [],
+                y: [],
+                standard_series: [],
+                instrument_model: "分光光度计",
+                GB: "GB/T 5750.6-2006",
+                items: [
+                    [
+                        0,
+                        0.002
+                    ],
+                    [
+                        0.5,
+                        0.012
+                    ],
+                    [
+                        1,
+                        0.019
+                    ],
+                    [
+                        2,
+                        0.034
+                    ],
+                    [
+                        4,
+                        0.069
+                    ],
+                    [
+                        6,
+                        0.103
+                    ]
+                ],
+                result: {
+                    id: 1,
+                    v: 50,
+                    a: "",
+                    m: "",
+                    c: "",
+                    date: ""
+                }
             },
-            step: [""],
-            calculation: "ρ(Cr<sup>6+</sup>) = m/V",
-            judge: false,
-            category: 1,
-            range_max: 0.05,
-            range_min: "",
-            assessment: true,
-            range: "",
-            unit: "mg/L",
-            start: 1,
-            end: 1,
-            name: "六价铬",
-            limit: 0.004,
-            method: "(10.1)",
-            a: 0,
-            b: 1,
-            r: 1,
-            formula: "",
-            x: [],
-            y: [],
-            standard_series: [],
-            instrument_model: "分光光度计",
-            GB: "GB/T 5750.6-2006",
-            items: [
-                [
-                    0,
-                    0.002
-                ],
-                [
-                    0.5,
-                    0.012
-                ],
-                [
-                    1,
-                    0.019
-                ],
-                [
-                    2,
-                    0.034
-                ],
-                [
-                    4,
-                    0.069
-                ],
-                [
-                    6,
-                    0.103
-                ]
-            ],
-            result: {
-                id: 1,
-                v: 50,
-                a: "",
-                m: "",
-                c: "",
-                date: ""
-            }
-        },
-        {
-            id: 34,
-            st: [],
-            QC_store: [
-                {
+            {
+                id: 34,
+                st: [],
+                QC_c: 10,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -2288,80 +2343,80 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
+                step: [""],
+                calculation: "ρ(Cu) = m/V",
+                judge: false,
+                category: 1,
+                range_max: 1.0,
+                range_min: "",
+                assessment: true,
+                range: "",
+                unit: "mg/L",
+                start: 1,
+                end: 1,
+                name: "铜",
+                limit: 0.02,
+                method: "(4.2)",
+                a: 0,
+                b: 1,
+                r: 1,
+                formula: "",
+                x: [],
+                y: [],
+                standard_series: [],
+                instrument_model: "分液漏斗、分光光度计",
+                GB: "GB/T 5750.6-2006",
+                items: [
+                    [
+                        0,
+                        0.038
+                    ],
+                    [
+                        2,
+                        0.080
+                    ],
+                    [
+                        4,
+                        0.121
+                    ],
+                    [
+                        6,
+                        0.160
+                    ],
+                    [
+                        8,
+                        0.201
+                    ],
+                    [
+                        10,
+                        0.238
+                    ]
+                ],
+                result: {
+                    id: 1,
+                    v: 50,
+                    a: "",
+                    m: "",
+                    c: "",
+                    date: ""
+                },
             },
-            step: [""],
-            calculation: "ρ(Cu) = m/V",
-            judge: false,
-            category: 1,
-            range_max: 1.0,
-            range_min: "",
-            assessment: true,
-            range: "",
-            unit: "mg/L",
-            start: 1,
-            end: 1,
-            name: "铜",
-            limit: 0.02,
-            method: "(4.2)",
-            a: 0,
-            b: 1,
-            r: 1,
-            formula: "",
-            x: [],
-            y: [],
-            standard_series: [],
-            instrument_model: "分液漏斗、分光光度计",
-            GB: "GB/T 5750.6-2006",
-            items: [
-                [
-                    0,
-                    0.038
-                ],
-                [
-                    2,
-                    0.080
-                ],
-                [
-                    4,
-                    0.121
-                ],
-                [
-                    6,
-                    0.160
-                ],
-                [
-                    8,
-                    0.201
-                ],
-                [
-                    10,
-                    0.238
-                ]
-            ],
-            result: {
-                id: 1,
-                v: 50,
-                a: "",
-                m: "",
-                c: "",
-                date: ""
-            },
-        },
-        {
-            id: 35,
-            st: [],
-            QC_store: [
-                {
+            {
+                id: 35,
+                st: [],
+                QC_c: 10,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -2371,80 +2426,80 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
+                step: [""],
+                calculation: "ρ(Mn) = m/V",
+                judge: false,
+                category: 1,
+                range_max: 0.1,
+                range_min: "",
+                assessment: true,
+                range: "",
+                unit: "mg/L",
+                start: 1,
+                end: 1,
+                name: "锰",
+                limit: 0.05,
+                method: "(3.1)",
+                a: 0,
+                b: 1,
+                r: 1,
+                formula: "",
+                x: [],
+                y: [],
+                standard_series: [],
+                instrument_model: "分光光度计",
+                GB: "GB/T 5750.6-2006",
+                items: [
+                    [
+                        0,
+                        0.002
+                    ],
+                    [
+                        10,
+                        0.008
+                    ],
+                    [
+                        30,
+                        0.024
+                    ],
+                    [
+                        50,
+                        0.038
+                    ],
+                    [
+                        70,
+                        0.053
+                    ],
+                    [
+                        90,
+                        0.068
+                    ]
+                ],
+                result: {
+                    id: 1,
+                    v: 50,
+                    a: "",
+                    m: "",
+                    c: "",
+                    date: ""
+                },
             },
-            step: [""],
-            calculation: "ρ(Mn) = m/V",
-            judge: false,
-            category: 1,
-            range_max: 0.1,
-            range_min: "",
-            assessment: true,
-            range: "",
-            unit: "mg/L",
-            start: 1,
-            end: 1,
-            name: "锰",
-            limit: 0.05,
-            method: "(3.1)",
-            a: 0,
-            b: 1,
-            r: 1,
-            formula: "",
-            x: [],
-            y: [],
-            standard_series: [],
-            instrument_model: "分光光度计",
-            GB: "GB/T 5750.6-2006",
-            items: [
-                [
-                    0,
-                    0.002
-                ],
-                [
-                    10,
-                    0.008
-                ],
-                [
-                    30,
-                    0.024
-                ],
-                [
-                    50,
-                    0.038
-                ],
-                [
-                    70,
-                    0.053
-                ],
-                [
-                    90,
-                    0.068
-                ]
-            ],
-            result: {
-                id: 1,
-                v: 50,
-                a: "",
-                m: "",
-                c: "",
-                date: ""
-            },
-        },
-        {
-            id: 36,
-            st: [],
-            QC_store: [
-                {
+            {
+                id: 36,
+                st: [],
+                QC_c: 10,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -2454,80 +2509,80 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
+                step: [""],
+                calculation: "ρ(Fe) = m/V",
+                judge: false,
+                category: 1,
+                range_max: 0.3,
+                range_min: "",
+                assessment: true,
+                range: "",
+                unit: "mg/L",
+                start: 1,
+                end: 1,
+                name: "铁",
+                limit: 0.05,
+                method: "(2.1)",
+                a: 0,
+                b: 1,
+                r: 1,
+                formula: "",
+                x: [],
+                y: [],
+                standard_series: [],
+                instrument_model: "分光光度计",
+                GB: "GB/T 5750.6-2006",
+                items: [
+                    [
+                        0,
+                        0.095
+                    ],
+                    [
+                        5,
+                        0.122
+                    ],
+                    [
+                        10,
+                        0.149
+                    ],
+                    [
+                        20,
+                        0.196
+                    ],
+                    [
+                        30,
+                        0.246
+                    ],
+                    [
+                        40,
+                        0.290
+                    ]
+                ],
+                result: {
+                    id: 1,
+                    v: 50,
+                    a: "",
+                    m: "",
+                    c: "",
+                    date: ""
+                },
             },
-            step: [""],
-            calculation: "ρ(Fe) = m/V",
-            judge: false,
-            category: 1,
-            range_max: 0.3,
-            range_min: "",
-            assessment: true,
-            range: "",
-            unit: "mg/L",
-            start: 1,
-            end: 1,
-            name: "铁",
-            limit: 0.05,
-            method: "(2.1)",
-            a: 0,
-            b: 1,
-            r: 1,
-            formula: "",
-            x: [],
-            y: [],
-            standard_series: [],
-            instrument_model: "分光光度计",
-            GB: "GB/T 5750.6-2006",
-            items: [
-                [
-                    0,
-                    0.095
-                ],
-                [
-                    5,
-                    0.122
-                ],
-                [
-                    10,
-                    0.149
-                ],
-                [
-                    20,
-                    0.196
-                ],
-                [
-                    30,
-                    0.246
-                ],
-                [
-                    40,
-                    0.290
-                ]
-            ],
-            result: {
-                id: 1,
-                v: 50,
-                a: "",
-                m: "",
-                c: "",
-                date: ""
-            },
-        },
-        {
-            id: 37,
-            st: [],
-            QC_store: [
-                {
+            {
+                id: 37,
+                st: [],
+                QC_c: 10,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -2537,80 +2592,80 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
+                step: [""],
+                calculation: "ρ(Zn) = m/V",
+                judge: false,
+                category: 1,
+                range_max: 1.0,
+                range_min: "",
+                assessment: true,
+                range: "",
+                unit: "mg/L",
+                start: 1,
+                end: 1,
+                name: "锌",
+                limit: 0.05,
+                method: "(5.1)",
+                a: 0,
+                b: 1,
+                r: 1,
+                formula: "",
+                x: [],
+                y: [],
+                standard_series: [],
+                instrument_model: "分液漏斗、分光光度计",
+                GB: "GB/T 5750.6-2006",
+                items: [
+                    [
+                        0,
+                        0.748
+                    ],
+                    [
+                        0.5,
+                        0.811
+                    ],
+                    [
+                        1,
+                        0.890
+                    ],
+                    [
+                        2,
+                        1.036
+                    ],
+                    [
+                        4,
+                        1.32
+                    ],
+                    [
+                        6,
+                        1.602
+                    ]
+                ],
+                result: {
+                    id: 1,
+                    v: 50,
+                    a: "",
+                    m: "",
+                    c: "",
+                    date: ""
+                },
             },
-            step: [""],
-            calculation: "ρ(Zn) = m/V",
-            judge: false,
-            category: 1,
-            range_max: 1.0,
-            range_min: "",
-            assessment: true,
-            range: "",
-            unit: "mg/L",
-            start: 1,
-            end: 1,
-            name: "锌",
-            limit: 0.05,
-            method: "(5.1)",
-            a: 0,
-            b: 1,
-            r: 1,
-            formula: "",
-            x: [],
-            y: [],
-            standard_series: [],
-            instrument_model: "分液漏斗、分光光度计",
-            GB: "GB/T 5750.6-2006",
-            items: [
-                [
-                    0,
-                    0.748
-                ],
-                [
-                    0.5,
-                    0.811
-                ],
-                [
-                    1,
-                    0.890
-                ],
-                [
-                    2,
-                    1.036
-                ],
-                [
-                    4,
-                    1.32
-                ],
-                [
-                    6,
-                    1.602
-                ]
-            ],
-            result: {
-                id: 1,
-                v: 50,
-                a: "",
-                m: "",
-                c: "",
-                date: ""
-            },
-        },
-        {
-            id: 38,
-            st: [],
-            QC_store: [
-                {
+            {
+                id: 38,
+                st: [],
+                QC_c: 10,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -2620,80 +2675,80 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
+                step: [""],
+                calculation: "ρ(SO<sub>4</sub>) = m &times; 1000 / V",
+                judge: false,
+                category: 1,
+                range_max: 250,
+                range_min: "",
+                assessment: true,
+                range: "",
+                unit: "mg/L",
+                start: 1,
+                end: 1,
+                name: "硫酸盐",
+                limit: 5,
+                method: "(1.2)",
+                a: 0,
+                b: 1,
+                r: 1,
+                formula: "",
+                x: [],
+                y: [],
+                standard_series: [],
+                instrument_model: "电磁搅拌器、分光光度计",
+                GB: "GB/T 5750.5-2006",
+                items: [
+                    [
+                        0,
+                        0.029
+                    ],
+                    [
+                        1,
+                        0.156
+                    ],
+                    [
+                        3,
+                        0.355
+                    ],
+                    [
+                        5,
+                        0.574
+                    ],
+                    [
+                        7,
+                        0.784
+                    ],
+                    [
+                        10,
+                        1.137
+                    ]
+                ],
+                result: {
+                    id: 1,
+                    v: 50,
+                    a: "",
+                    m: "",
+                    c: "",
+                    date: ""
+                },
             },
-            step: [""],
-            calculation: "ρ(SO<sub>4</sub>) = m &times; 1000 / V",
-            judge: false,
-            category: 1,
-            range_max: 250,
-            range_min: "",
-            assessment: true,
-            range: "",
-            unit: "mg/L",
-            start: 1,
-            end: 1,
-            name: "硫酸盐",
-            limit: 5,
-            method: "(1.2)",
-            a: 0,
-            b: 1,
-            r: 1,
-            formula: "",
-            x: [],
-            y: [],
-            standard_series: [],
-            instrument_model: "电磁搅拌器、分光光度计",
-            GB: "GB/T 5750.5-2006",
-            items: [
-                [
-                    0,
-                    0.029
-                ],
-                [
-                    1,
-                    0.156
-                ],
-                [
-                    3,
-                    0.355
-                ],
-                [
-                    5,
-                    0.574
-                ],
-                [
-                    7,
-                    0.784
-                ],
-                [
-                    10,
-                    1.137
-                ]
-            ],
-            result: {
-                id: 1,
-                v: 50,
-                a: "",
-                m: "",
-                c: "",
-                date: ""
-            },
-        },
-        {
-            id: 39,
-            st: [],
-            QC_store: [
-                {
+            {
+                id: 39,
+                st: [],
+                QC_c: 1,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -2703,84 +2758,84 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
+                step: [""],
+                calculation: "ρ(As) = m/V",
+                judge: false,
+                category: 1,
+                range_max: 0.01,
+                range_min: "",
+                assessment: true,
+                range: "",
+                unit: "mg/L",
+                start: 1,
+                end: 1,
+                name: "砷",
+                limit: 0.01,
+                method: "(6.1)",
+                a: 0,
+                b: 1,
+                r: 1,
+                formula: "",
+                x: [],
+                y: [],
+                standard_series: [],
+                instrument_model: "砷化氢发生器、分光光度计",
+                GB: "GB/T 5750.6-2006",
+                items: [
+                    [
+                        0,
+                        0.406
+                    ],
+                    [
+                        0.5,
+                        0.423
+                    ],
+                    [
+                        1,
+                        0.441
+                    ],
+                    [
+                        2,
+                        0.474
+                    ],
+                    [
+                        4,
+                        0.531
+                    ],
+                    [
+                        6,
+                        0.598
+                    ],
+                    [
+                        8,
+                        0.660
+                    ]
+                ],
+                result: {
+                    id: 1,
+                    v: 50,
+                    a: "",
+                    m: "",
+                    c: "",
+                    date: ""
+                },
             },
-            step: [""],
-            calculation: "ρ(As) = m/V",
-            judge: false,
-            category: 1,
-            range_max: 0.001,
-            range_min: "",
-            assessment: true,
-            range: "",
-            unit: "mg/L",
-            start: 1,
-            end: 1,
-            name: "砷",
-            limit: 0.001,
-            method: "(6.1)",
-            a: 0,
-            b: 1,
-            r: 1,
-            formula: "",
-            x: [],
-            y: [],
-            standard_series: [],
-            instrument_model: "砷化氢发生器、分光光度计",
-            GB: "GB/T 5750.6-2006",
-            items: [
-                [
-                    0,
-                    0.406
-                ],
-                [
-                    0.5,
-                    0.423
-                ],
-                [
-                    1,
-                    0.441
-                ],
-                [
-                    2,
-                    0.474
-                ],
-                [
-                    4,
-                    0.531
-                ],
-                [
-                    6,
-                    0.598
-                ],
-                [
-                    8,
-                    0.660
-                ]
-            ],
-            result: {
-                id: 1,
-                v: 50,
-                a: "",
-                m: "",
-                c: "",
-                date: ""
-            },
-        },
-        {
-            id: 40,
-            st: [],
-            QC_store: [
-                {
+            {
+                id: 40,
+                st: [],
+                QC_c: 10,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -2790,85 +2845,85 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
+                step: [""],
+                calculation: "ρ(HCHO) = m/V",
+                judge: false,
+                category: 1,
+                range_max: 0.001,
+                range_min: "",
+                assessment: true,
+                range: "",
+                unit: "mg/L",
+                start: 1,
+                end: 1,
+                name: "甲醛",
+                limit: 0.001,
+                method: "(6.1)",
+                a: 0,
+                b: 1,
+                r: 1,
+                formula: "",
+                x: [],
+                y: [],
+                standard_series: [],
+                instrument_model: "分光光度计",
+                GB: "GB/T 5750.10-2006",
+                items: [
+                    [
+                        0,
+                        0.406
+                    ],
+                    [
+                        0.5,
+                        0.423
+                    ],
+                    [
+                        1,
+                        0.441
+                    ],
+                    [
+                        2,
+                        0.474
+                    ],
+                    [
+                        4,
+                        0.531
+                    ],
+                    [
+                        6,
+                        0.598
+                    ],
+                    [
+                        8,
+                        0.660
+                    ]
+                ],
+                result: {
+                    id: 1,
+                    v: 50,
+                    a: "",
+                    m: "",
+                    c: "",
+                    date: ""
+                },
             },
-            step: [""],
-            calculation: "ρ(HCHO) = m/V",
-            judge: false,
-            category: 1,
-            range_max: 0.001,
-            range_min: "",
-            assessment: true,
-            range: "",
-            unit: "mg/L",
-            start: 1,
-            end: 1,
-            name: "甲醛",
-            limit: 0.001,
-            method: "(6.1)",
-            a: 0,
-            b: 1,
-            r: 1,
-            formula: "",
-            x: [],
-            y: [],
-            standard_series: [],
-            instrument_model: "分光光度计",
-            GB: "GB/T 5750.10-2006",
-            items: [
-                [
-                    0,
-                    0.406
-                ],
-                [
-                    0.5,
-                    0.423
-                ],
-                [
-                    1,
-                    0.441
-                ],
-                [
-                    2,
-                    0.474
-                ],
-                [
-                    4,
-                    0.531
-                ],
-                [
-                    6,
-                    0.598
-                ],
-                [
-                    8,
-                    0.660
-                ]
-            ],
-            result: {
-                id: 1,
-                v: 50,
-                a: "",
-                m: "",
-                c: "",
-                date: ""
-            },
-        },
-        {
-            id: 41,
-            category: 3,
-            st: [],
-            QC_store: [
-                {
+            {
+                id: 41,
+                category: 3,
+                st: [],
+                QC_c: 10,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -2878,40 +2933,40 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
+                judge: false,
+                assessment: "合格",
+                range_max: 100,
+                unit: "MPN/100ml",
+                start: 1,
+                end: 1,
+                name: "菌落总数",
+                method: "(1.1)",
+                range: "100",
+                items: "",
+                result: {
+                    id: "",
+                    v: "",
+                    c: "",
+                    date: "",
+                }
             },
-            judge: false,
-            assessment: "合格",
-            range_max: 100,
-            unit: "MPN/100ml",
-            start: 1,
-            end: 1,
-            name: "菌落总数",
-            method: "(1.1)",
-            range: "100",
-            items: "",
-            result: {
-                id: "",
-                v: "",
-                c: "",
-                date: "",
-            }
-        },
-        {
-            id: 42,
-            category: 3,
-            st: [],
-            QC_store: [
-                {
+            {
+                id: 42,
+                category: 3,
+                st: [],
+                QC_c: 10,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -2921,42 +2976,42 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
+                assessment: "合格",
+                range_max: 0.5,
+                unit: "Bq/L",
+                start: 1,
+                end: 1,
+                instrument_model: "低本底α、β检测系统",
+                limit: 0.016,
+                GB: "GB/T 5750.13-2006",
+                name: "总α放射性",
+                method: "(1.1)",
+                range: "100",
+                items: "",
+                result: {
+                    id: "",
+                    v: "",
+                    c: "",
+                    date: "",
+                }
             },
-            assessment: "合格",
-            range_max: 0.5,
-            unit: "Bq/L",
-            start: 1,
-            end: 1,
-            instrument_model: "低本底α、β检测系统",
-            limit: 0.016,
-            GB: "GB/T 5750.13-2006",
-            name: "总α放射性",
-            method: "(1.1)",
-            range: "100",
-            items: "",
-            result: {
-                id: "",
-                v: "",
-                c: "",
-                date: "",
-            }
-        },
-        {
-            id: 43,
-            category: 3,
-            st: [],
-            QC_store: [
-                {
+            {
+                id: 43,
+                category: 3,
+                st: [],
+                QC_c: 10,
+                zl: [],
+                QC_store: [{
+                    id: '',
+                    q_num: '',
+                    q_val: '',
+                    q_limit: '',
+                    a: '', //质控测定值
+                    result: '',
+                    q_judge: '',
+                    date: '',
+                }, ],
+                store_i: {
                     id: '',
                     q_num: '',
                     q_val: '',
@@ -2966,31 +3021,20 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-            ],
-            store_i: {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
+                assessment: "合格",
+                range_max: 1,
+                unit: "Bq/L",
+                start: 1,
+                end: 1,
+                instrument_model: "低本底α、β检测系统",
+                limit: 0.028,
+                GB: "GB/T 5750.13-2006",
+                name: "总β放射性",
+                method: "(2.1)",
+                range: "100",
+                c: "",
+                result: [],
             },
-            assessment: "合格",
-            range_max: 1,
-            unit: "Bq/L",
-            start: 1,
-            end: 1,
-            instrument_model: "低本底α、β检测系统",
-            limit: 0.028,
-            GB: "GB/T 5750.13-2006",
-            name: "总β放射性",
-            method: "(2.1)",
-            range: "100",
-            c: "",
-            result: [],
-        },
         ],
     },
     created: function () {
@@ -3000,11 +3044,15 @@ var app = new Vue({
         this.get_opt(this.names, 3)
     },
     watch: {
-        
+
         selected1() {
             /**
              * 当选择了项目时，显示标准系列的列表
              */
+            for (let i = 0; i < this.selected1.items; i++) {
+                this.zl.push(this.selected1.items[i][0] * Number(this.selected1.QC_c))
+            }
+            this.QC = true
             this.show1 = true;
             this.show2 = false;
             this.show3 = false;
@@ -3018,6 +3066,7 @@ var app = new Vue({
             /**
              * 当选择了滴定类项目时，只需要计算，不需要标准系列和曲线
              */
+            this.QC = true
             this.show2 = true;
             this.show3 = false;
             this.show1 = false;
@@ -3027,6 +3076,7 @@ var app = new Vue({
             /**
              * 感官性状
              */
+            this.QC = true
             this.show1 = false;
             this.show2 = false;
             this.show3 = true;
@@ -3034,14 +3084,14 @@ var app = new Vue({
         }
     },
     methods: {
-      
+
         del_opt(s) {
             //删除项目
             let index = this.names.indexOf(s.name)
             this.names.splice(index, 1)
-            for(let i=0; i<localStorage.length; i++){
+            for (let i = 0; i < localStorage.length; i++) {
                 let key = localStorage.key(i)
-                if(key.search(s.name) == -1){
+                if (key.search(s.name) == -1) {
                     localStorage.removeItem(key)
                 }
             }
@@ -3052,18 +3102,16 @@ var app = new Vue({
              */
             let p = s.name + s.category + 'par'
             s.id = this.names.length + 1
-            s.QC_store = [
-                {
-                    id: '',
-                    q_num: '',
-                    q_val: '',
-                    q_limit: '',
-                    a: '', //质控测定值
-                    result: '',
-                    q_judge: '',
-                    date: '',
-                },
-            ]
+            s.QC_store = [{
+                id: '',
+                q_num: '',
+                q_val: '',
+                q_limit: '',
+                a: '', //质控测定值
+                result: '',
+                q_judge: '',
+                date: '',
+            }, ]
             s.store_i = {
                 id: '',
                 q_num: '',
@@ -3371,7 +3419,7 @@ var app = new Vue({
              * 根据出当前项目的吸光度计算出样品所含物质质量
              */
             let st = s.result;
-            st.m = (((st.a - s.a) / s.b).toFixed(3));
+            st.m = (((st.a - s.a) / s.b)* s.QC_c).toFixed(3);
             return st.m;
         },
 
@@ -3379,19 +3427,43 @@ var app = new Vue({
             /**
              * 根据出当前项目的标准消耗量计算出样品所含物质浓度
              */
-            let coefficient = s.result.coefficient;
+            let coefficient = s.coefficient;
             let a0 = s.result.a0;
             let a1 = s.result.a1;
             let K = s.result.K;
             let v = s.result.v;
             let a = a1 - a0;
-            if (s == this.selected3) {
-                s.result.c = s.result.c
-            } else if (s.a == "耗氧量") {
-                s.result.c = (a * coefficient * K / v).toFixed(2)
-            } else {
-                s.result.c = (a * coefficient / v).toFixed(2);
+            switch (s.category) {
+                case 2:
+                    {
+                        switch (s.name) {
+                            case "耗氧量":
+                                {
+                                    s.result.c = (a * coefficient * K / v).toFixed(2)
+                                }
+                                break
+                            case "溶解性总固体":
+                                {
+                                    s.result.c = (a * coefficient / v).toFixed(0)
+                                }
+                                break
+                            default:
+                                {
+                                    s.result.c = (a * coefficient / v).toFixed(2);
+                                }
+                        }
+                    }
+                    break
             }
+            // if (s == this.selected3) {
+            //     s.result.c = s.result.c
+            // } else if (s.a == "耗氧量") {
+            //     s.result.c = (a * coefficient * K / v).toFixed(2)
+            // } else if (s.a == "溶解性总固体") {
+            //     s.result.c = (a * coefficient * K / v).toFixed(0)
+            // } else {
+            //     s.result.c = (a * coefficient / v).toFixed(2);
+            // }
             return s.result.c;
         },
         get_c(s) {
@@ -3485,20 +3557,20 @@ var app = new Vue({
             this.qc_input = true
             // let date_exp = new RegExp(s.name+'质控'+/\d{4}-\d{2}-\d{2}$/)
             for (let i = 0; i < localStorage.length; i++) {
-            //     let x = localStorage.key(i)
-            //     if(date_exp.test(x)){
-            //         let y = localStorage.getItem(x)
-            //         y = JSON.parse(y)
-            //         s.QC_store.push(y)
-            //         date_exp.lastIndexOf = 0
-            //         s.store_i.id = y.id
-            //     }
-            //     date_exp.lastIndexOf = 0
+                //     let x = localStorage.key(i)
+                //     if(date_exp.test(x)){
+                //         let y = localStorage.getItem(x)
+                //         y = JSON.parse(y)
+                //         s.QC_store.push(y)
+                //         date_exp.lastIndexOf = 0
+                //         s.store_i.id = y.id
+                //     }
+                //     date_exp.lastIndexOf = 0
                 let qc = (s.name + "质控" + i);
                 if (localStorage.getItem(qc) !== null) {
                     let qc_r = localStorage.getItem(qc)
                     qc_r = JSON.parse(qc_r);
-                    qc_r.q_judge = qc_r.q_judge?'在控':'失控'
+                    qc_r.q_judge = qc_r.q_judge ? '在控' : '失控'
                     s.QC_store.push(qc_r)
                     s.store_i.id = qc_r.id
                 }
@@ -3511,28 +3583,34 @@ var app = new Vue({
              */
             let coef = s.coefficient;
             let v = s.result.v;
-            s.store_i.q_num = s.QC_store[s.QC_store.length-1].q_num
-            s.store_i.q_val = s.QC_store[s.QC_store.length-1].q_val
-            s.store_i.q_limit = s.QC_store[s.QC_store.length-1].q_limit
+            s.store_i.q_num = s.QC_store[s.QC_store.length - 1].q_num
+            s.store_i.q_val = s.QC_store[s.QC_store.length - 1].q_val
+            s.store_i.q_limit = s.QC_store[s.QC_store.length - 1].q_limit
             s.store_i.id = Number(s.store_i.id) + 1
             s.store_i.date = this.dateFormat(new Date());
             let qc = (s.name + "质控" + s.store_i.id);
-            switch (s) {
-                case this.selected1:
+            switch (s.category) {
+                case 1:
                     s.store_i.result = (((s.store_i.a - s.a) / s.b) / s.result.v).toFixed(3)
                     break
-                case this.selected2:
-                    s.store_i.result = ((s.store_i.a - s.result.a0) * coef / v).toFixed(2)
+                case 2:
+                    switch (s.name) {
+                        case "溶解性总固体":
+                            s.store_i.result = ((s.store_i.a - s.result.a0) * coef / v).toFixed(1)
+                            break
+                        default:
+                            s.store_i.result = ((s.store_i.a - s.result.a0) * coef / v).toFixed(2)
+                    }
                     break
-                case this.selected3:
+                case 3:
                     s.store_i.result = s.store_i.a
                     break
             }
             let x = Number(s.store_i.q_val) + Number(s.store_i.q_limit)
             let y = Number(s.store_i.q_val) - Number(s.store_i.q_limit)
-            if((s.store_i.result > x) || (s.store_i.result < y)){
+            if ((s.store_i.result > x) || (s.store_i.result < y)) {
                 s.store_i.q_judge = false
-            }else{
+            } else {
                 s.store_i.q_judge = true
             }
             let store = JSON.stringify(s.store_i)
