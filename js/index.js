@@ -229,6 +229,8 @@ var app = new Vue({
                 start: 1,
                 end: 1,
                 name: "臭和味",
+                range_max: "",
+                range_min: "",
                 range: "无异臭和异味",
                 items: [],
                 result: {
@@ -275,6 +277,8 @@ var app = new Vue({
                 start: 1,
                 end: 1,
                 name: "肉眼可见物",
+                range_max: "",
+                range_min: "",
                 range: "无",
                 items: [],
                 result: {
@@ -319,6 +323,8 @@ var app = new Vue({
                 start: 1,
                 end: 1,
                 name: "总大肠菌群",
+                range_max: "",
+                range_min: "",
                 range: "不得检出",
                 items: [],
                 result: {
@@ -362,6 +368,8 @@ var app = new Vue({
                 start: 1,
                 end: 1,
                 name: "大肠埃希氏菌",
+                range_max: "",
+                range_min: "",
                 range: "不得检出",
                 items: [],
                 result: {
@@ -405,6 +413,8 @@ var app = new Vue({
                 unit: "MPN/100ml",
                 step: [""],
                 name: "耐热大肠菌群",
+                range_max: "",
+                range_min: "",
                 range: "不得检出",
                 items: [],
                 result: {
@@ -928,8 +938,8 @@ var app = new Vue({
                 calculation: "",
                 judge: false,
                 category: 1,
-                range_max: 0.001,
-                range_min: "",
+                range_max: 0.8,
+                range_min: 0.1,
                 assessment: true,
                 range: "",
                 unit: "mg/L",
@@ -979,8 +989,8 @@ var app = new Vue({
                 calculation: "",
                 judge: false,
                 category: 1,
-                range_max: 0.001,
-                range_min: "",
+                range_max: 0.3,
+                range_min: 0.02,
                 assessment: true,
                 range: "",
                 unit: "mg/L",
@@ -2936,12 +2946,13 @@ var app = new Vue({
                 judge: false,
                 assessment: "合格",
                 range_max: 100,
+                range_min: "",
                 unit: "MPN/100ml",
                 start: 1,
                 end: 1,
                 name: "菌落总数",
                 method: "(1.1)",
-                range: "100",
+                range: 100,
                 items: "",
                 result: {
                     id: "",
@@ -3484,10 +3495,15 @@ var app = new Vue({
             let max = s.range_max;
             let min = s.range_min;
             let range = s.range;
+            if(min !== ""){
+                range = min + "-" + max
+            }else{
+
             switch (s.name) {
-                case "酸碱度":
-                    range = min + "-" + max;
-                    break;
+                
+                // case "酸碱度":
+                //     range = min + "-" + max;
+                //     break;
                 case "臭和味":
                 case "肉眼可见物":
                     range = "---";
@@ -3499,6 +3515,7 @@ var app = new Vue({
                     break;
                 default:
                     range = "<" + max;
+            }
             }
             return range;
         },
@@ -3634,20 +3651,21 @@ var app = new Vue({
                     p.limit = s.limit
                     p.range_max = s.range_max;
                     p.range_min = s.range_min;
-                    switch (s) {
-                        case this.selected3:
-                            switch (s.name) {
-                                case "色度":
-                                case "浑浊度":
-                                    p.range = "<" + s.range_max;
-                                    break;
-                                default:
-                                    p.range = s.range
-                            }
-                            break;
-                        default:
-                            p.range = "<" + s.range_max;
-                    }
+                    p.range = this.get_range(s)
+                    // switch (s) {
+                    //     case this.selected3:
+                    //         switch (s.name) {
+                    //             case "色度":
+                    //             case "浑浊度":
+                    //                 p.range = "<" + s.range_max;
+                    //                 break;
+                    //             default:
+                    //                 p.range = s.range
+                    //         }
+                    //         break;
+                    //     default:
+                    //         p.range = "<" + s.range_max;
+                    // }
                     p.unit = s.unit
                     s.st.push(p);
                 }
