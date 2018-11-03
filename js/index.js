@@ -988,7 +988,7 @@ var app = new Vue({
                 step: [""],
                 calculation: "",
                 judge: false,
-                category: 1,
+                category: 2,
                 range_max: 0.3,
                 range_min: 0.02,
                 assessment: true,
