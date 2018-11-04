@@ -872,8 +872,10 @@
                                 <input type="text" v-model="selected1.QC_store[selected1.QC_store.length-1].q_num">
                                 <label for="">定值</label>
                                 <input type="number" v-model="selected1.QC_store[selected1.QC_store.length-1].q_val">
-                                <label for="">&plusmn;</label>
-                                <input type="number" v-model="selected1.QC_store[selected1.QC_store.length-1].q_limit">
+                                <span>
+                                    <label for="">&plusmn;</label>
+                                    <input type="number" v-model="selected1.QC_store[selected1.QC_store.length-1].q_limit">
+                                </span>
                             </a>
                         </div>
                     </fieldset>
@@ -1342,7 +1344,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row" v-if="QC">
+            <div class="row" v-if="!selected3.no_QC && QC">
                 <div class="col-lg-6">
                     <fieldset>
                         <legend>
@@ -1390,7 +1392,7 @@
                     </fieldset>
                 </div>
             </div>
-            <div class="row" v-if="!QC">
+            <div class="row" v-if="!QC || selected3.no_QC">
                 <div class="col-lg-5">
                     <fieldset>
                         <legend>
@@ -1439,8 +1441,8 @@
                     </fieldset>
                 </div>
             </div>
-            <table class="table table-bordered table-striped" v-if="qc_input" @click="QC=!QC">
-                <legend>
+            <table class="table table-bordered table-striped" v-if="qc_input && !selected3.no_QC" @click="QC=!QC">
+                <legend v-if="!selected3.no_QC">
                     <span v-text="selected3.name"></span>质控记录
                 </legend>
                 <thead>
