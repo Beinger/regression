@@ -34,10 +34,10 @@ var app = new Vue({
         selected1: "",
         selected2: "",
         selected3: "",
-        slt: {},
-        slt1: "",
-        slt2: "",
-        slt3: "",
+        slt: "",
+        // slt1: "",
+        // slt2: "",
+        // slt3: "",
 
         new_opt1: {
             id: '',
@@ -3100,13 +3100,29 @@ var app = new Vue({
     },
     methods: {
 
-        del_opt(ns,s) {
+        add_new_opt(s){
+            this.save_opt(s)
+            this.get_opt(s.category)
+            this.search_opt(s)
+            s = this.uniqueUseNotAllEqual(s)
+        },
+        del_opt(s) {
             //删除项目
-            let index = ns.indexOf(s.name)
-            ns.splice(index, 1)
+            let ns = this.names
+            let nns = this.new_names
+            for(let i=0; i<ns.length; i++){
+                if(ns[i].name == s.name){
+                    ns.splice(i,1)
+                }
+            }
+            for(let i=0; i<ns.length; i++){
+                if(nns[i].name == s.name){
+                    nns.splice(i,1)
+                }
+            }
             for (let i = 0; i < localStorage.length; i++) {
                 let key = localStorage.key(i)
-                if (key.search(s.name) == -1) {
+                if (key.search(s.name) !== -1) {
                     localStorage.removeItem(key)
                 }
             }
@@ -3184,9 +3200,9 @@ var app = new Vue({
             }
             let x = JSON.stringify(s)
             localStorage.setItem(p, x)
-            this.get_opt(s.category)
+            // this.get_opt(s.category)
 
-            s = this.uniqueUseNotAllEqual(s)
+            // s = this.uniqueUseNotAllEqual(s)
         },
         uniqueUseNotAllEqual(arr) {
             /**
