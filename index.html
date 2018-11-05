@@ -193,14 +193,14 @@
                                 </i>
                             </div>
                             <div class="collapse navbar-collapse" id="object_nav">
-                                <ul class="nav navbar-nav">
-                                    <li class="btn btn-success btn-lg" @click="s6=true;s1=false;s2=false;s3=false;s4=false;s5=false;add_edit=false">所有项目</li>
+                                <ul class="nav navbar-nav" style="float:right">
                                     <li class="btn btn-info btn-lg" @click="s6=false;s1=true;s2=false;s3=false;s4=false;s5=false;add_edit=false">感官性状和一般化学指标</li>
                                     <li class="btn btn-danger btn-lg" @click="s6=false;s1=false;s2=true;s3=false;s4=false;s5=false;add_edit=false">毒理指标</li>
                                     <li class="btn btn-warning btn-lg" @click="s6=false;s1=false;s2=false;s4=false; s5=false;s3=true;add_edit=false">消毒剂指标</li>
                                     <li class="btn btn-success btn-lg" @click="s6=false;s1=false;s2=false;s3=false;s5=false;s4=true;add_edit=false">微生物指标</li>
                                     <li class="btn btn-danger btn-lg" @click="s6=false;s1=false;s2=false;s3=false;s4=false;s5=true;add_edit=false">放射性指标</li>
-                                    <li class="btn btn-default btn-lg" @click="s6=false;s1=false;s2=false;s3=false;s4=false;s5=false;add_edit=true">自定义项目</li>
+                                    <li class="btn btn-success btn-lg" @click="s6=true;s1=false;s2=false;s3=false;s4=false;s5=false;add_edit=false">新增的项目</li>
+                                    <li class="btn btn-default btn-lg" style="float:right" @click="s6=false;s1=false;s2=false;s3=false;s4=false;s5=false;add_edit=true">自定义项目</li>
                                 </ul>
                             </div>
                         </div>
@@ -218,7 +218,7 @@
                 <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
                     <label calss="form-label">
                         <a title="增加新项目" class="btn btn-default" @click="add_opt=true">
-                            <i class="fa fa-eraser">新增项目</i>
+                            <i class="fa fa-eraser">增加新项目</i>
                         </a>
                     </label>
                 </div>
@@ -246,7 +246,7 @@
                 <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
                     <label calss="form-label">
                         <a title="修改项目参数" class="btn btn-default" data-toggle="modal" data-target="#opt4">
-                            <i class="fa fa-eraser">修改项目</i>
+                            <i class="fa fa-eraser">修改已有项目</i>
                         </a>
                     </label>
                 </div>
@@ -282,7 +282,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button class="btn btn-info" data-dismiss="modal">关闭</button>
-                                        <button type="button" class="btn btn-primary" @click="save_opt(new_opt3, 3)"
+                                        <button type="button" class="btn btn-primary" @click="save_opt(new_opt3)"
                                             data-dismiss="modal">确认增加</button>
                                     </div>
                                 </li>
@@ -374,7 +374,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button class="btn btn-info" data-dismiss="modal">关闭</button>
-                                    <button type="button" class="btn btn-primary" @click="save_opt(new_opt2, 2)"
+                                    <button type="button" class="btn btn-primary" @click="save_opt(new_opt2)"
                                         data-dismiss="modal">确认增加</button>
                                 </div>
                             </li>
@@ -413,7 +413,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button class="btn btn-info" data-dismiss="modal">关闭</button>
-                                    <button type="button" class="btn btn-primary" @click="save_opt(new_opt1, 1)"
+                                    <button type="button" class="btn btn-primary" @click="save_opt(new_opt1)"
                                         data-dismiss="modal">确认增加</button>
                                 </div>
                             </li>
@@ -424,8 +424,8 @@
             </div>
             <!-- /.modal -->
         </div>
-        <div class="row animated fadeInLeft" v-if="s6">
-            <div v-for="(item,index) in names">
+        <div class="row animated fadeIn" v-if="s6">
+            <div v-for="(item,index) in new_names">
                 <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
                     <span class="input-group-addon radio" v-if="item.category==1">
                         <input class="radio" type="radio" v-model="selected1" :value="item">
@@ -1482,6 +1482,7 @@
         <div>交流和提问请加QQ群
             <a href="img/myWeixin.jpg">
                 <i class="fa fa-comments"></i>
+                水质检测系统
             </a>
         </div>
     </footer>

@@ -34,7 +34,7 @@ var app = new Vue({
         selected1: "",
         selected2: "",
         selected3: "",
-        slt: "",
+        slt: {},
         slt1: "",
         slt2: "",
         slt3: "",
@@ -191,7 +191,9 @@ var app = new Vue({
                 date: ""
             },
         },
-        names: [{
+        new_names: [],
+        names: [
+            {
                 id: 1,
                 st: [],
                 QC_c: 10,
@@ -2550,23 +2552,23 @@ var app = new Vue({
                         0.095
                     ],
                     [
-                        5,
+                        0.5,
                         0.122
                     ],
                     [
-                        10,
+                        1.0,
                         0.149
                     ],
                     [
-                        20,
+                        2.0,
                         0.196
                     ],
                     [
-                        30,
+                        3.0,
                         0.246
                     ],
                     [
-                        40,
+                        4.0,
                         0.290
                     ]
                 ],
@@ -3052,9 +3054,9 @@ var app = new Vue({
     },
     created: function () {
         this.init_login()
-        this.get_opt(this.names, 1)
-        this.get_opt(this.names, 2)
-        this.get_opt(this.names, 3)
+        this.get_opt(1)
+        this.get_opt(2)
+        this.get_opt(3)
     },
     watch: {
 
@@ -3098,10 +3100,10 @@ var app = new Vue({
     },
     methods: {
 
-        del_opt(s) {
+        del_opt(ns,s) {
             //删除项目
-            let index = this.names.indexOf(s.name)
-            this.names.splice(index, 1)
+            let index = ns.indexOf(s.name)
+            ns.splice(index, 1)
             for (let i = 0; i < localStorage.length; i++) {
                 let key = localStorage.key(i)
                 if (key.search(s.name) == -1) {
@@ -3182,7 +3184,7 @@ var app = new Vue({
             }
             let x = JSON.stringify(s)
             localStorage.setItem(p, x)
-            this.get_opt(this.names, s.category)
+            this.get_opt(s.category)
 
             s = this.uniqueUseNotAllEqual(s)
         },
@@ -3202,26 +3204,27 @@ var app = new Vue({
             }
             return temp
         },
-        search_opt(x, ns) {
+        search_opt(x) {
             /**
              * 找出重复的项目进行替换
              */
-            let new_str = new Object
+            let ns = this.names
+            // let new_str = new Object
             for (let m = 0; m < x.length; m++) {
                 for (let a = 0; a < ns.length; a++) {
                     if (x[m].name == ns[a].name) {
                         ns[a] = x[m]
+                        x.splice(m,1)
                     }
                 }
-                new_str = x[m]
-                ns.push(new_str)
             }
         },
-        get_opt(ns, index) {
+        get_opt(index) {
             /**
              * 获取localStorage中的新加项目
              */
-            let x = []
+            let ns = this.names
+            // let x = []
             let n = localStorage.length
             let reg = new RegExp(index + 'par$')
             for (let i = 0; i < n; i++) {
@@ -3232,13 +3235,13 @@ var app = new Vue({
                     let v_o = JSON.parse(v)
                     for (let m = 0; m < ns.length; m++) {
                         if (v_o.name !== ns[m].name) {
-                            x.push(v_o)
+                            this.new_names.push(v_o)
                             break
                         }
                     }
                 }
             }
-            this.search_opt(x, ns)
+            this.search_opt(this.new_names)
             // ns = this.uniqueUseNotAllEqual(ns)
         },
         printContent(id) {
@@ -3312,7 +3315,7 @@ var app = new Vue({
             this.selected1.y = []; //标准系列的吸光度数据
             let rows = this.selected1.standard_series;
             for (let i = 0; i < rows.length; i++) {
-                this.selected1.x[i] = rows[i][0];
+                this.selected1.x[i] = Number(rows[i][0]) * this.selected1.QC_c;
                 this.selected1.y[i] = rows[i][1];
             }
         },
@@ -3570,6 +3573,9 @@ var app = new Vue({
             localStorage.setItem(p, str);
             res.a = "";
             res.a1 = "";
+            if(!isNaN(res.c)){
+                res.c = ""
+            }
             let n = s.name + "end";
             s.start = Number(s.start) + 1
             localStorage.setItem(n, s.start);
@@ -3615,7 +3621,7 @@ var app = new Vue({
             let qc = (s.name + "质控" + s.store_i.id);
             switch (s.category) {
                 case 1:
-                    s.store_i.result = (((s.store_i.a - s.a) / s.b) / s.result.v).toFixed(3)
+                    s.store_i.result = (((s.store_i.a - s.a) / s.b) * s.QC_c / s.result.v).toFixed(3)
                     break
                 case 2:
                     switch (s.name) {
