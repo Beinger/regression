@@ -218,7 +218,7 @@ var app = new Vue({
                 },
                 category: 3,
                 judge: false,
-                assessment: "合格",
+                assessment: true,
                 unit: "无量纲",
                 method: "(3.1)",
                 GB: "GB/T 5750.4-2006",
@@ -268,7 +268,7 @@ var app = new Vue({
                 },
                 category: 3,
                 judge: false,
-                assessment: "合格",
+                assessment: true,
                 unit: "无量纲",
                 method: "(4.1)",
                 GB: "GB/T 5740.4-2006",
@@ -317,7 +317,7 @@ var app = new Vue({
                 },
                 category: 3,
                 judge: false,
-                assessment: "合格",
+                assessment: true,
                 method: '(2.1)',
                 GB: "GB/T 5740.12-2006",
                 unit: "MPN/100ml",
@@ -363,7 +363,7 @@ var app = new Vue({
                 },
                 category: 3,
                 judge: false,
-                assessment: "合格",
+                assessment: true,
                 GB: "GB/T 5740.12-2006",
                 unit: "MPN/100ml",
                 step: [""],
@@ -410,7 +410,7 @@ var app = new Vue({
                 judge: false,
                 start: 1,
                 end: 1,
-                assessment: "合格",
+                assessment: true,
                 GB: "GB/T 5740.12-2006",
                 unit: "MPN/100ml",
                 step: [""],
@@ -2946,7 +2946,7 @@ var app = new Vue({
                     date: '',
                 },
                 judge: false,
-                assessment: "合格",
+                assessment: true,
                 range_max: 100,
                 range_min: "",
                 unit: "MPN/100ml",
@@ -2989,7 +2989,7 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-                assessment: "合格",
+                assessment: true,
                 range_max: 0.5,
                 unit: "Bq/L",
                 start: 1,
@@ -3034,7 +3034,7 @@ var app = new Vue({
                     q_judge: '',
                     date: '',
                 },
-                assessment: "合格",
+                assessment: true,
                 range_max: 1,
                 unit: "Bq/L",
                 start: 1,
@@ -3468,15 +3468,6 @@ var app = new Vue({
                     }
                     break
             }
-            // if (s == this.selected3) {
-            //     s.result.c = s.result.c
-            // } else if (s.a == "耗氧量") {
-            //     s.result.c = (a * coefficient * K / v).toFixed(2)
-            // } else if (s.a == "溶解性总固体") {
-            //     s.result.c = (a * coefficient * K / v).toFixed(0)
-            // } else {
-            //     s.result.c = (a * coefficient / v).toFixed(2);
-            // }
             return s.result.c;
         },
         get_c(s) {
@@ -3533,23 +3524,37 @@ var app = new Vue({
             res.GB = s.GB;
             res.method = s.method
             res.range = this.get_range(s);
-            switch (s) {
-                case this.selected3:
+            res.c = s.result.c;
+            switch (s.category) {
+                case 3:
                     {
-                        res.c = s.result.c;
-                        switch (s.name) {
-                            case "酸碱度":
-                                res.assessment = (res.c > s.range_max || res.c < s.range_min) ? "不合格" : "合格"
-                                break
-                            default:
+                        if(s.range_min == ""){
+                            if(s.range_max == ""){
+                                if(isNaN(res.c) || res.c == 0){
+                                    res.assessment = "合格"
+                                }else{
+                                    res.assessment = "不合格"
+                                }
+                            }else{
                                 res.assessment = (res.c > s.range_max) ? "不合格" : "合格"
+                            }
+                        }else{
+                            res.assessment = (res.c > s.range_max || res.c < s.range_min) ? "不合格" : "合格"
                         }
                         break
                     }
-                case this.selected2:
+                    //     switch (s.name) {
+                    //         case "酸碱度":
+                    //             res.assessment = (res.c > s.range_max || res.c < s.range_min) ? "不合格" : "合格"
+                    //             break
+                    //         default:
+                    //             res.assessment = (res.c > s.range_max) ? "不合格" : "合格"
+                    //     }
+                    //     break
+                    // }
+                case 2:
                     {
                         res.c = this.get_c2(s);
-                        res.assessment = (res.c > s.range_max) ? "不合格" : "合格";
                         break;
                     }
                 default:
