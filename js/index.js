@@ -3054,10 +3054,10 @@ var app = new Vue({
     },
     created: function () {
         this.init_login()
+        this.get_edit_opt()
         this.get_opt(1)
         this.get_opt(2)
         this.get_opt(3)
-        this.get_edit_opt()
     },
     watch: {
 
@@ -3103,7 +3103,7 @@ var app = new Vue({
 
         add_new_opt(s){
             this.save_opt(s)
-            this.get_opt(s.category)
+            this.get_opt(s)
             this.search_opt(s)
             s = this.uniqueUseNotAllEqual(s)
         },
@@ -3141,99 +3141,33 @@ var app = new Vue({
                 }
             }
         },
-        save_opt(s) {
+        save_opt(s){
             const newLocal = 'par';
-            /**
-             * 保存新项目
-             */
             let p = s.name + s.category + newLocal
-            s.id = this.names.length + 1
-            s.QC_store = [{
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
-            }, ]
-            s.store_i = {
-                id: '',
-                q_num: '',
-                q_val: '',
-                q_limit: '',
-                a: '', //质控测定值
-                result: '',
-                q_judge: '',
-                date: '',
-            }
-            s.st = []
-            s.judge = false
-            s.assessment = true
-            s.start = 1
-            s.end = 1
-            s.items = []
-            switch (s.category) {
-                case 2:
-                    s.result = {
-                        id: "",
-                        v: "",
-                        coefficient: "",
-                        K: "",
-                        a0: "",
-                        a1: "",
-                        m: "",
-                        c: "",
-                        date: ""
-                    }
-                    break
-                case 3:
-                    s.result = {
-                        id: "",
-                        v: "",
-                        c: "",
-                        date: ""
-                    }
-                    break
-                default:
-                    s.a = 0
-                    s.b = 1
-                    s.r = 1
-                    s.formula = ""
-                    s.calculation = "ρ(" + s.name + ")=m/V"
-                    s.x = []
-                    s.y = []
-                    s.standard_series = []
-                    s.result = {
-                        id: 1,
-                        v: "",
-                        a: "",
-                        m: "",
-                        c: ""
-                    }
-            }
-            let x = JSON.stringify(s)
-            localStorage.setItem(p, x)
-            // this.get_opt(s.category)
-
-            // s = this.uniqueUseNotAllEqual(s)
+            s = JSON.stringify(s)
+            localStorage.setItem(p, s)
         },
-        uniqueUseNotAllEqual(arr) {
+        get_opt(c) {
             /**
-             * 对项目进行排序
+             * 获取localStorage中的新加项目
              */
-            let temp = []
-            let mark = true
-            for (let i = 0, j = arr.length; i < j; i++) {
-                if (arr[i] !== arr[i]) {
-                    mark && temp.indexOf(arr[i]) == -1 ? temp.push(arr[i]) : ''
-                    mark = false
-                } else {
-                    temp.indexOf(arr[i]) == -1 ? temp.push(arr[i]) : ''
+            let ns = this.names
+            let n = localStorage.length
+            let reg = new RegExp(c + 'par$')
+            for (let i = 0; i < n; i++) {
+                let k = localStorage.key(i)
+                let v = localStorage.getItem(k)
+                let v_o = JSON.parse(v)
+                if (reg.test(k)) {
+                    for (let m = 0; m < ns.length; m++) {
+                        if (v_o.name == ns[m].name) {
+                            let obj = Object.assign(ns[m],v_o)
+                            ns[m] = obj
+                        }
+                    }
+                    this.new_names.push(v_o)
                 }
             }
-            return temp
         },
         search_opt(x) {
             /**
@@ -3257,30 +3191,21 @@ var app = new Vue({
                 }
             }
         },
-        get_opt(index) {
+        uniqueUseNotAllEqual(arr) {
             /**
-             * 获取localStorage中的新加项目
+             * 对项目进行排序
              */
-            let ns = this.names
-            // let x = []
-            let n = localStorage.length
-            let reg = new RegExp(index + 'par$')
-            for (let i = 0; i < n; i++) {
-                let key = localStorage.key(i)
-                let v = localStorage.getItem(key)
-                if (reg.test(key)) {
-                    // reg.lastIndex = 0
-                    let v_o = JSON.parse(v)
-                    for (let m = 0; m < ns.length; m++) {
-                        if (v_o.name !== ns[m].name) {
-                            this.new_names.push(v_o)
-                            break
-                        }
-                    }
+            let temp = []
+            let mark = true
+            for (let i = 0, j = arr.length; i < j; i++) {
+                if (arr[i] !== arr[i]) {
+                    mark && temp.indexOf(arr[i]) == -1 ? temp.push(arr[i]) : ''
+                    mark = false
+                } else {
+                    temp.indexOf(arr[i]) == -1 ? temp.push(arr[i]) : ''
                 }
             }
-            this.search_opt(this.new_names)
-            // ns = this.uniqueUseNotAllEqual(ns)
+            return temp
         },
         printContent(id) {
             /**
@@ -3836,7 +3761,7 @@ var app = new Vue({
         test_date() {
             let date = new Date();
             return this.dateFormat(date)
-        },
+        }
     }
 });
 let series_data = [];
