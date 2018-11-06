@@ -63,6 +63,7 @@
                 <div onclick="focus_move()" class="col-xs-9 col-lg-10 col-md-10 col-sm-10">
                     <h2 data-toggle="modal" data-target="#login" v-text="company"></h2>
                     <h1 style="color:gainsboro" class="threed">水质检验回归分析系统</h1>
+                    <i class="fa fa-calendar" v-text="dateFormat(new Date())"></i>
                 </div>
                 <div class="col-xs-3 col-lg-2 col-md-2 col-sm-2">
                     <i class="fa fa-qq"></i>
@@ -178,7 +179,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-11 col-md-9 col-sm-6 col-xs-6 text-left">
+                <div class="col-lg-10 col-md-9 col-sm-6 col-xs-6 text-left">
                     <nav role="navigation" class="navbar navbar-default" role="navigation">
                         <div class="container-fluid">
                             <div class="navbar-header">
@@ -200,15 +201,14 @@
                                     <li class="btn btn-success btn-lg" @click="s6=false;s1=false;s2=false;s3=false;s5=false;s4=true;add_edit=false">微生物指标</li>
                                     <li class="btn btn-danger btn-lg" @click="s6=false;s1=false;s2=false;s3=false;s4=false;s5=true;add_edit=false">放射性指标</li>
                                     <li class="btn btn-success btn-lg" @click="s6=true;s1=false;s2=false;s3=false;s4=false;s5=false;add_edit=false">新增的项目</li>
-                                    <li class="btn btn-default btn-lg" style="float:right" @click="s6=false;s1=false;s2=false;s3=false;s4=false;s5=false;add_edit=true">自定义项目</li>
                                 </ul>
                             </div>
                         </div>
                     </nav>
                 </div>
-                <div class="col-lg-1 col-md-3 col-sm-3 col-xs-3 text-right">
+                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-3 text-right">
                     <div class="row">
-                        <i class="fa fa-calendar" v-text="dateFormat(new Date())"></i>
+                        <a class="btn btn-default btn-lg" style="float:right" @click="s6=false;s1=false;s2=false;s3=false;s4=false;s5=false;add_edit=true">自定义项目</a>
                     </div>
                 </div>
             </div>
@@ -264,7 +264,7 @@
                                     </div>
                                     <div class="modal-body form-group">
                                         <label class="form-label">项目名称：
-                                            <input type="text" class="form-control" v-model="new_opt3.name"></label>
+                                            <input type="text" class="form-control" v-model="new_opt3.name" pattern="[\u4e00-\u9fa5]+"></label>
                                         <label class="form-label">单位：
                                             <input type="text" class="form-control" v-model="new_opt3.unit"></label>
                                         <label class="form-label">检验依据：
@@ -282,7 +282,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button class="btn btn-info" data-dismiss="modal">关闭</button>
-                                        <button type="button" class="btn btn-primary" @click="add_new_opt(new_opt3)"
+                                        <button type="submit" class="btn btn-primary" @click="add_new_opt(new_opt3)"
                                             data-dismiss="modal">确认增加</button>
                                     </div>
                                 </li>
@@ -335,7 +335,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button class="btn btn-info" 　data-dismiss="modal">关闭</button>
-                                        <button type="button" class="btn btn-primary" @click="add_new_opt(slt)"
+                                        <button type="button" class="btn btn-primary" @click="edit_opt(slt)"
                                             　data-dismiss="modal">提交更改</button>
                                     </div>
                                 </li>

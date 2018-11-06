@@ -3057,6 +3057,7 @@ var app = new Vue({
         this.get_opt(1)
         this.get_opt(2)
         this.get_opt(3)
+        this.get_edit_opt()
     },
     watch: {
 
@@ -3108,14 +3109,8 @@ var app = new Vue({
         },
         del_opt(s) {
             //删除项目
-            let ns = this.names
             let nns = this.new_names
-            for(let i=0; i<ns.length; i++){
-                if(ns[i].name == s.name){
-                    ns.splice(i,1)
-                }
-            }
-            for(let i=0; i<ns.length; i++){
+            for(let i=0; i<nns.length; i++){
                 if(nns[i].name == s.name){
                     nns.splice(i,1)
                 }
@@ -3127,11 +3122,31 @@ var app = new Vue({
                 }
             }
         },
+        edit_opt(x){
+            let p = x.name + x.category
+            localStorage.setItem(p,x)
+        },
+        get_edit_opt(){
+            let s = this.names
+            for(let i=0; i<localStorage.length; i++){
+                for(let m=0; m<s.length; m++){
+                    let p = s[m].name + s[m].category
+                    let index = localStorage.key(i)
+                    if(index == p){
+                        let value = localStorage.getItem(index)
+                        value = JSON.stringify(value)
+                        let obj = Object.assign(s[m], value)
+                        s[m] = obj
+                    }
+                }
+            }
+        },
         save_opt(s) {
+            const newLocal = 'par';
             /**
              * 保存新项目
              */
-            let p = s.name + s.category + 'par'
+            let p = s.name + s.category + newLocal
             s.id = this.names.length + 1
             s.QC_store = [{
                 id: '',
@@ -3224,6 +3239,13 @@ var app = new Vue({
             /**
              * 找出重复的项目进行替换
              */
+            let arr = []
+            for(let i=0; i<x.length; i++){
+                if(x.indexOf(x[i]) == -1){
+                    arr.push(x[i])
+                }
+            }
+            x = arr
             let ns = this.names
             // let new_str = new Object
             for (let m = 0; m < x.length; m++) {
@@ -3247,7 +3269,7 @@ var app = new Vue({
                 let key = localStorage.key(i)
                 let v = localStorage.getItem(key)
                 if (reg.test(key)) {
-                    reg.lastIndex = 0
+                    // reg.lastIndex = 0
                     let v_o = JSON.parse(v)
                     for (let m = 0; m < ns.length; m++) {
                         if (v_o.name !== ns[m].name) {
@@ -3601,17 +3623,7 @@ var app = new Vue({
              * 获取质控数据
              */
             this.qc_input = true
-            // let date_exp = new RegExp(s.name+'质控'+/\d{4}-\d{2}-\d{2}$/)
             for (let i = 0; i < localStorage.length; i++) {
-                //     let x = localStorage.key(i)
-                //     if(date_exp.test(x)){
-                //         let y = localStorage.getItem(x)
-                //         y = JSON.parse(y)
-                //         s.QC_store.push(y)
-                //         date_exp.lastIndexOf = 0
-                //         s.store_i.id = y.id
-                //     }
-                //     date_exp.lastIndexOf = 0
                 let qc = (s.name + "质控" + i);
                 if (localStorage.getItem(qc) !== null) {
                     let qc_r = localStorage.getItem(qc)
@@ -3621,7 +3633,6 @@ var app = new Vue({
                     s.store_i.id = qc_r.id
                 }
             }
-
         },
         save_qc(s) {
             /**
