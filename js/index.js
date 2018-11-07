@@ -2964,6 +2964,7 @@ var app = new Vue({
                 start: 1,
                 end: 1,
                 name: "菌落总数",
+                GB: "GB/T5750.12-2006",
                 method: "(1.1)",
                 range: 100,
                 items: "",
@@ -3472,17 +3473,22 @@ var app = new Vue({
             let range = s.range;
             if(min !== "" && min !== undefined && min !== null){
                 range = min + "-" + max
-            }else{
+            }else if(min == "" || min == undefined || min == null){
+                if(max == "" || max == undefined || max == null){
+                    range = "---"
+                }
+            }
+            else{
 
             switch (s.name) {
                 
                 // case "酸碱度":
                 //     range = min + "-" + max;
                 //     break;
-                case "臭和味":
-                case "肉眼可见物":
-                    range = "---";
-                    break;
+                // case "臭和味":
+                // case "肉眼可见物":
+                //     range = "---";
+                //     break;
                 case "总大肠菌群":
                 case "大肠埃希氏菌":
                 case "耐热大肠菌群":
@@ -3571,6 +3577,7 @@ var app = new Vue({
                     s.st.push(p);
                 }
             }
+            s.start = Number(localStorage.getItem(n))
             //对结果依据编号从小到大进行排序
             s.st.sort(function (i, j) {
                 return Number(i.id) > Number(j.id) ? 1 : -1
