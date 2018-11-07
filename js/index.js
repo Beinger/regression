@@ -1157,7 +1157,7 @@ var app = new Vue({
                     date: '',
                 },
                 step: [""],
-                calculation: 'ρ(O2) = [(10+V<sub>1</sub>) &times; K - 10] &times; 0.8',
+                calculation: 'ρ(O<sub>2</sub>) = [(10+V<sub>1</sub>) &times; K - 10] &times; 0.8',
                 judge: false,
                 category: 2,
                 range_max: 3,
