@@ -53,7 +53,7 @@ var app = new Vue({
                 result: '',
                 q_judge: '',
                 date: '',
-            }, ],
+            }],
             store_i: {
                 id: '',
                 q_num: '',
@@ -65,10 +65,12 @@ var app = new Vue({
                 date: '',
             },
             step: [""],
+            calculation: "",
             judge: false,
             category: 1,
             range_max: "",
-            assessment: true,
+            range_min: "",
+            range: "",
             unit: "mg/L",
             start: 1,
             end: 1,
@@ -86,6 +88,7 @@ var app = new Vue({
             GB: "GB/T 5750.5-2006",
             items: [],
             result: {
+                assessment: true,
                 id: 1,
                 v: "",
                 a: "",
@@ -108,7 +111,7 @@ var app = new Vue({
                 result: '',
                 q_judge: '',
                 date: '',
-            }, ],
+            }],
             store_i: {
                 id: '',
                 q_num: '',
@@ -120,10 +123,13 @@ var app = new Vue({
                 date: '',
             },
             step: [""],
+            calculation: "",
             judge: false,
             category: 2,
             range_max: "",
+            range_min: "",
             assessment: true,
+            range: "",
             unit: "mg/L",
             start: 1,
             end: 1,
@@ -159,7 +165,7 @@ var app = new Vue({
                 result: '',
                 q_judge: '',
                 date: '',
-            }, ],
+            }],
             store_i: {
                 id: '',
                 q_num: '',
@@ -174,11 +180,14 @@ var app = new Vue({
             judge: false,
             category: 3,
             range_max: "",
+            range_min: "",
+            range: "",
             assessment: true,
-            unit: "mg/L",
+            unit: "",
             start: 1,
             end: 1,
             name: "",
+            no_QC: true,
             method: "",
             limit: "",
             instrument_model: "",
@@ -207,7 +216,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -257,7 +266,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -306,7 +315,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -352,7 +361,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -397,7 +406,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -442,7 +451,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -496,7 +505,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -548,7 +557,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -596,7 +605,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -649,7 +658,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -697,7 +706,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -746,7 +755,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -803,7 +812,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -865,7 +874,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -927,7 +936,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -978,7 +987,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -1029,7 +1038,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -1084,7 +1093,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -1136,7 +1145,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -1189,7 +1198,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -1241,7 +1250,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -1293,7 +1302,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -1376,7 +1385,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -1471,7 +1480,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -1562,7 +1571,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -1649,7 +1658,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -1741,7 +1750,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -1832,7 +1841,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -1919,7 +1928,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -2006,7 +2015,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -2089,7 +2098,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -2180,7 +2189,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -2263,7 +2272,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -2346,7 +2355,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -2429,7 +2438,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -2512,7 +2521,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -2595,7 +2604,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -2678,7 +2687,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -2761,7 +2770,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -2848,7 +2857,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -2936,7 +2945,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -2980,7 +2989,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -3025,7 +3034,7 @@ var app = new Vue({
                     result: '',
                     q_judge: '',
                     date: '',
-                }, ],
+                }],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -3448,7 +3457,7 @@ var app = new Vue({
              * 根据当前项目的加样体积和质量算出样品中物质的浓度
              */
             let v = s.result.v;
-            let m = s.result.m;
+            let m = this.get_m(s);
 
             if (s.name == "硫酸盐") {
                 s.result.c = (1000 * m / v).toFixed(1);
@@ -3493,17 +3502,12 @@ var app = new Vue({
             let res = s.result
             res.date = this.dateFormat(new Date());
             res.id = s.start
-            res.c = s.result.c;
-                    res.limit = s.limit
-                    res.range_max = s.range_max;
-                    res.range_min = s.range_min;
                     res.range = this.get_range(s)
-                    res.unit = s.unit;
-                    res.GB = s.GB;
+                    res.unit = s.unit
+                    res.GB = s.GB
                     res.method = s.method
             switch (s.category) {
                 case 3:
-                    {
                         if(s.range_min == "" || s.range_min == null || s.range_min == undefined){
                             if(s.range_max == "" || s.range_max == null || s.range_max == undefined){
                                 if(isNaN(res.c) || res.c == 0){
@@ -3517,8 +3521,7 @@ var app = new Vue({
                         }else{
                             res.assessment = (res.c > s.range_max || res.c < s.range_min)?false:true 
                         }
-                        break
-                    }
+                    break
                     //     switch (s.name) {
                     //         case "酸碱度":
                     //             res.assessment = (res.c > s.range_max || res.c < s.range_min)?false:true 
@@ -3529,22 +3532,19 @@ var app = new Vue({
                     //     break
                     // }
                 case 2:
-                    {
-                        res.c = this.get_c2(s);
+                        this.get_c2(s);
                         res.assessment = (res.c > s.range_max)?false:true 
                         break;
-                    }
-                default:
-                    {
-                        res.m = this.get_m(s);
-                        res.c = this.get_c(s);
+                case 1:
+                        this.get_m(s);
+                        this.get_c(s);
                         res.assessment = (res.c > s.range_max)?false:true 
-                    }
+                        break
             }
             let str = JSON.stringify(res); //格式化后才能存入 
             let p = (s.name + s.start + "报告结果");
             localStorage.setItem(p, str);
-            res.assessment = res.assessment?"合格":"不合格"
+            res.assessment = ""
             res.a = "";
             res.a1 = "";
             if(!isNaN(res.c)){
@@ -3560,16 +3560,16 @@ var app = new Vue({
              */
             s.st = [];
             let n = s.name + "end";
-            if (localStorage.getItem(n) !== null) {
+            let start_index = Number(localStorage.getItem(n));
+            if (start_index !== null) {
                 let keys = this.get_key(s);
                 for (let i = 0; i < keys.length; i++) {
-                    let x = (s.name + keys[i] + "报告结果");
+                    let x = s.name + keys[i] + "报告结果";
                     let p = localStorage.getItem(x);
-                    p = (JSON.parse(p));
+                    p = JSON.parse(p);
                     p.assessment = p.assessment?"合格":"不合格"
                     s.st.push(p);
                 }
-                s.start = Number(localStorage.getItem(n));
             }
             //对结果依据编号从小到大进行排序
             s.st.sort(function (i, j) {
@@ -3646,7 +3646,7 @@ var app = new Vue({
             var n = localStorage.length;
             for (let i = 0; i < n; i++) {
                 let k = localStorage.key(i);
-                if (k.search(s.name) != -1) {
+                if (k.search(s.name) !== -1) {
                     if (k.search("报告结果") != -1) {
                         let number = k.replace(/^[^\d]*(\d+)[^\d]*$/, "$1");
                         //这个正则表达式获取字符串中的数字

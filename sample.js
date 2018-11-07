@@ -52,7 +52,6 @@ let sample = new Vue({
             for(let i=1; i<max; i++){
                 for(let n=0; n<this.obj.length; n++){
                     if(Number(this.obj[n].id) == i){
-                        this.obj[n].assessment = this.obj[n].assessment?"合格":"不合格"
                         item.push(this.obj[n])
                     }
                 }
@@ -116,13 +115,14 @@ let sample = new Vue({
              */
             for (let i = 0; i < localStorage.length; i++) {
                 let x = localStorage.key(i);
-                if(this.reg_s.test(x)){
-                    this.reg_s.lastIndex = 0
+                let reg_s = "报告结果"
+                if(x.search(reg_s)!==-1){
                     let y = localStorage.getItem(x);
                     y = JSON.parse(y);
-                    let name = this.reg_st.exec(x)
+                    let n = this.reg_st.exec(x)
                     this.reg_st.lastIndex = 0
-                    y.name = name[0]
+                    y.name = n[0]
+                    y.assessment = y.assessment?"合格":"不合格"
                     this.obj.push(y)
                 }
             }
