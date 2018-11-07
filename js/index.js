@@ -3512,39 +3512,39 @@ var app = new Vue({
                                     res.assessment = false
                                 }
                             }else{
-                                res.assessment = (res.c > s.range_max) ?  false: true 
+                                res.assessment = (res.c > s.range_max)?false:true 
                             }
                         }else{
-                            res.assessment = (res.c > s.range_max || res.c < s.range_min) ?  false: true 
+                            res.assessment = (res.c > s.range_max || res.c < s.range_min)?false:true 
                         }
                         break
                     }
                     //     switch (s.name) {
                     //         case "酸碱度":
-                    //             res.assessment = (res.c > s.range_max || res.c < s.range_min) ?  false: true 
+                    //             res.assessment = (res.c > s.range_max || res.c < s.range_min)?false:true 
                     //             break
                     //         default:
-                    //             res.assessment = (res.c > s.range_max) ?  false: true 
+                    //             res.assessment = (res.c > s.range_max)?false:true 
                     //     }
                     //     break
                     // }
                 case 2:
                     {
                         res.c = this.get_c2(s);
-                        res.assessment = (res.c > s.range_max) ?  false: true 
+                        res.assessment = (res.c > s.range_max)?false:true 
                         break;
                     }
                 default:
                     {
                         res.m = this.get_m(s);
                         res.c = this.get_c(s);
-                        res.assessment = (res.c > s.range_max) ?  false: true 
+                        res.assessment = (res.c > s.range_max)?false:true 
                     }
             }
             let str = JSON.stringify(res); //格式化后才能存入 
             let p = (s.name + s.start + "报告结果");
             localStorage.setItem(p, str);
-            res.assessment = true?"合格":"不合格"
+            res.assessment = res.assessment?"合格":"不合格"
             res.a = "";
             res.a1 = "";
             if(!isNaN(res.c)){
@@ -3566,7 +3566,7 @@ var app = new Vue({
                     let x = (s.name + keys[i] + "报告结果");
                     let p = localStorage.getItem(x);
                     p = (JSON.parse(p));
-                    p.assessment = true?"合格":"不合格"
+                    p.assessment = p.assessment?"合格":"不合格"
                     s.st.push(p);
                 }
                 s.start = Number(localStorage.getItem(n));

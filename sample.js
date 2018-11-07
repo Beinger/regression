@@ -52,6 +52,7 @@ let sample = new Vue({
             for(let i=1; i<max; i++){
                 for(let n=0; n<this.obj.length; n++){
                     if(Number(this.obj[n].id) == i){
+                        this.obj[n].assessment = this.obj[n].assessment?"合格":"不合格"
                         item.push(this.obj[n])
                     }
                 }
