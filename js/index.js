@@ -3055,9 +3055,7 @@ var app = new Vue({
     created: function () {
         this.init_login()
         this.get_edit_opt()
-        this.get_opt(1)
-        this.get_opt(2)
-        this.get_opt(3)
+        this.get_opt()
     },
     watch: {
 
@@ -3103,7 +3101,7 @@ var app = new Vue({
 
         add_new_opt(s){
             this.save_opt(s)
-            this.get_opt(s)
+            this.get_opt()
             this.search_opt(s)
             s = this.uniqueUseNotAllEqual(s)
         },
@@ -3124,6 +3122,7 @@ var app = new Vue({
         },
         edit_opt(x){
             let p = x.name + x.category
+            x = JSON.stringify(x)
             localStorage.setItem(p,x)
         },
         get_edit_opt(){
@@ -3134,7 +3133,7 @@ var app = new Vue({
                     let index = localStorage.key(i)
                     if(index == p){
                         let value = localStorage.getItem(index)
-                        value = JSON.stringify(value)
+                        value = JSON.parse(value)
                         let obj = Object.assign(s[m], value)
                         s[m] = obj
                     }
@@ -3143,22 +3142,25 @@ var app = new Vue({
         },
         save_opt(s){
             const newLocal = 'par';
-            let p = s.name + s.category + newLocal
+            s.id = this.names.length + this.new_names.legend
+            let p = s.name + newLocal
             s = JSON.stringify(s)
             localStorage.setItem(p, s)
         },
-        get_opt(c) {
+        get_opt() {
             /**
              * 获取localStorage中的新加项目
              */
+            this.new_names = []
             let ns = this.names
             let n = localStorage.length
-            let reg = new RegExp(c + 'par$')
+            let reg = new RegExp('par$')
             for (let i = 0; i < n; i++) {
                 let k = localStorage.key(i)
                 let v = localStorage.getItem(k)
-                let v_o = JSON.parse(v)
                 if (reg.test(k)) {
+                    reg.lastIndex = 0
+                    let v_o = JSON.parse(v)
                     for (let m = 0; m < ns.length; m++) {
                         if (v_o.name == ns[m].name) {
                             let obj = Object.assign(ns[m],v_o)
@@ -3454,7 +3456,7 @@ var app = new Vue({
             let max = s.range_max;
             let min = s.range_min;
             let range = s.range;
-            if(min !== ""){
+            if(min !== "" && min !== undefined && min !== null){
                 range = min + "-" + max
             }else{
 
@@ -3485,55 +3487,52 @@ var app = new Vue({
 
             let res = s.result
             res.date = this.dateFormat(new Date());
-            res.id = s.start;
-            res.unit = s.unit;
-            res.GB = s.GB;
-            res.method = s.method
-            res.range = this.get_range(s);
+            res.id = s.start
             res.c = s.result.c;
             switch (s.category) {
                 case 3:
                     {
-                        if(s.range_min == ""){
-                            if(s.range_max == ""){
+                        if(s.range_min == "" || s.range_min == null || s.range_min == undefined){
+                            if(s.range_max == "" || s.range_max == null || s.range_max == undefined){
                                 if(isNaN(res.c) || res.c == 0){
-                                    res.assessment = "合格"
+                                    res.assessment = true 
                                 }else{
-                                    res.assessment = "不合格"
+                                    res.assessment = false
                                 }
                             }else{
-                                res.assessment = (res.c > s.range_max) ? "不合格" : "合格"
+                                res.assessment = (res.c > s.range_max) ?  false: true 
                             }
                         }else{
-                            res.assessment = (res.c > s.range_max || res.c < s.range_min) ? "不合格" : "合格"
+                            res.assessment = (res.c > s.range_max || res.c < s.range_min) ?  false: true 
                         }
                         break
                     }
                     //     switch (s.name) {
                     //         case "酸碱度":
-                    //             res.assessment = (res.c > s.range_max || res.c < s.range_min) ? "不合格" : "合格"
+                    //             res.assessment = (res.c > s.range_max || res.c < s.range_min) ?  false: true 
                     //             break
                     //         default:
-                    //             res.assessment = (res.c > s.range_max) ? "不合格" : "合格"
+                    //             res.assessment = (res.c > s.range_max) ?  false: true 
                     //     }
                     //     break
                     // }
                 case 2:
                     {
                         res.c = this.get_c2(s);
+                        res.assessment = (res.c > s.range_max) ?  false: true 
                         break;
                     }
                 default:
                     {
-                        res.limit = s.limit
                         res.m = this.get_m(s);
                         res.c = this.get_c(s);
-                        res.assessment = (res.c > s.range_max) ? "不合格" : "合格"
+                        res.assessment = (res.c > s.range_max) ?  false: true 
                     }
             }
             let str = JSON.stringify(res); //格式化后才能存入 
             let p = (s.name + s.start + "报告结果");
             localStorage.setItem(p, str);
+            res.assessment = true?"合格":"不合格"
             res.a = "";
             res.a1 = "";
             if(!isNaN(res.c)){
@@ -3542,6 +3541,35 @@ var app = new Vue({
             let n = s.name + "end";
             s.start = Number(s.start) + 1
             localStorage.setItem(n, s.start);
+        },
+        mystorages(s) {
+            /**
+             * 从localStorage中获取保存的结果，存入st数组
+             */
+            s.st = [];
+            let n = s.name + "end";
+            if (localStorage.getItem(n) !== null) {
+                let keys = this.get_key(s);
+                for (let i = 0; i < keys.length; i++) {
+                    let x = (s.name + keys[i] + "报告结果");
+                    let p = localStorage.getItem(x);
+                    p = (JSON.parse(p));
+                    p.limit = s.limit
+                    p.range_max = s.range_max;
+                    p.range_min = s.range_min;
+                    p.unit = s.unit;
+                    p.GB = s.GB;
+                    p.method = s.method
+                    p.range = this.get_range(s)
+                    p.assessment = true?"合格":"不合格"
+                    s.st.push(p);
+                }
+                s.start = Number(localStorage.getItem(n));
+            }
+            //对结果依据编号从小到大进行排序
+            s.st.sort(function (i, j) {
+                return Number(i.id) > Number(j.id) ? 1 : -1
+            });
         },
         get_qc(s) {
             /**
@@ -3600,46 +3628,6 @@ var app = new Vue({
             this.QC = false
             s.QC_store = []
             this.get_qc(s)
-        },
-        mystorages(s) {
-            /**
-             * 从localStorage中获取保存的结果，存入st数组
-             */
-            s.st = [];
-            let n = s.name + "end";
-            if (localStorage.getItem(n) !== null) {
-                let keys = this.get_key(s);
-                for (let i = 0; i < keys.length; i++) {
-                    let x = (s.name + keys[i] + "报告结果");
-                    let p = localStorage.getItem(x);
-                    p = (JSON.parse(p));
-                    p.limit = s.limit
-                    p.range_max = s.range_max;
-                    p.range_min = s.range_min;
-                    p.range = this.get_range(s)
-                    // switch (s) {
-                    //     case this.selected3:
-                    //         switch (s.name) {
-                    //             case "色度":
-                    //             case "浑浊度":
-                    //                 p.range = "<" + s.range_max;
-                    //                 break;
-                    //             default:
-                    //                 p.range = s.range
-                    //         }
-                    //         break;
-                    //     default:
-                    //         p.range = "<" + s.range_max;
-                    // }
-                    p.unit = s.unit
-                    s.st.push(p);
-                }
-                s.start = Number(localStorage.getItem(n));
-            }
-            //对结果依据编号从小到大进行排序
-            s.st.sort(function (i, j) {
-                return Number(i.id) > Number(j.id) ? 1 : -1
-            });
         },
         set_record(s) {
             //最后一次输入记录后的标记,将成为下次打开是的开始编号

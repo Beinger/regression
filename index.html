@@ -262,23 +262,31 @@
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     </div>
-                                    <div class="modal-body form-group">
-                                        <label class="form-label">项目名称：
-                                            <input type="text" class="form-control" v-model="new_opt3.name" pattern="[\u4e00-\u9fa5]+"></label>
-                                        <label class="form-label">单位：
-                                            <input type="text" class="form-control" v-model="new_opt3.unit"></label>
-                                        <label class="form-label">检验依据：
-                                            <input type="text" class="form-control" v-model="new_opt3.GB"></label>
-                                        <label class="form-label">检验方法：
-                                            <input type="text" class="form-control" v-model="new_opt3.method"></label>
-                                        <label class="form-label">检测仪器：
-                                            <input type="text" class="form-control" v-model="new_opt3.instrument_model"></label>
-                                        <label class="form-label">最小检出限：
-                                            <input type="text" class="form-control" v-model="new_opt3.limit"></label>
-                                        <label class="form-label">最高限值：
-                                            <input type="text" class="form-control" v-model="new_opt3.range_max"></label>
-                                        <label class="form-label">最低限值：
-                                            <input type="text" placeholder="如果没有最低限值，请忽略" class="form-control" v-model="new_opt3.range_min"></label>
+                                    <div class="modal-body">
+                                        <div class="input-group">
+                                            <label class="input-group-addon">项目名称：</label>
+                                            <input type="text" class="form-control" v-model="new_opt3.name" pattern="[\u4e00-\u9fa5]+">
+                                            <label class="input-group-addon">单&#12288;&#12288;位：&#12288;</label>
+                                            <input type="text" class="form-control" v-model="new_opt3.unit">
+                                        </div>
+                                        <div class="input-group">
+                                            <label class="input-group-addon">检验依据：</label>
+                                            <input type="text" class="form-control" v-model="new_opt3.GB">
+                                            <label class="input-group-addon">检验方法：&#12288;</label>
+                                            <input type="text" class="form-control" v-model="new_opt3.method">
+                                        </div>
+                                        <div class="input-group">
+                                            <label class="input-group-addon">检测仪器：</label>
+                                            <input type="text" class="form-control" v-model="new_opt3.instrument_model">
+                                            <label class="input-group-addon">最小检出限：</label>
+                                            <input type="text" class="form-control" v-model="new_opt3.limit">
+                                        </div>
+                                        <div class="input-group">
+                                            <label class="input-group-addon">最高限值：</label>
+                                            <input type="text" class="form-control" v-model="new_opt3.range_max">
+                                            <label class="input-group-addon">最低限值：&#12288;</label>
+                                            <input type="text" placeholder="如果没有最低限值，请忽略" class="form-control" v-model="new_opt3.range_min">
+                                        </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button class="btn btn-info" data-dismiss="modal">关闭</button>
@@ -299,39 +307,46 @@
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     </div>
-                                    <div class="modal-body form-group">
-                                        <label class="form-label">项目名称：</label>
-                                        <div class="row">
-                                            <div class="col-md-10">
-                                                <select tabindex="-1" class="form-control" v-model="slt">
-                                                    <option style="font-size: 80%" disabled>---请选择---</option>
-                                                    <option :value="item" v-for="(item,index) in names" v-text="item.name"></option>
-                                                    <option :value="item" v-for="(item,index) in new_names" v-text="item.name"></option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <button class="btn btn-danger" @click="del_opt(slt)" data-dismiss="modal">删除项目</button>
-                                            </div>
+                                    <div class="modal-body">
+                                        <div class="input-group">
+                                            <label class="input-group-addon">项目名称：</label>
+                                            <select tabindex="-1" class="form-control" v-model="slt">
+                                                <option style="font-size: 80%" disabled>---请选择---</option>
+                                                <option :value="item" v-for="(item,index) in names" v-text="item.name"></option>
+                                                <option :value="item" v-for="(item,index) in new_names" v-text="item.name"></option>
+                                            </select>
+                                            <label class="input-group-addon"></label>
+                                            <button class="btn btn-danger form-control" @click="del_opt(slt)"
+                                                data-dismiss="modal">删除项目</button>
                                         </div>
-                                        <label class="form-label">单位：
-                                            <input type="text" class="form-control" v-model="slt.unit"></label>
-                                        <label class="form-label">检验依据：
-                                            <input type="text" class="form-control" v-model="slt.GB"></label>
-                                        <label class="form-label">检验方法：
-                                            <input type="text" class="form-control" v-model="slt.method"></label>
-                                        <label class="form-label">检测仪器：
-                                            <input type="text" class="form-control" v-model="slt.instrument_model"></label>
-                                        <label class="form-label">最小检出限：
-                                            <input type="text" class="form-control" v-model="slt.limit"></label>
-                                        <label class="form-label">最高限值：
-                                            <input type="text" class="form-control" v-model="slt.range_max"></label>
-                                        <label class="form-label">最低限值：
+                                        <div class="input-group">
+                                            <label class="input-group-addon">单&#12288;&#12288;位：</label>
+                                            <input type="text" class="form-control" v-model="slt.unit">
+                                            <label class="input-group-addon">最小检出限：</label>
+                                            <input type="text" class="form-control" v-model="slt.limit">
+                                        </div>
+                                        <div class="input-group">
+                                            <label class="input-group-addon">检验依据：</label>
+                                            <input type="text" class="form-control" v-model="slt.GB">
+                                            <label class="input-group-addon">检验&#12288;方法：</label>
+                                            <input type="text" class="form-control" v-model="slt.method">
+                                        </div>
+                                        <div class="input-group">
+                                            <label class="input-group-addon">最高限值：</label>
+                                            <input type="text" class="form-control" v-model="slt.range_max">
+                                            <label class="input-group-addon">最低&#12288;限值：</label>
                                             <input placeholder="如果没有最低限值，请忽略" type="text" class="form-control" v-model="slt.range_min">
-                                        </label>
-                                        <label v-if="slt.category==2" class="form-label">计算公式：c=
-                                            <input v-model="slt.result.coefficient">&times;(<span v-if="slt.name=='溶解性总固体'">m<sub>总质量</sub>-m<sub>蒸发皿</sub></span><span
-                                                v-else>V<sub>样品</sub>-V<sub>空白</sub></span>)/V
-                                        </label>
+                                        </div>
+                                        <div class="input-group">
+                                            <label class="input-group-addon">检测仪器：</label>
+                                            <input type="text" class="form-control" v-model="slt.instrument_model">
+                                        </div>
+                                        <div class="input-group">
+                                            <label v-if="slt.category==2" class="input-group-addon">计算公式：c=
+                                                <input v-model="slt.coefficient">&times;(<span v-if="slt.name=='溶解性总固体'">m<sub>总质量</sub>-m<sub>蒸发皿</sub></span><span
+                                                    v-else>V<sub>样品</sub>-V<sub>空白</sub></span>)/V
+                                            </label>
+                                        </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button class="btn btn-info" 　data-dismiss="modal">关闭</button>
@@ -354,31 +369,43 @@
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     </div>
-                                    <div class="modal-body form-group">
-                                        <label class="form-label">项目名称：
-                                            <input type="text" class="form-control" v-model="new_opt2.name"></label>
-                                        <label class="form-label">单位：
-                                            <input type="text" class="form-control" v-model="new_opt2.unit"></label>
-                                        <label class="form-label">检验依据：
-                                            <input type="text" class="form-control" v-model="new_opt2.GB"></label>
-                                        <label class="form-label">检验方法：
-                                            <input type="text" class="form-control" v-model="new_opt2.method"></label>
-                                        <label class="form-label">检测仪器：
-                                            <input type="text" class="form-control" v-model="new_opt2.instrument_model"></label>
-                                        <label class="form-label">最小检出限：
-                                            <input type="text" class="form-control" v-model="new_opt2.limit"></label>
-                                        <label class="form-label">最高限值：
-                                            <input type="text" class="form-control" v-model="new_opt2.range_max"></label>
-                                        <label class="form-label">最低限值：
-                                            <input type="text" placeholder="如果没有最低限值，请忽略" class="form-control" v-model="new_opt2.range_min"></label>
-                                        <label class="form-label">计算公式：c=
-                                            <input type="text" class="" v-model="new_opt2.coefficient">&times;(V<sub>样品</sub>-V<sub>空白</sub>)/V</label>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button class="btn btn-info" data-dismiss="modal">关闭</button>
-                                        <button type="button" class="btn btn-primary" @click="add_new_opt(new_opt2)"
-                                            data-dismiss="modal">确认增加</button>
-                                    </div>
+                                    <form action="">
+                                        <div class="modal-body">
+                                            <div class="input-group">
+                                                <label class="input-group-addon">项目名称：</label>
+                                                <input type="text" class="form-control" v-model="new_opt2.name" pattern="[\u4e00-\u9fa5]+">
+                                                <label class="input-group-addon">单&#12288;&#12288;位：</label>
+                                                <input type="text" class="form-control" v-model="new_opt2.unit">
+                                            </div>
+                                            <div class="input-group">
+                                                <label class="input-group-addon">检验依据：</label>
+                                                <input type="text" class="form-control" v-model="new_opt2.GB">
+                                                <label class="input-group-addon">检验方法：</label>
+                                                <input type="text" class="form-control" v-model="new_opt2.method">
+                                            </div>
+                                            <div class="input-group">
+                                                <label class="input-group-addon">检测仪器：</label>
+                                                <input type="text" class="form-control" v-model="new_opt2.instrument_model">
+                                            </div>
+                                            <div class="input-group">
+                                                <label class="input-group-addon">最高限值：</label>
+                                                <input type="text" class="form-control" v-model="new_opt2.range_max">
+                                                <label class="input-group-addon">最低限值：</label>
+                                                <input type="text" placeholder="如果没有最低限值，请忽略" class="input-group-addon form-control"
+                                                    v-model="new_opt2.range_min">
+                                            </div>
+                                            <div class="input-group"><label class="input-group-addon">计算公式：c=
+                                                    <input type="number" v-model="new_opt2.coefficient">&times;(V<sub>样品</sub>-V<sub>空白</sub>)/V</label>
+                                                <label class="input-group-addon">最小检出限：</label>
+                                                <input type="text" class="form-control" v-model="new_opt2.limit">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-info" data-dismiss="modal">关闭</button>
+                                            <button type="button" class="btn btn-primary" @click="add_new_opt(new_opt2)"
+                                                data-dismiss="modal">确认增加</button>
+                                        </div>
+                                    </form>
                                 </li>
                             </ol>
                         </div>
@@ -395,23 +422,31 @@
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     </div>
-                                    <div class="modal-body form-group">
-                                        <label class="form-label">项目名称：
-                                            <input type="text" class="form-control" v-model="new_opt1.name"></label>
-                                        <label class="form-label">单位：
-                                            <input type="text" class="form-control" v-model="new_opt1.unit"></label>
-                                        <label class="form-label">检验依据：
-                                            <input type="text" class="form-control" v-model="new_opt1.GB"></label>
-                                        <label class="form-label">检验方法：
-                                            <input type="text" class="form-control" v-model="new_opt1.method"></label>
-                                        <label class="form-label">检测仪器：
-                                            <input type="text" class="form-control" v-model="new_opt1.instrument_model"></label>
-                                        <label class="form-label">最小检出限：
-                                            <input type="text" class="form-control" v-model="new_opt1.limit"></label>
-                                        <label class="form-label">最高限值：
-                                            <input type="text" class="form-control" v-model="new_opt1.range_max"></label>
-                                        <label class="form-label">最低限值：
-                                            <input type="text" placeholder="如果没有最低限值，请忽略" class="form-control" v-model="new_opt1.range_min"></label>
+                                    <div class="modal-body">
+                                        <div class="input-group">
+                                            <label class="input-group-addon">项目名称：</label>
+                                            <input type="text" class="form-control" v-model="new_opt1.name">
+                                            <label class="input-group-addon">单&#12288;&#12288;位：&#12288;</label>
+                                            <input type="text" class="form-control" v-model="new_opt1.unit">
+                                        </div>
+                                        <div class="input-group">
+                                            <label class="input-group-addon">检验依据：</label>
+                                            <input type="text" class="form-control" v-model="new_opt1.GB">
+                                            <label class="input-group-addon">检验方法：&#12288;</label>
+                                            <input type="text" class="form-control" v-model="new_opt1.method">
+                                        </div>
+                                        <div class="input-group">
+                                            <label class="input-group-addon">检测仪器：</label>
+                                            <input type="text" class="form-control" v-model="new_opt1.instrument_model">
+                                            <label class="input-group-addon">最小检出限：</label>
+                                            <input type="text" class="form-control" v-model="new_opt1.limit">
+                                        </div>
+                                        <div class="input-group">
+                                            <label class="input-group-addon">最高限值：</label>
+                                            <input type="text" class="form-control" v-model="new_opt1.range_max">
+                                            <label class="input-group-addon">最低限值：&#12288;</label>
+                                            <input type="text" placeholder="如果没有最低限值，请忽略" class="form-control" v-model="new_opt1.range_min">
+                                        </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button class="btn btn-info" data-dismiss="modal">关闭</button>
@@ -431,14 +466,15 @@
                     <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
                         <span class="input-group-addon radio" v-if="item.category==1">
                             <input class="radio" type="radio" v-model="selected1" :value="item">
-                            <label v-text="item.name"></label> </span>
+                            <label v-text="item.name"></label>
+                        </span>
                         <span class="input-group-addon radio" v-if="item.category==2">
                             <input class="radio" type="radio" v-model="selected2" :value="item">
-                            <label v-text="item.name"></label> </span>
+                            <label v-text="item.name"></label>
                         </span>
                         <span class="input-group-addon radio" v-if="item.category==3">
                             <input class="radio" type="radio" v-model="selected3" :value="item">
-                            <label v-text="item.name"></label> </span>
+                            <label v-text="item.name"></label>
                         </span>
                     </div>
                 </div>
