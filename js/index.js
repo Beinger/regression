@@ -3145,6 +3145,11 @@ var app = new Vue({
             s.id = this.names.length + this.new_names.length
             let p = s.name + newLocal
             s = JSON.stringify(s)
+                    s.unit = this.slt.unit
+                    s.range_max = this.slt.range_max
+                    s.range_mim = this.slt.range_min
+                    s.range = this.slt.range
+                    s.method = this.slt.method
             localStorage.setItem(p, s)
         },
         get_opt() {
@@ -3489,6 +3494,13 @@ var app = new Vue({
             res.date = this.dateFormat(new Date());
             res.id = s.start
             res.c = s.result.c;
+                    res.limit = s.limit
+                    res.range_max = s.range_max;
+                    res.range_min = s.range_min;
+                    res.range = this.get_range(s)
+                    res.unit = s.unit;
+                    res.GB = s.GB;
+                    res.method = s.method
             switch (s.category) {
                 case 3:
                     {
@@ -3554,13 +3566,6 @@ var app = new Vue({
                     let x = (s.name + keys[i] + "报告结果");
                     let p = localStorage.getItem(x);
                     p = (JSON.parse(p));
-                    p.limit = s.limit
-                    p.range_max = s.range_max;
-                    p.range_min = s.range_min;
-                    p.unit = s.unit;
-                    p.GB = s.GB;
-                    p.method = s.method
-                    p.range = this.get_range(s)
                     p.assessment = true?"合格":"不合格"
                     s.st.push(p);
                 }
