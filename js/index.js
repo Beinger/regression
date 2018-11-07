@@ -3142,7 +3142,7 @@ var app = new Vue({
         },
         save_opt(s){
             const newLocal = 'par';
-            s.id = this.names.length + this.new_names.legend
+            s.id = this.names.length + this.new_names.length
             let p = s.name + newLocal
             s = JSON.stringify(s)
             localStorage.setItem(p, s)
