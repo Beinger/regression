@@ -201,8 +201,7 @@ var app = new Vue({
             },
         },
         new_names: [],
-        names: [
-            {
+        names: [{
                 id: 1,
                 st: [],
                 QC_c: 10,
@@ -3109,7 +3108,7 @@ var app = new Vue({
     },
     methods: {
 
-        add_new_opt(s){
+        add_new_opt(s) {
             this.save_opt(s)
             this.get_opt()
             this.search_opt(s)
@@ -3118,9 +3117,9 @@ var app = new Vue({
         del_opt(s) {
             //删除项目
             let nns = this.new_names
-            for(let i=0; i<nns.length; i++){
-                if(nns[i].name == s.name){
-                    nns.splice(i,1)
+            for (let i = 0; i < nns.length; i++) {
+                if (nns[i].name == s.name) {
+                    nns.splice(i, 1)
                 }
             }
             for (let i = 0; i < localStorage.length; i++) {
@@ -3130,18 +3129,18 @@ var app = new Vue({
                 }
             }
         },
-        edit_opt(x){
+        edit_opt(x) {
             let p = x.name + x.category
             x = JSON.stringify(x)
-            localStorage.setItem(p,x)
+            localStorage.setItem(p, x)
         },
-        get_edit_opt(){
+        get_edit_opt() {
             let s = this.names
-            for(let i=0; i<localStorage.length; i++){
-                for(let m=0; m<s.length; m++){
+            for (let i = 0; i < localStorage.length; i++) {
+                for (let m = 0; m < s.length; m++) {
                     let p = s[m].name + s[m].category
                     let index = localStorage.key(i)
-                    if(index == p){
+                    if (index == p) {
                         let value = localStorage.getItem(index)
                         value = JSON.parse(value)
                         let obj = Object.assign(s[m], value)
@@ -3150,16 +3149,16 @@ var app = new Vue({
                 }
             }
         },
-        save_opt(s){
+        save_opt(s) {
             const newLocal = 'par';
             s.id = this.names.length + this.new_names.length
             let p = s.name + newLocal
             s = JSON.stringify(s)
-                    s.unit = this.slt.unit
-                    s.range_max = this.slt.range_max
-                    s.range_mim = this.slt.range_min
-                    s.range = this.slt.range
-                    s.method = this.slt.method
+            s.unit = this.slt.unit
+            s.range_max = this.slt.range_max
+            s.range_mim = this.slt.range_min
+            s.range = this.slt.range
+            s.method = this.slt.method
             localStorage.setItem(p, s)
         },
         get_opt() {
@@ -3178,7 +3177,7 @@ var app = new Vue({
                     let v_o = JSON.parse(v)
                     for (let m = 0; m < ns.length; m++) {
                         if (v_o.name == ns[m].name) {
-                            let obj = Object.assign(ns[m],v_o)
+                            let obj = Object.assign(ns[m], v_o)
                             ns[m] = obj
                         }
                     }
@@ -3191,8 +3190,8 @@ var app = new Vue({
              * 找出重复的项目进行替换
              */
             let arr = []
-            for(let i=0; i<x.length; i++){
-                if(x.indexOf(x[i]) == -1){
+            for (let i = 0; i < x.length; i++) {
+                if (x.indexOf(x[i]) == -1) {
                     arr.push(x[i])
                 }
             }
@@ -3203,7 +3202,7 @@ var app = new Vue({
                 for (let a = 0; a < ns.length; a++) {
                     if (x[m].name == ns[a].name) {
                         ns[a] = x[m]
-                        x.splice(m,1)
+                        x.splice(m, 1)
                     }
                 }
             }
@@ -3411,7 +3410,7 @@ var app = new Vue({
              * 根据出当前项目的吸光度计算出样品所含物质质量
              */
             let st = s.result;
-            st.m = (((st.a - s.a) / s.b)* s.QC_c).toFixed(3);
+            st.m = (((st.a - s.a) / s.b) * s.QC_c).toFixed(3);
             return st.m;
         },
 
@@ -3470,21 +3469,21 @@ var app = new Vue({
             let max = s.range_max;
             let min = s.range_min;
             let range = s.range;
-            if(min !== "" && min !== undefined && min !== null){
+            if (min !== "" && min !== undefined && min !== null) {
                 range = min + "-" + max
-            }else{
-                if(max == "" || max == undefined || max == null){
+            } else {
+                if (max == "" || max == undefined || max == null) {
                     range = "---"
                 }
-            switch (s.name) {
-                case "总大肠菌群":
-                case "大肠埃希氏菌":
-                case "耐热大肠菌群":
-                    range = "不得检出";
-                    break;
-                default:
-                    range = "<" + max;
-            }
+                switch (s.name) {
+                    case "总大肠菌群":
+                    case "大肠埃希氏菌":
+                    case "耐热大肠菌群":
+                        range = "不得检出";
+                        break;
+                    default:
+                        range = "<" + max;
+                }
             }
             return range;
         },
@@ -3496,35 +3495,35 @@ var app = new Vue({
             let res = s.result
             res.date = this.dateFormat(new Date());
             res.id = s.start
-                    res.range = this.get_range(s)
-                    res.unit = s.unit
-                    res.GB = s.GB
-                    res.method = s.method
+            res.range = this.get_range(s)
+            res.unit = s.unit
+            res.GB = s.GB
+            res.method = s.method
             switch (s.category) {
                 case 3:
-                        if(s.range_min == "" || s.range_min == null || s.range_min == undefined){
-                            if(s.range_max == "" || s.range_max == null || s.range_max == undefined){
-                                if(isNaN(res.c) || res.c == 0){
-                                    res.assessment = true 
-                                }else{
-                                    res.assessment = false
-                                }
-                            }else{
-                                res.assessment = (res.c > s.range_max)?false:true 
+                    if (s.range_min == "" || s.range_min == null || s.range_min == undefined) {
+                        if (s.range_max == "" || s.range_max == null || s.range_max == undefined) {
+                            if (isNaN(res.c) || res.c == 0) {
+                                res.assessment = true
+                            } else {
+                                res.assessment = false
                             }
-                        }else{
-                            res.assessment = (res.c > s.range_max || res.c < s.range_min)?false:true 
+                        } else {
+                            res.assessment = (res.c > s.range_max) ? false : true
                         }
+                    } else {
+                        res.assessment = (res.c > s.range_max || res.c < s.range_min) ? false : true
+                    }
                     break
                 case 2:
-                        this.get_c2(s);
-                        res.assessment = (res.c > s.range_max)?false:true 
-                        break;
+                    this.get_c2(s);
+                    res.assessment = (res.c > s.range_max) ? false : true
+                    break;
                 case 1:
-                        this.get_m(s);
-                        this.get_c(s);
-                        res.assessment = (res.c > s.range_max)?false:true 
-                        break
+                    this.get_m(s);
+                    this.get_c(s);
+                    res.assessment = (res.c > s.range_max) ? false : true
+                    break
             }
             let str = JSON.stringify(res); //格式化后才能存入 
             let p = (s.name + s.start + "报告结果");
@@ -3532,7 +3531,7 @@ var app = new Vue({
             res.assessment = ""
             res.a = "";
             res.a1 = "";
-            if(!isNaN(res.c)){
+            if (!isNaN(res.c)) {
                 res.c = ""
             }
             let n = s.name + "end";
@@ -3552,7 +3551,7 @@ var app = new Vue({
                     let x = s.name + keys[i] + "报告结果";
                     let p = localStorage.getItem(x);
                     p = JSON.parse(p);
-                    p.assessment = p.assessment?"合格":"不合格"
+                    p.assessment = p.assessment ? "合格" : "不合格"
                     s.st.push(p);
                 }
             }
