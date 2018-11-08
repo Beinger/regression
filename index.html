@@ -136,7 +136,7 @@
                                 <div class="modal-footer">
                                     <button style="float:left" type="button" class="btn btn-danger" data-toggle="modal"
                                         data-target="#delcfmModel">清除所有数据</button>
-                                    <button type="button" class="btn btn-primary" @click="login_s" data-dismiss="modal">保存</button>
+                                    <button type="button" class="btn btn-primary save_yes" @click="login_s" data-dismiss="modal">保存</button>
                                 </div>
                             </div>
                             <!-- /.modal-content -->
@@ -253,10 +253,12 @@
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     </div>
+                                    <form name='contractForm'>
                                     <div class="modal-body">
                                         <div class="input-group">
                                             <label class="input-group-addon">项目名称：</label>
-                                            <input type="text" class="form-control" v-model="new_opt3.name" title="必须全部为汉字" pattern="[\u4e00-\u9fa5]+">
+                                            <input type="text" class="form-control" v-model="new_opt3.name" title="必须全部为汉字"
+                                                pattern="[\u4e00-\u9fa5]+">
                                             <label class="input-group-addon">单&#12288;&#12288;位：&#12288;</label>
                                             <input type="text" class="form-control" v-model="new_opt3.unit">
                                         </div>
@@ -276,13 +278,15 @@
                                             <label class="input-group-addon">最高限值：</label>
                                             <input type="text" class="form-control" placeholder="参考范围的高限" v-model="new_opt3.range_max">
                                             <label class="input-group-addon">最低限值：&#12288;</label>
-                                            <input type="text" placeholder="如果没有，请忽略" class="form-control" tabindex="-1" v-model="new_opt3.range_min">
+                                            <input type="text" placeholder="如果没有，请忽略" class="form-control" tabindex="-1"
+                                                v-model="new_opt3.range_min">
                                         </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button class="btn btn-info" tabindex="-1" data-dismiss="modal">关闭</button>
-                                        <button type="submit" class="btn btn-primary" @click="add_new_opt(new_opt3)">确认增加</button>
+                                        <button type="submit" class="btn btn-primary save_yes" @click="add_new_opt(new_opt3)">确认增加</button>
                                     </div>
+                                </form>
                                 </li>
                             </ol>
                         </div>
@@ -294,6 +298,7 @@
                             <h3 class="text-info text-center">修改项目参数</h3>
                             <ol class="nav">
                                 <li class="animated zoomIn">
+                                    <form name='contractForm'>
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     </div>
@@ -325,7 +330,8 @@
                                             <label class="input-group-addon">最高限值：</label>
                                             <input type="text" class="form-control" placeholder="参考范围的高限" v-model="slt.range_max">
                                             <label class="input-group-addon">最低限值：&#12288;</label>
-                                            <input placeholder="如果没有，请忽略" type="text" class="form-control" tabindex="-1" v-model="slt.range_min">
+                                            <input placeholder="如果没有，请忽略" type="text" class="form-control" tabindex="-1"
+                                                v-model="slt.range_min">
                                         </div>
                                         <div class="input-group">
                                             <label class="input-group-addon">检测仪器：</label>
@@ -333,14 +339,16 @@
                                         </div>
                                         <div class="input-group">
                                             <label v-if="slt.category==2" class="input-group-addon">计算公式：c=
-                                                <input placeholder="常量" v-model="slt.coefficient">&times;(<span v-if="slt.name=='溶解性总固体'">m<sub>总质量</sub>-m<sub>蒸发皿</sub></span><span v-else>V<sub>样品</sub>-V<sub>空白</sub></span>)/V
+                                                <input placeholder="常量" v-model="slt.coefficient">&times;(<span v-if="slt.name=='溶解性总固体'">m<sub>总质量</sub>-m<sub>蒸发皿</sub></span><span
+                                                    v-else>V<sub>样品</sub>-V<sub>空白</sub></span>)/V
                                             </label>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button class="btn btn-info" tabindex="-1" data-dismiss="modal">关闭</button>
-                                        <button type="submit" class="btn btn-primary" @click="edit_opt(slt)">提交更改</button>
+                                        <button type="submit" class="btn btn-primary save_yes" @click="edit_opt(slt)">提交更改</button>
                                     </div>
+                                </form>
                                 </li>
                             </ol>
                         </div>
@@ -354,14 +362,15 @@
                             <h3 class="text-info text-center">新增滴定法测定项目</h3>
                             <ol class="nav">
                                 <li class="animated zoomIn">
+                                    <form name="contractForm">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     </div>
-                                    <form action="">
                                         <div class="modal-body">
                                             <div class="input-group">
                                                 <label class="input-group-addon">项目名称：</label>
-                                                <input type="text" class="form-control" v-model="new_opt2.name" title="必须全部为汉字" pattern="[\u4e00-\u9fa5]+">
+                                                <input type="text" class="form-control" v-model="new_opt2.name" title="必须全部为汉字"
+                                                    pattern="[\u4e00-\u9fa5]+">
                                                 <label class="input-group-addon">单&#12288;&#12288;位：&#12288;</label>
                                                 <input type="text" class="form-control" v-model="new_opt2.unit">
                                             </div>
@@ -390,7 +399,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button class="btn btn-info" tabindex="-1" data-dismiss="modal">关闭</button>
-                                            <button type="submit" class="btn btn-primary" @click="add_new_opt(new_opt2)">确认增加</button>
+                                            <button type="submit" class="btn btn-primary save_yes" @click="add_new_opt(new_opt2)">确认增加</button>
                                         </div>
                                     </form>
                                 </li>
@@ -406,13 +415,15 @@
                             <h3 class="text-info text-center">新增比色法测定项目</h3>
                             <ol class="nav">
                                 <li class="animated zoomIn">
+                                    <form action="" name="contractForm">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     </div>
                                     <div class="modal-body">
                                         <div class="input-group">
                                             <label class="input-group-addon">项目名称：</label>
-                                            <input type="text" class="form-control" v-model="new_opt1.name" title="必须全部为汉字" pattern="[\u4e00-\u9fa5]+">
+                                            <input type="text" class="form-control" v-model="new_opt1.name" title="必须全部为汉字"
+                                                pattern="[\u4e00-\u9fa5]+">
                                             <label class="input-group-addon">单&#12288;&#12288;位：&#12288;</label>
                                             <input type="text" class="form-control" v-model="new_opt1.unit">
                                         </div>
@@ -432,13 +443,15 @@
                                             <label class="input-group-addon">最高限值：</label>
                                             <input type="text" class="form-control" placeholder="参考范围的高限" v-model="new_opt1.range_max">
                                             <label class="input-group-addon">最低限值：&#12288;</label>
-                                            <input type="text" placeholder="如果没有，请忽略" class="form-control" tabindex="-1" v-model="new_opt1.range_min">
+                                            <input type="text" placeholder="如果没有，请忽略" class="form-control" tabindex="-1"
+                                                v-model="new_opt1.range_min">
                                         </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button class="btn btn-info" tabindex="-1" data-dismiss="modal">关闭</button>
-                                        <button type="submit" class="btn btn-primary" @click="add_new_opt(new_opt1)">确认增加</button>
+                                        <button type="submit" class="btn btn-primary save_yes" @click="add_new_opt(new_opt1)">确认增加</button>
                                     </div>
+                                    </form>
                                 </li>
                             </ol>
                         </div>
@@ -1527,6 +1540,24 @@
             $(".ie-tips").show();
             $(".root").hide();
         }
+        $(function () {
+            $("form[name='contractForm'] input:text").keypress(function (e) {
+                if (e.which == 13) { // 判断所按是否回车键  
+                    var inputs = $("form[name='contractForm']").find(":text"); // 获取表单中的所有输入框  
+                    var idx = inputs.index(this); // 获取当前焦点输入框所处的位置  
+                    if (idx == inputs.length - 1) { // 判断是否是最后一个输入框  
+                        if (confirm("最后一个输入框已经输入,是否提交?")) // 用户确认  
+                            $(".save_yes").click();
+                            $("form[name='contractForm']").submit(); // 提交表单  
+                    } else {
+                        inputs[idx + 1].focus(); // 设置焦点  
+                        inputs[idx + 1].select(); // 选中文字  
+                    }
+                    return false; // 取消默认的提交行为  
+                }
+            })
+        })
     </script>
 </body>
+
 </html>
