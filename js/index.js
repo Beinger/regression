@@ -3743,6 +3743,7 @@ var app = new Vue({
         },
         deleteAllData() {
             localStorage.clear()
+            window.location.reload()
         }
     },
     computed: {
