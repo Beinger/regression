@@ -2395,23 +2395,23 @@ var app = new Vue({
                         0.038
                     ],
                     [
-                        2,
+                        0.2,
                         0.080
                     ],
                     [
-                        4,
+                        0.4,
                         0.121
                     ],
                     [
-                        6,
+                        0.6,
                         0.160
                     ],
                     [
-                        8,
+                        0.8,
                         0.201
                     ],
                     [
-                        10,
+                        1.0,
                         0.238
                     ]
                 ],
@@ -2478,23 +2478,23 @@ var app = new Vue({
                         0.002
                     ],
                     [
-                        10,
+                        1.0,
                         0.008
                     ],
                     [
-                        30,
+                        3.0,
                         0.024
                     ],
                     [
-                        50,
+                        5.0,
                         0.038
                     ],
                     [
-                        70,
+                        7.0,
                         0.053
                     ],
                     [
-                        90,
+                        9.0,
                         0.068
                     ]
                 ],
@@ -3237,7 +3237,6 @@ var app = new Vue({
             window.location.reload();
             document.body.innerHTML = oldContent;
             return false;
-
         },
 
         date_y() {
@@ -3371,15 +3370,12 @@ var app = new Vue({
             focus_move()
         },
         work(s) {
+            /**
+             * 最核心的功能，计算结果存入localStorage,显示在记录表格中
+             */
             this.save_result(s)
             this.mystorages(s)
         },
-        // del_sample(s, index) {
-        //     /**
-        //      * 删除样品行
-        //      */
-        //     s.results.splice(index, 1);
-        // },
         sum(arr1, arr2) {
             /**
              * 功能函数
@@ -3468,27 +3464,19 @@ var app = new Vue({
             return s.result.c
         },
         get_range(s) {
+            /**
+             * 根据各自的规则输出各自的参考范围
+             */
             let max = s.range_max;
             let min = s.range_min;
             let range = s.range;
             if(min !== "" && min !== undefined && min !== null){
                 range = min + "-" + max
-            }else if(min == "" || min == undefined || min == null){
+            }else{
                 if(max == "" || max == undefined || max == null){
                     range = "---"
                 }
-            }
-            else{
-
             switch (s.name) {
-                
-                // case "酸碱度":
-                //     range = min + "-" + max;
-                //     break;
-                // case "臭和味":
-                // case "肉眼可见物":
-                //     range = "---";
-                //     break;
                 case "总大肠菌群":
                 case "大肠埃希氏菌":
                 case "耐热大肠菌群":
@@ -3528,15 +3516,6 @@ var app = new Vue({
                             res.assessment = (res.c > s.range_max || res.c < s.range_min)?false:true 
                         }
                     break
-                    //     switch (s.name) {
-                    //         case "酸碱度":
-                    //             res.assessment = (res.c > s.range_max || res.c < s.range_min)?false:true 
-                    //             break
-                    //         default:
-                    //             res.assessment = (res.c > s.range_max)?false:true 
-                    //     }
-                    //     break
-                    // }
                 case 2:
                         this.get_c2(s);
                         res.assessment = (res.c > s.range_max)?false:true 
@@ -3642,7 +3621,7 @@ var app = new Vue({
             this.get_qc(s)
         },
         set_record(s) {
-            //最后一次输入记录后的标记,将成为下次打开是的开始编号
+            //最后一次输入记录后的标记,将成为下次打开时的开始编号
             s.end = (s.judge) ? s.start : 1
         },
         get_key(s) {
