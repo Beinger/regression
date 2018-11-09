@@ -896,6 +896,9 @@
                         </div>
                     </div>
                 </div>
+                <a class="btn btn-default" @click="QC=false">
+                    跳过质控记录
+                </a>
                 <div class="row" v-if="QC">
                     <div class="col-lg-5">
                         <fieldset>
@@ -947,7 +950,7 @@
                         </fieldset>
                     </div>
                 </div>
-                <div class="row" v-if="!QC">
+                <div class="row" v-else>
                     <div class="col-lg-5">
                         <fieldset>
                             <legend>
@@ -1138,6 +1141,9 @@
                         </div>
                     </div>
                 </div>
+                <a class="btn btn-default" @click="QC=false">
+                    跳过质控记录
+                </a>
                 <div class="row" v-if="QC">
                     <div class="col-lg-6">
                         <fieldset>
@@ -1386,6 +1392,9 @@
                         </div>
                     </div>
                 </div>
+                <a class="btn btn-default" @click="QC=false">
+                    跳过质控记录
+                </a>
                 <div class="row" v-if="!selected3.no_QC && QC">
                     <div class="col-lg-6">
                         <fieldset>
