@@ -208,9 +208,9 @@
 
                 <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
                     <label calss="form-label">
-                        <a title="增加新项目" class="btn btn-default" @click="add_opt=true">
+                        <span title="增加新项目" class="btn btn-default" @click="add_opt=!add_opt">
                             <i class="fa fa-eraser">增加新项目</i>
-                        </a>
+                        </span>
                     </label>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 animated zoomIn" v-if="add_opt">
@@ -236,9 +236,9 @@
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
                     <label calss="form-label">
-                        <a title="修改项目参数" class="btn btn-default" data-toggle="modal" data-target="#opt4">
+                        <span title="修改项目参数" class="btn btn-default" data-toggle="modal" data-target="#opt4">
                             <i class="fa fa-eraser">修改已有项目</i>
-                        </a>
+                        </span>
                     </label>
                 </div>
             </div>
@@ -1549,12 +1549,12 @@
                     if (idx == inputs.length - 1) { // 判断是否是最后一个输入框  
                         if (confirm("最后一个输入框已经输入,是否提交?")) // 用户确认  
                             $(".save_yes").click();
-                            $("form[name='contractForm']").submit(); // 提交表单  
+                            // $("form[name='contractForm']").submit(); // 提交表单  
                     } else {
                         inputs[idx + 1].focus(); // 设置焦点  
                         inputs[idx + 1].select(); // 选中文字  
                     }
-                    return false; // 取消默认的提交行为  
+                    return true; // 取消默认的提交行为  
                 }
             })
         })

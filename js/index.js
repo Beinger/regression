@@ -3084,6 +3084,7 @@ var app = new Vue({
             this.math_formula();
             show_chart();
             this.get_qc(this.selected1)
+            focus_move()
         },
         selected2() {
             /**
@@ -3094,6 +3095,7 @@ var app = new Vue({
             this.show3 = false;
             this.show1 = false;
             this.get_qc(this.selected2)
+            focus_move()
         },
         selected3() {
             /**
@@ -3104,6 +3106,7 @@ var app = new Vue({
             this.show2 = false;
             this.show3 = true;
             this.get_qc(this.selected3)
+            focus_move()
         }
     },
     methods: {
@@ -3768,8 +3771,8 @@ function focus_move() {
      */
     // window.scrollTo(0, docuent.documentElement.clientHeight);
     setTimeout(() => {
-        let x = Math.ceil(5000)
-        let y = 0
+        let x = Math.ceil(50000)
+        let y = 100000
         y += x
         window.scrollTo(y, x)
     })
