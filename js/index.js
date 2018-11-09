@@ -3472,20 +3472,13 @@ var app = new Vue({
             let max = s.range_max;
             let min = s.range_min;
             let range = s.range;
-            if (min !== "" && min !== undefined && min !== null) {
-                range = min + "-" + max
-            } else {
-                if (max == "" || max == undefined || max == null) {
+            if(range == "" || range == undefined || range == null){
+                if (min !== "" && min !== undefined && min !== null) {
+                    range = min + "-" + max
+                }else if (max == "" || max == undefined || max == null) {
                     range = "---"
-                }
-                switch (s.name) {
-                    case "总大肠菌群":
-                    case "大肠埃希氏菌":
-                    case "耐热大肠菌群":
-                        range = "不得检出";
-                        break;
-                    default:
-                        range = "<" + max;
+                }else{
+                    range = "<" + max;
                 }
             }
             return range;
@@ -3498,9 +3491,6 @@ var app = new Vue({
             let res = s.result
             res.date = this.dateFormat(new Date());
             res.id = s.start
-            res.limit = s.limit
-            res.range_max = s.range_max;
-            res.range_min = s.range_min;
             res.range = this.get_range(s)
             res.unit = s.unit;
             res.GB = s.GB;
@@ -3771,8 +3761,8 @@ function focus_move() {
      */
     // window.scrollTo(0, docuent.documentElement.clientHeight);
     setTimeout(() => {
-        let x = Math.ceil(50000)
-        let y = 100000
+        let x = Math.ceil(5000)
+        let y = 0
         y += x
         window.scrollTo(y, x)
     })
