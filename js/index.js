@@ -3559,6 +3559,7 @@ var app = new Vue({
                     let x = s.name + keys[i] + "报告结果";
                     let p = localStorage.getItem(x);
                     p = JSON.parse(p);
+                    s.start = start_index
                     p.assessment = p.assessment ? "合格" : "不合格"
                     s.st.push(p);
                 }
