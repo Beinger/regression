@@ -250,6 +250,7 @@
                             <h3 class="text-info text-center">新增其他类型项目</h3>
                             <ol class="nav">
                                 <li class="animated zoomIn">
+                                    <form class="contractForm">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     </div>
@@ -283,8 +284,8 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button class="btn btn-info" tabindex="-1" data-dismiss="modal">关闭</button>
-                                        <button type="submit" class="btn btn-primary save_yes" @click="add_new_opt(new_opt3)">确认增加</button>
+                                        <button class="btn btn-info" data-dismiss="modal">关闭</button>
+                                        <button type="submit" title="项目名称必须为汉字，请核对后重新输入！" class="btn btn-primary" @click="add_new_opt(new_opt3)">确认增加</button>
                                     </div>
                                 </form>
                                 </li>
@@ -345,8 +346,8 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button class="btn btn-info" tabindex="-1" data-dismiss="modal">关闭</button>
-                                        <button type="submit" class="btn btn-primary save_yes" @click="edit_opt(slt)">提交更改</button>
+                                        <button class="btn btn-info" 　data-dismiss="modal">关闭</button>
+                                        <button type="submit" title="项目名称必须为汉字，请核对后重新输入！" class="btn btn-primary" @click="edit_opt(slt)">提交更改</button>
                                     </div>
                                 </form>
                                 </li>
@@ -398,8 +399,8 @@
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button class="btn btn-info" tabindex="-1" data-dismiss="modal">关闭</button>
-                                            <button type="submit" class="btn btn-primary save_yes" @click="add_new_opt(new_opt2)">确认增加</button>
+                                            <button class="btn btn-info" data-dismiss="modal">关闭</button>
+                                            <button type="submit" title="项目名称必须为汉字，请核对后重新输入！" class="btn btn-primary" @click="add_new_opt(new_opt2)">确认增加</button>
                                         </div>
                                     </form>
                                 </li>
@@ -448,8 +449,8 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button class="btn btn-info" tabindex="-1" data-dismiss="modal">关闭</button>
-                                        <button type="submit" class="btn btn-primary save_yes" @click="add_new_opt(new_opt1)">确认增加</button>
+                                        <button class="btn btn-info" data-dismiss="modal">关闭</button>
+                                        <button type="submit" title="项目名称必须为汉字，请核对后重新输入！" class="btn btn-primary" @click="add_new_opt(new_opt1)">确认增加</button>
                                     </div>
                                     </form>
                                 </li>

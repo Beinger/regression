@@ -3495,40 +3495,48 @@ var app = new Vue({
             let res = s.result
             res.date = this.dateFormat(new Date());
             res.id = s.start
+            res.limit = s.limit
+            res.range_max = s.range_max;
+            res.range_min = s.range_min;
             res.range = this.get_range(s)
-            res.unit = s.unit
-            res.GB = s.GB
+            res.unit = s.unit;
+            res.GB = s.GB;
             res.method = s.method
             switch (s.category) {
                 case 3:
-                    if (s.range_min == "" || s.range_min == null || s.range_min == undefined) {
-                        if (s.range_max == "" || s.range_max == null || s.range_max == undefined) {
-                            if (isNaN(res.c) || res.c == 0) {
-                                res.assessment = true
+                    {
+                        if (s.range_min == "" || s.range_min == null || s.range_min == undefined) {
+                            if (s.range_max == "" || s.range_max == null || s.range_max == undefined) {
+                                if (isNaN(res.c) || res.c == 0) {
+                                    res.assessment = true
+                                } else {
+                                    res.assessment = false
+                                }
                             } else {
-                                res.assessment = false
+                                res.assessment = (res.c > s.range_max) ? false : true
                             }
                         } else {
-                            res.assessment = (res.c > s.range_max) ? false : true
+                            res.assessment = (res.c > s.range_max || res.c < s.range_min) ? false : true
                         }
-                    } else {
-                        res.assessment = (res.c > s.range_max || res.c < s.range_min) ? false : true
                     }
                     break
                 case 2:
-                    this.get_c2(s);
-                    res.assessment = (res.c > s.range_max) ? false : true
-                    break;
-                case 1:
-                    this.get_m(s);
-                    this.get_c(s);
-                    res.assessment = (res.c > s.range_max) ? false : true
-                    break
+                    {
+                        res.c = this.get_c2(s);
+                        res.assessment = (res.c > s.range_max) ? false : true
+                        break;
+                    }
+                default:
+                    {
+                        res.m = this.get_m(s);
+                        res.c = this.get_c(s);
+                        res.assessment = (res.c > s.range_max) ? false : true
+                    }
             }
             let str = JSON.stringify(res); //格式化后才能存入 
             let p = (s.name + s.start + "报告结果");
             localStorage.setItem(p, str);
-            res.assessment = ""
+            res.assessment = res.assessment ? "合格" : "不合格"
             res.a = "";
             res.a1 = "";
             if (!isNaN(res.c)) {
@@ -3555,7 +3563,6 @@ var app = new Vue({
                     s.st.push(p);
                 }
             }
-            s.start = Number(localStorage.getItem(n))
             //对结果依据编号从小到大进行排序
             s.st.sort(function (i, j) {
                 return Number(i.id) > Number(j.id) ? 1 : -1
@@ -3729,6 +3736,7 @@ var app = new Vue({
         },
         deleteAllData() {
             localStorage.clear()
+            window.location.reload()
         }
     },
     computed: {
