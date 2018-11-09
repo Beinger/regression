@@ -3083,6 +3083,7 @@ var app = new Vue({
             this.save_series();
             this.math_formula();
             show_chart();
+            QC_chart()
             this.get_qc(this.selected1)
             focus_move()
         },
@@ -3620,6 +3621,17 @@ var app = new Vue({
             s.QC_store = []
             this.get_qc(s)
         },
+        qc_list(s){
+            let n = localStorage.length
+            let qc_lists = []
+            for(let i=0; i<n; i++){
+                let qc = (s.name + "质控" + i);
+                let values = localStorage.getItem(qc)
+                values = JSON.stringify(values)
+                qc_lists.push(values)
+            }
+            return qc_lists
+        },
         set_record(s) {
             //最后一次输入记录后的标记,将成为下次打开时的开始编号
             s.end = (s.judge) ? s.start : 1
@@ -3767,14 +3779,122 @@ function focus_move() {
         window.scrollTo(y, x)
     })
 };
+let QC_num = ""
+let QC_l = []
+let QC_l1 = []
+let QC_l2 = []
+let QC_data = []
+let qcName = ""
+function QC_lists(s){
 
+    let data = app.qc_list(s)
+    for(let i=0; i<data.length; i++){
+        QC_num = data[i].q_num
+        let QC_val = data[i].q_val
+        let QC_limit = data[i].q_limit
+        let QC_1 = QC_val + QC_limit
+        let QC_2 = QC_val - QC_limit
+        let up = []
+        let mid = []
+        let down = []
+        let va = []
+        va.push(data[i].id)
+        va.push(data[i].result)
+        QC_data.push(va)
+        up.push(data[i].id)
+        up.push(QC_1)
+        QC_l1.push(up)
+        down.push(data[i].id)
+        down.push(QC_2)
+        QC_l2.push(down)
+        mid.push(data[i].id)
+        mid.push(QC_val)
+        QC_l.push(mid)
+        mid = []
+        up = []
+        down = []
+        va = []
+    }
+    qcName = s.name
+
+}
+function QC_chart() {
+    /**
+     * 用highcharts绘制标准曲线
+     */
+    QC_lists(app.selected1)
+    //获取当前项目的标准系列数据
+    var chart = Highcharts.chart("line1", {
+        title: {
+            text: qcName+"质控图"
+        },
+        subtitle: {
+            text: QC_num
+        },
+        xAxis: {
+            title: {
+                text: "id"
+            },
+        },
+        yAxis: {
+            title: {
+                text: "质控值"
+            },
+        },
+        legend: {
+            layout: "vertical",
+            align: "right",
+            verticalAlign: "middle"
+        },
+        plotOptions: {
+            series: {
+                label: {
+                    connectorAllowed: true
+                },
+                pointStart: 0,
+            }
+        },
+        series: [
+            {
+            name: "上线",
+            data: QC_l1
+            },
+            {
+            name: "上线",
+            data: QC_l
+            },
+            {
+            name: "质控",
+            data: QC_data
+            },
+            {
+            name: "下线",
+            data: QC_l2
+            }
+        ],
+        responsive: {
+            rules: [{
+                condition: {
+                    maxWidth: 500
+                },
+                chartOptions: {
+                    legend: {
+                        layout: "horizontal",
+                        align: "center",
+                        verticalAlign: "bottom"
+                    }
+                }
+            }]
+        }
+    });
+}
 function show_chart() {
     /**
      * 用highcharts绘制标准曲线
      */
     getTableContent(app.selected1.id);
     //获取当前项目的标准系列数据
-    chart = Highcharts.chart("line", {
+    var chart = Highcharts.chart("line", {
         title: {
             text: "标准回归曲线"
         },
