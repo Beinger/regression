@@ -3083,9 +3083,9 @@ var app = new Vue({
             this.save_series();
             this.math_formula();
             show_chart();
-            QC_chart()
             this.get_qc(this.selected1)
             focus_move()
+            QC_chart()
         },
         selected2() {
             /**
@@ -3117,6 +3117,17 @@ var app = new Vue({
             this.get_opt()
             this.search_opt(s)
             s = this.uniqueUseNotAllEqual(s)
+        },
+        del_qc(s,index) {
+            //删除质控项
+            let nns = s.QC_store
+            nns.splice(index, 1)
+            for (let i = 0; i < localStorage.length; i++) {
+                let key = localStorage.key(i)
+                if (key.search(s.name + "质控" + index) !== -1) {
+                    localStorage.removeItem(key)
+                }
+            }
         },
         del_opt(s) {
             //删除项目
@@ -3626,9 +3637,11 @@ var app = new Vue({
             let qc_lists = []
             for(let i=0; i<n; i++){
                 let qc = (s.name + "质控" + i);
-                let values = localStorage.getItem(qc)
-                values = JSON.stringify(values)
-                qc_lists.push(values)
+                if(localStorage.key(i) == qc){
+                    var values = localStorage.getItem(qc)
+                    values = JSON.parse(values)
+                    qc_lists.push(values)
+                }
             }
             return qc_lists
         },
@@ -3822,9 +3835,9 @@ function QC_chart() {
     /**
      * 用highcharts绘制标准曲线
      */
-    QC_lists(app.selected1)
     //获取当前项目的标准系列数据
-    var chart = Highcharts.chart("line1", {
+    QC_lists(app.selected1)
+    Highcharts.chart("line1", {
         title: {
             text: qcName+"质控图"
         },
@@ -3894,7 +3907,7 @@ function show_chart() {
      */
     getTableContent(app.selected1.id);
     //获取当前项目的标准系列数据
-    var chart = Highcharts.chart("line", {
+    Highcharts.chart("line", {
         title: {
             text: "标准回归曲线"
         },

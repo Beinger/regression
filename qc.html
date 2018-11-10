@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>质控图</title>
+    <link rel="stylesheet" href="css/css/bootstrap.min.css">
+    <script src="js/highcharts.js"></script>
+    <script src="js/highcharts_zh.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+            <button class="btn" onclick="QC_chart()">点击显示</button>
+            <div id="line_a"></div>
+    </div>
+    <script>
+
+        let QC_num = ""
+        let QC_l = []
+        let QC_l1 = []
+        let QC_l2 = []
+        let QC_data = []
+        let qcName = ""
+        let qc_lists = []
+        function qc_list() {
+            let n = localStorage.length
+            for (let i = 0; i < n; i++) {
+                let qc = "铁质控"+i
+                var val = localStorage.getItem(qc)
+                if(val !== null){
+                    val = JSON.parse(val)
+                    qc_lists.push(val)
+                }
+                // if (localStorage.key(i) == qc) {
+                //     var values = localStorage.getItem(qc)
+                //     values = JSON.parse(values)
+                //     qc_lists.push(values)
+                // }
+            }
+        }
+
+        function QC_lists() {
+
+            qc_list()
+            let data = qc_lists
+            for (let i = 0; i < data.length; i++) {
+                QC_num = data[i].q_num
+                let QC_val = Number(data[i].q_val)
+                let QC_limit = Number(data[i].q_limit)
+                let QC_1 = QC_val + QC_limit
+                let QC_2 = QC_val - QC_limit
+                QC_data.push(Number(data[i].result))
+                QC_l1.push(QC_1)
+                QC_l2.push(QC_2)
+                QC_l.push(QC_val)
+            }
+            qcName = "铁"
+
+        }
+
+        function QC_chart() {
+            /**
+             * 用highcharts绘制标准曲线
+             */
+            //获取当前项目的标准系列数据
+            QC_lists()
+            var chart = Highcharts.chart("line_a", {
+                title: {
+                    text: qcName + "质控图"
+                },
+                subtitle: {
+                    text: QC_num
+                },
+                xAxis: {
+                    title: {
+                        text: "id"
+                    },
+                },
+                yAxis: {
+                    title: {
+                        text: "质控值"
+                    },
+                },
+                legend: {
+                    layout: "vertical",
+                    align: "right",
+                    verticalAlign: "middle"
+                },
+                plotOptions: {
+                    series: {
+                        label: {
+                            connectorAllowed: false
+                        },
+                        pointStart: 0,
+                    }
+                },
+                series: [{
+                        name: "上线",
+                        data: QC_l1
+                    },
+                    {
+                        name: "上线",
+                        data: QC_l
+                    },
+                    {
+                        name: "质控",
+                        data: QC_data
+                    },
+                    {
+                        name: "下线",
+                        data: QC_l2
+                    }
+                ],
+                responsive: {
+                    rules: [{
+                        condition: {
+                            maxWidth: 500
+                        },
+                        chartOptions: {
+                            legend: {
+                                layout: "horizontal",
+                                align: "center",
+                                verticalAlign: "bottom"
+                            }
+                        }
+                    }]
+                }
+            });
+        }
+    </script>
+    <!-- <script src="js/index.js"></script> -->
+</body>
+</html>

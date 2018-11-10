@@ -1004,8 +1004,8 @@
                         </fieldset>
                     </div>
                 </div>
-                <table class="table table-bordered table-striped" v-if="qc_input" @click="QC=!QC">
-                    <legend>
+                <table class="table table-bordered table-striped" v-if="qc_input">
+                    <legend @click="QC=!QC">
                         <span v-text="selected1.name"></span>质控记录
                     </legend>
                     <thead>
@@ -1017,6 +1017,7 @@
                             <th>不确定度</th>
                             <th>结果</th>
                             <th>判断</th>
+                            <th>操作</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -1029,12 +1030,15 @@
                             <td v-text="item.result"></td>
                             <td v-text="item.q_judge" v-if="item.q_judge=='在控'" class="text-success"></td>
                             <td v-text="item.q_judge" v-else class="text-danger"></td>
+                            <td @click="del_qc(selected1,index)">
+                                <i class="fa fa-brush">删除</i>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
 
                 <div>
-                    <div id="line1" style="box-shadow:5px 5px 4px"></div>
+                    <div v-show="show1" id="line1" style="box-shadow:5px 5px 4px"></div>
                 </div>
             </form>
             <form class="animated fadeInDown" v-if="show2">
@@ -1268,7 +1272,7 @@
                         </fieldset>
                     </div>
                 </div>
-                <table class="table table-bordered table-striped" v-if="qc_input" @click="QC=!QC">
+                <table class="table table-bordered table-striped" v-if="qc_input">
                     <legend>
                         <span v-text="selected2.name"></span>质控记录
                     </legend>
@@ -1296,9 +1300,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <div>
-                    <div id="line2" style="box-shadow:5px 5px 4px"></div>
-                </div>
+                <div v-if="show2" id="line2" style="box-shadow:5px 5px 4px"></div>
             </form>
             <form class="animated fadeInDown" v-if="show3">
                 <a class="btn text-danger" @click="printContent('print3')">
@@ -1499,7 +1501,7 @@
                         </fieldset>
                     </div>
                 </div>
-                <table class="table table-bordered table-striped" v-if="qc_input && !selected3.no_QC" @click="QC=!QC">
+                <table class="table table-bordered table-striped" v-if="qc_input && !selected3.no_QC">
                     <legend v-if="!selected3.no_QC">
                         <span v-text="selected3.name"></span>质控记录
                     </legend>
