@@ -765,7 +765,7 @@
                     </table>
                 </div>
                 <div class="col-lg-6" v-show="show1">
-                    <div id="line" style="box-shadow:5px 5px 4px"></div>
+                    <div data-highcharts-chart="0" id="line" style="box-shadow:5px 5px 4px"></div>
                 </div>
             </div>
             <form v-if="show1" class="animated fadeInDown">
@@ -941,9 +941,7 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <input class="form-control animated fadeIn" type="number" tabindex="0"
-                                            placeholder="输入完成直接按回车键" @keyup.enter="save_qc(selected1)" placeholder="输入后直接回车"
-                                            v-model="selected1.store_i.a">
+                                        <input class="form-control animated fadeIn" type="number" tabindex="0" placeholder="输入完成直接按回车键" @keyup.enter="save_qc(selected1)" placeholder="输入后直接回车" v-model="selected1.store_i.a">
                                     </td>
                                 </tr>
                             </table>
@@ -1005,8 +1003,9 @@
                     </div>
                 </div>
                 <table class="table table-bordered table-striped" v-if="qc_input">
-                    <legend @click="QC=!QC">
-                        <span v-text="selected1.name"></span>质控记录
+                    <legend>
+                        <span v-text="selected1.name" @click="QC=!QC"></span>质控记录
+                        <a onclick="QC_chart(app.selected1)">点击</a>
                     </legend>
                     <thead>
                         <tr>
@@ -1038,7 +1037,7 @@
                 </table>
 
                 <div>
-                    <div v-show="show1" id="line1" style="box-shadow:5px 5px 4px"></div>
+                    <div v-show="show1" data-highcharts-chart="1" id="line1" style="box-shadow:5px 5px 4px"></div>
                 </div>
             </form>
             <form class="animated fadeInDown" v-if="show2">
@@ -1275,6 +1274,7 @@
                 <table class="table table-bordered table-striped" v-if="qc_input">
                     <legend>
                         <span v-text="selected2.name"></span>质控记录
+                        <a onclick="QC_chart(app.selected2)">点击显示质控图</a>
                     </legend>
                     <thead>
                         <tr>
@@ -1300,7 +1300,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <div v-if="show2" id="line2" style="box-shadow:5px 5px 4px"></div>
+                <div v-if="show2" data-highcharts-chart="2" id="line2" style="box-shadow:5px 5px 4px"></div>
             </form>
             <form class="animated fadeInDown" v-if="show3">
                 <a class="btn text-danger" @click="printContent('print3')">
@@ -1504,6 +1504,7 @@
                 <table class="table table-bordered table-striped" v-if="qc_input && !selected3.no_QC">
                     <legend v-if="!selected3.no_QC">
                         <span v-text="selected3.name"></span>质控记录
+                        <a onclick="QC_chart(app.selected3)">点击显示质控图</a>
                     </legend>
                     <thead>
                         <tr>
@@ -1530,7 +1531,7 @@
                     </tbody>
                 </table>
                 <div>
-                    <div id="line3" style="box-shadow:5px 5px 4px"></div>
+                    <div data-highcharts-chart="3" id="line3" style="box-shadow:5px 5px 4px"></div>
                 </div>
             </form>
 
@@ -1540,6 +1541,7 @@
     <br>
     <br>
     <script src="js/index.js"></script>
+    <!-- <script src="js/qc.js"></script> -->
     <footer class="footer">
         <div>交流和提问请加QQ群
             <a href="img/myWeixin.jpg">

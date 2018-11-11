@@ -3085,7 +3085,7 @@ var app = new Vue({
             show_chart();
             this.get_qc(this.selected1)
             focus_move()
-            QC_chart()
+            QC_chart(this.selected1)
         },
         selected2() {
             /**
@@ -3097,6 +3097,7 @@ var app = new Vue({
             this.show1 = false;
             this.get_qc(this.selected2)
             focus_move()
+            QC_chart(this.selected2)
         },
         selected3() {
             /**
@@ -3108,6 +3109,7 @@ var app = new Vue({
             this.show3 = true;
             this.get_qc(this.selected3)
             focus_move()
+            QC_chart(this.selected3)
         }
     },
     methods: {
@@ -3121,10 +3123,10 @@ var app = new Vue({
         del_qc(s,index) {
             //删除质控项
             let nns = s.QC_store
-            nns.splice(index, 1)
+            nns.splice(index-1, 1)
             for (let i = 0; i < localStorage.length; i++) {
                 let key = localStorage.key(i)
-                if (key.search(s.name + "质控" + index) !== -1) {
+                if (key == (s.name + "质控" + (index+1))) {
                     localStorage.removeItem(key)
                 }
             }
@@ -3352,10 +3354,10 @@ var app = new Vue({
             this.cal_r();
             this.selected1.formula = "";
             if (this.selected1.a >= 0) {
-                this.selected1.formula = "y = " + this.selected1.b.toFixed(4) + "x + " + this.selected1.a.toFixed(4)
+                this.selected1.formula = "y = " + this.selected1.b.toFixed(3) + "x + " + this.selected1.a.toFixed(4)
             } else {
                 let a = -(this.selected1.a);
-                this.selected1.formula = "y = " + this.selected1.b.toFixed(4) + "x - " + a.toFixed(4)
+                this.selected1.formula = "y = " + this.selected1.b.toFixed(3) + "x - " + a.toFixed(4)
             }
             this.selected1.r = this.selected1.r.toFixed(4)
         },
@@ -3626,6 +3628,8 @@ var app = new Vue({
             } else {
                 s.store_i.q_judge = true
             }
+        },
+        save_in_storage(s){
             let store = JSON.stringify(s.store_i)
             localStorage.setItem(qc, store)
             this.QC = false
@@ -3798,46 +3802,53 @@ let QC_l1 = []
 let QC_l2 = []
 let QC_data = []
 let qcName = ""
+let qc_lists = []
+function qc_list(s) {
+    let n = localStorage.length
+    for (let i = 0; i < n; i++) {
+        let qc = s.name+"质控"
+        let key = localStorage.key(i)
+        let index = key.search(qc)
+        if(index !== -1){
+            var val = localStorage.getItem(key)
+            val = JSON.parse(val)
+            qc_lists[i] = (val)
+        }else{
+            break
+        }
+    }
+}
 function QC_lists(s){
-
-    let data = app.qc_list(s)
+    qc_list(s)
+    let data = qc_lists
+   
     for(let i=0; i<data.length; i++){
         QC_num = data[i].q_num
-        let QC_val = data[i].q_val
-        let QC_limit = data[i].q_limit
+        let QC_val = Number(data[i].q_val)
+        let QC_limit = Number(data[i].q_limit)
         let QC_1 = QC_val + QC_limit
         let QC_2 = QC_val - QC_limit
-        let up = []
-        let mid = []
-        let down = []
-        let va = []
-        va.push(data[i].id)
-        va.push(data[i].result)
-        QC_data.push(va)
-        up.push(data[i].id)
-        up.push(QC_1)
-        QC_l1.push(up)
-        down.push(data[i].id)
-        down.push(QC_2)
-        QC_l2.push(down)
-        mid.push(data[i].id)
-        mid.push(QC_val)
-        QC_l.push(mid)
-        mid = []
-        up = []
-        down = []
-        va = []
+       
+     
+        QC_data.push(Number(data[i].result))
+     
+        QC_l1.push(QC_1)
+       
+        QC_l2.push(QC_2)
+       
+        QC_l.push(QC_val)
+       
     }
     qcName = s.name
 
 }
-function QC_chart() {
+function QC_chart(s) {
     /**
      * 用highcharts绘制标准曲线
      */
     //获取当前项目的标准系列数据
-    QC_lists(app.selected1)
-    Highcharts.chart("line1", {
+    QC_lists(s)
+    var chart = Highcharts.chart("line1", {
         title: {
             text: qcName+"质控图"
         },
@@ -3864,7 +3875,7 @@ function QC_chart() {
                 label: {
                     connectorAllowed: true
                 },
-                pointStart: 0,
+                pointStart: 1,
             }
         },
         series: [
