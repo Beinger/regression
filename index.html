@@ -66,10 +66,10 @@
                     <i class="fa fa-calendar" v-text="dateFormat(new Date())"></i>
                 </div>
                 <div class="col-xs-3 col-lg-2 col-md-2 col-sm-2">
-                    <i class="fa fa-qq"></i>
+                    <i class="fa fa-qq">
                     <a target="_blank" href="https://shang.qq.com/wpa/qunwpa?idkey=0c7a84b3bf0ac2a3564a707e9841a6704564dc55302794760b96bca8bd42480b">
                         <img src="https://pub.idqqimg.com/wpa/images/group.png" alt="水质检测系统" title="水质检测系统">
-                    </a>
+                    </a></i>
                     <a class="btn btn-warning btn-lg" data-toggle="modal" data-target=".bs-example-modal-lg">
                         <i class="fa fa-play">使用演示</i>
                     </a>
@@ -911,12 +911,12 @@
                                     <i class="fa fa-hand-o-right fa-2x"></i>
                                     <span v-text="selected1.name"></span>
                                     <label for="">编号</label>
-                                    <input type="text" v-model="selected1.QC_store[selected1.QC_store.length-1].q_num">
+                                    <input type="text" v-model="selected1.store_i.q_num">
                                     <label for="">定值</label>
-                                    <input type="number" v-model="selected1.QC_store[selected1.QC_store.length-1].q_val">
+                                    <input type="number" v-model="selected1.store_i.q_val">
                                     <span>
                                         <label for="">&plusmn;</label>
-                                        <input type="number" v-model="selected1.QC_store[selected1.QC_store.length-1].q_limit">
+                                        <input type="number" v-model="selected1.store_i.q_limit" @keyup.enter="get_qc(selected1)">
                                     </span>
                                 </a>
                             </div>
@@ -934,14 +934,14 @@
                                     <th class="text-center">吸光度</th>
                                 </tr>
                                 <tr class="text-center">
-                                    <td v-text="selected1.QC_store[selected1.QC_store.length-1].q_num"></td>
+                                    <td v-text="selected1.store_i.q_num"></td>
                                     <td>
                                         <select class="form-control" v-model="selected1.result.v">
                                             <option v-bind:value="opt" v-for="opt of vol_select" v-text="opt"></option>
                                         </select>
                                     </td>
                                     <td>
-                                        <input class="form-control animated fadeIn" type="number" tabindex="0" placeholder="输入完成直接按回车键" @keyup.enter="save_qc(selected1)" placeholder="输入后直接回车" v-model="selected1.store_i.a">
+                                        <input class="form-control animated fadeIn" type="number" tabindex="0" placeholder="输入完成直接按回车键" @keyup.enter="qc_work(selected1,'line1')" placeholder="输入后直接回车" v-model="selected1.store_i.a">
                                     </td>
                                 </tr>
                             </table>
@@ -1004,8 +1004,8 @@
                 </div>
                 <table class="table table-bordered table-striped" v-if="qc_input">
                     <legend>
-                        <span v-text="selected1.name" @click="QC=!QC"></span>质控记录
-                        <a onclick="QC_chart(app.selected1)">点击</a>
+                        <span v-text="selected1.name"></span>质控记录
+                        <a onclick="QC_chart(app.selected1,'line1')" class="btn btn-default">x-s质控图</a>
                     </legend>
                     <thead>
                         <tr>
@@ -1163,11 +1163,11 @@
                                     <i class="fa fa-hand-o-right fa-2x"></i>
                                     <span v-text="selected2.name"></span>
                                     <label for="">编号</label>
-                                    <input type="text" v-model="selected2.QC_store[selected2.QC_store.length-1].q_num">
+                                    <input type="text" v-model="selected2.store_i.q_num">
                                     <label for="">定值</label>
-                                    <input type="number" v-model="selected2.QC_store[selected2.QC_store.length-1].q_val">
+                                    <input type="number" v-model="selected2.store_i.q_val">
                                     <label for="">&plusmn;</label>
-                                    <input type="number" v-model="selected2.QC_store[selected2.QC_store.length-1].q_limit">
+                                    <input type="number" v-model="selected2.store_i.q_limit">
                                 </a>
                             </div>
                         </fieldset>
@@ -1188,7 +1188,7 @@
                                     <th class="text-center" v-else>滴定消耗量(ml)</th>
                                 </tr>
                                 <tr class="text-center">
-                                    <td v-text="selected2.QC_store[selected2.QC_store.length-1].q_num"></td>
+                                    <td v-text="selected2.store_i.q_num"></td>
                                     <td>
                                         <select class="form-control" v-model="selected2.result.v">
                                             <option v-bind:value="opt" v-for="opt of vol_select" v-text="opt"></option>
@@ -1416,11 +1416,11 @@
                                     <i class="fa fa-hand-o-right fa-2x"></i>
                                     <span v-text="selected3.name"></span>
                                     <label for="">编号</label>
-                                    <input type="text" v-model="selected3.QC_store[selected3.QC_store.length-1].q_num">
+                                    <input type="text" v-model="selected3.store_i.q_num">
                                     <label for="">定值</label>
-                                    <input v-model="selected3.QC_store[selected3.QC_store.length-1].q_val">
+                                    <input v-model="selected3.store_i.q_val">
                                     <label for="">&plusmn;</label>
-                                    <input v-model="selected3.QC_store[selected3.QC_store.length-1].q_limit">
+                                    <input v-model="selected3.store_i.q_limit">
                                 </a>
                             </div>
                         </fieldset>
@@ -1437,7 +1437,7 @@
                                     <th class="text-center">结果</th>
                                 </tr>
                                 <tr class="text-center">
-                                    <td v-text="selected3.QC_store[selected3.QC_store.length-1].q_num"></td>
+                                    <td v-text="selected3.store_i.q_num"></td>
                                     <td>
                                         <select class="form-control" v-model="selected3.result.v">
                                             <option v-bind:value="opt" v-for="opt of vol_select" v-text="opt"></option>
@@ -1543,7 +1543,7 @@
     <script src="js/index.js"></script>
     <!-- <script src="js/qc.js"></script> -->
     <footer class="footer">
-        <div>交流和提问请加QQ群
+        <div>交流请加QQ群
             <a href="img/myWeixin.jpg">
                 <i class="fa fa-comments"></i>
                 水质检测系统
