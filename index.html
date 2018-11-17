@@ -784,19 +784,19 @@
                     <table class="table table-bordered table-striped table-hover">
                         <tr>
                             <th class="text-center">检测方法：</th>
-                            <td colspan="1" contenteditable="true" v-text="selected1.method"></td>
+                            <td colspan="3" contenteditable="true" v-text="selected1.method"></td>
                             <th class="text-center">样品数量：</th>
                             <td colspan="2" contenteditable="true">3升</td>
                         </tr>
                         <tr>
                             <th class="text-center">收样日期：</th>
-                            <td contenteditable="true" v-text="recived_date"></td>
+                            <td colspan="3" contenteditable="true" v-text="recived_date"></td>
                             <th class="text-center">检验日期：</th>
                             <td colspan="2" contenteditable="true" v-text="test_date"></td>
                         </tr>
                         <tr>
                             <th class="text-center">样品性状：</th>
-                            <td contenteditable="true">液态</td>
+                            <td colspan="3" contenteditable="true">液态</td>
                             <th class="text-center">检测环境：</th>
                             <td contenteditable="true">
                                 温度
@@ -811,7 +811,7 @@
                         </tr>
                         <tr>
                             <th class="text-center">检测仪器：</th>
-                            <td contenteditable="true" v-text="selected1.instrument_model">
+                            <td colspan="3" contenteditable="true" v-text="selected1.instrument_model">
                             </td>
                             <th class="text-center">检验依据：</th>
                             <td contenteditable="true" colspan="2" v-text="selected1.GB">
@@ -827,15 +827,15 @@
                                 </ol>
                             </td>
                         </tr> -->
-                    </table>
+                    <!-- </table>
                     <table style="table-layout:fixed" class="table tabel-bordered table-striped">
-                        <thead>
+                        <thead> -->
                             <tr>
                                 <th class="text-center">标准加样量(ml)</th>
                                 <td v-for="(item,index) in selected1.standard_series" :key="index" v-text="item[0]"></td>
                             </tr>
-                        </thead>
-                        <tbody>
+                        <!-- </thead>
+                        <tbody> -->
                             <tr>
                                 <th class="text-center">标准吸光度</th>
                                 <td v-for="(item,index) in selected1.standard_series" :key="index" v-text="item[1]"></td>
