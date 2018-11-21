@@ -3,7 +3,8 @@ var app = new Vue({
     data: {
         T: "",
         H: "",
-        QC: true,
+        QC: false,
+        QC_xs: false,
         qc_input: false,
         submit_show: false,
         selected_opt: [],
@@ -2707,7 +2708,6 @@ var app = new Vue({
             for (let i = 0; i < this.selected1.items; i++) {
                 this.zl.push(this.selected1.items[i][0] * Number(this.selected1.QC_c))
             }
-            this.QC = true
             this.show1 = true;
             this.show2 = false;
             this.show3 = false;
@@ -2723,7 +2723,6 @@ var app = new Vue({
             /**
              * 当选择了滴定类项目时，只需要计算，不需要标准系列和曲线
              */
-            this.QC = true
             this.show2 = true;
             this.show3 = false;
             this.show1 = false;
@@ -2735,7 +2734,6 @@ var app = new Vue({
             /**
              * 感官性状
              */
-            this.QC = true
             this.show1 = false;
             this.show2 = false;
             this.show3 = true;
@@ -3227,13 +3225,38 @@ var app = new Vue({
                 }
             }
         },
+        get_qc2(s) {
+            /**
+             * 获取质控数据
+             */
+            this.qc_input = true
+            for (let i = 0; i < localStorage.length; i++) {
+                let qc = (s.name + "质控图" + i);
+                if (localStorage.getItem(qc) !== null) {
+                    let qc_r = localStorage.getItem(qc)
+                    qc_r = JSON.parse(qc_r);
+                    qc_r.q_judge = qc_r.q_judge ? '在控' : '失控'
+                    s.QC_store.push(qc_r)
+                    s.QC_store.sort(function (x,y) {
+                        return x.id > y.id
+                    })
+                    s.store_i.id = qc_r.id
+                }
+            }
+        },
         qc_work(s,id) {
+            //x-s
             this.save_qc(s)
-            this.save_in_storage(s)
+            this.save_qc_in_storage(s)
             s.QC_store = []
-            this.QC = false
             this.get_qc(s) 
             QC_chart(s,id)
+        },
+        qc_work_xs(s){
+            this.save_qc(s)
+            this.save_xs_in_storage(s)
+            s.QC_store = []
+            this.get_qc2(s) 
         },
         save_qc(s) {
             /**
@@ -3274,24 +3297,29 @@ var app = new Vue({
                 s.store_i.q_judge = true
             }
         },
-        save_in_storage(s){
+        save_xs_in_storage(s){
+            let qc = (s.name + "质控图" + s.store_i.id);
+            let store = JSON.stringify(s.store_i)
+            localStorage.setItem(qc, store)
+        },
+        save_qc_in_storage(s){
             let qc = (s.name + "质控" + s.store_i.id);
             let store = JSON.stringify(s.store_i)
             localStorage.setItem(qc, store)
         },
-        qc_list(s){
-            let n = localStorage.length
-            let qc_lists = []
-            for(let i=0; i<n; i++){
-                let qc = (s.name + "质控" + i);
-                if(localStorage.key(i) == qc){
-                    var values = localStorage.getItem(qc)
-                    values = JSON.parse(values)
-                    qc_lists.push(values)
-                }
-            }
-            return qc_lists
-        },
+        // qc_list(s){
+        //     let n = localStorage.length
+        //     let qc_lists = []
+        //     for(let i=0; i<n; i++){
+        //         let qc = (s.name + "质控" + i);
+        //         if(localStorage.key(i) == qc){
+        //             var values = localStorage.getItem(qc)
+        //             values = JSON.parse(values)
+        //             qc_lists.push(values)
+        //         }
+        //     }
+        //     return qc_lists
+        // },
         qc_cal_jun(s) {
             let res = 0 
             for (let i = 0; i < s.QC_store; i++) {
@@ -3475,19 +3503,20 @@ let QC_data = []
 let qcName = ""
 let qc_lists = []
 function qc_list(s) {
-    let n = localStorage.length
-    for (let i = 0; i < n; i++) {
-        let qc = s.name+"质控"
-        let key = localStorage.key(i)
-        let index = key.search(qc)
-        if(index !== -1){
-            var val = localStorage.getItem(key)
-            val = JSON.parse(val)
-            qc_lists.push(val)
-        }else{
-            break
-        }
-    }
+    // let n = localStorage.length
+    // for (let i = 0; i < n; i++) {
+    //     let qc = s.name+"质控"
+    //     let key = localStorage.key(i)
+    //     let index = key.search(qc)
+    //     if(index !== -1){
+    //         var val = localStorage.getItem(key)
+    //         val = JSON.parse(val)
+    //         qc_lists.push(val)
+    //     }else{
+    //         break
+    //     }
+    // }
+    qc_lists = app.selected1.QC_store
     QC_S = app.qc_cal_s(s)
     QC_J = app.qc_cal_jun(s)
 }

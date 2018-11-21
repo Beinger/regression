@@ -786,13 +786,13 @@
                             <th class="text-center">检测方法：</th>
                             <td colspan="3" contenteditable="true" v-text="selected1.method"></td>
                             <th class="text-center">样品数量：</th>
-                            <td colspan="2" contenteditable="true">3升</td>
+                            <td colspan="3" contenteditable="true">3升</td>
                         </tr>
                         <tr>
                             <th class="text-center">收样日期：</th>
                             <td colspan="3" contenteditable="true" v-text="recived_date"></td>
                             <th class="text-center">检验日期：</th>
-                            <td colspan="2" contenteditable="true" v-text="test_date"></td>
+                            <td colspan="3" contenteditable="true" v-text="test_date"></td>
                         </tr>
                         <tr>
                             <th class="text-center">样品性状：</th>
@@ -814,7 +814,7 @@
                             <td colspan="3" contenteditable="true" v-text="selected1.instrument_model">
                             </td>
                             <th class="text-center">检验依据：</th>
-                            <td contenteditable="true" colspan="2" v-text="selected1.GB">
+                            <td contenteditable="true" colspan="3" v-text="selected1.GB">
                             </td>
                         </tr>
                         <!-- <tr>
@@ -896,10 +896,56 @@
                         </div>
                     </div>
                 </div>
-                <a class="btn btn-default" @click="QC=false">
+                <a @click="QC_xs=true;QC=false">标准值质控法</a>
+                <a @click="QC_xs=false;QC=true">x-s质控图法</a>
+                <a class="btn btn-default" @click="QC=false;QC_xs=false">
                     跳过质控记录
                 </a>
                 <div class="row" v-if="QC">
+                    <div class="col-lg-5">
+                        <fieldset>
+                            <legend>
+                                <span v-text="selected1.name"></span>
+                                质控品信息
+                            </legend>
+                            <div>
+                                <a class="btn btn-default">
+                                    <i class="fa fa-hand-o-right fa-2x"></i>
+                                    <span v-text="selected1.name"></span>
+                                    <label for="">编号</label>
+                                    <input type="text" v-model="selected1.store_i.q_num" @keyup.enter="get_qc(selected1)">
+                                </a>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div v-if="qc_input" class="col-lg-7">
+                        <fieldset class="animated pulse">
+                            <legend>
+                                <span v-text="selected1.name"></span>质控结果计算
+                            </legend>
+                            <table class="table table-hover table-bordered table-striped">
+                                <tr>
+                                    <th class="text-center">编号</th>
+                                    <th class="text-center">加样体积(ml)</th>
+                                    <th class="text-center">吸光度</th>
+                                </tr>
+                                <tr class="text-center">
+                                    <td v-text="selected1.store_i.q_num"></td>
+                                    <td>
+                                        <select class="form-control" v-model="selected1.result.v">
+                                            <option v-bind:value="opt" v-for="opt of vol_select" v-text="opt"></option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input class="form-control animated fadeIn" type="number" tabindex="0" placeholder="输入完成直接按回车键"
+                                         @keyup.enter="qc_work(selected1)" placeholder="输入后直接回车" v-model="selected1.store_i.a">
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="row" v-else-if="QC_xs">
                     <div class="col-lg-5">
                         <fieldset>
                             <legend>
@@ -941,7 +987,8 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <input class="form-control animated fadeIn" type="number" tabindex="0" placeholder="输入完成直接按回车键" @keyup.enter="qc_work(selected1,'line1')" placeholder="输入后直接回车" v-model="selected1.store_i.a">
+                                        <input class="form-control animated fadeIn" type="number" tabindex="0"
+                                         placeholder="输入完成直接按回车键" @keyup.enter="qc_work(selected1,id)" placeholder="输入后直接回车" v-model="selected1.store_i.a">
                                     </td>
                                 </tr>
                             </table>
@@ -1005,7 +1052,7 @@
                 <table class="table table-bordered table-striped" v-if="qc_input">
                     <legend>
                         <span v-text="selected1.name"></span>质控记录
-                        <a onclick="QC_chart(app.selected1,'line1')" class="btn btn-default">x-s质控图</a>
+                        <a v-if="QC" onclick="QC_chart(app.selected1,'line1')" class="btn btn-default">x-s质控图</a>
                     </legend>
                     <thead>
                         <tr>
@@ -1036,7 +1083,7 @@
                     </tbody>
                 </table>
 
-                <div>
+                <div v-if="QC">
                     <div v-show="show1" data-highcharts-chart="1" id="line1" style="box-shadow:5px 5px 4px"></div>
                 </div>
             </form>
