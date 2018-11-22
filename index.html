@@ -896,8 +896,8 @@
                         </div>
                     </div>
                 </div>
-                <a @click="QC_xs=true;QC=false">标准值质控法</a>
-                <a @click="QC_xs=false;QC=true">x-s质控图法</a>
+                <a class="btn btn-default" @click="QC_xs=true;QC=false">标准值质控法</a>
+                <a class="btn btn-default" @click="QC_xs=false;QC=true">x-s质控图法</a>
                 <a class="btn btn-default" @click="QC=false;QC_xs=false">
                     跳过质控记录
                 </a>
@@ -909,16 +909,16 @@
                                 质控品信息
                             </legend>
                             <div>
-                                <a class="btn btn-default">
-                                    <i class="fa fa-hand-o-right fa-2x"></i>
-                                    <span v-text="selected1.name"></span>
-                                    <label for="">编号</label>
+                                    <label for="">
+                                        <i class="fa fa-hand-o-right fa-2x"></i>
+                                        <span v-text="selected1.name"></span>
+                                        质控品编号
+                                    </label>
                                     <input type="text" v-model="selected1.store_i.q_num" @keyup.enter="get_qc(selected1)">
-                                </a>
                             </div>
                         </fieldset>
                     </div>
-                    <div v-if="qc_input" class="col-lg-7">
+                    <div class="col-lg-7">
                         <fieldset class="animated pulse">
                             <legend>
                                 <span v-text="selected1.name"></span>质控结果计算
@@ -953,10 +953,11 @@
                                 质控品信息
                             </legend>
                             <div>
-                                <a class="btn btn-default">
-                                    <i class="fa fa-hand-o-right fa-2x"></i>
-                                    <span v-text="selected1.name"></span>
-                                    <label for="">编号</label>
+                                    <label for="">
+                                        <i class="fa fa-hand-o-right fa-2x"></i>
+                                        <span v-text="selected1.name"></span>
+                                        质控品编号
+                                    </label>
                                     <input type="text" v-model="selected1.store_i.q_num">
                                     <label for="">定值</label>
                                     <input type="number" v-model="selected1.store_i.q_val">
@@ -964,7 +965,6 @@
                                         <label for="">&plusmn;</label>
                                         <input type="number" v-model="selected1.store_i.q_limit" @keyup.enter="get_qc(selected1)">
                                     </span>
-                                </a>
                             </div>
                         </fieldset>
                     </div>
@@ -988,7 +988,7 @@
                                     </td>
                                     <td>
                                         <input class="form-control animated fadeIn" type="number" tabindex="0"
-                                         placeholder="输入完成直接按回车键" @keyup.enter="qc_work(selected1,id)" placeholder="输入后直接回车" v-model="selected1.store_i.a">
+                                         placeholder="输入完成直接按回车键" @keyup.enter="qc_xs_work(selected1,id)" placeholder="输入后直接回车" v-model="selected1.store_i.a">
                                     </td>
                                 </tr>
                             </table>
@@ -1059,20 +1059,20 @@
                             <th>序号</th>
                             <th>编号</th>
                             <th>日期</th>
-                            <th>定值</th>
-                            <th>不确定度</th>
+                            <th v-show="QC_xs">定值</th>
+                            <th v-show="QC_xs">不确定度</th>
                             <th>结果</th>
                             <th>判断</th>
                             <th>操作</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(item, index) in selected1.QC_store" :key="index">
+                        <tr v-for="(item, index) in selected1.QC_xs_store" :key="index">
                             <td v-text="item.id"></td>
                             <td v-text="item.q_num"></td>
                             <td v-text="item.date"></td>
-                            <td v-text="item.q_val"></td>
-                            <td v-text="item.q_limit"></td>
+                            <td v-show="QC_xs" v-text="item.q_val"></td>
+                            <td v-show="QC_xs" v-text="item.q_limit"></td>
                             <td v-text="item.result"></td>
                             <td v-text="item.q_judge" v-if="item.q_judge=='在控'" class="text-success"></td>
                             <td v-text="item.q_judge" v-else class="text-danger"></td>

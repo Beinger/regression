@@ -47,6 +47,7 @@ var app = new Vue({
             zl: [],
             QC_store: [
             ],
+            QC_xs_stroe:[],
             store_i: {
                 id: '',
                 q_num: '',
@@ -97,6 +98,7 @@ var app = new Vue({
             zl: [],
             QC_store: [
             ],
+            QC_xs_stroe:[],
             store_i: {
                 id: '',
                 q_num: '',
@@ -143,6 +145,7 @@ var app = new Vue({
             zl: [],
             QC_store: [
             ],
+            QC_xs_stroe:[],
             store_i: {
                 id: '',
                 q_num: '',
@@ -185,6 +188,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -227,6 +231,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -268,6 +273,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -306,6 +312,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -343,6 +350,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -380,6 +388,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -426,6 +435,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -470,6 +480,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -510,6 +521,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -555,6 +567,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -595,6 +608,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -636,6 +650,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -685,6 +700,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -739,6 +755,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -793,6 +810,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -836,6 +854,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -879,6 +898,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -926,6 +946,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -970,6 +991,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -1015,6 +1037,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -1059,6 +1082,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -1103,6 +1127,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -1178,6 +1203,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -1265,6 +1291,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -1348,6 +1375,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -1427,6 +1455,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -1511,6 +1540,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -1594,6 +1624,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -1673,6 +1704,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -1752,6 +1784,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -1827,6 +1860,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -1910,6 +1944,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -1985,6 +2020,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -2060,6 +2096,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -2135,6 +2172,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -2210,6 +2248,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -2285,6 +2324,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -2360,6 +2400,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -2435,6 +2476,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -2514,6 +2556,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -2594,6 +2637,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -2631,6 +2675,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -2668,6 +2713,7 @@ var app = new Vue({
                 zl: [],
                 QC_store: [
                 ],
+                QC_xs_stroe:[],
                 store_i: {
                     id: '',
                     q_num: '',
@@ -3236,8 +3282,8 @@ var app = new Vue({
                     let qc_r = localStorage.getItem(qc)
                     qc_r = JSON.parse(qc_r);
                     qc_r.q_judge = qc_r.q_judge ? '在控' : '失控'
-                    s.QC_store.push(qc_r)
-                    s.QC_store.sort(function (x,y) {
+                    s.QC_xs_store.push(qc_r)
+                    s.QC_xs_store.sort(function (x,y) {
                         return x.id > y.id
                     })
                     s.store_i.id = qc_r.id
@@ -3246,29 +3292,28 @@ var app = new Vue({
         },
         qc_work(s,id) {
             //x-s
-            this.save_qc(s)
+            this.save_qc(s,s.QC_store)
             this.save_qc_in_storage(s)
             s.QC_store = []
             this.get_qc(s) 
-            QC_chart(s,id)
         },
-        qc_work_xs(s){
-            this.save_qc(s)
+        qc_xs_work(s){
+            this.save_qc(s,s.QC_xs_store)
             this.save_xs_in_storage(s)
-            s.QC_store = []
+            s.QC_xs_store = []
             this.get_qc2(s) 
         },
-        save_qc(s) {
+        save_qc(s,r) {
             /**
              * 获取用户输入写入质控数据
              */
             let coef = s.coefficient;
             let v = s.result.v;
             try {
-                s.QC_store !== ""
+                r !== "" 
             }
             catch(err) {
-                s.store_i = s.QC_store[s.QC_store.length - 1]
+                s.store_i = r[r.length - 1]
             }
             s.store_i.id = Number(s.store_i.id) + 1
             s.store_i.date = this.dateFormat(new Date());
@@ -3322,15 +3367,15 @@ var app = new Vue({
         // },
         qc_cal_jun(s) {
             let res = 0 
-            for (let i = 0; i < s.QC_store; i++) {
-                res += Number(s.QC_store[i].result)
+            for (let i = 0; i < s.QC_xs_store; i++) {
+                res += Number(s.QC_xs_store[i].result)
             }
-            return res / s.QC_store.length
+            return res / s.QC_xs_store.length
         },
         qc_cal_s(s){
 
             let f = 0
-            let res = this.qc_cal_jun(s) * s.QC_store.length
+            let res = this.qc_cal_jun(s) * s.QC_xs_store.length
             let jun = this.qc_cal_jun(s)
             for (let i = 0; i < res.length; i++){
                 let x = (res[i] - jun)*(res[i]-jun)
