@@ -896,12 +896,12 @@
                         </div>
                     </div>
                 </div>
-                <a class="btn btn-default" @click="QC_xs=true;QC=false">标准值质控法</a>
-                <a class="btn btn-default" @click="QC_xs=false;QC=true">x-s质控图法</a>
+                <a class="btn btn-default" @click="QC_xs=true;QC=false">x-s质控图法</a>
+                <a class="btn btn-default" @click="QC_xs=false;QC=true">标准值质控法</a>
                 <a class="btn btn-default" @click="QC=false;QC_xs=false">
                     跳过质控记录
                 </a>
-                <div class="row" v-if="QC">
+                <div class="row" v-if="QC_xs">
                     <div class="col-lg-5">
                         <fieldset>
                             <legend>
@@ -914,7 +914,7 @@
                                         <span v-text="selected1.name"></span>
                                         质控品编号
                                     </label>
-                                    <input type="text" v-model="selected1.store_i.q_num" @keyup.enter="get_qc(selected1)">
+                                    <input type="text" v-model="selected1.store_i.q_num" @keyup.enter="get_qc2(selected1)">
                             </div>
                         </fieldset>
                     </div>
@@ -938,14 +938,14 @@
                                     </td>
                                     <td>
                                         <input class="form-control animated fadeIn" type="number" tabindex="0" placeholder="输入完成直接按回车键"
-                                         @keyup.enter="qc_work(selected1)" placeholder="输入后直接回车" v-model="selected1.store_i.a">
+                                         @keyup.enter="qc_xs_work(selected1)" placeholder="输入后直接回车" v-model="selected1.store_i.a">
                                     </td>
                                 </tr>
                             </table>
                         </fieldset>
                     </div>
                 </div>
-                <div class="row" v-else-if="QC_xs">
+                <div class="row" v-else-if="QC">
                     <div class="col-lg-5">
                         <fieldset>
                             <legend>
@@ -988,7 +988,7 @@
                                     </td>
                                     <td>
                                         <input class="form-control animated fadeIn" type="number" tabindex="0"
-                                         placeholder="输入完成直接按回车键" @keyup.enter="qc_xs_work(selected1,id)" placeholder="输入后直接回车" v-model="selected1.store_i.a">
+                                         placeholder="输入完成直接按回车键" @keyup.enter="qc_work(selected1,id)" placeholder="输入后直接回车" v-model="selected1.store_i.a">
                                     </td>
                                 </tr>
                             </table>
@@ -1052,15 +1052,15 @@
                 <table class="table table-bordered table-striped" v-if="qc_input">
                     <legend>
                         <span v-text="selected1.name"></span>质控记录
-                        <a v-if="QC" onclick="QC_chart(app.selected1,'line1')" class="btn btn-default">x-s质控图</a>
+                        <a v-if="QC_xs" onclick="QC_chart(app.selected1,'line1')" class="btn btn-default">x-s质控图</a>
                     </legend>
                     <thead>
                         <tr>
                             <th>序号</th>
                             <th>编号</th>
                             <th>日期</th>
-                            <th v-show="QC_xs">定值</th>
-                            <th v-show="QC_xs">不确定度</th>
+                            <th v-show="QC">定值</th>
+                            <th v-show="QC">不确定度</th>
                             <th>结果</th>
                             <th>判断</th>
                             <th>操作</th>
@@ -1071,8 +1071,8 @@
                             <td v-text="item.id"></td>
                             <td v-text="item.q_num"></td>
                             <td v-text="item.date"></td>
-                            <td v-show="QC_xs" v-text="item.q_val"></td>
-                            <td v-show="QC_xs" v-text="item.q_limit"></td>
+                            <td v-show="QC" v-text="item.q_val"></td>
+                            <td v-show="QC" v-text="item.q_limit"></td>
                             <td v-text="item.result"></td>
                             <td v-text="item.q_judge" v-if="item.q_judge=='在控'" class="text-success"></td>
                             <td v-text="item.q_judge" v-else class="text-danger"></td>
@@ -1083,7 +1083,7 @@
                     </tbody>
                 </table>
 
-                <div v-if="QC">
+                <div v-if="QC_xs">
                     <div v-show="show1" data-highcharts-chart="1" id="line1" style="box-shadow:5px 5px 4px"></div>
                 </div>
             </form>
