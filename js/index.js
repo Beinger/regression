@@ -2759,7 +2759,7 @@ var app = new Vue({
                 let key = localStorage.key(i)
                 if (key == (s.name + '质控' + (index + 1))) {
                     localStorage.removeItem(key)
-                } else if(key == (s.name + "质控图" + (index + 1))){
+                } else if (key == (s.name + "质控图" + (index + 1))) {
                     localStorage.removeItem(key)
                 }
             }
@@ -3227,44 +3227,45 @@ var app = new Vue({
              */
             this.qc_input = true
             for (let i = 0; i < localStorage.length; i++) {
-                let qc = (s.name + '质控图' + i)
-                if (localStorage.getItem(qc) !== null) {
-                    let qc_r = localStorage.getItem(qc)
-                    qc_r = JSON.parse(qc_r)
-                    switch (qc_r.q_judge) {
-                        case 0:
-                            qc_r.q_judge = "在控"
-                            break
-                        case 1:
-                            qc_r.q_judge = "警告"
-                            break
-                        case 2:
-                            qc_r.q_judge = "危险"
-                            break
-                        case 3:
-                            qc_r.q_judge = "失控"
-                            break
-                    }
-                    s.QC_xs_store.push(qc_r)
+                let qct = (s.name + '质控图' + i)
+                if (localStorage.getItem(qct) !== null) {
+                    let qc_t = localStorage.getItem(qct)
+                    qc_t = JSON.parse(qc_t)
+                    // switch (qc_t.q_judge) {
+                    //     case 0:
+                    //         qc_t.q_judge = "在控"
+                    //         break
+                    //     case 1:
+                    //         qc_t.q_judge = "警告"
+                    //         break
+                    //     case 2:
+                    //         qc_t.q_judge = "危险"
+                    //         break
+                    //     case 3:
+                    //         qc_t.q_judge = "失控"
+                    //         break
+                    // }
+                    s.QC_xs_store.push(qc_t)
                     s.QC_xs_store.sort(function (x, y) {
                         return x.id > y.id
                     })
-                    s.store_i.id = qc_r.id
+                    s.store_i.id = qc_t.id
                 }
             }
         },
-        qc_work(s, id) {
-            // x-s
+        qc_work(s) {
+            s.QC_store = []
             this.save_qc(s, s.QC_store)
             this.save_qc_in_storage(s)
-            s.QC_store = []
             this.get_qc(s)
         },
         qc_xs_work(s) {
+            // x-s
+            s.QC_xs_store = []
             this.save_qc(s, s.QC_xs_store)
             this.save_xs_in_storage(s)
-            s.QC_xs_store = []
             this.get_qc2(s)
+            this.get_judge(s)
         },
         save_qc(s, r) {
             /**
@@ -3296,67 +3297,39 @@ var app = new Vue({
                     s.store_i.result = s.store_i.a
                     break
             }
-            if (r == s.QC_xs_store) {
-                    let x = Number(s.store_i.q_val) + Number(s.store_i.q_limit)
-                    let y = Number(s.store_i.q_val) - Number(s.store_i.q_limit)
-                    if ((s.store_i.result > x) || (s.store_i.result < y)) {
-                        s.store_i.q_judge = false
+        },
+        get_judge(s) {
+            let store = s.QC_store
+            let store2 = s.QC_xs_store
+            if (store !== "" && store !== undefined && store !== null){
+                for (let i = 0; i < store.length; i++){
+
+                    let x = Number(store.q_val) + Number(store.q_limit)
+                    let y = Number(store.q_val) - Number(store.q_limit)
+                    if ((store.result > x) || (store.result < y)) {
+                        store.q_judge = false
                     } else {
-                        s.store_i.q_judge = true
+                        store.q_judge = true
                     }
-
-            } else{
-
+                }
+            }else{
                     let jun = this.qc_cal_jun(s)
                     let S = this.qc_cal_s(s)
-                    let lim1 = jun + S 
                     let lim2 = jun + S * 2
                     let lim3 = jun + S * 3
-                    let lim01 = jun - S 
                     let lim02 = jun - S * 2
                     let lim03 = jun - S * 3
-                    let res = s.store_i.result
+                for (let i = 0; i < store2.length; i++){
+                    let res = store2[i].result
                     if (res > lim3 || res < lim03) {
-                        s.store_i.judge = 3
+                        store2[i].q_judge = '失控'
                     } else if (res > lim2 || res < lim02) {
-                        s.store_i.judge = 2
-                    } else if (res > lim1 || res < lim01) {
-                        s.store_i.judge = 1
+                        store2[i].q_judge = '警告'
                     } else {
-                        s.store_i.judge = 0
+                        store2[i].q_judge = '在控'
                     }
+                }
             }
-            // switch (r) {
-            //     case this.selected1.QC_store:
-            //         let x = Number(s.store_i.q_val) + Number(s.store_i.q_limit)
-            //         let y = Number(s.store_i.q_val) - Number(s.store_i.q_limit)
-            //         if ((s.store_i.result > x) || (s.store_i.result < y)) {
-            //             s.store_i.q_judge = false
-            //         } else {
-            //             s.store_i.q_judge = true
-            //         }
-            //         break
-            //     case this.selected1.QC_xs_store:
-            //         let jun = this.qc_cal_jun(s)
-            //         let S = this.qc_cal_s(s)
-            //         let lim1 = jun + S 
-            //         let lim2 = jun + S * 2
-            //         let lim3 = jun + S * 3
-            //         let lim01 = jun - S 
-            //         let lim02 = jun - S * 2
-            //         let lim03 = jun - S * 3
-            //         let res = s.store_i.result
-            //         if (res > lim3 || res < lim03) {
-            //             s.store_i.judge = 3
-            //         } else if (res > lim2 || res < lim02) {
-            //             s.store_i.judge = 2
-            //         } else if (res > lim1 || res < lim01) {
-            //             s.store_i.judge = 1
-            //         } else {
-            //             s.store_i.judge = 0
-            //         }
-            //         break
-            // }
         },
         save_xs_in_storage(s) {
             let qc = (s.name + '质控图' + s.store_i.id)
@@ -3396,7 +3369,7 @@ var app = new Vue({
                 let x = (list[i].result - jun) * (list[i].result - jun)
                 f += x
             }
-            return Math.sqrt(f)
+            return Math.sqrt(f / list.length)
         },
         set_record(s) {
             // 最后一次输入记录后的标记,将成为下次打开时的开始编号
@@ -3550,37 +3523,31 @@ function focus_move() {
 }
 let QC_S = 0
 let QC_J = 0
+let s1 = 0
+let s2 = 0
+let s3 = 0
+let x1 = 0
+let x2 = 0
+let x3 = 0
 let QC_num = ''
-let QC_up = []
-let QC_up1 = []
-let QC_up2 = []
-let QC_up3 = []
-let QC_down = []
-let QC_down1 = []
-let QC_down2 = []
-let QC_down3 = []
 let QC_data = []
 let qcName = ''
-let qc_lists = []
 
 function QC_lists(s) {
-    qc_lists = app.selected1.QC_xs_store
+    QC_data = []
+    let qc_lists = app.selected1.QC_xs_store
     QC_S = app.qc_cal_s(s)
     QC_J = app.qc_cal_jun(s)
-    let data = qc_lists
+    s1 = QC_J + QC_S
+    s2 = QC_J + QC_S * 2
+    s3 = QC_J + QC_S * 3
+    x1 = QC_J - QC_S
+    x2 = QC_J - QC_S * 2
+    x3 = QC_J - QC_S * 3
 
-    for (let i = 0; i < data.length; i++) {
-        QC_num = data[i].q_num
-
-        QC_data.push(Number(data[i].result))
-
-        QC_up1.push(QC_J + QC_S)
-        QC_up2.push(QC_J + 2 * QC_S)
-        QC_up3.push(QC_J + 3 * QC_S)
-
-        QC_down1.push(QC_J - QC_S)
-        QC_down2.push(QC_J - 2 * QC_S)
-        QC_down3.push(QC_J - 3 * QC_S)
+    for (let i = 0; i < qc_lists.length; i++) {
+        QC_num = qc_lists[i].q_num
+        QC_data.push(Number(qc_lists[i].result))
     }
     qcName = s.name
 }
@@ -3590,62 +3557,93 @@ function QC_chart(s, id) {
      */
     // 获取当前项目的标准系列数据
     QC_lists(s)
+    focus_move()
     var chart = Highcharts.chart(id, {
         credits: {
             enabled: false
         },
         title: {
-            text: qcName + '质控图'
+            text: '水中' + qcName + 'x-s质控图'
         },
         subtitle: {
-            text: QC_num
+            text: '质控样编号: ' + QC_num
         },
         xAxis: {
-            title: {
-                text: '序号'
+            labels: {
+                enabled: false,
+                step: 1
             },
-            plotLines: [{
-                color: 'red',
-                text: '+3S',
-                dashStyle: 'longdashot',
-                value: QC_J + 3 * QC_S,
-                width: 2
-            }],
-            plotLines: [{
-                color: 'red',
-                dashStyle: 'longdashot',
-                value: QC_J - 3 * QC_S,
-                width: 2
-            }],
-            plotLines: [{
-                color: 'yellow',
-                dashStyle: 'longdashot',
-                value: QC_J + 2 * QC_S,
-                width: 2
-            }],
-            plotLines: [{
-                color: 'yellow',
-                dashStyle: 'longdashot',
-                value: QC_J - 2 * QC_S,
-                width: 2
-            }],
-            plotLines: [{
-                color: 'blue',
-                dashStyle: 'longdashot',
-                value: QC_J + QC_S,
-                width: 2
-            }],
-            plotLines: [{
-                color: 'blue',
-                dashStyle: 'longdashot',
-                value: QC_J - QC_S,
-                width: 2
-            }]
         },
         yAxis: {
-            title: {
-                text: '质控值'
-            }
+            gridLineWidth: 0,
+            gridLineColor: '#000',
+            labels: {
+                enabled: false
+            },
+            plotLines: [{
+                label: {
+                    text: '+3S',
+                    align: 'right'
+                },
+                color: 'purple',
+                dashStyle: 'longdashot',
+                value: s3,
+                width: 2,
+            }, {
+                label: {
+                    text: '-3S',
+                    align: 'right'
+                },
+                color: 'purple',
+                dashStyle: 'longdashot',
+                value: x3,
+                width: 2
+            }, {
+                label: {
+                    text: '+2S',
+                    align: 'right'
+                },
+                color: 'red',
+                dashStyle: 'longdashot',
+                value: s2,
+                width: 2
+            }, {
+                label: {
+                    text: '平均值',
+                    align: 'right'
+                },
+                color: 'green',
+                dashStyle: 'solid',
+                value: QC_J,
+                width: 3
+            }, {
+                label: {
+                    text: '-2S',
+                    align: 'right'
+                },
+                color: 'red',
+                dashStyle: 'longdashot',
+                value: x2,
+                width: 2
+            }, {
+                label: {
+                    text: '+S',
+                    align: 'right'
+                },
+                color: 'yellow',
+                dashStyle: 'longdashot',
+                value: s1,
+                width: 2
+            }, {
+                label: {
+                    text: '-S',
+                    align: 'right'
+                },
+                color: 'yellow',
+                dashStyle: 'longdashot',
+                value: x1,
+                width: 2
+            }]
         },
         legend: {
             layout: 'vertical',
@@ -3662,7 +3660,7 @@ function QC_chart(s, id) {
         },
         series: [
             {
-                name: '质控值',
+                name: '值',
                 data: QC_data
             }
         ],

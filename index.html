@@ -988,7 +988,7 @@
                                     </td>
                                     <td>
                                         <input class="form-control animated fadeIn" type="number" tabindex="0"
-                                         placeholder="输入完成直接按回车键" @keyup.enter="qc_work(selected1,id)" placeholder="输入后直接回车" v-model="selected1.store_i.a">
+                                         placeholder="输入完成直接按回车键" @keyup.enter="qc_work(selected1)" placeholder="输入后直接回车" v-model="selected1.store_i.a">
                                     </td>
                                 </tr>
                             </table>
@@ -1052,7 +1052,7 @@
                 <table class="table table-bordered table-striped" v-if="qc_input">
                     <legend>
                         <span v-text="selected1.name"></span>质控记录
-                        <a v-if="QC_xs" onclick="QC_chart(app.selected1,'line1')" class="btn btn-default">x-s质控图</a>
+                        <a v-if="QC_xs" onclick="QC_chart(app.selected1,'line1')" class="btn btn-default">制作x-s质控图</a>
                     </legend>
                     <thead>
                         <tr>
@@ -1249,7 +1249,7 @@
                                     </td>
                                     <td>
                                         <input class="form-control animated fadeIn" type="number" tabindex="0"
-                                            placeholder="输入完成直接按回车键" @keyup.enter="save_qc(selected2)" placeholder="输入后直接回车"
+                                            placeholder="输入完成直接按回车键" @keyup.enter="save_qc(selected2,selected2.QC_store)" placeholder="输入后直接回车"
                                             v-model="selected2.store_i.a">
                                     </td>
                                 </tr>
@@ -1492,7 +1492,7 @@
                                     </td>
                                     <td>
                                         <input class="form-control animated fadeIn" placeholder="输入完成直接按回车键"
-                                            @keyup.enter="save_qc(selected3)" placeholder="输入后直接回车" v-model="selected3.store_i.a">
+                                            @keyup.enter="save_qc(selected3,selected3.QC_store)" placeholder="输入后直接回车" v-model="selected3.store_i.a">
                                     </td>
                                 </tr>
                             </table>
