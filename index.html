@@ -913,8 +913,11 @@
                                         <i class="fa fa-hand-o-right fa-2x"></i>
                                         <span v-text="selected1.name"></span>
                                         质控品编号
+                                        <input type="text" v-model="selected1.store_i.q_num">
                                     </label>
-                                    <input type="text" v-model="selected1.store_i.q_num" @keyup.enter="get_qc2(selected1)">
+                                    <label>质控品序号
+                                        <input type="text" v-model="selected1.store_i.id" @keyup.enter="get_qc2(selected1)">
+                                    </label>
                             </div>
                         </fieldset>
                     </div>
@@ -926,11 +929,13 @@
                             <table class="table table-hover table-bordered table-striped">
                                 <tr>
                                     <th class="text-center">编号</th>
+                                    <th class="text-center">序号</th>
                                     <th class="text-center">加样体积(ml)</th>
                                     <th class="text-center">吸光度</th>
                                 </tr>
                                 <tr class="text-center">
                                     <td v-text="selected1.store_i.q_num"></td>
+                                    <td v-text="selected1.store_i.id"></td>
                                     <td>
                                         <select class="form-control" v-model="selected1.result.v">
                                             <option v-bind:value="opt" v-for="opt of vol_select" v-text="opt"></option>

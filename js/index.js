@@ -3225,11 +3225,12 @@ var app = new Vue({
             /**
              * 获取质控数据
              */
+            s.QC_xs_store = []
             this.qc_input = true
             for (let i = 0; i < localStorage.length; i++) {
                 let qct = (s.name + '质控图' + i)
-                if (localStorage.getItem(qct) !== null) {
-                    let qc_t = localStorage.getItem(qct)
+                let qc_t = localStorage.getItem(qct)
+                if (qc_t !== null) {
                     qc_t = JSON.parse(qc_t)
                     // switch (qc_t.q_judge) {
                     //     case 0:
@@ -3255,16 +3256,16 @@ var app = new Vue({
         },
         qc_work(s) {
             s.QC_store = []
+            this.get_qc(s)
             this.save_qc(s, s.QC_store)
             this.save_qc_in_storage(s)
-            this.get_qc(s)
         },
         qc_xs_work(s) {
             // x-s
             s.QC_xs_store = []
+            this.get_qc2(s)
             this.save_qc(s, s.QC_xs_store)
             this.save_xs_in_storage(s)
-            this.get_qc2(s)
             this.get_judge(s)
         },
         save_qc(s, r) {
@@ -3278,7 +3279,6 @@ var app = new Vue({
             } catch (err) {
                 s.store_i = r[r.length - 1]
             }
-            s.store_i.id = Number(s.store_i.id) + 1
             s.store_i.date = this.dateFormat(new Date())
             switch (s.category) {
                 case 1:
@@ -3301,8 +3301,8 @@ var app = new Vue({
         get_judge(s) {
             let store = s.QC_store
             let store2 = s.QC_xs_store
-            if (store !== "" && store !== undefined && store !== null){
-                for (let i = 0; i < store.length; i++){
+            if (store !== "" && store !== undefined && store !== null) {
+                for (let i = 0; i < store.length; i++) {
 
                     let x = Number(store.q_val) + Number(store.q_limit)
                     let y = Number(store.q_val) - Number(store.q_limit)
@@ -3312,14 +3312,14 @@ var app = new Vue({
                         store.q_judge = true
                     }
                 }
-            }else{
-                    let jun = this.qc_cal_jun(s)
-                    let S = this.qc_cal_s(s)
-                    let lim2 = jun + S * 2
-                    let lim3 = jun + S * 3
-                    let lim02 = jun - S * 2
-                    let lim03 = jun - S * 3
-                for (let i = 0; i < store2.length; i++){
+            } else {
+                let jun = this.qc_cal_jun(s)
+                let S = this.qc_cal_s(s)
+                let lim2 = jun + S * 2
+                let lim3 = jun + S * 3
+                let lim02 = jun - S * 2
+                let lim03 = jun - S * 3
+                for (let i = 0; i < store2.length; i++) {
                     let res = store2[i].result
                     if (res > lim3 || res < lim03) {
                         store2[i].q_judge = '失控'
@@ -3335,11 +3335,13 @@ var app = new Vue({
             let qc = (s.name + '质控图' + s.store_i.id)
             let store = JSON.stringify(s.store_i)
             localStorage.setItem(qc, store)
+            s.store_i.id = Number(s.store_i.id) + 1
         },
         save_qc_in_storage(s) {
             let qc = (s.name + '质控' + s.store_i.id)
             let store = JSON.stringify(s.store_i)
             localStorage.setItem(qc, store)
+            s.store_i.id = Number(s.store_i.id) + 1
         },
         // qc_list(s){
         //     let n = localStorage.length
